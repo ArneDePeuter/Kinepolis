@@ -1,11 +1,12 @@
 # Testen: Sam
 # Implementeren: Siebe
 class Gebruiker:
-    def __init__(self, id, voornaam, achternaam, emailadres):
+    id = 1
+    def __init__(self, voornaam, achternaam, emailadres):
         """
         Ceëert een Gebruiker.
 
-        Preconditie: \
+        Preconditie: voornaam is een string, achternaam is een string en emailadress is een string.
 
         Postconditie: Een nieuwe gebruiker is aangemaakt.
 
@@ -14,7 +15,8 @@ class Gebruiker:
         :param achternaam: De achternaam van de persoon.
         :param emailadres: Het e-mailadres van de persoon.
         """
-        self.id = id
+        self.id = Gebruiker.id  # Zet de id van de film gelijk aan de id
+        Gebruiker.id += 1
         self.firstname = voornaam
         self.lastname = achternaam
         self.emailadres = emailadres

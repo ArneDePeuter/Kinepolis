@@ -5,7 +5,7 @@ class Zaal:
         """
         Ceëert een zaal.
 
-        Preconditie: \
+        Preconditie: Het aantalPlaatsen en zaalNummer zijn natuulrijke getallen.
 
         Postconditie: Een zaal is aangemaakt.
 

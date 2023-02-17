@@ -1,11 +1,11 @@
 # Testen: Arne
 # Implementeren: Cedric
 class Reservatie:
-    def __init__(self, id, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
+    def __init__(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """
         Ceëert een reservatie.
 
-        Preconditie: \
+        Preconditie: userid, vertoningid en aantalPlaatsenGereserveerd is een natuurlijk getal en de timestamp is geldig
 
         Postconditie: Een nieuwe reservatie is aangemaakt.
 

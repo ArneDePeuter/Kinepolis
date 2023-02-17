@@ -5,7 +5,7 @@ class Vertoning:
         """
         Ceëert een vertoning.
 
-        Preconditie: \
+        Preconditie: De zaalummer, filmid, vrijePlaatsen zijn een naturlijke getallen en het slot en de datum zijn geldig
 
         Postconditie: Een vertoning is aangemaakt.
 
