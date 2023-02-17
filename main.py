@@ -7,9 +7,7 @@ from Zaal import Zaal
 from univeralWrapper import *
 
 def main():
-    print("test2")
-    pass
-
+    print("made by cedric")
 
 if __name__ == "__main__":
     main()
