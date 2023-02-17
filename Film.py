@@ -1,8 +1,7 @@
 # Testen: Siebe
 # Implementeren: Arne
 class Film:
-    id = 1
-    def __init__(self, titel, rating):
+    def __init__(self, id, titel, rating):
         """
         Creëert een nieuwe film
 
@@ -14,8 +13,7 @@ class Film:
         :param titel: De titel van de film.
         :param rating: De score van een film volgens recensies.
         """
-        self.id = Film.id  # Zet de id van de film gelijk aan de id
-        Film.id += 1
+        self.id = id
         self.title = titel
         self.rating = rating
 

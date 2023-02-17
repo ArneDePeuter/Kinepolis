@@ -4,7 +4,7 @@ from Reservatie import Reservatie
 from Reservatiesysteem import Reservatiesysteem
 from Vertoning import Vertoning
 from Zaal import Zaal
-from Wrapper import *
+from univeralWrapper import *
 
 def main():
     print("test2")
