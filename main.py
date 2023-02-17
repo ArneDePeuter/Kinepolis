@@ -7,7 +7,7 @@ from Zaal import Zaal
 from Wrapper import *
 
 def main():
-    pass
+    print("test")
 
 if __name__ == "__main__":
     main()
