@@ -2,6 +2,9 @@ from DatatypesArne import struct_BST as BST
 import univeralWrapper as wrapper
 
 from Film import *
+from Gebruiker import *
+from Reservatie import *
+from Vertoning import *
 from Zaal import *
 
 # Testen: Allemaal
@@ -15,9 +18,9 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = wrapper.Wrapper(BST.BST(), wrapper.bst_dict)
-        self.rooms = {}
-        self.movies = {}
+        self.users = {}
+        self.rooms = wrapper.Wrapper(BST.BST(), wrapper.bst_dict)
+        self.movies = wrapper.Wrapper(BST.BST(), wrapper.bst_dict)
         self.screenings = {}
         self.reservations = {}
         self.time = 0
@@ -40,8 +43,6 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         print("Added user to database.")
-
-        self.users.insert(BST.createTreeItem(user,user))
 
     def removeAllUsers(self):
         """
@@ -69,7 +70,7 @@ class Reservatiesysteem:
 
         newMovie = Film(self.movieCount, titel, rating)
         self.movieCount += 1
-        self.movies.insert(self.users.createTreeItem(newMovie, newMovie))
+        self.movies.insert(self.movies.createItem(newMovie.id, newMovie))
         print("Added movie to database.")
     
     def removeAllMovies(self):
@@ -98,7 +99,7 @@ class Reservatiesysteem:
 
         newRoom = Zaal(self.roomCount, zaalNummer, aantalPlaatsen)
         self.roomCount += 1
-        self.rooms.insert(self.rooms.createTreeItem(newRoom, newRoom))
+        self.rooms.insert(self.rooms.createItem(newRoom.id, newRoom))
         print("Room added to the database")
 
     def addScreening(self, screening):
