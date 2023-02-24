@@ -1,5 +1,5 @@
 from DatatypesArne import struct_BST as BST
-import univeralWrapper as wrapper
+from Wrappers import *
 
 from Film import *
 from Gebruiker import *
@@ -18,11 +18,11 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = {}
-        self.rooms = wrapper.Wrapper(BST.BST(), wrapper.bst_dict)
-        self.movies = wrapper.Wrapper(BST.BST(), wrapper.bst_dict)
-        self.screenings = {}
-        self.reservations = {}
+        self.users = GebruikerTable()
+        self.rooms = ZaalTable()
+        self.movies = FilmTable()
+        self.screenings = VertoningsTable()
+        self.reservations = ReservatieTable()
         self.time = 0
 
         self.userCount = 0
@@ -70,7 +70,7 @@ class Reservatiesysteem:
 
         newMovie = Film(self.movieCount, titel, rating)
         self.movieCount += 1
-        self.movies.insert(self.movies.createItem(newMovie.id, newMovie))
+        self.movies.insert(newMovie)
         print("Added movie to database.")
     
     def removeAllMovies(self):
@@ -99,7 +99,7 @@ class Reservatiesysteem:
 
         newRoom = Zaal(self.roomCount, zaalNummer, aantalPlaatsen)
         self.roomCount += 1
-        self.rooms.insert(self.rooms.createItem(newRoom.id, newRoom))
+        self.rooms.insert(newRoom)
         print("Room added to the database")
 
     def addScreening(self, screening):

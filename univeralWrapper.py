@@ -95,7 +95,7 @@ stack_dict = {
     wrapper_createItem : "createTreeItem"
 }
 
-class Wrapper(object):
+class UniversalWrapper(object):
     def __init__(self, datatype, funcNames) -> None:
         self.datatype = datatype
         self.funcMap = funcNames
