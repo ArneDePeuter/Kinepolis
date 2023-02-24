@@ -49,8 +49,8 @@ class Reservatiesysteem:
         """
         newUser = Gebruiker(voornaam, achternaam, emailadres)
         self.users.insert(newUser)
+        self.userCount += 1
         return True
-
 
     def removeAllUsers(self):
         """
@@ -62,8 +62,8 @@ class Reservatiesysteem:
 
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO aanpassen zodat users tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
-        self.users = {}
+        self.users = GebruikerTable()
+        self.userCount = 0
 
     def addMovie(self, titel, rating):
         """
@@ -78,8 +78,8 @@ class Reservatiesysteem:
         """
 
         newMovie = Film(self.movieCount, titel, rating)
-        self.movieCount += 1
         self.movies.insert(newMovie)
+        self.movieCount += 1
         print("Added movie to database.")
     
     def removeAllMovies(self):
@@ -91,8 +91,7 @@ class Reservatiesysteem:
         Postconditie: Alle films zijn verwijderd uit het reservatiesysteem.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO aanpassen zodat movies tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
-        self.movies = {}
+        self.movies = FilmTable()
 
     def addRoom(self, zaalNummer, aantalPlaatsen):
         """
@@ -108,11 +107,10 @@ class Reservatiesysteem:
         """
 
         newRoom = Zaal(self.roomCount, zaalNummer, aantalPlaatsen)
-        self.roomCount += 1
         self.rooms.insert(newRoom)
-        print("Room added to the database")
+        self.roomCount += 1
 
-    def addScreening(self, screening):
+    def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen):
         """
         Voegt een vertoning toe aan het reservatiesysteem.
 
@@ -124,7 +122,9 @@ class Reservatiesysteem:
         :param screening: De vertoning die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        print("Added screening to database.")
+        newScreening = Vertoning(self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen)
+        self.screenings.insert(newScreening)
+        self.screeningCount += 1
 
     def addReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """
@@ -138,8 +138,8 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
-        self.reservationCount += 1
         self.reservations.insert(newReservation)
+        self.reservationCount += 1
 
     def queueReservation(self):
         """
@@ -178,7 +178,8 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         # TODO aanpassen zodat reservations tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
-        self.reservations = {}
+        self.reservations = ReservatieTable()
+        self.reservationCount = 0
 
     def setTime(self, time):
         """
