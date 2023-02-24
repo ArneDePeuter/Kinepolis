@@ -1,3 +1,6 @@
+# Testen: Allemaal
+# Implementeren: Allemaal
+
 from DatatypesArne import struct_BST as BST
 import univeralWrapper as wrapper
 
@@ -6,9 +9,9 @@ from Gebruiker import *
 from Reservatie import *
 from Vertoning import *
 from Zaal import *
+from Reservatie import *
 
-# Testen: Allemaal
-# Implementeren: Allemaal
+
 class Reservatiesysteem:
     def __init__(self):
         """
@@ -18,20 +21,22 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
+        # Data
         self.users = {}
         self.rooms = wrapper.Wrapper(BST.BST(), wrapper.bst_dict)
         self.movies = wrapper.Wrapper(BST.BST(), wrapper.bst_dict)
-        self.screenings = {}
+        self.screenings = VertoningsTable()
         self.reservations = {}
         self.time = 0
 
+        # Nummering for ID's
         self.userCount = 0
         self.movieCount = 0
         self.roomCount = 0
         self.screeningCount = 0
         self.reservationCount = 0
 
-    def addUser(self, user):
+    def addUser(self, voornaam, achternaam, emailadres):
         """
         Voegt een gebruiker to aan het reservatiesysteem.
 
@@ -42,7 +47,10 @@ class Reservatiesysteem:
         :param user: Gebruiker die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        print("Added user to database.")
+        newUser = Gebruiker(voornaam, achternaam, emailadres)
+        self.users.insert(newUser)
+        return True
+
 
     def removeAllUsers(self):
         """
@@ -54,7 +62,8 @@ class Reservatiesysteem:
 
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        print("All users removed.")
+        # TODO aanpassen zodat users tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
+        self.users = {}
 
     def addMovie(self, titel, rating):
         """
@@ -82,7 +91,8 @@ class Reservatiesysteem:
         Postconditie: Alle films zijn verwijderd uit het reservatiesysteem.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        print("All movies removed.")
+        # TODO aanpassen zodat movies tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
+        self.movies = {}
 
     def addRoom(self, zaalNummer, aantalPlaatsen):
         """
@@ -116,7 +126,7 @@ class Reservatiesysteem:
         """
         print("Added screening to database.")
 
-    def addReservation(self, reservering):
+    def addReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """
         Voegt een reservatie toe aan het reservatiesysteem.
 
@@ -127,7 +137,9 @@ class Reservatiesysteem:
         :param reservering: De reservatie die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        print("Added reservation to database.")
+        newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
+        self.reservationCount += 1
+        self.reservations.insert(newReservation)
 
     def queueReservation(self):
         """
@@ -139,6 +151,7 @@ class Reservatiesysteem:
 
         :return: Tuple met True als de operatie is gelukt, False als het niet gelukt is en de eerstvolgend reservatie.
         """
+        # TODO vragen naar functie van queue
         print("Leest de reservatie uit de queue.")
 
     def removeReservation(self, reservering):
@@ -152,7 +165,7 @@ class Reservatiesysteem:
         :param reservering: De reservering die moet worden verwijderd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        print("Removed reservation to database.")
+        self.reservations.delete(reservering.id)
 
     def removeAllReservations(self):
         """
@@ -164,7 +177,8 @@ class Reservatiesysteem:
 
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        print("All reservations deleted.")
+        # TODO aanpassen zodat reservations tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
+        self.reservations = {}
 
     def setTime(self, time):
         """
