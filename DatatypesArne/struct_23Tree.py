@@ -480,3 +480,6 @@ class TwoThreeTreeTable(TwoThreeTree):
         postconditions: The given item gets deleted from the table
         """
         return self.deleteItem(item)
+
+    def createTableItem(self, key, val):
+        return Node(val)
