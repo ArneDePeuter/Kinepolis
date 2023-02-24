@@ -1,21 +1,32 @@
+from DatatypesArne import struct_BST as BST
+import univeralWrapper as wrapper
+
+from Film import *
+from Zaal import *
+
 # Testen: Allemaal
 # Implementeren: Allemaal
 class Reservatiesysteem:
-
     def __init__(self):
         """
         Ceëert een reservatiesysteem.
 
         Preconditie: \
-
+            
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = {}
+        self.users = wrapper.Wrapper(BST.BST(), wrapper.bst_dict)
         self.rooms = {}
         self.movies = {}
         self.screenings = {}
         self.reservations = {}
         self.time = 0
+
+        self.userCount = 0
+        self.movieCount = 0
+        self.roomCount = 0
+        self.screeningCount = 0
+        self.reservationCount = 0
 
     def addUser(self, user):
         """
@@ -30,6 +41,8 @@ class Reservatiesysteem:
         """
         print("Added user to database.")
 
+        self.users.insert(BST.createTreeItem(user,user))
+
     def removeAllUsers(self):
         """
         Verwijderd alle gebruikers uit het reservatiesysteem.
@@ -40,7 +53,7 @@ class Reservatiesysteem:
         """
         print("All users removed.")
 
-    def addMovie(self, movie):
+    def addMovie(self, titel, rating):
         """
         Voegt een film toe aan het reservatiesysteem.
 
@@ -51,8 +64,12 @@ class Reservatiesysteem:
         :param movie: De film die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        print("Added movie to database.")
 
+        newMovie = Film(self.movieCount, titel, rating)
+        self.movieCount += 1
+        self.movies.insert(self.users.createTreeItem(newMovie, newMovie))
+        print("Added movie to database.")
+    
     def removeAllMovies(self):
         """
         Verwijderd alle films uit het reservatiesysteem.
@@ -64,7 +81,7 @@ class Reservatiesysteem:
         """
         print("All movies removed.")
 
-    def addRoom(self, room):
+    def addRoom(self, zaalNummer, aantalPlaatsen):
         """
         Voegt een zaal toe aan het reservatiesysteem.
 
@@ -74,7 +91,11 @@ class Reservatiesysteem:
         :param room: De zaal die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        print("Added room to database.")
+
+        newRoom = Zaal(self.roomCount, zaalNummer, aantalPlaatsen)
+        self.roomCount += 1
+        self.rooms.insert(self.rooms.createTreeItem(newRoom, newRoom))
+        print("Room added to the database")
 
     def addScreening(self, screening):
         """
@@ -163,4 +184,3 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         print("Time is increased.")
-

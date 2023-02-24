@@ -1,5 +1,16 @@
-from DatatypesArne import struct_BST
-from DatatypesArne import struct_234Tree
+wrapper_insert = "insert"
+wrapper_retrieve = "retrieve"
+
+
+twoThreeTree_dict = {
+    wrapper_insert : "searchTreeInsert",
+    wrapper_retrieve : "searchTreeRetrieve"
+}
+
+bst_dict = {
+    wrapper_insert : "searchTreeInsert",
+    wrapper_retrieve : "searchTreeRetrieve"
+}
 
 class Wrapper(object):
     def __init__(self, datatype, funcNames) -> None:
@@ -10,10 +21,3 @@ class Wrapper(object):
         if attr not in self.__dict__:
             return getattr(self.datatype, self.funcMap[attr])
         return super().__getattr__(attr)
-
-bst = Wrapper(struct_BST.BST(), {"insert": "searchTreeInsert"})
-print(bst.insert(5))
-
-twotreefourTree = Wrapper(struct_234Tree.twoThreeFourTree(), {"insert": "insert"})
-print(twotreefourTree.insert(5))
-
