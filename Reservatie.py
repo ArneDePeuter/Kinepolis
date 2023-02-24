@@ -1,7 +1,8 @@
 # Testen: Arne
 # Implementeren: Cedric
+
 class Reservatie:
-    def __init__(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
+    def __init__(self, id, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """
         Ceëert een reservatie.
 
@@ -21,4 +22,5 @@ class Reservatie:
         self.screeningid = vertoningid
         self.amountOfReservedSeats = aantalPlaatsenGereserveerd
 
-        print("added reservation for", aantalPlaatsenGereserveerd, "people in room", timestamp, "for", userid)
+    def __del__(self):
+        pass
