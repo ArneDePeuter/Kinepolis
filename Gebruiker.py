@@ -1,8 +1,7 @@
 # Testen: Sam
 # Implementeren: Siebe
 class Gebruiker:
-    id = 1
-    def __init__(self, voornaam, achternaam, emailadres):
+    def __init__(self, id, voornaam, achternaam, emailadres):
         """
         Ceëert een Gebruiker.
 
@@ -15,13 +14,12 @@ class Gebruiker:
         :param achternaam: De achternaam van de persoon.
         :param emailadres: Het e-mailadres van de persoon.
         """
-        self.id = Gebruiker.id  # Zet de id van de film gelijk aan de id
-        Gebruiker.id += 1
+        self.id = id
         self.firstname = voornaam
         self.lastname = achternaam
         self.emailadres = emailadres
 
-        print("added user:", voornaam)
+        print("created user:", voornaam)
         pass
 
     def addReservation(self, reservatie):

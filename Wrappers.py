@@ -37,5 +37,5 @@ class ZaalTable(tree.TwoThreeTreeTable):
         super().__init__()
 
     def insert(self, obj):
-        item = self.createTableItem(obj.id, obj)
+        item = self.createTableItem(obj.roomNumber, obj)
         self.tableInsert(item)

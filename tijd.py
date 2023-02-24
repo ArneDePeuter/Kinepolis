@@ -134,9 +134,9 @@ class Clock(Time):
     :param tps: Aantal ticks per seconden | Type -> int
             Als TPS None is tickt de clock zonder een delay
     """
-    def tick(self, tps):
+    def tick(self, seconds=1, tps=None):
         #tps is ticks per second
-        self.addSeconds(1)
+        self.addSeconds(seconds)
         if tps is not None:
             sleep(1/tps)
 

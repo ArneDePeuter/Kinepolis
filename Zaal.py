@@ -15,7 +15,7 @@ class Zaal:
         self.amountOfSeats = aantalPlaatsen
         self.roomNumber = zaalNummer
 
-        print("added room:", zaalNummer)
+        print("created room:", zaalNummer)
 
     def enterRoom(self, reservation):
         """
@@ -29,3 +29,4 @@ class Zaal:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         print("Room has les free spaces.")
+        

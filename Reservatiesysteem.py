@@ -1,8 +1,7 @@
-# Testen: Allemaal
-# Implementeren: Allemaal
-
 from DatatypesArne import struct_BST as BST
 from Wrappers import *
+
+from tijd import *
 
 from Film import *
 from Gebruiker import *
@@ -11,7 +10,8 @@ from Vertoning import *
 from Zaal import *
 from Reservatie import *
 
-
+# Testen: Allemaal
+# Implementeren: Allemaal
 class Reservatiesysteem:
     def __init__(self):
         """
@@ -21,18 +21,16 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-
         self.users = GebruikerTable()
         self.rooms = ZaalTable()
         self.movies = FilmTable()
         self.screenings = VertoningsTable()
         self.reservations = ReservatieTable()
-        self.time = 0
+        self.clock = Clock((0,0,0), (0,0,0))
 
         # Nummering for ID's
         self.userCount = 0
         self.movieCount = 0
-        self.roomCount = 0
         self.screeningCount = 0
         self.reservationCount = 0
 
@@ -92,7 +90,8 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         # TODO aanpassen zodat movies tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
-        self.movies = {}
+        self.movies = FilmTable()
+        self.movieCount = 0
 
     def addRoom(self, zaalNummer, aantalPlaatsen):
         """
@@ -107,10 +106,8 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
 
-        newRoom = Zaal(self.roomCount, zaalNummer, aantalPlaatsen)
-        self.roomCount += 1
+        newRoom = Zaal(zaalNummer, aantalPlaatsen)
         self.rooms.insert(newRoom)
-        print("Room added to the database")
 
     def addScreening(self, screening):
         """
@@ -188,19 +185,20 @@ class Reservatiesysteem:
 
         Postconditie: De tijd van het reservatiesysteem is gelijk aan de gegeven tijd.
 
-        :param time: De tijd die het systeem moet aannemen.
+        :param time: De tijd die het systeem moet aannemen van het type Time.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
+        self.clock.setTime(time)
         print("Time is set to", time)
 
-    def increaseTime(self):
+    def increaseTime(self, n=1):
         """
-        Verhoogt de tijd met een vaste waarde.
+        Verhoogt de tijd n-seconden.
 
         Preconditie: \
+        Postconditie: De tijd van het systeem is verhoogd met n-seconden.
 
-        Postconditie: De tijd van het systeem is verhoogd met een vaste waarde.
-
+        :param n: Aantal seconden het syteem moet toenemen. Geen parameter doorgeven -> 1 seconden erbij
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        print("Time is increased.")
+        self.clock.tick(n) #tijd verhoogt met n seconden

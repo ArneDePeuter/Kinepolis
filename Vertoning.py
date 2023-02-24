@@ -23,7 +23,7 @@ class Vertoning:
         self.date = datum
         self.freePlaces = vrijePlaatsen
 
-        print("added screening at", slot, "in room", zaalnummer , sep=" ")
+        print("created screening at", slot, "in room", zaalnummer , sep=" ")
 
     def startScreening(self):
         """
