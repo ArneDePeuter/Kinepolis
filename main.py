@@ -8,6 +8,7 @@ from univeralWrapper import *
 
 def main():
     print("made by cedric")
+    print("boo")
 
 if __name__ == "__main__":
     main()
