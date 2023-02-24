@@ -32,7 +32,7 @@ class Reservatiesysteem:
         """
         Voegt een gebruiker to aan het reservatiesysteem.
 
-        Preconditie: \
+        Preconditie: De gebruiker mag nog niet bestaan in het systeem, based op dezelfde email
 
         Postconditie: Gebruiker is toegevoegd aan het reservatiesysteem.
 
@@ -46,9 +46,11 @@ class Reservatiesysteem:
     def removeAllUsers(self):
         """
         Verwijderd alle gebruikers uit het reservatiesysteem.
-        Preconditie: \
+
+        Preconditie: Er moet eerst een gebruiker bestaan voor er verwijderd kan worden
 
         Postconditie: Alle gebruikers zijn verwijderd uit het reservatiesysteem.
+
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         print("All users removed.")
@@ -57,7 +59,7 @@ class Reservatiesysteem:
         """
         Voegt een film toe aan het reservatiesysteem.
 
-        Preconditie: \
+        Preconditie: De film moet nog niet bestaan in het systeem, based op dezelfde titel
 
         Postconditie: De film is toegevoegd aan het reservatiesysteem.
 
@@ -74,7 +76,7 @@ class Reservatiesysteem:
         """
         Verwijderd alle films uit het reservatiesysteem.
 
-        Preconditie: \
+        Preconditie: Er moet eerst een film bestaan voor er verwijderd kan worden
 
         Postconditie: Alle films zijn verwijderd uit het reservatiesysteem.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
@@ -88,6 +90,8 @@ class Reservatiesysteem:
         Preconditie: \
 
         Postconditie: De zaal is toegevoegd aan het reservatiesysteem.
+        Maar niet als er al een zaal bestaat met dezelfde nummer.
+
         :param room: De zaal die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
@@ -101,7 +105,8 @@ class Reservatiesysteem:
         """
         Voegt een vertoning toe aan het reservatiesysteem.
 
-        Preconditie: \
+        Preconditie: De vertoning kan pas worden toegevoegd als er op hetzelfde slot
+        en zaal nog geen andere vertoning is ingepland.
 
         Postconditie: De vertoning is toegevoegd aan het reservatiesysteem.
 
