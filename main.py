@@ -7,8 +7,7 @@ from Zaal import Zaal
 from univeralWrapper import *
 
 def main():
-    print("made by cedric")
-    print("boo")
+    reservatieSysteem = Reservatiesysteem()
 
 if __name__ == "__main__":
     main()
