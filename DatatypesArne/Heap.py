@@ -1,21 +1,38 @@
+def createItem(key,val):
+    return Item(key, val)
+
+class Item:
+    def __init__(self, key, val) -> None:
+        self.key = key
+        self.val = val
+    
+    def __lt__(self, other):
+        return self.key < other.key
+
+    def __eq__(self, other):
+        return self.key == other.key
+
+    def __str__(self) -> str:
+        return "key: " + str(self.key) + ", val: " + str(self.val)
+
 class Node:
-    def __init__(self, value=None) -> None:
-        self.value = value
+    def __init__(self, item=None) -> None:
+        self.item = item
         self.left = None
         self.right = None
         self.parent = None
     
     def isEmpty(self):
-        return self.value==None
+        return self.item is None
     
     def isLeaf(self):
         return self.left is None and self.right is None
 
     def __lt__(self, other):
-        return self.value<other.value
+        return self.item.key<other.item.key
     
     def __gt__(self, other):
-        return self.value>other.value
+        return self.item.key>other.item.key
 
     def getLastNode(self):
         if self.isLeaf():
@@ -32,28 +49,28 @@ class Node:
             self.right = None
     
     def swap(self, other):
-        myVal = self.value
-        otherVal = other.value
-        self.value = otherVal
-        other.value = myVal
+        myItem = self.item
+        otherItem = other.item
+        self.item = otherItem
+        other.item = myItem
     
-    def insertComplete(self, val):
-        newNode = Node(val)
+    def insertComplete(self, item):
+        newNode = Node(item)
         newNode.parent = self
         if self.left is None:
             self.left = newNode
         elif self.right is None:
             self.right = newNode
         elif self.left is not None:
-            return self.left.insertComplete(val)
+            return self.left.insertComplete(item)
         elif self.right is not None:
-            return self.right.insertComplete(val)
+            return self.right.insertComplete(item)
         return newNode
     
     def fix(self, lastnode):
         if lastnode.parent is not None:
             lastnode.parent.removeChild(lastnode)
-        newNode = Node(lastnode.value)
+        newNode = Node(lastnode.item)
         newNode.parent = self
         if self.left is None:
             self.left = newNode
@@ -77,7 +94,7 @@ class Node:
                 self.right.heapifyDown(operator)
     
     def load(self, d):
-        self.value = d["root"]
+        self.item = createItem(d["root"], "")
         if "children" not in d.keys():
             return
         leftTree = d["children"][0]
@@ -97,7 +114,7 @@ class Node:
     
     def save(self):
         d = {}
-        d["root"] = self.value
+        d["root"] = self.item.val
         if not self.isLeaf():
             d["children"] = [None, None]
             if type(self.left)==Node:
@@ -120,7 +137,7 @@ class Heap:
     def heapDelete(self):
         if self.heapIsEmpty():
             return [None, False]
-        topVal = self.root.value
+        topItem = self.root.item
         lastNode = self.root.getLastNode()
         self.root.swap(lastNode)
         if lastNode.parent is not None:
@@ -140,13 +157,13 @@ class Heap:
                 lastNode.parent.fix(l)
                 temp.left = r
                 temp.right = None
-        return [topVal, True]
+        return [topItem, True]
 
-    def heapInsert(self, value):
+    def heapInsert(self, item):
         if self.heapIsEmpty():
-            self.root.value = value
+            self.root.item = item
             return True
-        newNode = self.root.insertComplete(value)
+        newNode = self.root.insertComplete(item)
         newNode.heapifyUp(self.relationOperator)
         return True
     
@@ -156,7 +173,7 @@ class Heap:
     def save(self):
         return self.root.save()
 
-class HeapQueue(Heap):
+class PriorityQueue(Heap):
     def __init__(self, maxHeap=True):
         super().__init__(maxHeap)
     
@@ -166,5 +183,5 @@ class HeapQueue(Heap):
     def dequeue(self):
         return self.heapDelete()
     
-    def enqueue(self, val):
-        return self.heapInsert(val)
+    def enqueue(self, item):
+        return self.heapInsert(item)

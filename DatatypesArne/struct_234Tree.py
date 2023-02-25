@@ -1,15 +1,15 @@
 class Node:
     def __init__(self, value=None) -> None:
-        self.values = []
+        self.items = []
         if value is not None:
-            self.values = [value]
+            self.items = [value]
         self.parent = None
         self.children = []
     
     def __str__(self) -> str:
         s = ""
-        for i,val in enumerate(self.values):
-            if len(self.values)-1 == i:
+        for i,val in enumerate(self.items):
+            if len(self.items)-1 == i:
                 s += str(val)
             else:
                 s += str(val) + "\n"
@@ -19,14 +19,14 @@ class Node:
         return self.getBiggestValue() < other.getBiggestValue()
     
     def getBiggestValue(self):
-        return self.values[-1]
+        return self.items[-1]
     
     def getSmallestValue(self):
-        return self.values[0]
+        return self.items[0]
     
-    def addValue(self, newVal):
-        self.values.append(newVal)
-        self.values.sort()
+    def addItem(self, newVal):
+        self.items.append(newVal)
+        self.items.sort()
     
     def addChild(self, newChild):
         self.children.append(newChild)
@@ -36,7 +36,7 @@ class Node:
         self.children.remove(child)
 
     def isEmpty(self):
-        return len(self.values) == 0 
+        return len(self.items) == 0 
     
     def isLeaf(self):
         return len(self.children) == 0
@@ -45,7 +45,7 @@ class Node:
         return self.parent is None
     
     def has1(self):
-        return len(self.values) == 1
+        return len(self.items) == 1
 
     def left(self):
         return self.children[0]
@@ -54,13 +54,13 @@ class Node:
         return self.children[-1]
     
     def has2(self):
-        return len(self.values) == 2
+        return len(self.items) == 2
     
     def middle(self):
         return self.children[1]
     
     def has3(self):
-        return len(self.values) == 3
+        return len(self.items) == 3
     
     def otherMiddle(self):
         return self.children[2]
@@ -83,9 +83,9 @@ class Node:
             p = self.parent
             p.removeChild(self)
 
-        left = Node(self.values[0])
-        p.addValue(self.values[1])
-        right = Node(self.values[2])
+        left = Node(self.items[0])
+        p.addItem(self.items[1])
+        right = Node(self.items[2])
 
         left.parent = p
         right.parent = p
@@ -121,14 +121,14 @@ class Node:
     def insert(self, value):
         if not self.isEmpty():
             target = self.findInsertTarget(value)
-            target.addValue(value)
+            target.addItem(value)
         else:
-            self.addValue(value)
+            self.addItem(value)
         return True
     
     def save(self):
         d = {}
-        d['root'] = self.values
+        d['root'] = self.items
         l = []
         if not self.isLeaf():
             for child in self.children:

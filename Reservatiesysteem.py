@@ -33,6 +33,7 @@ class Reservatiesysteem:
         self.movieCount = 0
         self.screeningCount = 0
         self.reservationCount = 0
+        self.roomCount = 0
 
     def addUser(self, voornaam, achternaam, emailadres):
         """
@@ -62,7 +63,7 @@ class Reservatiesysteem:
         """
         self.users = GebruikerTable()
         self.userCount = 0
-
+    
     def addMovie(self, titel, rating):
         """
         Voegt een film toe aan het reservatiesysteem.
@@ -74,10 +75,9 @@ class Reservatiesysteem:
         :param movie: De film die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-
         newMovie = Film(self.movieCount, titel, rating)
-        self.movies.insert(newMovie)
         self.movieCount += 1
+        self.movies.insert(newMovie)
         print("Added movie to database.")
     
     def removeAllMovies(self):
@@ -89,8 +89,7 @@ class Reservatiesysteem:
         Postconditie: Alle films zijn verwijderd uit het reservatiesysteem.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO aanpassen zodat movies tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
-        self.movies = {}
+        self.movies = FilmTable()
 
     def addRoom(self, zaalNummer, aantalPlaatsen):
         """
@@ -104,8 +103,7 @@ class Reservatiesysteem:
         :param room: De zaal die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-
-        newRoom = Zaal(self.roomCount, zaalNummer, aantalPlaatsen)
+        newRoom = Zaal(self.roomCount, aantalPlaatsen)
         self.roomCount += 1
         self.rooms.insert(newRoom)
         print("Room added to the database")

@@ -60,11 +60,11 @@ class DoubleLinkedChain:
 
     def toList(self):
         """
-        Returns a python list with the values of the linked chain
+        Returns a python list with the items of the linked chain
 
         preconditions: None
         postconditions: Returns None if the chain is empty
-                        Returns a list with the values if the chain is not empty
+                        Returns a list with the items if the chain is not empty
         """
         l = []
         target = self.head
@@ -73,7 +73,7 @@ class DoubleLinkedChain:
         l.append(target.value) #append head val
         while target.next is not None: #while we can go further
             target = target.next #go further
-            l.append(target.value) #add values
+            l.append(target.value) #add items
         return l
     
     def insert(self, value):
@@ -308,7 +308,7 @@ class Hashmap:
         Saves the current hashtable in a dictionary
 
         preconditions: None
-        postconditions: returns a dictionary with all the values from the hashmap
+        postconditions: returns a dictionary with all the items from the hashmap
         """
         if self.type=='sep':
             l = []

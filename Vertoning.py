@@ -36,6 +36,11 @@ class Vertoning:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         print("Movie is started.")
+    
+    def reservePlaces(self, amount):
+        """
+        implementatie van sam... arne heeft dit nodig
+        """
 
     def endScreening(self):
         """
