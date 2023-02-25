@@ -1,6 +1,4 @@
-from DatatypesArne import struct_BST as BST
 from Wrappers import *
-
 from tijd import *
 
 from Film import *

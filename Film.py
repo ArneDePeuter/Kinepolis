@@ -18,4 +18,7 @@ class Film:
         self.rating = rating
 
         print("created movie:", titel, sep=" ")
+    
+    def __str__(self) -> str:
+        return "titel: " + self.title + " rating: " + str(self.rating)
 

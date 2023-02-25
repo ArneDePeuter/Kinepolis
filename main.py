@@ -1,10 +1,10 @@
 from Reservatiesysteem import Reservatiesysteem
 
-
 def main():
     reservatieSysteem = Reservatiesysteem()
-    reservatieSysteem.addMovie("Goth", 5)
-    reservatieSysteem.addRoom(0, 100)
+    for x in range(10):
+        reservatieSysteem.addMovie(f"movie{x}", x)
+    reservatieSysteem.movies.inorderTraverse(print)
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,6 @@
-from DatatypesArne import struct_23Tree as tree
+from DatatypesArne import TwoThreeTree as ttt
 
-class FilmTable(tree.TwoThreeTreeTable):
+class FilmTable(ttt.TwoThreeTreeTable):
     def __init__(self) -> None:
         super().__init__()
 
@@ -8,15 +8,7 @@ class FilmTable(tree.TwoThreeTreeTable):
         item = self.createTableItem(obj.id, obj)
         self.tableInsert(item)
 
-class GebruikerTable(tree.TwoThreeTreeTable):
-    def __init__(self) -> None:
-        super().__init__()
-    
-    def insert(self, obj):
-        item = self.createTableItem(obj.id, obj)
-        self.tableInsert(item)
-
-class ReservatieTable(tree.TwoThreeTreeTable):
+class GebruikerTable(ttt.TwoThreeTreeTable):
     def __init__(self) -> None:
         super().__init__()
     
@@ -24,7 +16,15 @@ class ReservatieTable(tree.TwoThreeTreeTable):
         item = self.createTableItem(obj.id, obj)
         self.tableInsert(item)
 
-class VertoningsTable(tree.TwoThreeTreeTable):
+class ReservatieTable(ttt.TwoThreeTreeTable):
+    def __init__(self) -> None:
+        super().__init__()
+    
+    def insert(self, obj):
+        item = self.createTableItem(obj.id, obj)
+        self.tableInsert(item)
+
+class VertoningsTable(ttt.TwoThreeTreeTable):
     def __init__(self) -> None:
         super().__init__()
 
@@ -32,7 +32,7 @@ class VertoningsTable(tree.TwoThreeTreeTable):
         item = self.createTableItem(obj.id, obj)
         self.tableInsert(item)
 
-class ZaalTable(tree.TwoThreeTreeTable):
+class ZaalTable(ttt.TwoThreeTreeTable):
     def __init__(self) -> None:
         super().__init__()
 
