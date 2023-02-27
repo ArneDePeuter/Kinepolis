@@ -1,5 +1,5 @@
 from Reservatiesysteem import Reservatiesysteem
-from movieApi import getMovies
+from movieWebScraper import getMovies
 
 def main():
     reservatieSysteem = Reservatiesysteem()
