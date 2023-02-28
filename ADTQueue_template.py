@@ -1,5 +1,5 @@
 """
-PRIOQUEUE REQUIREMENTS
+QUEUE REQUIREMENTS
 vvvvvvvvvvvvvvvvvvvvvv
 """
 
