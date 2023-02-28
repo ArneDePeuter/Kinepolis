@@ -1,4 +1,4 @@
-from Wrappers import *
+import wrappedDataStructs as wrapper
 from tijd import *
 
 from Film import *
@@ -19,11 +19,11 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = GebruikerTable()
-        self.rooms = ZaalTable()
-        self.movies = FilmTable()
-        self.screenings = VertoningsTable()
-        self.reservations = ReservatieTable()
+        self.users = wrapper.users
+        self.rooms = wrapper.rooms
+        self.movies = wrapper.movies
+        self.screenings = wrapper.screenings
+        self.reservations = wrapper.reservations
         self.clock = Clock((0,0,0), (0,0,0))
 
         # Nummering for ID's
@@ -59,7 +59,7 @@ class Reservatiesysteem:
 
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        self.users = GebruikerTable()
+        self.users = self.users.__init__()
         self.userCount = 0
     
     def addMovie(self, titel, rating):
@@ -77,9 +77,6 @@ class Reservatiesysteem:
         self.movieCount += 1
         self.movies.insert(newMovie)
         print("Added movie to database.")
-    
-    def removeMovie(self, searchkey):
-        self.movies.tableDelete()
 
     def removeAllMovies(self):
         """
@@ -91,7 +88,7 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.movieCount = 0
-        self.movies = FilmTable()
+        self.movies = self.movies.__init__()
 
     def addRoom(self, zaalNummer, aantalPlaatsen):
         """
@@ -178,7 +175,7 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         # TODO aanpassen zodat reservations tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
-        self.reservations = ReservatieTable()
+        self.reservations = self.reservations.__init__()
         self.reservationCount = 0
 
     def setTime(self, time):
