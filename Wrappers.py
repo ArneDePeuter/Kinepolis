@@ -1,6 +1,7 @@
 from DatatypesArne import TwoThreeTree as ttt
+from DatatypesArne import BST as tree
 
-class FilmTable(ttt.TwoThreeTreeTable):
+class FilmTable(tree.BSTTable):
     def __init__(self) -> None:
         super().__init__()
 

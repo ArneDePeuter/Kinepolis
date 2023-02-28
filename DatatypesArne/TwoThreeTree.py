@@ -78,7 +78,7 @@ class Node:
     #returns true if the node contains the searchkey
     def containsItem(self, item):
         for myItem in self.items:
-            if item.key == myItem.key: #val found
+            if item == myItem: #val found
                 return True
         return False
     
@@ -113,14 +113,14 @@ class Node:
             return [None, False]
         
         if self.has2Items():
-            if (item.key<self.items[0].key):
+            if (item<self.items[0]):
                 return self.left().retrieveItem(item)
-            elif (item.key<self.items[1].key):
+            elif (item<self.items[1]):
                 return self.middle().retrieveItem(item)
             else:
                 return self.right().retrieveItem(item)
         else:
-            if (item.key<self.items[0].key):
+            if (item<self.items[0]):
                 return self.left().retrieveItem(item)
             else:
                 return self.right().retrieveItem(item)
@@ -141,14 +141,14 @@ class Node:
             self.addItem(item)
             return self
         elif self.has2Items():
-            if (item.key<self.items[0].key):
+            if (item<self.items[0]):
                 return self.left().insertToLeafNode(item)
-            elif (item.key<self.items[1].key):
+            elif (item<self.items[1]):
                 return self.middle().insertToLeafNode(item)
             else:
                 return self.right().insertToLeafNode(item)
         else:
-            if (item.key<self.items[0].key or self.children[1]==None):
+            if (item<self.items[0] or self.children[1]==None):
                 return self.left().insertToLeafNode(item)
             else:
                 return self.right().insertToLeafNode(item)
@@ -316,7 +316,7 @@ class Node:
     def load(self, d, parent):
         self.parent = parent
         self.items = d["root"]
-        if "children" in d.keys():
+        if "children" in ds():
             self.children = list(d["children"])
             for i,child in enumerate(self.children):
                 self.children[i] = Node()
