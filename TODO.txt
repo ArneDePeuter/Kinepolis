@@ -1,0 +1,18 @@
+Datastructuren:
+-> Iedereen maakt ADT tables van zijn ingezonden datastructuren
+-> Iedereen maakt Queue van zijn ingezonden datastructuren
+-> Geen dubbele objecten toevoegen
+
+Klassen:
+-> Alle klassen volledig geimplementeerd
+
+
+InputFile voor systeem:
+-> Formattering afspreken
+-> Parser en executer maken
+
+Testen:
+    -> Testen maken en uitvoeren voor toegewezen klassen
+
+GUI:
+    -> Gui toevoegen
