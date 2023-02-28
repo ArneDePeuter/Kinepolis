@@ -1,6 +1,7 @@
 from Reservatiesysteem import Reservatiesysteem
 from movieWebScraper import getMovies
 
+
 def main():
     reservatieSysteem = Reservatiesysteem()
 
@@ -10,7 +11,6 @@ def main():
     reservatieSysteem.movies.inorderTraverse(print)
     print(reservatieSysteem.movies.save())
 
-    
 
 if __name__ == "__main__":
     main()

@@ -24,7 +24,7 @@ class Reservatiesysteem:
         self.movies = FilmTable()
         self.screenings = VertoningsTable()
         self.reservations = ReservatieTable()
-        self.clock = Clock((0,0,0), (0,0,0))
+        self.clock = Clock((0, 0, 0), (0, 0, 0))
 
         # Nummering for ID's
         self.userCount = 0
@@ -61,7 +61,7 @@ class Reservatiesysteem:
         """
         self.users = GebruikerTable()
         self.userCount = 0
-    
+
     def addMovie(self, titel, rating):
         """
         Voegt een film toe aan het reservatiesysteem.
@@ -77,7 +77,7 @@ class Reservatiesysteem:
         self.movieCount += 1
         self.movies.insert(newMovie)
         print("Added movie to database.")
-    
+
     def removeMovie(self, searchkey):
         self.movies.tableDelete()
 
@@ -122,11 +122,15 @@ class Reservatiesysteem:
         :param screening: De vertoning die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        newScreening = Vertoning(self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen)
+        newScreening = Vertoning(
+            self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen
+        )
         self.screenings.insert(newScreening)
         self.screeningCount += 1
 
-    def addReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
+    def addReservation(
+        self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd
+    ):
         """
         Voegt een reservatie toe aan het reservatiesysteem.
 
@@ -137,7 +141,13 @@ class Reservatiesysteem:
         :param reservering: De reservatie die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
+        newReservation = Reservatie(
+            self.reservationCount,
+            userid,
+            timestamp,
+            vertoningid,
+            aantalPlaatsenGereserveerd,
+        )
         self.reservations.insert(newReservation)
         self.reservationCount += 1
 
@@ -205,4 +215,4 @@ class Reservatiesysteem:
         :param n: Aantal seconden het syteem moet toenemen. Geen parameter doorgeven -> 1 seconden erbij
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        self.clock.tick(n) #tijd verhoogt met n seconden
+        self.clock.tick(n)  # tijd verhoogt met n seconden

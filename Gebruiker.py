@@ -18,32 +18,3 @@ class Gebruiker:
         self.firstname = voornaam
         self.lastname = achternaam
         self.emailadres = emailadres
-
-        print("created user:", voornaam)
-        pass
-
-    def addReservation(self, reservatie):
-        """
-        Voegt de reservatie toe aan een gebruiker.
-
-        Preconditie: \
-
-        Postconditie: Gebruiker heeft een nieuwe reservatie.
-
-        :param reservatie: De reservatie die toegevoegd wordt aan de gebruiker.
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        pass
-
-    def removeReservation(self, reservatie):
-        """
-        Verwijdert reservatie van een gebruiker.
-
-        Preconditie: De gebruiker moet de reservatie hebben.
-
-        Postconditie: De reservatie van de persoon is verwijderd.
-
-        :param reservatie: De reservatie die wordt verwijderd van de gebruiker.
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        pass
