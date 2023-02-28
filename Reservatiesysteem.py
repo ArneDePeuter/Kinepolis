@@ -78,6 +78,9 @@ class Reservatiesysteem:
         self.movies.insert(newMovie)
         print("Added movie to database.")
     
+    def removeMovie(self, searchkey):
+        self.movies.tableDelete()
+
     def removeAllMovies(self):
         """
         Verwijderd alle films uit het reservatiesysteem.
@@ -87,6 +90,7 @@ class Reservatiesysteem:
         Postconditie: Alle films zijn verwijderd uit het reservatiesysteem.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
+        self.movieCount = 0
         self.movies = FilmTable()
 
     def addRoom(self, zaalNummer, aantalPlaatsen):
