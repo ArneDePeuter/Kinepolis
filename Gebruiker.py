@@ -15,23 +15,13 @@ class Gebruiker:
         :param achternaam: De achternaam van de persoon.
         :param emailadres: Het e-mailadres van de persoon.
         """
-<<<<<<<<< Temporary merge branch 1
         self.id = id
-=========
         self.id = Gebruiker.id  # Zet de id van de gebruiker gelijk aan de id
         Gebruiker.id += 1
->>>>>>>>> Temporary merge branch 2
         self.firstname = voornaam
         self.lastname = achternaam
         self.emailadres = emailadres
         self.reservaties = MyQueue(5)
-
-<<<<<<<<< Temporary merge branch 1
-        print("created user:", voornaam)
-        pass
-=========
-        print("added user:", voornaam)
->>>>>>>>> Temporary merge branch 2
 
     def addReservation(self, reservatie):
         """
