@@ -1,4 +1,4 @@
-from Wrappers import *
+import wrappedDataStructs as wrapper
 from tijd import *
 
 from Film import *
@@ -19,12 +19,12 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = GebruikerTable()
-        self.rooms = ZaalTable()
-        self.movies = FilmTable()
-        self.screenings = VertoningsTable()
-        self.reservations = ReservatieTable()
-        self.clock = Clock((0, 0, 0), (0, 0, 0))
+        self.users = wrapper.users
+        self.rooms = wrapper.rooms
+        self.movies = wrapper.movies
+        self.screenings = wrapper.screenings
+        self.reservations = wrapper.reservations
+        self.clock = Clock((0,0,0), (0,0,0))
 
         # Nummering for ID's
         self.userCount = 0
@@ -59,9 +59,9 @@ class Reservatiesysteem:
 
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        self.users = GebruikerTable()
+        self.users = self.users.__init__()
         self.userCount = 0
-
+    
     def addMovie(self, titel, rating):
         """
         Voegt een film toe aan het reservatiesysteem.
@@ -78,9 +78,6 @@ class Reservatiesysteem:
         self.movies.insert(newMovie)
         print("Added movie to database.")
 
-    def removeMovie(self, searchkey):
-        self.movies.tableDelete()
-
     def removeAllMovies(self):
         """
         Verwijderd alle films uit het reservatiesysteem.
@@ -91,7 +88,7 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.movieCount = 0
-        self.movies = FilmTable()
+        self.movies = self.movies.__init__()
 
     def addRoom(self, zaalNummer, aantalPlaatsen):
         """
@@ -122,15 +119,11 @@ class Reservatiesysteem:
         :param screening: De vertoning die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        newScreening = Vertoning(
-            self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen
-        )
+        newScreening = Vertoning(self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen)
         self.screenings.insert(newScreening)
         self.screeningCount += 1
 
-    def addReservation(
-        self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd
-    ):
+    def addReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """
         Voegt een reservatie toe aan het reservatiesysteem.
 
@@ -141,13 +134,7 @@ class Reservatiesysteem:
         :param reservering: De reservatie die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        newReservation = Reservatie(
-            self.reservationCount,
-            userid,
-            timestamp,
-            vertoningid,
-            aantalPlaatsenGereserveerd,
-        )
+        newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
         self.reservations.insert(newReservation)
         self.reservationCount += 1
 
@@ -188,7 +175,7 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         # TODO aanpassen zodat reservations tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
-        self.reservations = ReservatieTable()
+        self.reservations = self.reservations.__init__()
         self.reservationCount = 0
 
     def setTime(self, time):
@@ -215,4 +202,4 @@ class Reservatiesysteem:
         :param n: Aantal seconden het syteem moet toenemen. Geen parameter doorgeven -> 1 seconden erbij
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        self.clock.tick(n)  # tijd verhoogt met n seconden
+        self.clock.tick(n) #tijd verhoogt met n seconden

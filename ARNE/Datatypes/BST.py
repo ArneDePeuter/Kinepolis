@@ -65,7 +65,7 @@ class BSTNode():
         postconditions: returns True if insertion worked
         """
         if self.item.key==item.key:
-            return True
+            return False
         elif self.item.key>item.key:
             if self.left is None:
                 self.left = BSTNode(item)
