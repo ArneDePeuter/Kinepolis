@@ -1,11 +1,12 @@
 # Testen: Sam
 # Implementeren: Siebe
+from DatatypesSiebe.MyQueue import *
 class Gebruiker:
     def __init__(self, id, voornaam, achternaam, emailadres):
         """
         Ceëert een Gebruiker.
 
-        Preconditie: voornaam is een string, achternaam is een string en emailadress is een string.
+        Preconditie: voornaam is een string, achternaam is een string en e-mailadres is een string.
 
         Postconditie: Een nieuwe gebruiker is aangemaakt.
 
@@ -14,13 +15,23 @@ class Gebruiker:
         :param achternaam: De achternaam van de persoon.
         :param emailadres: Het e-mailadres van de persoon.
         """
+<<<<<<< HEAD
         self.id = id
+=======
+        self.id = Gebruiker.id  # Zet de id van de gebruiker gelijk aan de id
+        Gebruiker.id += 1
+>>>>>>> 31680f3b6fed9c234725a8f634c39fdba4f94b68
         self.firstname = voornaam
         self.lastname = achternaam
         self.emailadres = emailadres
+        self.reservaties = MyQueue(5)
 
+<<<<<<< HEAD
         print("created user:", voornaam)
         pass
+=======
+        print("added user:", voornaam)
+>>>>>>> 31680f3b6fed9c234725a8f634c39fdba4f94b68
 
     def addReservation(self, reservatie):
         """
@@ -33,11 +44,11 @@ class Gebruiker:
         :param reservatie: De reservatie die toegevoegd wordt aan de gebruiker.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        pass
+        self.reservaties.enqueue(reservatie)
 
-    def removeReservation(self, reservatie):
+    def removeReservation(self):
         """
-        Verwijdert reservatie van een gebruiker.
+        Verwijdert de eerst volgende reservatie van een gebruiker.
 
         Preconditie: De gebruiker moet de reservatie hebben.
 
@@ -46,4 +57,4 @@ class Gebruiker:
         :param reservatie: De reservatie die wordt verwijderd van de gebruiker.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        pass
+        self.reservaties.dequeue()
