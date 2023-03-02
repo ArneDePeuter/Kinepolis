@@ -4,7 +4,6 @@ class BSTTable(BST):
     #Initialisation 2-3 tree Table
     def __init__(self) -> None:
         super().__init__()
-    
     #Checks if the table is empty
     def tableIsEmpty(self):
         """
