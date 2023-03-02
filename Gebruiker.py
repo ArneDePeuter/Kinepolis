@@ -1,6 +1,6 @@
 # Testen: Sam
 # Implementeren: Siebe
-from DatatypesSiebe.MyQueue import *
+
 class Gebruiker:
     def __init__(self, id, voornaam, achternaam, emailadres):
         """
@@ -16,12 +16,9 @@ class Gebruiker:
         :param emailadres: Het e-mailadres van de persoon.
         """
         self.id = id
-        self.id = Gebruiker.id  # Zet de id van de gebruiker gelijk aan de id
-        Gebruiker.id += 1
         self.firstname = voornaam
         self.lastname = achternaam
         self.emailadres = emailadres
-        self.reservaties = MyQueue(5)
 
     def addReservation(self, reservatie):
         """
