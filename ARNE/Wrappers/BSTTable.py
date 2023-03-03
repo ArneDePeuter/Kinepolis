@@ -1,4 +1,4 @@
-from ARNE.Datatypes.BST import BST
+from ARNE.Datatypes.BST import BST, Item
 
 class BSTTable(BST):
     #Initialisation 2-3 tree Table

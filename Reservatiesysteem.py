@@ -1,5 +1,5 @@
-# from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as ttt
-from ARNE.Wrappers.BSTTable import BSTTable as ttt
+from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as ttt
+# from ARNE.Wrappers.BSTTable import BSTTable as ttt
 from ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from tijd import *
 
