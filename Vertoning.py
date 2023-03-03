@@ -23,7 +23,7 @@ class Vertoning:
         self.date = datum
         self.freePlaces = vrijePlaatsen
 
-        print("created screening at", slot, "in room", zaalnummer , sep=" ")
+        print("created screening at", slot, "in room", zaalnummer, sep=" ")
 
     def startScreening(self):
         """
@@ -36,7 +36,7 @@ class Vertoning:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         print("Movie is started.")
-    
+
     def reservePlaces(self, amount):
         """
         implementatie van sam... arne heeft dit nodig

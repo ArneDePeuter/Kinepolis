@@ -1,6 +1,7 @@
 # Testen: Arne
 # Implementeren: Cedric
 
+
 class Reservatie:
     def __init__(self, id, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """

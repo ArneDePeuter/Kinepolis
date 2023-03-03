@@ -1,14 +1,12 @@
+import wrappedDataStructs as wrapper
 from tijd import *
+
 from Film import *
 from Gebruiker import *
 from Reservatie import *
 from Vertoning import *
 from Zaal import *
 from Reservatie import *
-
-from ARNE.Wrappers.BSTTable import BSTTable
-from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable
-from ARNE.Wrappers.PrioQueue import PriorityQueue
 
 # Testen: Allemaal
 # Implementeren: Allemaal
@@ -21,11 +19,11 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = TwoThreeTreeTable()
-        self.rooms = TwoThreeTreeTable()
-        self.movies = TwoThreeTreeTable()
-        self.screenings = TwoThreeTreeTable()
-        self.reservations = PriorityQueue()
+        self.users = wrapper.users
+        self.rooms = wrapper.rooms
+        self.movies = wrapper.movies
+        self.screenings = wrapper.screenings
+        self.reservations = wrapper.reservations
         self.clock = Clock((0,0,0), (0,0,0))
 
         # Nummering for ID's
@@ -33,35 +31,36 @@ class Reservatiesysteem:
         self.movieCount = 0
         self.screeningCount = 0
         self.reservationCount = 0
-        self.roomCount = 0  
+        self.roomCount = 0
 
     def addUser(self, voornaam, achternaam, emailadres):
         """
         Voegt een gebruiker to aan het reservatiesysteem.
 
         Preconditie: De gebruiker mag nog niet bestaan in het systeem, based op dezelfde email
+
         Postconditie: Gebruiker is toegevoegd aan het reservatiesysteem.
 
         :param user: Gebruiker die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         newUser = Gebruiker(voornaam, achternaam, emailadres)
+        self.users.insert(newUser)
         self.userCount += 1
-        item = self.users.createItem(newUser.id, newUser)
-        return self.users.tableInsert(item)
+        return True
 
     def removeAllUsers(self):
         """
         Verwijderd alle gebruikers uit het reservatiesysteem.
 
         Preconditie: Er moet eerst een gebruiker bestaan voor er verwijderd kan worden
+
         Postconditie: Alle gebruikers zijn verwijderd uit het reservatiesysteem.
 
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.users = self.users.__init__()
         self.userCount = 0
-        return True
     
     def addMovie(self, titel, rating):
         """
@@ -76,8 +75,8 @@ class Reservatiesysteem:
         """
         newMovie = Film(self.movieCount, titel, rating)
         self.movieCount += 1
-        item = self.movies.createItem(newMovie.id, newMovie)
-        return self.movies.tableInsert(item)
+        self.movies.insert(newMovie)
+        print("Added movie to database.")
 
     def removeAllMovies(self):
         """
@@ -90,7 +89,6 @@ class Reservatiesysteem:
         """
         self.movieCount = 0
         self.movies = self.movies.__init__()
-        return True
 
     def addRoom(self, zaalNummer, aantalPlaatsen):
         """
@@ -106,8 +104,8 @@ class Reservatiesysteem:
         """
         newRoom = Zaal(self.roomCount, aantalPlaatsen)
         self.roomCount += 1
-        item = self.rooms.createItem(newRoom.roomNumber, newRoom)
-        return self.rooms.tableInsert(item)
+        self.rooms.insert(newRoom)
+        print("Room added to the database")
 
     def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen):
         """
@@ -119,26 +117,13 @@ class Reservatiesysteem:
         Postconditie: De vertoning is toegevoegd aan het reservatiesysteem.
 
         :param screening: De vertoning die wordt toegevoegd.
-        :return: True als de operatie is gelukt is, False als het niet gelukt is.
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         newScreening = Vertoning(self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen)
+        self.screenings.insert(newScreening)
         self.screeningCount += 1
-        item = self.screenings.createItem(newScreening.id, newScreening)
-        return self.screenings.tableInsert(item)
 
-    def removeScreening(self, screening):
-        """
-        Verwijderd een vertoning van het reservatiesysteem.
-
-        preconditie: /
-        postconditie: De screening wordt verwijderd als de screening in het systeem zat
-
-        :param: Screening van type Vertoning
-        :return: True als de operatie gelukt is, False als het niet gelukt is.
-        """
-        return self.screenings.tableDelete(screening.id)
-
-    def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
+    def addReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """
         Voegt een reservatie toe aan het reservatiesysteem.
 
@@ -150,20 +135,34 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
+        self.reservations.insert(newReservation)
         self.reservationCount += 1
-        item = self.reservations.createItem(newReservation.timestamp, newReservation)
-        return self.reservations.enqueue(newReservation)
 
-    def dequeueReservation(self):
+    def queueReservation(self):
         """
-        Geeft de eerst volgende reservatie terug en verwijderd het van de queue.
+        Geeft de eerst volgende reservatie.
 
         Preconditie: Er moet minstens één reservatie in het reservatiesysteem zitten.
+
         Postconditie: \
- 
+
         :return: Tuple met True als de operatie is gelukt, False als het niet gelukt is en de eerstvolgend reservatie.
         """
-        return self.reservations.dequeue()
+        # TODO vragen naar functie van queue
+        print("Leest de reservatie uit de queue.")
+
+    def removeReservation(self, reservering):
+        """
+        Verwijderd de gegeven reservatie.
+
+        Preconditie: De reservering moet in het reservatiesysteem zitten.
+
+        Postconditie: De gegeven reservatie is verwijderd uit het reservatiesysteem.
+
+        :param reservering: De reservering die moet worden verwijderd.
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
+        self.reservations.delete(reservering.id)
 
     def removeAllReservations(self):
         """
@@ -175,9 +174,9 @@ class Reservatiesysteem:
 
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
+        # TODO aanpassen zodat reservations tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
         self.reservations = self.reservations.__init__()
         self.reservationCount = 0
-        return True
 
     def setTime(self, time):
         """

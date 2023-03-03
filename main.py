@@ -8,6 +8,9 @@ def main():
     for name, rating in zip(names, ratings):
         reservatieSysteem.addMovie(name, rating)
     reservatieSysteem.movies.inorderTraverse(print)
+    print(reservatieSysteem.movies.save())
+
+    
 
 if __name__ == "__main__":
     main()

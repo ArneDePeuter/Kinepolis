@@ -3,10 +3,10 @@ QUEUE REQUIREMENTS
 vvvvvvvvvvvvvvvvvvvvvv
 """
 
-class Queue:
+class QueueWithWeirdFuncs:
     pass
 
-class PriorityQueue(Queue):
+class Queue(QueueWithWeirdFuncs):
     def __init__(self, maxHeap=True):
         super().__init__(maxHeap)
 

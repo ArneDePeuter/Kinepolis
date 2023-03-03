@@ -29,4 +29,3 @@ class Zaal:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         print("Room has les free spaces.")
-        
