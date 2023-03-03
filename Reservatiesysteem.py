@@ -136,7 +136,7 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
-        self.reservations.insert(newReservation)
+        self.reservations.enqueue(self.reservations.createItem(newReservation.timestamp, newReservation))
         self.reservationCount += 1
 
     def queueReservation(self):
@@ -175,7 +175,6 @@ class Reservatiesysteem:
 
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO aanpassen zodat reservations tabel een nieuwe tabel wordt -> oude tabel wordt overschreven.
         self.reservations = self.reservations.__init__()
         self.reservationCount = 0
 
