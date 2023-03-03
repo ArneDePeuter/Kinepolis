@@ -1,4 +1,5 @@
-from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as ttt
+# from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as ttt
+from ARNE.Wrappers.BSTTable import BSTTable as ttt
 from ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from tijd import *
 
@@ -46,7 +47,7 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         newUser = Gebruiker(voornaam, achternaam, emailadres)
-        self.users.insert(newUser)
+        self.users.tableInsert(self.users.createItem(newUser.id, newUser))
         self.userCount += 1
         return True
 
@@ -76,8 +77,7 @@ class Reservatiesysteem:
         """
         newMovie = Film(self.movieCount, titel, rating)
         self.movieCount += 1
-        self.movies.insert(newMovie)
-        print("Added movie to database.")
+        self.movies.tableInsert(self.movies.createItem(newMovie.id, newMovie))
 
     def removeAllMovies(self):
         """
@@ -105,8 +105,7 @@ class Reservatiesysteem:
         """
         newRoom = Zaal(self.roomCount, aantalPlaatsen)
         self.roomCount += 1
-        self.rooms.insert(newRoom)
-        print("Room added to the database")
+        self.rooms.tableInsert(self.rooms.createItem(newRoom.id, newRoom))
 
     def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen):
         """
@@ -121,10 +120,10 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         newScreening = Vertoning(self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen)
-        self.screenings.insert(newScreening)
+        self.screenings.tableInsert(self.screenings.createItem(newScreening.id, newScreening))
         self.screeningCount += 1
 
-    def addReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
+    def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """
         Voegt een reservatie toe aan het reservatiesysteem.
 
@@ -139,7 +138,7 @@ class Reservatiesysteem:
         self.reservations.enqueue(self.reservations.createItem(newReservation.timestamp, newReservation))
         self.reservationCount += 1
 
-    def queueReservation(self):
+    def dequeueReservation(self):
         """
         Geeft de eerst volgende reservatie.
 
@@ -149,21 +148,7 @@ class Reservatiesysteem:
 
         :return: Tuple met True als de operatie is gelukt, False als het niet gelukt is en de eerstvolgend reservatie.
         """
-        # TODO vragen naar functie van queue
-        print("Leest de reservatie uit de queue.")
-
-    def removeReservation(self, reservering):
-        """
-        Verwijderd de gegeven reservatie.
-
-        Preconditie: De reservering moet in het reservatiesysteem zitten.
-
-        Postconditie: De gegeven reservatie is verwijderd uit het reservatiesysteem.
-
-        :param reservering: De reservering die moet worden verwijderd.
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        self.reservations.delete(reservering.id)
+        firstitem = self.reservations.dequeue()
 
     def removeAllReservations(self):
         """
@@ -190,7 +175,6 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.clock.setTime(time)
-        print("Time is set to", time)
 
     def increaseTime(self, n=1):
         """
