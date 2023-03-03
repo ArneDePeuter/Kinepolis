@@ -35,6 +35,14 @@ class Reservatiesysteem:
         self.reservationCount = 0
         self.roomCount = 0
 
+    def start(self):
+        while not self.screenings.isEmpty():
+            self.increaseTime(1)
+            #handlereservations
+            #handlescreenings
+            #...
+            pass
+
     def addUser(self, voornaam, achternaam, emailadres):
         """
         Voegt een gebruiker to aan het reservatiesysteem.
