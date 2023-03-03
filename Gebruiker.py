@@ -1,9 +1,5 @@
 # Testen: Sam
 # Implementeren: Siebe
-<<<<<<< HEAD
-=======
-
->>>>>>> 04b6d0d13713a0b0430bc9b66c748dbdd8aadb6e
 class Gebruiker:
     def __init__(self, id, voornaam, achternaam, emailadres):
         """
