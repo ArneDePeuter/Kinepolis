@@ -2,6 +2,8 @@ Datastructuren:
 -> Iedereen maakt ADT tables van zijn ingezonden datastructuren
 -> Iedereen maakt Queue van zijn ingezonden datastructuren
 -> Geen dubbele objecten toevoegen
+-> Reservaties verwerken
+-> Niet elke reservatie toelaten
 
 Klassen:
 -> Alle klassen volledig geimplementeerd
