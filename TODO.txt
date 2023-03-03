@@ -1,24 +1,25 @@
 Datastructuren:
--> Iedereen maakt ADT tables van zijn ingezonden datastructuren
--> Iedereen maakt Queue van zijn ingezonden datastructuren
--> Geen dubbele objecten toevoegen
+-> Iedereen maakt ADT tables van zijn ingezonden datastructuren : all
+-> Iedereen maakt Queue van zijn ingezonden datastructuren : all
+-> Geen dubbele objecten toevoegen : all kijken naar eige klasse
 
 
 Klassen:
 -> Alle klassen volledig geimplementeerd
-    -> Reservaties verwerken
-    -> Niet elke reservatie toelaten
-    -> Vertoning verwerken (iederen in de zaal en film starten)
-    -> Tijd
-    -> Zalen tegoei managen bij aanmaken van vertoning
+    -> Reservaties verwerken : Cedric
+    -> Niet elke reservatie toelaten (zit vol) : Cedric
+    -> Vertoning verwerken (iederen in de zaal en film starten) : Sam
+    -> Tijd : Arne
+    -> Zalen tegoei managen bij aanmaken van vertoning (geen 2 vertongen die overlappen) in zelfde zaal : Sam
 
 
 InputFile voor systeem:
--> Formattering afspreken
--> Parser en executer maken
+-> in en output : Siebe
+-> Parser en executer maken : Siebe
 
 Testen:
-    -> Testen maken en uitvoeren voor toegewezen klassen
+    -> Testen maken en uitvoeren voor toegewezen klassen : all
 
-GUI:
-    -> Gui toevoegen
+Niet verplicht
+    GUI:
+        -> Gui toevoegen
