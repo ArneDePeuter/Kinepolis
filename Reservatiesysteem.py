@@ -1,5 +1,5 @@
-from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as ttt
-# from ARNE.Wrappers.BSTTable import BSTTable as ttt
+from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
+# from ARNE.Wrappers.BSTTable import BSTTable as Table
 from ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from tijd import *
 
@@ -21,10 +21,10 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = ttt()
-        self.rooms = ttt()
-        self.movies = ttt()
-        self.screenings = ttt()
+        self.users = Table()
+        self.rooms = Table()
+        self.movies = Table()
+        self.screenings = Table()
         self.reservations = Queue()
         self.clock = Clock((0,0,0), (0,0,0))
 
