@@ -2,11 +2,15 @@ Datastructuren:
 -> Iedereen maakt ADT tables van zijn ingezonden datastructuren
 -> Iedereen maakt Queue van zijn ingezonden datastructuren
 -> Geen dubbele objecten toevoegen
--> Reservaties verwerken
--> Niet elke reservatie toelaten
+
 
 Klassen:
 -> Alle klassen volledig geimplementeerd
+    -> Reservaties verwerken
+    -> Niet elke reservatie toelaten
+    -> Vertoning verwerken (iederen in de zaal en film starten)
+    -> Tijd
+    -> Zalen tegoei managen bij aanmaken van vertoning
 
 
 InputFile voor systeem:
