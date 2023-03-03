@@ -40,6 +40,6 @@ class Homepage:
         sys.exit(app.exec_())
 
     def homepage(self):
+        pass
         
-
 GUI(200,200,500,500)
