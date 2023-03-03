@@ -1,4 +1,5 @@
-import wrappedDataStructs as wrapper
+from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as ttt
+from ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from tijd import *
 
 from Film import *
@@ -19,11 +20,11 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = wrapper.users
-        self.rooms = wrapper.rooms
-        self.movies = wrapper.movies
-        self.screenings = wrapper.screenings
-        self.reservations = wrapper.reservations
+        self.users = ttt()
+        self.rooms = ttt()
+        self.movies = ttt()
+        self.screenings = ttt()
+        self.reservations = Queue()
         self.clock = Clock((0,0,0), (0,0,0))
 
         # Nummering for ID's
