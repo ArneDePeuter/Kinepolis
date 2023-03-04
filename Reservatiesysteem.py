@@ -1,5 +1,5 @@
-from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as ttt
-# from ARNE.Wrappers.BSTTable import BSTTable as ttt
+from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
+# from ARNE.Wrappers.BSTTable import BSTTable as Table
 from ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from tijd import *
 
@@ -21,10 +21,10 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = ttt()
-        self.rooms = ttt()
-        self.movies = ttt()
-        self.screenings = ttt()
+        self.users = Table()
+        self.rooms = Table()
+        self.movies = Table()
+        self.screenings = Table()
         self.reservations = Queue()
         self.clock = Clock((0,0,0), (0,0,0))
 
@@ -34,6 +34,14 @@ class Reservatiesysteem:
         self.screeningCount = 0
         self.reservationCount = 0
         self.roomCount = 0
+
+    def start(self):
+        while not self.screenings.isEmpty():
+            self.increaseTime(1)
+            #handlereservations
+            #handlescreenings
+            #...
+            pass
 
     def addUser(self, voornaam, achternaam, emailadres):
         """
@@ -46,6 +54,7 @@ class Reservatiesysteem:
         :param user: Gebruiker die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
+        # TODO parameters juist zetten
         newUser = Gebruiker(voornaam, achternaam, emailadres)
         self.users.tableInsert(self.users.createItem(newUser.id, newUser))
         self.userCount += 1
@@ -75,6 +84,7 @@ class Reservatiesysteem:
         :param movie: De film die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
+        # TODO parameters juist zetten
         newMovie = Film(self.movieCount, titel, rating)
         self.movieCount += 1
         self.movies.tableInsert(self.movies.createItem(newMovie.id, newMovie))
@@ -103,6 +113,7 @@ class Reservatiesysteem:
         :param room: De zaal die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
+        # TODO parameters juist zetten
         newRoom = Zaal(self.roomCount, aantalPlaatsen)
         self.roomCount += 1
         self.rooms.tableInsert(self.rooms.createItem(newRoom.id, newRoom))
@@ -134,6 +145,7 @@ class Reservatiesysteem:
         :param reservering: De reservatie die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
+        # TODO parameters juist zetten
         newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
         self.reservations.enqueue(self.reservations.createItem(newReservation.timestamp, newReservation))
         self.reservationCount += 1
