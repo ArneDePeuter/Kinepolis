@@ -18,10 +18,10 @@ class StackTable(MyStack):
     def tableIsEmpty(self):
         return super().isEmpty()
 
-    #Print de boom uit
+    #Print de stack uit
     def save(self):
         return super().save()
 
-    #Load een boom vanuit output van save
+    #Load een stack vanuit output van save
     def load(self, input):
         return super().load(input)
