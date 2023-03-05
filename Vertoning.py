@@ -19,8 +19,8 @@ class Vertoning:
         self.id = id
         self.roomNumber = zaalnummer
         self.slot = slot
-        self.filmid = filmid
         self.date = datum
+        self.filmid = filmid
         self.freePlaces = vrijePlaatsen
 
         print("created screening at", slot, "in room", zaalnummer, sep=" ")
