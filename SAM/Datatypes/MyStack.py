@@ -36,7 +36,7 @@ class MyStack:
             return False
     def getTop(self):
         """
-        precondities : geen lage stack
+        precondities : geen lege stack
         postcondities : waarde op laatste plek gegeven
         :return:
         """
