@@ -130,6 +130,12 @@ class Reservatiesysteem:
         :param screening: De vertoning die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
+        for i in range(0, self.screeningCount):
+            temp = self.screenings.tableRetrieve(i)
+            if temp.roomNumber == zaalnummer:
+                if temp.date == datum:
+                    if temp.slot == slot:
+                        return False
         newScreening = Vertoning(self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen)
         self.screenings.tableInsert(self.screenings.createItem(newScreening.id, newScreening))
         self.screeningCount += 1
