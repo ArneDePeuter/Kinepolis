@@ -35,7 +35,15 @@ class TwoThreeTreeTable(TwoThreeTree):
         preconditions: None
         postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
-        return self.retrieveItem(self.createItem(key, " ")).value
+        dummyitem = self.createItem(key, "dummyVal")
+        result = self.retrieveItem(dummyitem)
+        if result[1]:
+            for item in result[0].items:
+                if item==dummyitem:
+                    break
+            return item.val, result[1]
+        else:
+            return None, False
 
     #Prints the table inorder
     def traverseTable(self,print):
@@ -61,3 +69,4 @@ class TwoThreeTreeTable(TwoThreeTree):
 
     def createItem(self, key, val):
         return Item(key, val)
+    
