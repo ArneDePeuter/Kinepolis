@@ -23,7 +23,7 @@ class Table(ADT):
         pass
 
     #Retrieves an item from the ADT
-    def tableRetrieve(item):
+    def tableRetrieve(key):
         pass
 
     #Creates an item that can be inserted into the ADT

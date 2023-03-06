@@ -28,14 +28,14 @@ class TwoThreeTreeTable(TwoThreeTree):
         return self.insertItem(item)
 
     #Retrieves an item from the table
-    def tableRetrieve(self, item):
+    def tableRetrieve(self, key):
         """
         Retrieves an item from the table
 
         preconditions: None
         postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
-        return self.retrieveItem(item)
+        return self.retrieveItem(self.createItem(key, " "))
 
     #Prints the table inorder
     def traverseTable(self,print):
