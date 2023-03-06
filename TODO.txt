@@ -1,25 +1,55 @@
-Datastructuren:
--> Iedereen maakt ADT tables van zijn ingezonden datastructuren : all
--> Iedereen maakt Queue van zijn ingezonden datastructuren : all
--> Geen dubbele objecten toevoegen : all kijken naar eige klasse
+Opdrachten per persoon voor zijn klassen.
+
+Arne:
+    Klassen:
+        Film
+        Tijd
+        Zaal
+    Data:
+        Geen dubbele objecten toelaten in systeem
+    Testen:
+        Testen maken voor klassen
+
+Cedric:
+    Klassen:
+        Reservatie
+    Data:
+        Geen dubbele objecten toelaten in systeem
+    Testen:
+        Testen maken voor klassen
+    Wrappers:
+        Wrapper voor priority queue maken van heap
+    Other:
+        Reservatie: zorgen dat er geen reservaties te veel mogen worden gemaakt
+
+Sam:
+    Klassen:
+        Vertoning
+    Data:
+        Geen dubbele objecten toelaten in systeem
+    Testen:
+        Testen maken voor klassen
+    Other:
+        Vertoning: verwerken (iederen in de zaal en film starten)
+        Vertoning: Zorgen dat geen vertoningen overlappen bij het aanmaken
+
+Siebe:
+    Klassen:
+        Gebruiker
+    Data:
+        Geen dubbele objecten toelaten in systeem
+    Testen:
+        Testen maken voor klassen
+    Other:
+        in- en output files
+        Parser en executer
+    Wrappers:
+        Alle gemaakte datatypes toevoegen en wrapper maken voor BST
+        Wrapper voor priority queue maken van heap als heap is geimplementeerd
+
+Extra:
+    GUI
 
 
-Klassen:
--> Alle klassen volledig geimplementeerd
-    -> Reservaties verwerken : Cedric
-    -> Niet elke reservatie toelaten (zit vol) : Cedric
-    -> Vertoning verwerken (iederen in de zaal en film starten) : Sam
-    -> Tijd : Arne
-    -> Zalen tegoei managen bij aanmaken van vertoning (geen 2 vertongen die overlappen) in zelfde zaal : Sam
 
 
-InputFile voor systeem:
--> in en output : Siebe
--> Parser en executer maken : Siebe
-
-Testen:
-    -> Testen maken en uitvoeren voor toegewezen klassen : all
-
-Niet verplicht
-    GUI:
-        -> Gui toevoegen
