@@ -35,6 +35,12 @@ class Reservatiesysteem:
         self.reservationCount = 0
         self.roomCount = 0
 
+    def load(self):
+        pass
+
+    def save(self):
+        pass
+
     def start(self):
         while not self.screenings.isEmpty():
             self.increaseTime(1)
