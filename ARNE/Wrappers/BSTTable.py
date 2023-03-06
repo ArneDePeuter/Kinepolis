@@ -15,7 +15,7 @@ class BSTTable(BST):
         return self.isEmpty()
     
     #Inserts a TreeItem to the table
-    def tableInsert(self, item):
+    def tableInsert(self, key):
         """
         Inserts a TreeItem to the table
 
@@ -24,7 +24,8 @@ class BSTTable(BST):
         preconditions: None
         postconditions: The treeItem gets inserted to the table
         """
-        return self.searchTreeInsert(item)
+
+        return self.retrieveItem(self.createItem(key, " ")).value
 
     #Retrieves an item from the table
     def tableRetrieve(self, item):
