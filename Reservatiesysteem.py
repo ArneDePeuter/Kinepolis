@@ -235,7 +235,6 @@ class Reservatiesysteem:
                         # split de regel in onderdelen en verwijder de witruimte
                         parts = [part.strip() for part in line.split(" ")]
                         id = parts[1]
-                        print(id)
                         voornaam = parts[2]
                         achternaam = parts[3]
                         email = parts[4]
