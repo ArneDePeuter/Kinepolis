@@ -3,8 +3,8 @@ from Reservatiesysteem import Reservatiesysteem
 
 def main():
     reservatieSysteem = Reservatiesysteem()
-    print("Hello main")
     reservatieSysteem.readFile("Tests/Input/system.txt")
+    print("Hello main")
     """names, ratings = getMovies()
     for name, rating in zip(names, ratings):
         reservatieSysteem.addMovie(name, rating)
