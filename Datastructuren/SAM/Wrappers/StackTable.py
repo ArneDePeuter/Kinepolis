@@ -1,4 +1,5 @@
-from SAM.Datatypes import MyStack
+from Datastructuren.SAM.Datatypes import MyStack
+
 
 class StackTable(MyStack):
 

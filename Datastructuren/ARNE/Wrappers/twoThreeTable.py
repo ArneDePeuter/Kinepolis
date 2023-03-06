@@ -1,9 +1,10 @@
-from ARNE.Datatypes.BST import BST, Item
+from Datastructuren.ARNE.Datatypes.TwoThreeTree import TwoThreeTree, Item
 
-class BSTTable(BST):
+class TwoThreeTreeTable(TwoThreeTree):
     #Initialisation 2-3 tree Table
     def __init__(self) -> None:
         super().__init__()
+    
     #Checks if the table is empty
     def tableIsEmpty(self):
         """
@@ -15,7 +16,7 @@ class BSTTable(BST):
         return self.isEmpty()
     
     #Inserts a TreeItem to the table
-    def tableInsert(self, key):
+    def tableInsert(self, item):
         """
         Inserts a TreeItem to the table
 
@@ -24,18 +25,25 @@ class BSTTable(BST):
         preconditions: None
         postconditions: The treeItem gets inserted to the table
         """
-
-        return self.retrieveItem(self.createItem(key, " ")).value
+        return self.insertItem(item)
 
     #Retrieves an item from the table
-    def tableRetrieve(self, item):
+    def tableRetrieve(self, key):
         """
         Retrieves an item from the table
 
         preconditions: None
         postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
-        return self.searchTreeRetrieve(item)
+        dummyitem = self.createItem(key, "dummyVal")
+        result = self.retrieveItem(dummyitem)
+        if result[1]:
+            for item in result[0].items:
+                if item==dummyitem:
+                    break
+            return item.val, result[1]
+        else:
+            return None, False
 
     #Prints the table inorder
     def traverseTable(self,print):
@@ -57,7 +65,7 @@ class BSTTable(BST):
         preconditions: None
         postconditions: The given item gets deleted from the table
         """
-        return self.searchTreeDelete(item)
+        return self.deleteItem(item)
 
     def createItem(self, key, val):
         return Item(key, val)

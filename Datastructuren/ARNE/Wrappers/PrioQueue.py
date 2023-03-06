@@ -1,4 +1,4 @@
-from ARNE.Datatypes.Heap import Heap, Item
+from Datastructuren.ARNE.Datatypes.Heap import Heap, Item
 
 class PriorityQueue(Heap):
     def __init__(self, maxHeap=True):

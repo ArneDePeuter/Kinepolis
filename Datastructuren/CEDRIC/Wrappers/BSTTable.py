@@ -1,4 +1,4 @@
-from CEDRIC.DataTypes.BST import BST, TreeItem
+from Datastructuren.CEDRIC.DataTypes.BST import BST, TreeItem
 
 class BSTTable(BST):
     # Initialisation 2-3 tree Table

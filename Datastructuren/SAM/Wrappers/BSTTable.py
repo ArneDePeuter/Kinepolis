@@ -1,4 +1,5 @@
-from SAM.Datatypes import BST
+from Datastructuren.SAM.Datatypes import BST
+
 
 class BSTTable(BST):
     #Initialisatie BST

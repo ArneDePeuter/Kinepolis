@@ -1,11 +1,10 @@
-from ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
+from Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
 # from ARNE.Wrappers.BSTTable import BSTTable as Table
-from ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
+from Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from tijd import *
 
 from Film import *
 from Gebruiker import *
-from Reservatie import *
 from Vertoning import *
 from Zaal import *
 from Reservatie import *
