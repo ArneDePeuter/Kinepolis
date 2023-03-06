@@ -1,13 +1,17 @@
 from Reservatiesysteem import Reservatiesysteem
-from movieWebScraper import getMovies
+#from movieWebScraper import getMovies
 
 def main():
     reservatieSysteem = Reservatiesysteem()
-
-    names, ratings = getMovies()
+    reservatieSysteem.readFile("Tests/Input/system.txt")
+    print("Hello main")
+    """names, ratings = getMovies()
     for name, rating in zip(names, ratings):
         reservatieSysteem.addMovie(name, rating)
-    reservatieSysteem.movies.inorderTraverse(print)
+    reservatieSysteem.movies.inorderTraverse(print)"""
+
+
+
 
 if __name__ == "__main__":
     main()
