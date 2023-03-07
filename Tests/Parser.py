@@ -1,8 +1,4 @@
-from Film import *
-from Gebruiker import *
-from Vertoning import *
-from Zaal import *
-from Reservatie import *
+from Reservatiesysteem import *
 def readFile(reservatiesysteem, fileName):
     """
     Leest een bestand met de geven naam in
@@ -50,8 +46,8 @@ def readFile(reservatiesysteem, fileName):
                     # split de regel in onderdelen en verwijder de witruimte
                     parts = [part.strip() for part in line.split(" ")]
                     id = parts[1]
-                    titel = parts[2]
-                    rating = parts[3]
+                    titel = parts[2] + " " + parts[3]
+                    rating = parts[4]
                     # Maak de film aan
                     film = Film(id, titel, rating)
                     tableItem = reservatiesysteem.movies.createItem(film.id, film)
@@ -71,3 +67,18 @@ def readFile(reservatiesysteem, fileName):
                     vertoning = Vertoning(id, zaalNummer, slot, datum, filmId, vrijePlaatsen)
                     tableItem = reservatiesysteem.screenings.createItem(vertoning.id, vertoning)
                     reservatiesysteem.screenings.tableInsert(tableItem)
+
+                # Kijk of de regel start met start zo ja dan start je het systeem op
+                if (line.startswith("start")):
+                    """# split de regel in onderdelen en verwijder de witruimte
+                    parts = [part.strip() for part in line.split(" ")]
+                    id = parts[1]
+                    zaalNummer = parts[2]
+                    slot = parts[3]
+                    datum = parts[4]
+                    filmId = parts[5]
+                    vrijePlaatsen = parts[6]
+                    # Maak de vertoning aan
+                    vertoning = Vertoning(id, zaalNummer, slot, datum, filmId, vrijePlaatsen)
+                    tableItem = reservatiesysteem.screenings.createItem(vertoning.id, vertoning)
+                    reservatiesysteem.screenings.tableInsert(tableItem)"""
