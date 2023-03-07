@@ -1,4 +1,9 @@
-def readFile(self, fileName):
+from Film import *
+from Gebruiker import *
+from Vertoning import *
+from Zaal import *
+from Reservatie import *
+def readFile(reservatiesysteem, fileName):
     """
     Leest een bestand met de geven naam in
 
@@ -26,5 +31,5 @@ def readFile(self, fileName):
                     email = parts[4]
                     # Maak de gebruiker aan
                     gebruiker = Gebruiker(id, voornaam, achternaam, email)
-                    tableItem = self.users.createItem(gebruiker.id, gebruiker)
-                    self.users.tableInsert(tableItem)
+                    tableItem = reservatiesysteem.users.createItem(gebruiker.id, gebruiker)
+                    reservatiesysteem.users.tableInsert(tableItem)

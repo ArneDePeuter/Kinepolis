@@ -1,9 +1,10 @@
 from Reservatiesysteem import Reservatiesysteem
 #from movieWebScraper import getMovies
+from Tests.Parser import readFile
 
 def main():
     reservatieSysteem = Reservatiesysteem()
-    reservatieSysteem.readFile("Tests/Input/system.txt")
+    readFile(reservatieSysteem, "Tests/Input/system.txt")
     print("Hello main")
     """names, ratings = getMovies()
     for name, rating in zip(names, ratings):
