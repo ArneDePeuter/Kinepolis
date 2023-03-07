@@ -154,10 +154,9 @@ class Reservatiesysteem:
         """
 
         if id is None:
-            id = self.screeningCount+1
+            id = self.screeningCount
         else:
-            if self.screeningCount < id:
-                self.screeningCount = id
+            self.screeningCount = max(id, self.screeningCount)
 
         for i in range(0, self.screeningCount):
             temp = self.screenings.tableRetrieve(i)[0]
@@ -167,7 +166,6 @@ class Reservatiesysteem:
                 if temp.date == datum:
                     if temp.slot == slot:
                         return False
-                    # self.screeningCount zou id moeten zijn
         newScreening = Vertoning(id, zaalnummer, slot, datum, filmid, vrijePlaatsen)
         self.screenings.tableInsert(self.screenings.createItem(id, newScreening))
         self.screeningCount += 1
