@@ -25,6 +25,7 @@ Cedric:
 Sam:
     Klassen:
         Vertoning
+        addScreening fixen in functie van Parser
     Data:
         Geen dubbele objecten toelaten in systeem
     Testen:
