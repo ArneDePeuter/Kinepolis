@@ -84,7 +84,7 @@ class Reservatiesysteem:
         self.users = self.users.__init__()
         self.userCount = 0
     
-    def addMovie(self, titel, rating):
+    def addMovie(self, titel, rating, id=None):
         """
         Voegt een film toe aan het reservatiesysteem.
 
@@ -92,13 +92,18 @@ class Reservatiesysteem:
 
         Postconditie: De film is toegevoegd aan het reservatiesysteem.
 
-        :param movie: De film die wordt toegevoegd.
+        :param id: Dit is een uniek getal dat overeenkomt met dit object.
+        :param titel: De titel van de film.
+        :param rating: De score van een film volgens recensies.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO parameters juist zetten
-        newMovie = Film(self.movieCount, titel, rating)
-        self.movieCount += 1
+        if id is None:
+            id = self.movieCount+1
+        else:
+            self.movieCount = id-1
+        newMovie = Film(id, titel, rating)
         self.movies.tableInsert(self.movies.createItem(newMovie.id, newMovie))
+        self.movieCount += 1
 
     def removeAllMovies(self):
         """
@@ -129,7 +134,7 @@ class Reservatiesysteem:
         self.roomCount += 1
         self.rooms.tableInsert(self.rooms.createItem(newRoom.id, newRoom))
 
-    def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen):
+    def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen, id=None):
         """
         Voegt een vertoning toe aan het reservatiesysteem.
 
@@ -138,16 +143,25 @@ class Reservatiesysteem:
 
         Postconditie: De vertoning is toegevoegd aan het reservatiesysteem.
 
-        :param screening: De vertoning die wordt toegevoegd.
+        :param id: Dit is een uniek getal dat overeenkomt met dit object.
+        :param zaalnummer: Het nummer van de zaal.
+        :param slot: De tijd van de vertoning.
+        :param datum: De datum van de vertoning.
+        :param filmid: Dit is een uniek getal dat overeenkomt met de film.
+        :param vrijePlaatsen: Het aantal vrije plaatsen.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
+        if id is None:
+            id = self.screeningCount+1
+        else:
+            self.screeningCount = id-1
         for i in range(0, self.screeningCount):
             temp = self.screenings.tableRetrieve(i)
             if temp.roomNumber == zaalnummer:
                 if temp.date == datum:
                     if temp.slot == slot:
                         return False
-        newScreening = Vertoning(self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen)
+        newScreening = Vertoning(id, zaalnummer, slot, datum, filmid, vrijePlaatsen)
         self.screenings.tableInsert(self.screenings.createItem(newScreening.id, newScreening))
         self.screeningCount += 1
 

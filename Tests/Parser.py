@@ -35,7 +35,7 @@ def readFile(reservatiesysteem, fileName):
                     parts = [part.strip() for part in line.split(" ")]
                     zaalNummer = parts[1]
                     aantalPlaatsen = parts[2]
-                    # Maak de zaal aan
+                    # Maak de zaal aan TODO
                     zaal = Zaal(zaalNummer, aantalPlaatsen)
                     tableItem = reservatiesysteem.rooms.createItem(zaal.roomNumber, zaal)
                     reservatiesysteem.rooms.tableInsert(tableItem)
@@ -48,9 +48,7 @@ def readFile(reservatiesysteem, fileName):
                     titel = parts[2] + " " + parts[3]
                     rating = parts[4]
                     # Maak de film aan
-                    film = Film(id, titel, rating)
-                    tableItem = reservatiesysteem.movies.createItem(film.id, film)
-                    reservatiesysteem.movies.tableInsert(tableItem)
+                    reservatiesysteem.addMovie(titel, rating, id)
 
                 # Kijk of de regel start met vertoning zo ja dan maak je een vertoning aan
                 if (line.startswith("vertoning")):
@@ -63,9 +61,7 @@ def readFile(reservatiesysteem, fileName):
                     filmId = parts[5]
                     vrijePlaatsen = parts[6]
                     # Maak de vertoning aan
-                    vertoning = Vertoning(id, zaalNummer, slot, datum, filmId, vrijePlaatsen)
-                    tableItem = reservatiesysteem.screenings.createItem(vertoning.id, vertoning)
-                    reservatiesysteem.screenings.tableInsert(tableItem)
+                    reservatiesysteem.addScreening(zaalNummer, slot, datum, filmId, vrijePlaatsen, id)
 
                 # Kijk of de regel start met start zo ja dan start je het systeem op
                 if (line.startswith("start")):
