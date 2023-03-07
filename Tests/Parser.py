@@ -45,6 +45,7 @@ def readFile(reservatiesysteem, fileName):
                     # split de regel in onderdelen en verwijder de witruimte
                     parts = [part.strip() for part in line.split(" ")]
                     id = parts[1]
+                    id = int(id)
                     titel = parts[2] + " " + parts[3]
                     rating = parts[4]
                     # Maak de film aan
@@ -55,6 +56,7 @@ def readFile(reservatiesysteem, fileName):
                     # split de regel in onderdelen en verwijder de witruimte
                     parts = [part.strip() for part in line.split(" ")]
                     id = parts[1]
+                    id = int(id)
                     zaalNummer = parts[2]
                     slot = parts[3]
                     datum = parts[4]
@@ -63,7 +65,7 @@ def readFile(reservatiesysteem, fileName):
                     # Maak de vertoning aan
                     reservatiesysteem.addScreening(zaalNummer, slot, datum, filmId, vrijePlaatsen, id)
 
-                # Kijk of de regel start met start zo ja dan start je het systeem op
+                # Kijk of de regel start met start zo ja dan start je het systeem op TODO
                 if (line.startswith("start")):
                     """# split de regel in onderdelen en verwijder de witruimte
                     parts = [part.strip() for part in line.split(" ")]
