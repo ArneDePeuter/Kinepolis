@@ -63,9 +63,10 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         if id is None:
-            id = self.userCount+1
+            id = self.userCount
         else:
-            self.userCount = id-1
+            self.userCount = max(self.userCount,id)
+
         newUser = Gebruiker(id, voornaam, achternaam, emailadres)
         self.users.tableInsert(self.users.createItem(newUser.id, newUser))
         self.userCount += 1
