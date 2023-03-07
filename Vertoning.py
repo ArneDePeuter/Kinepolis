@@ -41,6 +41,10 @@ class Vertoning:
         """
         implementatie van sam... arne heeft dit nodig
         """
+        if amount > self.freePlaces:
+            return False
+        self.freePlaces = self.freePlaces - amount
+        return True
 
     def endScreening(self):
         """
