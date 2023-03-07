@@ -22,13 +22,12 @@ def readFile(reservatiesysteem, fileName):
                     # split de regel in onderdelen en verwijder de witruimte
                     parts = [part.strip() for part in line.split(" ")]
                     id = parts[1]
+                    id = int(id)
                     voornaam = parts[2]
                     achternaam = parts[3]
                     email = parts[4]
                     # Maak de gebruiker aan
-                    gebruiker = Gebruiker(id, voornaam, achternaam, email)
-                    tableItem = reservatiesysteem.users.createItem(gebruiker.id, gebruiker)
-                    reservatiesysteem.users.tableInsert(tableItem)
+                    reservatiesysteem.addUser(voornaam, achternaam, email, id)
 
                 # Kijk of de regel start met zaal zo ja dan maak je een zaal aan
                 if (line.startswith("zaal")):
