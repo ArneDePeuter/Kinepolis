@@ -1,7 +1,9 @@
 # lijnen die beginnen met # worden genegeerd
 init
 zaal 1 200 
-film 3 "The Matrix" 0.95 
+film 3 "The Matrix" 0.95
+film 4 "Lion King" 0.98
+
 # vertoning met id 9 in zaal 1 op slot 1  (14:30)
 # op datum 2023-10-10 voor film 3 (The Matrix)  
 # heeft nog 200 vrije plaatsen 
