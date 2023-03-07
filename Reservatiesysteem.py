@@ -151,21 +151,25 @@ class Reservatiesysteem:
         :param vrijePlaatsen: Het aantal vrije plaatsen.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        """if id is None:
+
+        if id is None:
             id = self.screeningCount+1
         else:
-            self.screeningCount = id-1
+            if self.screeningCount < id:
+                self.screeningCount = id
+
         for i in range(0, self.screeningCount):
             temp = self.screenings.tableRetrieve(i)[0]
+            if temp is None:
+                continue
             if temp.roomNumber == zaalnummer:
                 if temp.date == datum:
                     if temp.slot == slot:
                         return False
                     # self.screeningCount zou id moeten zijn
-        newScreening = Vertoning(self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen)
-        self.screenings.tableInsert(self.screenings.createItem(newScreening.id, newScreening))
+        newScreening = Vertoning(id, zaalnummer, slot, datum, filmid, vrijePlaatsen)
+        self.screenings.tableInsert(self.screenings.createItem(id, newScreening))
         self.screeningCount += 1
-        """
 
     def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """
