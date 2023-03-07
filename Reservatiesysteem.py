@@ -48,7 +48,7 @@ class Reservatiesysteem:
             #...
             pass
 
-    def addUser(self, voornaam, achternaam, emailadres):
+    def addUser(self, voornaam, achternaam, emailadres, id=None):
         """
         Voegt een gebruiker to aan het reservatiesysteem.
 
@@ -56,11 +56,17 @@ class Reservatiesysteem:
 
         Postconditie: Gebruiker is toegevoegd aan het reservatiesysteem.
 
-        :param user: Gebruiker die wordt toegevoegd.
+        :param id: Dit is een uniek getal dat overeenkomt met dit object.
+        :param voornaam: De voornaam van de persoon.
+        :param achternaam: De achternaam van de persoon.
+        :param emailadres: Het e-mailadres van de persoon.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO parameters juist zetten
-        newUser = Gebruiker(voornaam, achternaam, emailadres)
+        if id is None:
+            id = self.userCount
+        else:
+            self.userCount = id-1
+        newUser = Gebruiker(id, voornaam, achternaam, emailadres)
         self.users.tableInsert(self.users.createItem(newUser.id, newUser))
         self.userCount += 1
         return True
