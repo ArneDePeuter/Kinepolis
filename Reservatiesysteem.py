@@ -156,7 +156,7 @@ class Reservatiesysteem:
         else:
             self.screeningCount = id-1
         for i in range(0, self.screeningCount):
-            temp = self.screenings.tableRetrieve(i)
+            temp = self.screenings.tableRetrieve(i)[0]
             if temp.roomNumber == zaalnummer:
                 if temp.date == datum:
                     if temp.slot == slot:
