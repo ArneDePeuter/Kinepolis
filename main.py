@@ -5,6 +5,7 @@ from Tests.Parser import readFile
 def main():
     reservatieSysteem = Reservatiesysteem()
     readFile(reservatieSysteem, "Tests/Input/system.txt")
+    reservatieSysteem.addUser("Siebe", "Mees", "siebe.mees@student.uantwerpen.be")
     print("Hello main")
     """names, ratings = getMovies()
     for name, rating in zip(names, ratings):

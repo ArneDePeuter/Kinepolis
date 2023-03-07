@@ -63,7 +63,7 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         if id is None:
-            id = self.userCount
+            id = self.userCount+1
         else:
             self.userCount = id-1
         newUser = Gebruiker(id, voornaam, achternaam, emailadres)
