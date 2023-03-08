@@ -101,8 +101,8 @@ def outputSystem(reservatiesysteem, fileName):
     for i in range(reservatiesysteem.screeningCount):
         if reservatiesysteem.screenings.tableRetrieve(i)[0] is not None:
             datums.append(str(reservatiesysteem.screenings.tableRetrieve(i)[0].date))
-            filmid = reservatiesysteem.screenings.tableRetrieve(i)[0].filmid
-            # titels.append(reservatiesysteem.movies.tableRetrieve(filmid)[0].title)
+            filmid = int(reservatiesysteem.screenings.tableRetrieve(i)[0].filmid)
+            titels.append(reservatiesysteem.movies.tableRetrieve(filmid)[0].title)
 
 
     # the html code which will go in the file GFG.html
