@@ -6,6 +6,7 @@ def readFile(reservatiesysteem, fileName):
     Preconditie: Het bestand moet bestaan
     Postconditie: Het bestand is ingelezen adhv de content worden er wijzigingen in het reservatiesysteem gedaan
 
+    :param reservatiesysteem: Het reservatiesysteem dat gebruikt word in functie van de inputfile
     :param fileName: De naam van het in te lezen bestand
     :return: True als de operatie is gelukt, False als het niet gelukt is.
     """
@@ -79,3 +80,15 @@ def readFile(reservatiesysteem, fileName):
                     vertoning = Vertoning(id, zaalNummer, slot, datum, filmId, vrijePlaatsen)
                     tableItem = reservatiesysteem.screenings.createItem(vertoning.id, vertoning)
                     reservatiesysteem.screenings.tableInsert(tableItem)"""
+
+    def outputSystem(reservatiesysteem, fileName):
+        """
+        Output het reservatiesysteem met de opgegeven naam
+
+        Preconditie: De bestandsnaam moet nog niet bestaan
+        Postconditie: Het reservatiesysteem werd weggeschreven naar een html file
+
+        :param reservatiesysteem: Het reservatiesyteem dat zal moeten worden weggeschreven
+        :param fileName: De naam van het in te lezen bestand
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
