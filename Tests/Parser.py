@@ -1,4 +1,5 @@
 from Reservatiesysteem import *
+
 def readFile(reservatiesysteem, fileName):
     """
     Leest een bestand met de geven naam in
@@ -98,15 +99,41 @@ def outputSystem(reservatiesysteem, fileName):
     # the html code which will go in the file GFG.html
     html_template = """<html>
     <head>
-    <title>Title</title>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+    
+            table, td, th {
+                border: 1px solid black;
+            }
+        </style>
+        <title>Log</title>
     </head>
     <body>
-    <h2>Welcome To Test output file</h2>
-
-    <p>Default code has been loaded into the Editor.</p>
-
+        <h1>Log op """+str(reservatiesysteem.clock)+"""</h1>
+        <table>
+            <thead>
+                <td>Datum</td>
+                <td>Film</td>
+                <td>14:30</td>
+                <td>17:00</td>
+                <td>20:00</td>
+                <td>22:30</td>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>"""+str(reservatiesysteem.screenings.tableRetrieve(10)[0])+"""</td>
+                    <td>The Matrix</td>
+                    <td>F:10</td>
+                    <td>W:2</td>
+                    <td>G:0</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </body>
-    </html>
+</html>
     """
     # writing the code into the file
     f.write(html_template)
