@@ -99,9 +99,10 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         if id is None:
-            id = self.movieCount+1
+            id = self.movieCount
         else:
-            self.movieCount = id-1
+            self.movieCount = max(self.movieCount, id)
+
         newMovie = Film(id, titel, rating)
         self.movies.tableInsert(self.movies.createItem(newMovie.id, newMovie))
         self.movieCount += 1
@@ -130,10 +131,8 @@ class Reservatiesysteem:
         :param room: De zaal die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO parameters juist zetten
-        newRoom = Zaal(self.roomCount, aantalPlaatsen)
-        self.roomCount += 1
-        self.rooms.tableInsert(self.rooms.createItem(newRoom.id, newRoom))
+        newRoom = Zaal(zaalNummer, aantalPlaatsen)
+        self.rooms.tableInsert(self.rooms.createItem(newRoom.roomNumber, newRoom))
 
     def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen, id=None):
         """
