@@ -130,16 +130,15 @@ def outputSystem(reservatiesysteem, fileName):
                 <td>20:00</td>
                 <td>22:30</td>
             </thead>
-            <tbody>
-                <tr>
-                    <td>"""+datums[0]+"""</td>
-                    <td>"Not working"</td>
-                    <td>F:10</td>
-                    <td>W:2</td>
-                    <td>G:0</td>
-                    <td></td>
-                </tr>
-            </tbody>
+            <tbody>"""
+
+    for i in range(len(datums)):
+        html_template += """<tr>"""
+        html_template += """<td>"""+datums[i]+"""</td>"""
+        html_template += """<td>"""+titels[i]+"""</td>"""
+        html_template += """</tr>"""
+
+    html_template += """</tbody>
         </table>
     </body>
 </html>
