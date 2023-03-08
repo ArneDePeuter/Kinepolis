@@ -96,6 +96,15 @@ def outputSystem(reservatiesysteem, fileName):
     # to open/create a new html file in the write mode
     f = open(fileName, 'w')
 
+    datums = []
+    titels = []
+    for i in range(reservatiesysteem.screeningCount):
+        if reservatiesysteem.screenings.tableRetrieve(i)[0] is not None:
+            datums.append(str(reservatiesysteem.screenings.tableRetrieve(i)[0].date))
+            filmid = reservatiesysteem.screenings.tableRetrieve(i)[0].filmid
+            # titels.append(reservatiesysteem.movies.tableRetrieve(filmid)[0].title)
+
+
     # the html code which will go in the file GFG.html
     html_template = """<html>
     <head>
@@ -123,8 +132,8 @@ def outputSystem(reservatiesysteem, fileName):
             </thead>
             <tbody>
                 <tr>
-                    <td>"""+str(reservatiesysteem.screenings.tableRetrieve(10)[0])+"""</td>
-                    <td>The Matrix</td>
+                    <td>"""+datums[0]+"""</td>
+                    <td>"Not working"</td>
                     <td>F:10</td>
                     <td>W:2</td>
                     <td>G:0</td>
