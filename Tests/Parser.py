@@ -81,14 +81,34 @@ def readFile(reservatiesysteem, fileName):
                     tableItem = reservatiesysteem.screenings.createItem(vertoning.id, vertoning)
                     reservatiesysteem.screenings.tableInsert(tableItem)"""
 
-    def outputSystem(reservatiesysteem, fileName):
-        """
-        Output het reservatiesysteem met de opgegeven naam
+def outputSystem(reservatiesysteem, fileName):
+    """
+    Output het reservatiesysteem met de opgegeven naam
 
-        Preconditie: De bestandsnaam moet nog niet bestaan
-        Postconditie: Het reservatiesysteem werd weggeschreven naar een html file
+    Preconditie: De bestandsnaam moet nog niet bestaan
+    Postconditie: Het reservatiesysteem werd weggeschreven naar een html file
 
-        :param reservatiesysteem: Het reservatiesyteem dat zal moeten worden weggeschreven
-        :param fileName: De naam van het in te lezen bestand
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
+    :param reservatiesysteem: Het reservatiesysteem dat zal moeten worden weggeschreven
+    :param fileName: De naam van het in te lezen bestand
+    :return: True als de operatie is gelukt, False als het niet gelukt is.
+    """
+    # to open/create a new html file in the write mode
+    f = open(fileName, 'w')
+
+    # the html code which will go in the file GFG.html
+    html_template = """<html>
+    <head>
+    <title>Title</title>
+    </head>
+    <body>
+    <h2>Welcome To Test output file</h2>
+
+    <p>Default code has been loaded into the Editor.</p>
+
+    </body>
+    </html>
+    """
+    # writing the code into the file
+    f.write(html_template)
+    # close the file
+    f.close()
