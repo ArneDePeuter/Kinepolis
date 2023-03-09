@@ -1,149 +1,140 @@
 """
-    Array based implementatie van ADT Queue.
+    Array based implementatie van ADT Stack.
 """
-class QueueItemType:
+class StackItemType:
     def __init__(self, value):
         self.value = value
 
-class MyQueue:
+class MyStack:
     def __init__(self, max_size):
         """
         -------------------------------------------------------
         Beschrijving:
-            Creëert een lege queue
-            :param max_size staat voor de maximum groote van de queue
+            Creëert een lege sack
+            :param max_size staat voor de maximum groote van de stack
         -------------------------------------------------------
         Preconditie:
             max_size > 0
         Postconditie:
-            Een lege queue is gemaakt
+            Een lege stack is gemaakt
         -------------------------------------------------------
         """
         if max_size > 0:
             self.items = [None] * max_size
         else:
             return None
-        self.front = self.rear = 0
-        self.max_size = max_size
+        self.size = 0
         return
 
     def isEmpty(self):
         """
         -------------------------------------------------------
         Beschrijving:
-            Bepaalt of een queue leeg is.
+            Bepaalt of een stack leeg is.
         -------------------------------------------------------
         Preconditite:
             /
         Postconditions:
-            Returns True als de queue leeg is, zo niet False.
+            Returns True als de stack leeg is, zo niet False.
         -------------------------------------------------------
         """
-        if (self.front == self.rear):
+        if self.size == 0:
             return True
         else:
             return False
 
-    def enqueue(self, newItem):
+    def push(self, newItem):
         """
         -------------------------------------------------------
         Beschrijving:
-            Voegt het element 'newitem' toe op de ende (de staart) van de queue.
-            :param newItem staat voor het element dat aan het eind (de staart)
-            moet worden toegevoegd
+            Voegt het element 'newitem' toe op de top van de stack.
+            :param newItem staat voor het element dat op de top
+             van de stack moet worden toegevoegd
         -------------------------------------------------------
         Preconditie:
-            Er is nog plaats op de queue
+            Er is nog plaats op de stack
         Postconditie:
-            De queue is 1 item groter en het einde
+            De stack is 1 item groter en de top
             bevat het toegevoegde item
         -------------------------------------------------------
         Return : geeft True terug als het toevoegen gelukt is
         -------------------------------------------------------
         """
         #Checkt of de stack nog niet vol zit
-        if (self.max_size == self.rear):
+        if self.size == len(self.items):
             return False
         else:
-            # Voeg op het einde het NewItem toe
-            self.items[self.rear] = newItem
-            self.rear += 1
+            self.items[self.size] = newItem
+            self.size += 1
             return True
 
-    def dequeue(self):
+    def pop(self):
         """
         -------------------------------------------------------
         Beschrijving:
-            Plaatst de kop van de queue (volgens het FiFO principe) in
-            'queueFront' en verwijderd dan deze kop
+            Plaatst de top van een stack (volgens het LiFO principe) in
+            'stackTop' en verwijderd dan deze top
         -------------------------------------------------------
         Preconditie:
-            De queue bevat items
+            De stack bevat items
         Postconditie:
-            De queue is 1 item kleiner en de kop
-            is verwijderd
+            De stack is 1 item kleiner en de top is verwijderd
         -------------------------------------------------------
         Return : geeft True terug als het verwijderen gelukt is
         -------------------------------------------------------
         """
         # Checkt of de stack al dan niet items bevat
-        if (self.front == self.rear):
+        if self.size == 0:
             return (None, False)
         else:
-            queueFront = self.items[self.front]
-            self.items[self.front] = None
-            self.rear -= 1
-            # shift elemets to the left
-            self.items = self.items[1:] + self.items[:0]
-            return (queueFront, True)
+            stackTop = self.items[self.size-1]
+            self.items[self.size-1] = None
+            self.size -= 1
+            return (stackTop, True)
 
-    def getFront(self):
+    def getTop(self):
         """
         -------------------------------------------------------
         Beschrijving:
-            Plaatst de kop van een queue (volgens het FiFO principe) in
-            'queueFront' en laat deze kop ongewijzigt
+            Plaatst de top van een stack (volgens het LiFO principe) in
+            'stackTop' en laat deze top ongewijzigt
         -------------------------------------------------------
         Preconditie:
-            de stack moet items bevatten
+            De stack moet items bevatten
         Postconditie:
-            De waarde van de kop van de queue word weergeven en blijft ongewijzigd
+            De waarde van de top van de stack word weergeven en blijft ongewijzigd
         -------------------------------------------------------
-        Return : de waarde van de kop van de queue terug
+        Return : de waarde van de top van de stack terug
         -------------------------------------------------------
         """
-        # Chect of de stack niet leeg is
-        if (self.front == self.rear):
+        # Checkt of de stack al dan niet items bevat
+        if self.size == 0:
             return (None, False)
         else:
-            queueFront = self.items[self.front]
-            return (queueFront, True)
+            stackTop = self.items[self.size-1]
+            return (stackTop, True)
 
     def save(self):
         """
         -------------------------------------------------------
         Beschrijving:
-            Laat de volendige queue als een lijst zien
+            Laat de volledige stack als een lijst zien
         -------------------------------------------------------
         Preconditie:
             /
         Postconditie:
-            De queue word weeergegeven als een queue met back
-            eerste en front als laatste element in de lijst
+            De stack word weeergegeven als een stack met de top
+            achteraan in de lijst, en de lente van de stack word geupdate
+            een de None items worden verwijderd
         -------------------------------------------------------
-        Return : De queue zonder None values
+        Return : De stack
         -------------------------------------------------------
         """
-        # Verwijder de None values in de lijst
-        tempRes = []
+        # Verwijder de none values in de lijst
+        res = []
         for val in self.items:
             if val != None:
-                tempRes.append(val)
-        # Traverse front to rear to
-        res = []
-        for i in tempRes[::-1]:
-            res.append(i)
-
+                res.append(val)
         return res
 
     def load(self, lijst):
@@ -157,30 +148,34 @@ class MyQueue:
         Postconditie:
             De lijst dat moet worden ingevalden is ingeladen
         -------------------------------------------------------
-        Return : De lijst dat als queue moet worden ingeladen
+        Return : De lijst dat als stack moet worden ingeladen
         -------------------------------------------------------
         """
-        newLijst = lijst[::-1]
-        self.items = newLijst
-        self.front = 0
-        self.rear = len(lijst)
+        self.items = lijst
+        self.size = len(lijst)
 
-# Main
+
+
+
+
+"""# Main
 if __name__ == "__main__":
-    q = MyQueue(10)
-    print(q.isEmpty()) # --> True
-    print(q.getFront()[1]) # --> False
-    print(q.dequeue()[1]) # --> False
-    print(q.enqueue(2)) # --> True
-    print(q.enqueue(4)) # --> True
-    print(q.isEmpty()) # --> False
-    print(q.dequeue()[0]) # --> 2
-    q.enqueue(5)
-    print(q.save())
+    s = MyStack(2)
 
-    q.load(['a', 'b', 'c'])
-    print(q.save())
-    print(q.dequeue()[0])
-    print(q.save())
-    print(q.getFront()[0])
-    print(q.save())
+    print(s.isEmpty())
+    print(s.getTop()[1])
+    print(s.pop()[1])
+    print(s.push(2))
+    print(s.push(4))
+    print(s.push(1))
+    print(s.isEmpty())
+    print(s.pop()[0])
+    s.push(5)
+    print(s.save())
+
+    s.load(['a','b','c'])
+    print(s.save())
+    print(s.pop()[0])
+    print(s.save())
+    print(s.getTop()[0])
+    print(s.save())"""
