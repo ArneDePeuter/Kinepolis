@@ -22,6 +22,8 @@ class Vertoning:
         self.date = datum
         self.filmid = filmid
         self.freePlaces = vrijePlaatsen
+        self.reservedPlaces = 0
+        self.seatedPlaces = 0
 
         print("created screening at", slot, "in room", zaalnummer, sep=" ")
 
