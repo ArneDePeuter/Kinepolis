@@ -96,13 +96,18 @@ class Parser:
         # to open/create a new html file in the write mode
         f = open(fileName, 'w')
 
+        # Datum/ titels
         datums = []
         titels = []
+
         for i in range(self.system.screeningCount):
             if self.system.screenings.tableRetrieve(i)[0] is not None:
                 datums.append(str(self.system.screenings.tableRetrieve(i)[0].date))
                 filmid = int(self.system.screenings.tableRetrieve(i)[0].filmid)
                 titels.append(self.system.movies.tableRetrieve(filmid)[0].title)
+
+        slots = []
+        print(self.system.timestamps.traverseTable(slots.append))
 
 
         # the html code which will go in the file GFG.html
@@ -125,7 +130,7 @@ class Parser:
                 <thead>
                     <td>Datum</td>
                     <td>Film</td>
-                    <td>14:30</td>
+                    <td>"""+"""</td>
                     <td>17:00</td>
                     <td>20:00</td>
                     <td>22:30</td>
