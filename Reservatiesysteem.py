@@ -199,7 +199,7 @@ class Reservatiesysteem:
             self.reservations.enqueue(self.reservations.createItem(newReservation.timestamp, newReservation))
             self.reservationCount += 1
 
-            screening.freePlaces -= aantalPlaatsenGereserveerd
+
             return True
         else:
             return False
@@ -214,9 +214,15 @@ class Reservatiesysteem:
 
         :return: Tuple met True als de operatie is gelukt, False als het niet gelukt is en de eerstvolgend reservatie.
         """
-        firstItem = self.reservations.dequeue()
+        if self.reservations == 0:
+            return tuple((False, None))
 
-        return tuple((firstItem[0], firstItem[1]))
+        else:
+            reservation = self.reservations.dequeue()[1]
+            screening = self.screenings.tableRetrieve(reservation.id)
+
+            screening.freePlaces -= reservation.amountOfReservedSeats
+            return tuple((True, reservation[1]))
 
     def removeAllReservations(self):
         """
@@ -255,3 +261,12 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.clock.tick(n)  # tijd verhoogt met n seconden
+
+    def komBinnen(self, idvertoning, aantal):
+        vertoning = self.screenings.tableRetrieve(idvertoning)[0]
+        vertoning.seatedPlaces = vertoning.seatedPlaces + aantal
+        if vertoning.isReady:
+            vertoning.startScreening()
+            return True
+        else:
+            return True

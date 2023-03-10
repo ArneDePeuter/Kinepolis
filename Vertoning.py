@@ -22,6 +22,8 @@ class Vertoning:
         self.date = datum
         self.filmid = filmid
         self.freePlaces = vrijePlaatsen
+        self.reservedPlaces = 0
+        self.seatedPlaces = 0
 
         print("created screening at", slot, "in room", zaalnummer, sep=" ")
 
@@ -57,3 +59,8 @@ class Vertoning:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         print("Movie ended, room is cleared.")
+
+    def isReady(self):
+        if self.reservedPlaces == self.seatedPlaces:
+            return True
+        return False
