@@ -51,6 +51,7 @@ Siebe:
 Extra:
     GUI
 
+tuple values eerst bool dan value
 
 
 
