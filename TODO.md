@@ -1,6 +1,6 @@
-Opdrachten per persoon voor zijn klassen.
+# Opdrachten per persoon voor zijn klassen.
 
-Arne:
+### Arne:
     Klassen:
         Film
         Tijd
@@ -10,7 +10,7 @@ Arne:
     Testen:
         Testen maken voor klassen
 
-Cedric:
+### Cedric:
     Klassen:
         Reservatie
     Data:
@@ -22,7 +22,7 @@ Cedric:
     Other:
         + Reservatie: zorgen dat er geen reservaties te veel mogen worden gemaakt
 
-Sam:
+### Sam:
     Klassen:
         Vertoning
         addScreening fixen in functie van Parser (normaal gefixt (getest))
@@ -34,7 +34,7 @@ Sam:
         Vertoning: verwerken (iederen in de zaal en film starten)
         Vertoning: Zorgen dat geen vertoningen overlappen bij het aanmaken (normaal gefixt)
 
-Siebe:
+### Siebe:
     Klassen:
         Gebruiker
     Data:
@@ -48,10 +48,12 @@ Siebe:
         Alle gemaakte datatypes toevoegen en wrapper maken voor BST
         Wrapper voor priority queue maken van heap als heap is geimplementeerd
 
-Extra:
+### Extra:
     GUI
 
-tuple values eerst bool dan value
+
+### Afspraken
+    tuple values eerst bool dan value
 
 
 
