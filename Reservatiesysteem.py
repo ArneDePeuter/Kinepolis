@@ -48,7 +48,7 @@ class Reservatiesysteem:
             #...
             pass
 
-    def addUser(self, voornaam, achternaam, emailadres):
+    def addUser(self, voornaam, achternaam, emailadres, id=None):
         """
         Voegt een gebruiker to aan het reservatiesysteem.
 
@@ -56,11 +56,18 @@ class Reservatiesysteem:
 
         Postconditie: Gebruiker is toegevoegd aan het reservatiesysteem.
 
-        :param user: Gebruiker die wordt toegevoegd.
+        :param id: Dit is een uniek getal dat overeenkomt met dit object.
+        :param voornaam: De voornaam van de persoon.
+        :param achternaam: De achternaam van de persoon.
+        :param emailadres: Het e-mailadres van de persoon.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO parameters juist zetten
-        newUser = Gebruiker(voornaam, achternaam, emailadres)
+        if id is None:
+            id = self.userCount
+        else:
+            self.userCount = max(self.userCount,id)
+
+        newUser = Gebruiker(id, voornaam, achternaam, emailadres)
         self.users.tableInsert(self.users.createItem(newUser.id, newUser))
         self.userCount += 1
         return True
@@ -78,7 +85,7 @@ class Reservatiesysteem:
         self.users = self.users.__init__()
         self.userCount = 0
     
-    def addMovie(self, titel, rating):
+    def addMovie(self, titel, rating, id=None):
         """
         Voegt een film toe aan het reservatiesysteem.
 
@@ -86,13 +93,19 @@ class Reservatiesysteem:
 
         Postconditie: De film is toegevoegd aan het reservatiesysteem.
 
-        :param movie: De film die wordt toegevoegd.
+        :param id: Dit is een uniek getal dat overeenkomt met dit object.
+        :param titel: De titel van de film.
+        :param rating: De score van een film volgens recensies.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO parameters juist zetten
-        newMovie = Film(self.movieCount, titel, rating)
-        self.movieCount += 1
+        if id is None:
+            id = self.movieCount
+        else:
+            self.movieCount = max(self.movieCount, id)
+
+        newMovie = Film(id, titel, rating)
         self.movies.tableInsert(self.movies.createItem(newMovie.id, newMovie))
+        self.movieCount += 1
 
     def removeAllMovies(self):
         """
@@ -118,12 +131,10 @@ class Reservatiesysteem:
         :param room: De zaal die wordt toegevoegd.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO parameters juist zetten
-        newRoom = Zaal(self.roomCount, aantalPlaatsen)
-        self.roomCount += 1
-        self.rooms.tableInsert(self.rooms.createItem(newRoom.id, newRoom))
+        newRoom = Zaal(zaalNummer, aantalPlaatsen)
+        self.rooms.tableInsert(self.rooms.createItem(newRoom.roomNumber, newRoom))
 
-    def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen):
+    def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen, id=None):
         """
         Voegt een vertoning toe aan het reservatiesysteem.
 
@@ -132,17 +143,30 @@ class Reservatiesysteem:
 
         Postconditie: De vertoning is toegevoegd aan het reservatiesysteem.
 
-        :param screening: De vertoning die wordt toegevoegd.
+        :param id: Dit is een uniek getal dat overeenkomt met dit object.
+        :param zaalnummer: Het nummer van de zaal.
+        :param slot: De tijd van de vertoning.
+        :param datum: De datum van de vertoning.
+        :param filmid: Dit is een uniek getal dat overeenkomt met de film.
+        :param vrijePlaatsen: Het aantal vrije plaatsen.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
+
+        if id is None:
+            id = self.screeningCount
+        else:
+            self.screeningCount = max(id, self.screeningCount)
+
         for i in range(0, self.screeningCount):
-            temp = self.screenings.tableRetrieve(i)
+            temp = self.screenings.tableRetrieve(i)[0]
+            if temp is None:
+                continue
             if temp.roomNumber == zaalnummer:
                 if temp.date == datum:
                     if temp.slot == slot:
                         return False
-        newScreening = Vertoning(self.screeningCount, zaalnummer, slot, datum, filmid, vrijePlaatsen)
-        self.screenings.tableInsert(self.screenings.createItem(newScreening.id, newScreening))
+        newScreening = Vertoning(id, zaalnummer, slot, datum, filmid, vrijePlaatsen)
+        self.screenings.tableInsert(self.screenings.createItem(id, newScreening))
         self.screeningCount += 1
 
     def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
@@ -210,34 +234,3 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.clock.tick(n) #tijd verhoogt met n seconden
-
-    def readFile(self, fileName):
-        """
-        Leest een bestand met de geven naam in
-
-        Preconditie: Het bestand moet bestaan
-        Postconditie: Het bestand is ingelezen adhv de content worden er wijzigingen in het reservatiesysteem gedaan
-
-        :param fileName: De naam van het in te lezen bestand
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        # open het bestand
-        with open(fileName, "r") as file:
-            # lees elke regel in het bestand
-            for line in file:
-                # als de regel begint met '#' sla de regel over
-                if line.startswith("#"):
-                    continue
-                else:
-                    # Kijk of de regel start met init zo ja dan maak je aan
-                    if (line.startswith("gebruiker")):
-                        # split de regel in onderdelen en verwijder de witruimte
-                        parts = [part.strip() for part in line.split(" ")]
-                        id = parts[1]
-                        voornaam = parts[2]
-                        achternaam = parts[3]
-                        email = parts[4]
-                        # Maak de gebruiker aan
-                        gebruiker = Gebruiker(id, voornaam, achternaam, email)
-                        tableItem = self.users.createItem(gebruiker.id, gebruiker)
-                        self.users.tableInsert(tableItem)
