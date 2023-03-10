@@ -25,7 +25,7 @@ class BSTTable(BST):
         postconditions: The treeItem gets inserted to the table
         """
 
-        return self.retrieveItem(self.createItem(key, " ")).value
+        return self.searchTreeRetrieve(self.createItem(key, " ")).value
 
     #Retrieves an item from the table
     def tableRetrieve(self, item):
