@@ -1,5 +1,5 @@
 def createTreeItem(key,val):
-    return key
+    return key,val
 
 class Node:
     def __init__(self, key, val):
@@ -18,7 +18,7 @@ class BST:
         return False
 
     def searchTreeInsert(self, nieuw):
-        param = Node(nieuw,nieuw)
+        param = Node(key,val)
         if self.root is None:
             self.root = param
             return True
@@ -158,4 +158,7 @@ class BST:
                 return {'root': node.val, 'children': children}
             return {'root': node.val}
         return helper(self.root)
+
+    def createItem(self, key, val):
+        return createTreeItem(key,val)
 
