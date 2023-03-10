@@ -10,6 +10,9 @@ class Table(ADT):
     def __init__(self) -> None:
         super().__init__()
 
+    def traverseTable(self, func):
+        pass
+
     #returns True if the ADT is empty
     def tableIsEmpty():
         pass

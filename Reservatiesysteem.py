@@ -2,8 +2,9 @@
 # Implementeren: Allemaal
 
 from Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
-# from ARNE.Wrappers.BSTTable import BSTTable as Table
+#from Datastructuren.ARNE.Wrappers.BSTTable import BSTTable as Table
 from datetime import time as Time, datetime as DateTime
+from Datastructuren.SIEBE.Datatypes.MyLinkedChain import LinkedChain as LinkedList
 from Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from Tests.Parser import Parser
 
@@ -38,11 +39,11 @@ class Reservatiesysteem:
         self.parser = Parser(self)
 
         #TIMESTAMPS
-        self.timestamps = Table()
-        self.timestamps.tableInsert(self.timestamps.createItem(1,Time(14,30)))
-        self.timestamps.tableInsert(self.timestamps.createItem(2,Time(17)))
-        self.timestamps.tableInsert(self.timestamps.createItem(3,Time(20)))
-        self.timestamps.tableInsert(self.timestamps.createItem(4,Time(22,30)))
+        self.timestamps = LinkedList()
+        self.timestamps.insert(1,Time(14,30))
+        self.timestamps.insert(2,Time(17))
+        self.timestamps.insert(3,Time(20))
+        self.timestamps.insert(4,Time(22,30))
 
     def load(self, filename):
         self.parser.readFile(filename)

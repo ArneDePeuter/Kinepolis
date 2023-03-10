@@ -96,13 +96,20 @@ class Parser:
         # to open/create a new html file in the write mode
         f = open(fileName, 'w')
 
+        # Datum/ titels
         datums = []
         titels = []
+
         for i in range(self.system.screeningCount):
             if self.system.screenings.tableRetrieve(i)[0] is not None:
                 datums.append(str(self.system.screenings.tableRetrieve(i)[0].date))
                 filmid = int(self.system.screenings.tableRetrieve(i)[0].filmid)
                 titels.append(self.system.movies.tableRetrieve(filmid)[0].title)
+
+        slots = []
+        for i in range(self.system.timestamps.getLength()):
+            slots.append(self.system.timestamps.retrieve(i)[0])
+
 
 
         # the html code which will go in the file GFG.html
@@ -120,18 +127,20 @@ class Parser:
             <title>Log</title>
         </head>
         <body>
-            <h1>Log op """+str(self.system.clock)+"""</h1>
+            <h1>Log op """+{str(self.system.clock)+"""</h1>
             <table>
                 <thead>
                     <td>Datum</td>
                     <td>Film</td>
-                    <td>14:30</td>
+                    <td>"""+"""</td>
                     <td>17:00</td>
                     <td>20:00</td>
                     <td>22:30</td>
                 </thead>
                 <tbody>"""
-
+        for i in range(self.system.timestamps.getLength()):
+            html_template+=f"{self.system.timestamps.retrieve(i)[0]}fdqsfqs"
+        """
         for i in range(len(datums)):
             html_template += """<tr>"""
             html_template += """<td>"""+datums[i]+"""</td>"""
