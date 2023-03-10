@@ -42,7 +42,7 @@
     Testen:
         - [ ] Testen maken voor klassen
     Other:
-        - [ ] in- en output files
+        - [ ] in- en output files (manier van titels eruithalen werkt enkel voor titels van 2 woorden)
         -[ ] Parser en executer
     Wrapp ers:
         - [ ] Alle gemaakte datatypes toevoegen en wrapper maken voor BST
