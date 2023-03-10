@@ -49,7 +49,7 @@
         -[ ] Wrapper voor priority queue maken van heap als heap is geimplementeerd
 
 ### Extra:
-    -[ ] GUI
+-[ ] GUI
 
 
 ### Afspraken
