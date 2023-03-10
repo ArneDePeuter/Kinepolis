@@ -259,8 +259,8 @@ class Reservatiesysteem:
         """
         self.clock.tick(n)  # tijd verhoogt met n seconden
 
-    def komBinnen(self, vertoningid, aantal):
-        vertoning = self.screenings.retrieveItem(vertoningid)[0]
+    def komBinnen(self, idvertoning, aantal):
+        vertoning = self.screenings.tableRetrieve(idvertoning)[0]
         vertoning.seatedPlaces = vertoning.seatedPlaces + aantal
         if vertoning.isReady:
             vertoning.startScreening()
