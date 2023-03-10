@@ -28,7 +28,7 @@ class Reservatiesysteem:
         self.movies = Table()
         self.screenings = Table()
         self.reservations = Queue()
-        self.clock = DateTime()
+        self.clock = DateTime(2023,1,5,12,0)
 
         # Nummering for ID's
         self.userCount = 0
