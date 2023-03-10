@@ -54,6 +54,6 @@
 
 ### Afspraken
     tuple values eerst bool dan value
-
+    Op welke values geen dubbele objecten
 
 

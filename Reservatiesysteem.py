@@ -45,9 +45,9 @@ class Reservatiesysteem:
     def start(self):
         while not self.screenings.isEmpty():
             self.increaseTime(1)
-            #handlereservations
-            #handlescreenings
-            #...
+            # handlereservations
+            # handlescreenings
+            # ...
             pass
 
     def addUser(self, voornaam, achternaam, emailadres, id=None):
@@ -246,7 +246,7 @@ class Reservatiesysteem:
         Preconditie: \
         Postconditie: De tijd van het systeem is verhoogd met n-seconden.
 
-        :param n: Aantal seconden het syteem moet toenemen. Geen parameter doorgeven -> 1 seconden erbij
+        :param n: Aantal seconden het syteem moet toenemen. Geen parameter doorgeven → 1 seconden erbij
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.clock.tick(n)  # tijd verhoogt met n seconden
