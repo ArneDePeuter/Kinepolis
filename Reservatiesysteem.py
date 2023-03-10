@@ -181,9 +181,13 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         # TODO parameters juist zetten
+        # Zoeken op vertoningsID
+        # if vertoning not full
         newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
         self.reservations.enqueue(self.reservations.createItem(newReservation.timestamp, newReservation))
         self.reservationCount += 1
+        # else don't add to reservations of system
+            # retrun False
 
     def dequeueReservation(self):
         """
@@ -195,7 +199,9 @@ class Reservatiesysteem:
 
         :return: Tuple met True als de operatie is gelukt, False als het niet gelukt is en de eerstvolgend reservatie.
         """
-        firstitem = self.reservations.dequeue()
+        firstItem = self.reservations.dequeue()
+
+        return tuple((firstItem[0], firstItem[1]))
 
     def removeAllReservations(self):
         """
