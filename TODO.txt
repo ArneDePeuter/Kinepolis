@@ -14,13 +14,13 @@ Cedric:
     Klassen:
         Reservatie
     Data:
-        Geen dubbele objecten toelaten in systeem (Hoe? items zitten in een queue)
+        Geen dubbele objecten toelaten in systeem (Hoe? Items zitten in een queue)
     Testen:
         Testen maken voor klassen
     Wrappers:
-        Wrapper voor priority queue maken van heap
+        + Wrapper voor priority queue maken van heap
     Other:
-        Reservatie: zorgen dat er geen reservaties te veel mogen worden gemaakt
+        + Reservatie: zorgen dat er geen reservaties te veel mogen worden gemaakt
 
 Sam:
     Klassen:

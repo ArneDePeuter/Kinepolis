@@ -182,12 +182,17 @@ class Reservatiesysteem:
         """
         # TODO parameters juist zetten
         # Zoeken op vertoningsID
+        screeningOfID = self.screenings.tableRetrieve(vertoningid)[0]
+
         # if vertoning not full
-        newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
-        self.reservations.enqueue(self.reservations.createItem(newReservation.timestamp, newReservation))
-        self.reservationCount += 1
-        # else don't add to reservations of system
-            # retrun False
+        if screeningOfID.freePlaces < aantalPlaatsenGereserveerd:
+            newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid,
+                                        aantalPlaatsenGereserveerd)
+            self.reservations.enqueue(self.reservations.createItem(newReservation.timestamp, newReservation))
+            self.reservationCount += 1
+            return True
+        else:
+            return False
 
     def dequeueReservation(self):
         """
