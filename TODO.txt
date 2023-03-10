@@ -14,7 +14,7 @@ Cedric:
     Klassen:
         Reservatie
     Data:
-        Geen dubbele objecten toelaten in systeem
+        Geen dubbele objecten toelaten in systeem (Hoe? items zitten in een queue)
     Testen:
         Testen maken voor klassen
     Wrappers:
