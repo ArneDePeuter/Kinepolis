@@ -3,9 +3,9 @@
 
 from Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
 # from ARNE.Wrappers.BSTTable import BSTTable as Table
+from datetime import time as Time, datetime as DateTime
 from Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from Tests.Parser import Parser
-from tijd import *
 
 from Film import *
 from Gebruiker import *
@@ -28,7 +28,7 @@ class Reservatiesysteem:
         self.movies = Table()
         self.screenings = Table()
         self.reservations = Queue()
-        self.clock = Clock((0, 0, 0), (0, 0, 0))
+        self.clock = DateTime()
 
         # Nummering for ID's
         self.userCount = 0
@@ -38,6 +38,13 @@ class Reservatiesysteem:
         self.roomCount = 0
 
         self.parser = Parser(self)
+
+        #TIMESTAMPS
+        self.timestamps = Table()
+        self.timestamps.tableInsert(self.timestamps.createItem(1,Time(14,30)))
+        self.timestamps.tableInsert(self.timestamps.createItem(2,Time(17)))
+        self.timestamps.tableInsert(self.timestamps.createItem(2,Time(20)))
+        self.timestamps.tableInsert(self.timestamps.createItem(2,Time(22,30)))
 
     def load(self, filename):
         self.parser.readFile(filename)
