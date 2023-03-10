@@ -258,3 +258,12 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.clock.tick(n)  # tijd verhoogt met n seconden
+
+    def komBinnen(self, vertoningid, aantal):
+        vertoning = self.screenings.retrieveItem(vertoningid)[0]
+        vertoning.seatedPlaces = vertoning.seatedPlaces + aantal
+        if vertoning.isReady:
+            vertoning.startScreening()
+            return True
+        else:
+            return True
