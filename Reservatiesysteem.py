@@ -1,3 +1,6 @@
+# Testen: Allemaal
+# Implementeren: Allemaal
+
 from Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
 # from ARNE.Wrappers.BSTTable import BSTTable as Table
 from Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
@@ -9,8 +12,7 @@ from Vertoning import *
 from Zaal import *
 from Reservatie import *
 
-# Testen: Allemaal
-# Implementeren: Allemaal
+
 class Reservatiesysteem:
     def __init__(self):
         """
@@ -25,7 +27,7 @@ class Reservatiesysteem:
         self.movies = Table()
         self.screenings = Table()
         self.reservations = Queue()
-        self.clock = Clock((0,0,0), (0,0,0))
+        self.clock = Clock((0, 0, 0), (0, 0, 0))
 
         # Nummering for ID's
         self.userCount = 0
@@ -128,7 +130,8 @@ class Reservatiesysteem:
         Postconditie: De zaal is toegevoegd aan het reservatiesysteem.
         Maar niet als er al een zaal bestaat met dezelfde nummer.
 
-        :param room: De zaal die wordt toegevoegd.
+        :param zaalNummer: De zaal die wordt toegevoegd.
+        :param aantalPlaatsen: Het aantal plaatsen dat de zaal heeft.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         newRoom = Zaal(zaalNummer, aantalPlaatsen)
@@ -177,10 +180,12 @@ class Reservatiesysteem:
 
         Postconditie: De reservatie is toegevoegd aan het reservatiesysteem.
 
-        :param reservering: De reservatie die wordt toegevoegd.
+        :param userid: id van de gebruiker die de reservatie maakt
+        :param timestamp: tijd wanneer de reservatie wordt gemaakt
+        :param vertoningid: id van de vertoning
+        :param aantalPlaatsenGereserveerd: het aantal plaatsen dat gereserveerd word door de reservering
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        # TODO parameters juist zetten
         # Zoeken op vertoningsID
         screeningOfID = self.screenings.tableRetrieve(vertoningid)[0]
 
@@ -244,4 +249,4 @@ class Reservatiesysteem:
         :param n: Aantal seconden het syteem moet toenemen. Geen parameter doorgeven -> 1 seconden erbij
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        self.clock.tick(n) #tijd verhoogt met n seconden
+        self.clock.tick(n)  # tijd verhoogt met n seconden
