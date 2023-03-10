@@ -187,14 +187,16 @@ class Reservatiesysteem:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         # Zoeken op vertoningsID
-        screeningOfID = self.screenings.tableRetrieve(vertoningid)[0]
+        screening = self.screenings.tableRetrieve(vertoningid)[0]
 
         # if vertoning not full
-        if screeningOfID.freePlaces < aantalPlaatsenGereserveerd:
+        if screening.freePlaces >= aantalPlaatsenGereserveerd:
             newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid,
                                         aantalPlaatsenGereserveerd)
             self.reservations.enqueue(self.reservations.createItem(newReservation.timestamp, newReservation))
             self.reservationCount += 1
+
+            screening.freePlaces -= aantalPlaatsenGereserveerd
             return True
         else:
             return False
