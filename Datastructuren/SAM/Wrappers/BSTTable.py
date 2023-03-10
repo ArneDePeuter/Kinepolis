@@ -1,5 +1,7 @@
 from Datastructuren.SAM.Datatypes import BST
 
+def createTreeItem(key,val):
+    return key,val
 
 class BSTTable(BST):
     #Initialisatie BST
@@ -33,3 +35,6 @@ class BSTTable(BST):
     #Load een boom vanuit output van save
     def load(self, input):
         return super().load(input)
+
+    def createItem(self, key, val):
+        return createTreeItem(key,val)
