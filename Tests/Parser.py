@@ -107,7 +107,9 @@ class Parser:
                 titels.append(self.system.movies.tableRetrieve(filmid)[0].title)
 
         slots = []
-        print(self.system.timestamps.traverseTable(slots.append))
+        for i in range(self.system.timestamps.getLength()):
+            slots.append(self.system.timestamps.retrieve(i)[0])
+
 
 
         # the html code which will go in the file GFG.html
@@ -125,7 +127,7 @@ class Parser:
             <title>Log</title>
         </head>
         <body>
-            <h1>Log op """+str(self.system.clock)+"""</h1>
+            <h1>Log op """+{str(self.system.clock)+"""</h1>
             <table>
                 <thead>
                     <td>Datum</td>
@@ -136,7 +138,9 @@ class Parser:
                     <td>22:30</td>
                 </thead>
                 <tbody>"""
-
+        for i in range(self.system.timestamps.getLength()):
+            html_template+=f"{self.system.timestamps.retrieve(i)[0]}fdqsfqs"
+        """
         for i in range(len(datums)):
             html_template += """<tr>"""
             html_template += """<td>"""+datums[i]+"""</td>"""
