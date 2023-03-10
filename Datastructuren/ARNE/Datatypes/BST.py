@@ -110,16 +110,16 @@ class BSTNode():
         postconditions: returns a tuple containing the value and a bool that is True when the value is found
         """
         if self.isEmpty():
-            return False, None
+            return None, False
         
         if self.item.key==item.key:
-            return True, self
+            return self, True
 
         if item.key<self.item.key and self.left is not None:
             return self.left.searchTreeRetrieve(item)
         elif item.key>self.item.key and self.right is not None:
             return self.right.searchTreeRetrieve(item)
-        return False, None
+        return None, False
 
 
         #Saves the contents of a Binary Search Tree
@@ -232,7 +232,7 @@ class BST():
         if self.root!=None:
             return self.root.searchTreeRetrieve(item)
         else:
-            return False, None
+            return None, False
     
     #Saves the contents of a Binary Search Tree
     def save(self):
@@ -269,7 +269,7 @@ class BST():
         preconditions: None
         postconditions: returns True if the value is deleted from the tree
         """
-        succes, node = self.searchTreeRetrieve(item)
+        node, succes = self.searchTreeRetrieve(item)
         if succes:
             if node == self.root:
                 self.root = BSTNode()

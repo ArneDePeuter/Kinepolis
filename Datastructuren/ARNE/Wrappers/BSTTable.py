@@ -33,7 +33,7 @@ class BSTTable(BST):
         Retrieves an item from the table
 
         preconditions: None
-        postconditions: Returns a tuple (done = True/False, retrievedItem = item/None)
+        postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
         return self.searchTreeRetrieve(item)
 

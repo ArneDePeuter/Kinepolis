@@ -27,14 +27,14 @@ class Node:
         """
         #value found
         if self.value==value:
-            return [True, self]
+            return [self, True]
         else:
             #can look further
             if self.next!=None:
                 return self.next.retrieve(value)
             #at the end, value not found
             else:
-                return [False, None]
+                return [None, False]
 
 class DoubleLinkedChain:
     """
@@ -118,7 +118,7 @@ class DoubleLinkedChain:
             
             if self.head.next is None:
                 return False #val not found
-            succes, node = self.head.next.retrieve(value) #retrieve node we delete
+            node, succes = self.head.next.retrieve(value) #retrieve node we delete
             if not succes:
                 return False #val not found
             node.previous.next = node.next 
@@ -267,17 +267,17 @@ class Hashmap:
         if self.type == 'sep':
             h = item%self.size
             if self.hashTable[h] is not None:
-                succes, node = self.hashTable[h].retrieve(item)
-                return [succes, node.value]
+                node, succes = self.hashTable[h].retrieve(item)
+                return [node.value, succes]
             else:
-                return [False, None]
+                return [None, False]
         if self.type=='lin':
             h = self.getLinIndex(item)
         elif self.type == 'quad':
             h = self.getQuadIndex(item)
         if h is None:
-            return [False, None]
-        return [True, self.hashTable[h]]
+            return [None, False]
+        return [self.hashTable[h], True]
 
     def tableDelete(self, item):
         """
@@ -287,22 +287,21 @@ class Hashmap:
         postconditions: returns a bool (deleted item -> True else False)
         """
         if self.isEmpty():
-            return [False, None]
+            return [None, False]
         if self.type == 'sep':
             h = item%self.size
             if self.hashTable[h] is not None:
                 return self.hashTable[h].delete(item)
             else:
-                return [False, None]
+                return False
         if self.type=='lin':
             h = self.getLinIndex(item)
         elif self.type == 'quad':
             h = self.getQuadIndex(item)
         if h is None:
-            return [False,None]
-        item = self.hashTable[h]
+            return False
         self.hashTable[h] = None
-        return [False, item]
+        return True
 
     def save(self):
         """

@@ -12,11 +12,11 @@ class MyQueue():
 
     def getFront(self):
         if (self.isEmpty()):
-            return(False, None)
+            return(None, False)
         iter = self.head
         while (iter.next != None):
             iter = iter.next
-        return (True, iter.value)
+        return (iter.value, True)
 
     def enqueue(self, value):
         newNode = Node(value)
@@ -26,13 +26,13 @@ class MyQueue():
         
     def dequeue(self):
         if (self.isEmpty()):
-            return(False, None)
+            return(None, False)
         prev = iter = self.head
         while (iter.next != None):
             prev = iter
             iter = iter.next
         prev.next = None
-        return(True, iter.value)
+        return(iter.value, True)
 
     def load(self, l):
         self.head = None
