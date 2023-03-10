@@ -59,3 +59,8 @@ class Vertoning:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         print("Movie ended, room is cleared.")
+
+    def isReady(self):
+        if self.reservedPlaces == self.seatedPlaces:
+            return True
+        return False
