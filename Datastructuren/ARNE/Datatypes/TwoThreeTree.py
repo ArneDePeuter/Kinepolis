@@ -108,9 +108,9 @@ class Node:
     
     def retrieveItem(self, item):
         if self.containsItem(item):
-            return [self, True]
+            return [True, self]
         elif self.isLeaf():
-            return [None, False]
+            return [False, None]
         
         if self.has2Items():
             if (item<self.items[0]):
@@ -235,7 +235,7 @@ class Node:
         postconditions: The requested value gets removed
                         returns bool (val deleted -> True else False)
         """
-        node, succes = self.retrieveItem(item)
+        succes, node = self.retrieveItem(item)
         if succes:
             leaf = node
             if not node.isLeaf():
@@ -316,7 +316,7 @@ class Node:
     def load(self, d, parent):
         self.parent = parent
         self.items = d["root"]
-        if "children" in ds():
+        if "children" in d():
             self.children = list(d["children"])
             for i,child in enumerate(self.children):
                 self.children[i] = Node()
@@ -366,11 +366,8 @@ class TwoThreeTree:
         preconditions: None
         postconditions: returns the value and True if found else return None and False
         """
-        item, succes = self.root.retrieveItem(item)
-        if succes:
-            return [item, True]
-        else:
-            return [None, False]
+        succes, item = self.root.retrieveItem(item)
+        return [succes, item]
     
     def insertItem(self, item):
         """

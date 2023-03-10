@@ -58,7 +58,7 @@ class LinkedList():
         
     def retrieve(self, index):
         if index>self.size:
-            return None, False
+            return False, None
         idCounter = 1
         tgt = self.head
         while tgt.next!=None and idCounter<index:

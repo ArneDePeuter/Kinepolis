@@ -4,6 +4,7 @@
 from Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
 # from ARNE.Wrappers.BSTTable import BSTTable as Table
 from Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
+from Tests.Parser import Parser
 from tijd import *
 
 from Film import *
@@ -36,11 +37,13 @@ class Reservatiesysteem:
         self.reservationCount = 0
         self.roomCount = 0
 
-    def load(self):
-        pass
+        self.parser = Parser(self)
 
-    def save(self):
-        pass
+    def load(self, filename):
+        self.parser.readFile(filename)
+
+    def save(self, filename):
+        self.parser.outputSystem(filename)
 
     def start(self):
         while not self.screenings.isEmpty():

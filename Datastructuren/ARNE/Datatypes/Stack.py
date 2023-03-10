@@ -29,8 +29,8 @@ class MyStack():
 
     def getTop(self):
         if self.top!=None:
-            return (self.top.value, self.top!=None)
-        return (self.top, self.top!=None)
+            return (self.top!=None,self.top.value)
+        return (self.top!=None,self.top)
 
     def push(self,item): 
         node = Node(item) 
@@ -43,14 +43,14 @@ class MyStack():
 
     def pop(self):
         if(self.top == None):
-            return (None, False)
+            return (False, None)
         else:
             node = self.top 
             self.top = node.next 
             node.next = None  
             item = node.item   
             del node
-            return (item, self.top!=None)
+            return (self.top!=None,item)
 
     def save(self):
         l = []

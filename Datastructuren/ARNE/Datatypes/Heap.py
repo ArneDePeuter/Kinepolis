@@ -136,7 +136,7 @@ class Heap:
     
     def heapDelete(self):
         if self.heapIsEmpty():
-            return [None, False]
+            return [False, None]
         topItem = self.root.item
         lastNode = self.root.getLastNode()
         self.root.swap(lastNode)
@@ -157,7 +157,7 @@ class Heap:
                 lastNode.parent.fix(l)
                 temp.left = r
                 temp.right = None
-        return [topItem, True]
+        return [True, topItem]
 
     def heapInsert(self, item):
         if self.heapIsEmpty():

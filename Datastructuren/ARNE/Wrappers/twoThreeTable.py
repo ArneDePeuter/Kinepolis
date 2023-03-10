@@ -33,7 +33,7 @@ class TwoThreeTreeTable(TwoThreeTree):
         Retrieves an item from the table
 
         preconditions: None
-        postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
+        postconditions: Returns a tuple (done = True/False, retrievedItem = item/None)
         """
         dummyitem = self.createItem(key, "dummyVal")
         result = self.retrieveItem(dummyitem)
