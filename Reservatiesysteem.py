@@ -44,6 +44,7 @@ class Reservatiesysteem:
         self.timestamps.insert(2,Time(17))
         self.timestamps.insert(3,Time(20))
         self.timestamps.insert(4,Time(22,30))
+        self.timestamps.insert(5,Time(00,30))
 
     def load(self, filename):
         self.parser.readFile(filename)
