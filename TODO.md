@@ -6,50 +6,50 @@
         Tijd
         Zaal
     Data:
-        Geen dubbele objecten toelaten in systeem
+        -[ ] Geen dubbele objecten toelaten in systeem
     Testen:
-        Testen maken voor klassen
+        -[ ] Testen maken voor klassen
 
 ### Cedric:
     Klassen:
         Reservatie
     Data:
-        Geen dubbele objecten toelaten in systeem (Hoe? Items zitten in een queue)
+        -[ ] Geen dubbele objecten toelaten in systeem (Hoe? Items zitten in een queue)
     Testen:
-        Testen maken voor klassen
+        -[ ] Testen maken voor klassen
     Wrappers:
-        + Wrapper voor priority queue maken van heap
+        -[x] Wrapper voor priority queue maken van heap
     Other:
-        + Reservatie: zorgen dat er geen reservaties te veel mogen worden gemaakt
+        -[x] Reservatie: zorgen dat er geen reservaties te veel mogen worden gemaakt
 
 ### Sam:
     Klassen:
         Vertoning
         addScreening fixen in functie van Parser (normaal gefixt (getest))
     Data:
-        Geen dubbele objecten toelaten in systeem (normaal ook gefixt)
+        -[ ] Geen dubbele objecten toelaten in systeem (normaal ook gefixt)
     Testen:
-        Testen maken voor klassen
+        -[ ] Testen maken voor klassen
     Other:
-        Vertoning: verwerken (iederen in de zaal en film starten)
-        Vertoning: Zorgen dat geen vertoningen overlappen bij het aanmaken (normaal gefixt)
+        -[ ] Vertoning: verwerken (iederen in de zaal en film starten)
+        -[ ] Vertoning: Zorgen dat geen vertoningen overlappen bij het aanmaken (normaal gefixt)
 
 ### Siebe:
     Klassen:
         Gebruiker
     Data:
-        Geen dubbele objecten toelaten in systeem
+        -[ ] Geen dubbele objecten toelaten in systeem
     Testen:
-        Testen maken voor klassen
+        -[ ] Testen maken voor klassen
     Other:
-        in- en output files
-        Parser en executer
+        -[ ] in- en output files
+        -[ ] Parser en executer
     Wrappers:
-        Alle gemaakte datatypes toevoegen en wrapper maken voor BST
-        Wrapper voor priority queue maken van heap als heap is geimplementeerd
+        -[ ] Alle gemaakte datatypes toevoegen en wrapper maken voor BST
+        -[ ] Wrapper voor priority queue maken van heap als heap is geimplementeerd
 
 ### Extra:
-    GUI
+    -[ ] GUI
 
 
 ### Afspraken
