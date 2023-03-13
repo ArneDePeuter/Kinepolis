@@ -21,7 +21,7 @@ class Parser:
                     continue
                 else:
                     # Kijk of de regel start met gebruiker zo ja dan maak je een gebruiker aan
-                    if (line.startswith("gebruiker")):
+                    if line.startswith("gebruiker"):
                         # split de regel in onderdelen en verwijder de witruimte
                         parts = [part.strip() for part in line.split(" ")]
                         id = parts[1]
@@ -33,7 +33,7 @@ class Parser:
                         self.system.addUser(voornaam, achternaam, email, id)
 
                     # Kijk of de regel start met zaal zo ja dan maak je een zaal aan
-                    if (line.startswith("zaal")):
+                    if line.startswith("zaal"):
                         # split de regel in onderdelen en verwijder de witruimte
                         parts = [part.strip() for part in line.split(" ")]
                         zaalNummer = parts[1]
@@ -41,7 +41,7 @@ class Parser:
                         self.system.addRoom(zaalNummer, aantalPlaatsen)
 
                     # Kijk of de regel start met film zo ja dan maak je een film aan
-                    if (line.startswith("film")):
+                    if line.startswith("film"):
                         # split de regel in onderdelen en verwijder de witruimte
                         parts = [part.strip() for part in line.split(" ")]
                         id = parts[1]
@@ -52,7 +52,7 @@ class Parser:
                         self.system.addMovie(titel, rating, id)
 
                     # Kijk of de regel start met vertoning zo ja dan maak je een vertoning aan
-                    if (line.startswith("vertoning")):
+                    if line.startswith("vertoning"):
                         # split de regel in onderdelen en verwijder de witruimte
                         parts = [part.strip() for part in line.split(" ")]
                         id = parts[1]
@@ -66,7 +66,7 @@ class Parser:
                         self.system.addScreening(zaalNummer, slot, datum, filmId, vrijePlaatsen, id)
 
                     # Kijk of de regel start met start zo ja dan start je het systeem op TODO
-                    if (line.startswith("start")):
+                    if line.startswith("start"):
                         """# split de regel in onderdelen en verwijder de witruimte
                         parts = [part.strip() for part in line.split(" ")]
                         id = parts[1]
@@ -79,6 +79,20 @@ class Parser:
                         vertoning = Vertoning(id, zaalNummer, slot, datum, filmId, vrijePlaatsen)
                         tableItem = self.system.screenings.createItem(vertoning.id, vertoning)
                         self.system.screenings.tableInsert(tableItem)"""
+
+                    # Kijk of de regel start met reservatie zo ja dan voeg je een reservatie toe aan het systeem
+                    if line.startswith("reservatie"):
+                        # split de regel in onderdelen en verwijder de witruimte
+                        parts = [part.strip() for part in line.split(" ")]
+                        datum = parts[1]
+                        tijd = parts[2]
+                        gebruikersId = parts[3]
+                        vertoningsId = parts[4]
+                        aantalTickets = parts[5]
+                        # Maak de reservatie aan
+                        #  def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
+                        self.system.reservationSystem.enqueueReservation(gebruikersId, tijd, vertoningsId, aantalTickets)
+
 
     def outputSystem(self, fileName):
         """
