@@ -1,5 +1,41 @@
+from Container import Container
 # Testen: Cedric
 # Implementeren: Sam
+class Vertoningen(Container):
+    def __init__(self, datastruct, system) -> None:
+        super().__init__(datastruct, system)
+    
+    def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen, id=None):
+        """
+        Voegt een vertoning toe aan het reservatiesysteem.
+        Preconditie: De vertoning kan pas worden toegevoegd als er op hetzelfde slot
+        en zaal nog geen andere vertoning is ingepland.
+        Postconditie: De vertoning is toegevoegd aan het reservatiesysteem.
+        :param id: Dit is een uniek getal dat overeenkomt met dit object.
+        :param zaalnummer: Het nummer van de zaal.
+        :param slot: De tijd van de vertoning.
+        :param datum: De datum van de vertoning.
+        :param filmid: Dit is een uniek getal dat overeenkomt met de film.
+        :param vrijePlaatsen: Het aantal vrije plaatsen.
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
+        if id is None:
+            id = self.count
+        else:
+            self.count = max(id, self.count)
+
+        for i in range(0, self.count):
+            temp = self.datastruct.tableRetrieve(i)[0]
+            if temp is None:
+                continue
+            if temp.roomNumber == zaalnummer:
+                if temp.date == datum:
+                    if temp.slot == slot:
+                        return False
+        newScreening = Vertoning(id, zaalnummer, slot, datum, filmid, vrijePlaatsen)
+        self.datastruct.tableInsert(self.datastruct.createItem(id, newScreening))
+        self.count += 1
+
 class Vertoning:
     def __init__(self, id, zaalnummer, slot, datum, filmid, vrijePlaatsen):
         """

@@ -100,11 +100,11 @@ class Parser:
         datums = []
         titels = []
 
-        for i in range(self.system.screeningCount):
-            if self.system.screenings.tableRetrieve(i)[0] is not None:
-                datums.append(str(self.system.screenings.tableRetrieve(i)[0].date))
-                filmid = int(self.system.screenings.tableRetrieve(i)[0].filmid)
-                titels.append(self.system.movies.tableRetrieve(filmid)[0].title)
+        for i in range(self.system.screenings.count):
+            if self.system.screenings.datastruct.tableRetrieve(i)[0] is not None:
+                datums.append(str(self.system.screenings.datastruct.tableRetrieve(i)[0].date))
+                filmid = int(self.system.screenings.datastruct.tableRetrieve(i)[0].filmid)
+                titels.append(self.system.movies.datastruct.tableRetrieve(filmid)[0].title)
 
 
 

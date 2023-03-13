@@ -1,5 +1,23 @@
+from Container import Container
 # Testen: Siebe
 # Implementeren: Arne
+class Zalen(Container):
+    def __init__(self, datastruct, system) -> None:
+        super().__init__(datastruct, system)
+    
+    def addRoom(self, zaalNummer, aantalPlaatsen):
+        """
+        Voegt een zaal toe aan het reservatiesysteem.
+        Preconditie: \
+        Postconditie: De zaal is toegevoegd aan het reservatiesysteem.
+        Maar niet als er al een zaal bestaat met dezelfde nummer.
+        :param zaalNummer: De zaal die wordt toegevoegd.
+        :param aantalPlaatsen: Het aantal plaatsen dat de zaal heeft.
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
+        newRoom = Zaal(zaalNummer, aantalPlaatsen)
+        self.datastruct.tableInsert(self.datastruct.createItem(newRoom.roomNumber, newRoom))
+
 class Zaal:
     def __init__(self, zaalNummer, aantalPlaatsen):
         """

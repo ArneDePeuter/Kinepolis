@@ -22,7 +22,7 @@ class ReservatieTest(unittest.TestCase):
         screeningId = 50
         t.addScreening(1,1,1,1,1,screeningId)
         t.enqueueReservation(1,2,screeningId,4)
-        self.assertEqual(True, t.reservations.isEmpty())
+        self.assertEqual(True, t.reservations.datastruct.isEmpty())
 
 if __name__ == "__main__":
     unittest.main()

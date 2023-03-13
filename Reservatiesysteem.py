@@ -8,11 +8,11 @@ from Datastructuren.SIEBE.Datatypes.MyLinkedChain import LinkedChain as LinkedLi
 from Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from Tests.Parser import Parser
 
-from Film import *
-from Gebruiker import *
-from Vertoning import *
-from Zaal import *
-from Reservatie import *
+from Film import Films
+from Gebruiker import Gebruikers
+from Vertoning import Vertoningen
+from Zaal import Zalen
+from Reservatie import Reservaties
 
 class Reservatiesysteem:
     def __init__(self):
@@ -22,29 +22,32 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = Table()
-        self.rooms = Table()
-        self.movies = Table()
-        self.screenings = Table()
-        self.reservations = Queue()
+        self.users = Gebruikers(Table(), self)
+        self.addUser = self.users.addUser
+        self.removeAllUsers = self.users.removeAllUsers
+
+        self.movies = Films(Table(), self)
+        self.addMovie = self.movies.addMovie
+        self.removeAllMovies = self.movies.removeAllMovies
+
+        self.rooms = Zalen(Table(), self)
+        self.addRoom = self.rooms.addRoom
+
+        self.screenings = Vertoningen(Table(), self)
+        self.addScreening = self.screenings.addScreening
+
+        self.reservations = Reservaties(Queue(), self)
+        self.enqueueReservation = self.reservations.enqueueReservation
+        self.dequeueReservation = self.reservations.dequeueReservation
+        self.removeAllReservations = self.reservations.removeAllReservations
+
         self.clock = DateTime(1,12,5)
-
-        # Nummering for ID's
-        self.userCount = 0
-        self.movieCount = 0
-        self.screeningCount = 0
-        self.reservationCount = 0
-        self.roomCount = 0
-
         self.parser = Parser(self)
 
         #TIMESTAMPS
         self.timestamps = LinkedList()
-        self.timestamps.insert(1,Time(14,30))
-        self.timestamps.insert(2,Time(17))
-        self.timestamps.insert(3,Time(20))
-        self.timestamps.insert(4,Time(22,30))
-        self.timestamps.insert(5,Time(00,30))
+        for i,time in enumerate([Time(14,30), Time(17), Time(20), Time(22,30), Time(00,30)]):
+            self.timestamps.insert(i+1, time)
 
     def load(self, filename):
         self.parser.readFile(filename)
@@ -59,164 +62,6 @@ class Reservatiesysteem:
             # handlescreenings
             # ...
             pass
-
-    def addUser(self, voornaam, achternaam, emailadres, id=None):
-        """
-        Voegt een gebruiker to aan het reservatiesysteem.
-        Preconditie: De gebruiker mag nog niet bestaan in het systeem, based op dezelfde email
-        Postconditie: Gebruiker is toegevoegd aan het reservatiesysteem.
-        :param id: Dit is een uniek getal dat overeenkomt met dit object.
-        :param voornaam: De voornaam van de persoon.
-        :param achternaam: De achternaam van de persoon.
-        :param emailadres: Het e-mailadres van de persoon.
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        if id is None:
-            id = self.userCount
-        else:
-            self.userCount = max(self.userCount,id)
-
-        newUser = Gebruiker(id, voornaam, achternaam, emailadres)
-        self.users.tableInsert(self.users.createItem(newUser.id, newUser))
-        self.userCount += 1
-        return True
-
-    def removeAllUsers(self):
-        """
-        Verwijderd alle gebruikers uit het reservatiesysteem.
-        Preconditie: Er moet eerst een gebruiker bestaan voor er verwijderd kan worden
-        Postconditie: Alle gebruikers zijn verwijderd uit het reservatiesysteem.
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        self.users = self.users.__init__()
-        self.userCount = 0
-    
-    def addMovie(self, titel, rating, id=None):
-        """
-        Voegt een film toe aan het reservatiesysteem.
-        Preconditie: De film moet nog niet bestaan in het systeem, based op dezelfde titel
-        Postconditie: De film is toegevoegd aan het reservatiesysteem.
-        :param id: Dit is een uniek getal dat overeenkomt met dit object.
-        :param titel: De titel van de film.
-        :param rating: De score van een film volgens recensies.
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        if id is None:
-            id = self.movieCount
-        else:
-            self.movieCount = max(self.movieCount, id)
-
-        newMovie = Film(id, titel, rating)
-        self.movies.tableInsert(self.movies.createItem(newMovie.id, newMovie))
-        self.movieCount += 1
-
-    def removeAllMovies(self):
-        """
-        Verwijderd alle films uit het reservatiesysteem.
-        Preconditie: Er moet eerst een film bestaan voor er verwijderd kan worden
-        Postconditie: Alle films zijn verwijderd uit het reservatiesysteem.
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        self.movieCount = 0
-        self.movies = self.movies.__init__()
-
-    def addRoom(self, zaalNummer, aantalPlaatsen):
-        """
-        Voegt een zaal toe aan het reservatiesysteem.
-        Preconditie: \
-        Postconditie: De zaal is toegevoegd aan het reservatiesysteem.
-        Maar niet als er al een zaal bestaat met dezelfde nummer.
-        :param zaalNummer: De zaal die wordt toegevoegd.
-        :param aantalPlaatsen: Het aantal plaatsen dat de zaal heeft.
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        newRoom = Zaal(zaalNummer, aantalPlaatsen)
-        self.rooms.tableInsert(self.rooms.createItem(newRoom.roomNumber, newRoom))
-
-    def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen, id=None):
-        """
-        Voegt een vertoning toe aan het reservatiesysteem.
-        Preconditie: De vertoning kan pas worden toegevoegd als er op hetzelfde slot
-        en zaal nog geen andere vertoning is ingepland.
-        Postconditie: De vertoning is toegevoegd aan het reservatiesysteem.
-        :param id: Dit is een uniek getal dat overeenkomt met dit object.
-        :param zaalnummer: Het nummer van de zaal.
-        :param slot: De tijd van de vertoning.
-        :param datum: De datum van de vertoning.
-        :param filmid: Dit is een uniek getal dat overeenkomt met de film.
-        :param vrijePlaatsen: Het aantal vrije plaatsen.
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-
-        if id is None:
-            id = self.screeningCount
-        else:
-            self.screeningCount = max(id, self.screeningCount)
-
-        for i in range(0, self.screeningCount):
-            temp = self.screenings.tableRetrieve(i)[0]
-            if temp is None:
-                continue
-            if temp.roomNumber == zaalnummer:
-                if temp.date == datum:
-                    if temp.slot == slot:
-                        return False
-        newScreening = Vertoning(id, zaalnummer, slot, datum, filmid, vrijePlaatsen)
-        self.screenings.tableInsert(self.screenings.createItem(id, newScreening))
-        self.screeningCount += 1
-
-    def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
-        """
-        Voegt een reservatie toe aan het reservatiesysteem.
-        Preconditie: \
-        Postconditie: De reservatie is toegevoegd aan het reservatiesysteem.
-        :param userid: id van de gebruiker die de reservatie maakt
-        :param timestamp: tijd wanneer de reservatie wordt gemaakt
-        :param vertoningid: id van de vertoning
-        :param aantalPlaatsenGereserveerd: het aantal plaatsen dat gereserveerd word door de reservering
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        # Zoeken op vertoningsID
-        screening = self.screenings.tableRetrieve(vertoningid)[0]
-
-        # if vertoning not full
-        if screening.freePlaces >= aantalPlaatsenGereserveerd:
-            newReservation = Reservatie(self.reservationCount, userid, timestamp, vertoningid,
-                                        aantalPlaatsenGereserveerd)
-            self.reservations.enqueue(self.reservations.createItem(newReservation.timestamp, newReservation))
-            self.reservationCount += 1
-
-
-            return True
-        else:
-            return False
-
-    def dequeueReservation(self):
-        """
-        Geeft de eerst volgende reservatie.
-        Preconditie: Er moet minstens één reservatie in het reservatiesysteem zitten.
-        Postconditie: \
-        :return: Tuple met True als de operatie is gelukt, False als het niet gelukt is en de eerstvolgend reservatie.
-        """
-        if self.reservations == 0:
-            return tuple((False, None))
-
-        else:
-            reservation = self.reservations.dequeue()[1]
-            screening = self.screenings.tableRetrieve(reservation.id)
-
-            screening.freePlaces -= reservation.amountOfReservedSeats
-            return tuple((True, reservation[1]))
-
-    def removeAllReservations(self):
-        """
-        Verwijderd alle reservatie.
-        Preconditie: \
-        Postconditie: Alle reservaties zijn uit het reservatiesysteem verwijderd.
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        self.reservations = self.reservations.__init__()
-        self.reservationCount = 0
 
     def setTime(self, time):
         """
