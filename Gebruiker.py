@@ -1,7 +1,7 @@
 from Container import Container
 # Testen: Sam
 # Implementeren: Siebe
-class Gebruikers(Container):
+class UserSystem(Container):
     def __init__(self, datastruct) -> None:
         super().__init__(datastruct)
     

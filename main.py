@@ -1,10 +1,10 @@
-from Reservatiesysteem import Reservatiesysteem
+from Kinepolis import Kinepolis
 #from movieWebScraper import getMovies
 
 def main():
-    reservatieSysteem = Reservatiesysteem()
-    reservatieSysteem.load("Tests/Input/system.txt")
-    reservatieSysteem.save("Tests/Output/output.html")
+    kinepolis = Kinepolis()
+    kinepolis.load("Tests/Input/system.txt")
+    kinepolis.save("Tests/Output/output.html")
 
 
     """

@@ -1,6 +1,6 @@
 import unittest
 from Reservatie import Reservatie
-from Reservatiesysteem import Reservatiesysteem
+from Kinepolis import Kinepolis
 
 class ReservatieTest(unittest.TestCase):
     def setUp(self) -> None:
@@ -18,11 +18,11 @@ class ReservatieTest(unittest.TestCase):
         self.assertEqual(5,t.amountOfReservedSeats)
     
     def test_enqueue(self):
-        t = Reservatiesysteem()
+        t = Kinepolis()
         screeningId = 50
         t.addScreening(1,1,1,1,1,screeningId)
         t.enqueueReservation(1,2,screeningId,4)
-        self.assertEqual(True, t.reservations.datastruct.isEmpty())
+        self.assertEqual(True, t.reservationSystem.datastruct.isEmpty())
 
 if __name__ == "__main__":
     unittest.main()

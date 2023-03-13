@@ -1,5 +1,3 @@
-from Reservatiesysteem import *
-
 class Parser:
     def __init__(self, system) -> None:
         self.system = system
@@ -100,11 +98,11 @@ class Parser:
         datums = []
         titels = []
 
-        for i in range(self.system.screenings.count):
-            if self.system.screenings.datastruct.tableRetrieve(i)[0] is not None:
-                datums.append(str(self.system.screenings.datastruct.tableRetrieve(i)[0].date))
-                filmid = int(self.system.screenings.datastruct.tableRetrieve(i)[0].filmid)
-                titels.append(self.system.movies.datastruct.tableRetrieve(filmid)[0].title)
+        for i in range(self.system.screeningSystem.count):
+            if self.system.screeningSystem.datastruct.tableRetrieve(i)[0] is not None:
+                datums.append(str(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].date))
+                filmid = int(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].filmid)
+                titels.append(self.system.movieSystem.datastruct.tableRetrieve(filmid)[0].title)
 
 
 

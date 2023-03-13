@@ -1,10 +1,10 @@
 from Container import Container
 # Testen: Arne
 # Implementeren: Cedric
-class Reservaties(Container):
-    def __init__(self, datastruct, screenings) -> None:
+class ReservationSystem(Container):
+    def __init__(self, datastruct, screeningSystem) -> None:
         super().__init__(datastruct)
-        self.screenings = screenings
+        self.screeningSystem = screeningSystem
     
     def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """
@@ -18,7 +18,7 @@ class Reservaties(Container):
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         # Zoeken op vertoningsID
-        screening = self.screenings.datastruct.tableRetrieve(vertoningid)[0]
+        screening = self.screeningSystem.datastruct.tableRetrieve(vertoningid)[0]
 
         # if vertoning not full
         if screening.freePlaces >= aantalPlaatsenGereserveerd:
@@ -42,7 +42,7 @@ class Reservaties(Container):
 
         else:
             reservation = self.datastruct.dequeue()[1]
-            screening = self.screenings.datastruct.tableRetrieve(reservation.id)
+            screening = self.screeningSystem.datastruct.tableRetrieve(reservation.id)
 
             screening.freePlaces -= reservation.amountOfReservedSeats
             return tuple((True, reservation[1]))

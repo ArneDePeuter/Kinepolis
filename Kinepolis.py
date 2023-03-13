@@ -8,13 +8,13 @@ from Datastructuren.SIEBE.Datatypes.MyLinkedChain import LinkedChain as LinkedLi
 from Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from Tests.Parser import Parser
 
-from Film import Films
-from Gebruiker import Gebruikers
-from Vertoning import Vertoningen
-from Zaal import Zalen
-from Reservatie import Reservaties
+from Film import MovieSystem
+from Gebruiker import UserSystem
+from Vertoning import ScreeningSystem
+from Zaal import RoomSystem
+from Reservatie import ReservationSystem
 
-class Reservatiesysteem:
+class Kinepolis:
     def __init__(self):
         """
         Ceëert een reservatiesysteem.
@@ -22,24 +22,24 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = Gebruikers(Table())
-        self.addUser = self.users.addUser
-        self.removeAllUsers = self.users.removeAllUsers
+        self.userSystem = UserSystem(Table())
+        self.addUser = self.userSystem.addUser
+        self.removeAllUsers = self.userSystem.removeAllUsers
 
-        self.movies = Films(Table())
-        self.addMovie = self.movies.addMovie
-        self.removeAllMovies = self.movies.removeAllMovies
+        self.movieSystem = MovieSystem(Table())
+        self.addMovie = self.movieSystem.addMovie
+        self.removeAllMovies = self.movieSystem.removeAllMovies
 
-        self.rooms = Zalen(Table())
-        self.addRoom = self.rooms.addRoom
+        self.roomSystem = RoomSystem(Table())
+        self.addRoom = self.roomSystem.addRoom
 
-        self.screenings = Vertoningen(Table())
-        self.addScreening = self.screenings.addScreening
+        self.screeningSystem = ScreeningSystem(Table())
+        self.addScreening = self.screeningSystem.addScreening
 
-        self.reservations = Reservaties(Queue(), self.screenings)
-        self.enqueueReservation = self.reservations.enqueueReservation
-        self.dequeueReservation = self.reservations.dequeueReservation
-        self.removeAllReservations = self.reservations.removeAllReservations
+        self.reservationSystem = ReservationSystem(Queue(), self.screeningSystem)
+        self.enqueueReservation = self.reservationSystem.enqueueReservation
+        self.dequeueReservation = self.reservationSystem.dequeueReservation
+        self.removeAllReservations = self.reservationSystem.removeAllReservations
 
         self.clock = DateTime(1,12,5)
         self.parser = Parser(self)

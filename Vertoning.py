@@ -1,7 +1,7 @@
 from Container import Container
 # Testen: Cedric
 # Implementeren: Sam
-class Vertoningen(Container):
+class ScreeningSystem(Container):
     def __init__(self, datastruct) -> None:
         super().__init__(datastruct)
     
