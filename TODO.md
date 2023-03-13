@@ -25,14 +25,14 @@
 ### Sam:
     Klassen:
         Vertoning
-        addScreening fixen in functie van Parser (normaal gefixt (getest))
+        addScreening fixen in functie van Parser 
     Data:
-        - [x] Geen dubbele objecten toelaten in systeem (normaal ook gefixt)
+        - [x] Geen dubbele objecten toelaten in systeem 
     Testen:
         - [ ] Testen maken voor klassen
     Other:
-        - [ ] Vertoning: verwerken (iederen in de zaal en film starten)
-        - [x] Vertoning: Zorgen dat geen vertoningen overlappen bij het aanmaken (normaal gefixt)
+        - [x] Vertoning: verwerken (iederen in de zaal en film starten)
+        - [x] Vertoning: Zorgen dat geen vertoningen overlappen bij het aanmaken 
 
 ### Siebe:
     Klassen:
