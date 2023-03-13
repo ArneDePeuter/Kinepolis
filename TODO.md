@@ -20,6 +20,7 @@
     Wrappers:
         - [x] Wrapper voor priority queue maken van heap
     Other:
+        - [ ] Timestamp parameter bij enqueueReservation, moet datum + tijd zijn, nu alleen tijd (volgens contract)
         - [x] Reservatie: zorgen dat er geen reservaties te veel mogen worden gemaakt
 
 ### Sam:
@@ -42,9 +43,9 @@
     Testen:
         - [ ] Testen maken voor klassen
     Other:
-        - [ ] in- en output files (manier van titels eruithalen werkt enkel voor titels van 2 woorden)
+        - [ ] in- en output files
         -[ ] Parser en executer
-    Wrapp ers:
+    Wrappers:
         - [ ] Alle gemaakte datatypes toevoegen en wrapper maken voor BST
         - [ ] Wrapper voor priority queue maken van heap als heap is geimplementeerd
 
