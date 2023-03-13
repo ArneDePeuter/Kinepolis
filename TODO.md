@@ -20,7 +20,8 @@
     Wrappers:
         - [x] Wrapper voor priority queue maken van heap
     Other:
-        - [ ] Timestamp parameter bij enqueueReservation, moet datum + tijd zijn, nu alleen tijd (volgens contract)
+        - [ ] Timestamp parameter (bij enqueueReservation), moet datum + tijd zijn, nu alleen tijd (volgens contract)
+        - [ ] Deze line van de enqueueReservation gooit al een error: screening = self.screeningSystem.datastruct.tableRetrieve(vertoningid)[0]
         - [x] Reservatie: zorgen dat er geen reservaties te veel mogen worden gemaakt
 
 ### Sam:
@@ -44,7 +45,7 @@
         - [ ] Testen maken voor klassen
     Other:
         - [ ] in- en output files
-        -[ ] Parser en executer
+        - [ ] Parser en executer
     Wrappers:
         - [ ] Alle gemaakte datatypes toevoegen en wrapper maken voor BST
         - [ ] Wrapper voor priority queue maken van heap als heap is geimplementeerd

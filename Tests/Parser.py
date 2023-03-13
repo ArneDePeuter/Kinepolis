@@ -24,8 +24,7 @@ class Parser:
                     if line.startswith("gebruiker"):
                         # split de regel in onderdelen en verwijder de witruimte
                         parts = [part.strip() for part in line.split(" ")]
-                        id = parts[1]
-                        id = int(id)
+                        id = int(parts[1])
                         voornaam = parts[2]
                         achternaam = parts[3]
                         email = parts[4]
@@ -36,18 +35,17 @@ class Parser:
                     if line.startswith("zaal"):
                         # split de regel in onderdelen en verwijder de witruimte
                         parts = [part.strip() for part in line.split(" ")]
-                        zaalNummer = parts[1]
-                        aantalPlaatsen = parts[2]
+                        zaalNummer = int(parts[1])
+                        aantalPlaatsen = int(parts[2])
                         self.system.addRoom(zaalNummer, aantalPlaatsen)
 
                     # Kijk of de regel start met film zo ja dan maak je een film aan
                     if line.startswith("film"):
                         # split de regel in onderdelen en verwijder de witruimte
                         parts = [part.strip() for part in line.split(" ")]
-                        id = parts[1]
-                        id = int(id)
+                        id = int(parts[1])
                         titel = parts[2] + " " + parts[3]
-                        rating = parts[-1]
+                        rating = float(parts[-1])
                         # Maak de film aan
                         self.system.addMovie(titel, rating, id)
 
@@ -55,13 +53,12 @@ class Parser:
                     if line.startswith("vertoning"):
                         # split de regel in onderdelen en verwijder de witruimte
                         parts = [part.strip() for part in line.split(" ")]
-                        id = parts[1]
-                        id = int(id)
-                        zaalNummer = parts[2]
-                        slot = parts[3]
+                        id = int(parts[1])
+                        zaalNummer = int(parts[2])
+                        slot = int(parts[3])
                         datum = parts[4]
-                        filmId = parts[5]
-                        vrijePlaatsen = parts[6]
+                        filmId = int(parts[5])
+                        vrijePlaatsen = int(parts[6])
                         # Maak de vertoning aan
                         self.system.addScreening(zaalNummer, slot, datum, filmId, vrijePlaatsen, id)
 
@@ -86,12 +83,12 @@ class Parser:
                         parts = [part.strip() for part in line.split(" ")]
                         datum = parts[1]
                         tijd = parts[2]
-                        gebruikersId = parts[3]
+                        uur = int(tijd.split(":")[0])
+                        gebruikersId = int(parts[3])
                         vertoningsId = parts[4]
                         aantalTickets = parts[5]
-                        # Maak de reservatie aan
-                        #  def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd) TODO: Fix timestamp
-                        self.system.reservationSystem.enqueueReservation(gebruikersId, tijd, vertoningsId, aantalTickets)
+                        # Maak de reservatie aan TODO: Fix timestamp
+                        self.system.reservationSystem.enqueueReservation(gebruikersId, uur, vertoningsId, aantalTickets)
 
                     # Kijk of de regel start met komBinnen TODO: Timestamp gebruiken of niet?
                     if line.startswith("komBinnen"):
