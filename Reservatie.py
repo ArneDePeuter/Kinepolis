@@ -2,9 +2,10 @@ from Container import Container
 # Testen: Arne
 # Implementeren: Cedric
 class ReservationSystem(Container):
-    def __init__(self, datastruct, screeningSystem) -> None:
+    def __init__(self, datastruct, screeningSystem, userSystem) -> None:
         super().__init__(datastruct)
         self.screeningSystem = screeningSystem
+        self.userSystem = userSystem
     
     def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
         """

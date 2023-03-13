@@ -36,7 +36,7 @@ class Kinepolis:
         self.screeningSystem = ScreeningSystem(Table())
         self.addScreening = self.screeningSystem.addScreening
 
-        self.reservationSystem = ReservationSystem(Queue(), self.screeningSystem)
+        self.reservationSystem = ReservationSystem(Queue(), self.screeningSystem, self.userSystem)
         self.enqueueReservation = self.reservationSystem.enqueueReservation
         self.dequeueReservation = self.reservationSystem.dequeueReservation
         self.removeAllReservations = self.reservationSystem.removeAllReservations
