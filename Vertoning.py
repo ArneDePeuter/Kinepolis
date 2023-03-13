@@ -28,10 +28,8 @@ class ScreeningSystem(Container):
             temp = self.datastruct.tableRetrieve(i)[0]
             if temp is None:
                 continue
-            if temp.roomNumber == zaalnummer:
-                if temp.date == datum:
-                    if temp.slot == slot:
-                        return False
+            if temp.roomNumber == zaalnummer and temp.date == datum and temp.slot == slot:
+                return False
         newScreening = Vertoning(id, zaalnummer, slot, datum, filmid, vrijePlaatsen)
         self.datastruct.tableInsert(self.datastruct.createItem(id, newScreening))
         self.count += 1
