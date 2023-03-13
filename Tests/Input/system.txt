@@ -23,9 +23,9 @@ reservatie 2023-10-05 11:30 2 9 8
 # user 2 bestelt 2 ticketten voor vertoning 10
 reservatie 2023-10-05 11:30 2 10 2
 # er komen 8 mensen vertoning 9 bekijken 
-2023-10-10 13:45 ticket 9 8 
+komBinnen 2023-10-10 13:45 9 8 
 # er komen 2 mensen vertoning 9 bekijken 
-2023-10-10 14:35 ticket 9 2 
+komBinnen 2023-10-10 14:35 9 2 
 # op dit moment is iedereen in de zaal  
 # en begint de film 
 

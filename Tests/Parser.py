@@ -90,8 +90,19 @@ class Parser:
                         vertoningsId = parts[4]
                         aantalTickets = parts[5]
                         # Maak de reservatie aan
-                        #  def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd)
+                        #  def enqueueReservation(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd) TODO: Fix timestamp
                         self.system.reservationSystem.enqueueReservation(gebruikersId, tijd, vertoningsId, aantalTickets)
+
+                    # Kijk of de regel start met komBinnen TODO: Timestamp gebruiken of niet?
+                    if line.startswith("komBinnen"):
+                        # split de regel in onderdelen en verwijder de witruimte
+                        parts = [part.strip() for part in line.split(" ")]
+                        datum = parts[1]
+                        tijd = parts[2]
+                        vertoningsId = parts[3]
+                        aantalMensen = parts[5]
+                        # komBinnen
+                        self.system.komBinnen(vertoningsId, aantalMensen)
 
 
     def outputSystem(self, fileName):
