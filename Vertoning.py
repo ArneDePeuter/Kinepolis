@@ -2,8 +2,8 @@ from Container import Container
 # Testen: Cedric
 # Implementeren: Sam
 class Vertoningen(Container):
-    def __init__(self, datastruct, system) -> None:
-        super().__init__(datastruct, system)
+    def __init__(self, datastruct) -> None:
+        super().__init__(datastruct)
     
     def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen, id=None):
         """

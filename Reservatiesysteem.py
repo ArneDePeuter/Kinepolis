@@ -22,21 +22,21 @@ class Reservatiesysteem:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.users = Gebruikers(Table(), self)
+        self.users = Gebruikers(Table())
         self.addUser = self.users.addUser
         self.removeAllUsers = self.users.removeAllUsers
 
-        self.movies = Films(Table(), self)
+        self.movies = Films(Table())
         self.addMovie = self.movies.addMovie
         self.removeAllMovies = self.movies.removeAllMovies
 
-        self.rooms = Zalen(Table(), self)
+        self.rooms = Zalen(Table())
         self.addRoom = self.rooms.addRoom
 
-        self.screenings = Vertoningen(Table(), self)
+        self.screenings = Vertoningen(Table())
         self.addScreening = self.screenings.addScreening
 
-        self.reservations = Reservaties(Queue(), self)
+        self.reservations = Reservaties(Queue(), self.screenings)
         self.enqueueReservation = self.reservations.enqueueReservation
         self.dequeueReservation = self.reservations.dequeueReservation
         self.removeAllReservations = self.reservations.removeAllReservations

@@ -1,5 +1,4 @@
 class Container:
-    def __init__(self, datastruct, system) -> None:
+    def __init__(self, datastruct) -> None:
         self.datastruct = datastruct
-        self.system = system
         self.count = 0

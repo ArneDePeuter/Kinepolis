@@ -2,8 +2,8 @@ from Container import Container
 # Testen: Siebe
 # Implementeren: Arne
 class Zalen(Container):
-    def __init__(self, datastruct, system) -> None:
-        super().__init__(datastruct, system)
+    def __init__(self, datastruct) -> None:
+        super().__init__(datastruct)
     
     def addRoom(self, zaalNummer, aantalPlaatsen):
         """

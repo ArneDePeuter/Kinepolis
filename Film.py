@@ -2,8 +2,8 @@ from Container import Container
 # Testen: Siebe
 # Implementeren: Arne
 class Films(Container):
-    def __init__(self, datastruct, system) -> None:
-        super().__init__(datastruct, system)
+    def __init__(self, datastruct) -> None:
+        super().__init__(datastruct)
 
     def addMovie(self, titel, rating, id=None):
         """
