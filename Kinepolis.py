@@ -3,7 +3,7 @@
 
 from Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
 #from Datastructuren.ARNE.Wrappers.BSTTable import BSTTable as Table
-from datetime import time as Time, datetime as DateTime
+from datetime import time as Time, datetime as Datetime, timedelta
 from Datastructuren.SIEBE.Datatypes.MyLinkedChain import LinkedChain as LinkedList
 from Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
 from Tests.Parser import Parser
@@ -41,7 +41,7 @@ class Kinepolis:
         self.dequeueReservation = self.reservationSystem.dequeueReservation
         self.removeAllReservations = self.reservationSystem.removeAllReservations
 
-        self.clock = DateTime(1,12,5)
+        self.clock = Datetime(1,12,5)
         self.parser = Parser(self)
 
         #TIMESTAMPS
@@ -56,22 +56,35 @@ class Kinepolis:
         self.parser.outputSystem(filename)
 
     def start(self):
-        while not self.screenings.isEmpty():
-            self.increaseTime(1)
+        while not self.screeningSystem.datastruct.isEmpty():
+            self.increaseTime()
+            print(self.clock)
             # handlereservations
             # handlescreenings
             # ...
             pass
 
-    def setTime(self, time):
+    def setTime(self, jaar = None, maand=None, dag=None, uur=None, min=None, sec=None):
         """
         Zet de tijd van het reservatiesysteem.
         Preconditie: \
         Postconditie: De tijd van het reservatiesysteem is gelijk aan de gegeven tijd.
-        :param time: De tijd die het systeem moet aannemen van het type Time.
+        :param jaar: Het jaar dat het systeem moet aannemen (optioneele parameter)
+        :param maand: Het maand dat het systeem moet aannemen (optioneele parameter)
+        :param dag: De dag dat het systeem moet aannemen (optioneele parameter)
+        :param uur: Het uur dat het systeem moet aannemen (optioneele parameter)
+        :param min: De minuten dat het systeem moet aannemen (optioneele parameter)
+        :param sec: De seconden dat het systeem moet aannemen (optioneele parameter)
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        self.clock.setTime(time)
+        jaar = jaar if jaar is not None else self.clock.year
+        maand = maand if maand is not None else self.clock.month
+        dag = dag if dag is not None else self.clock.day
+        uur = uur if uur is not None else self.clock.hour
+        min = min if min is not None else self.clock.minute
+        sec = sec if sec is not None else self.clock.second
+        self.clock = Datetime(jaar, maand, dag, uur, min, sec)
+        return True
 
     def increaseTime(self, n=1):
         """
@@ -81,7 +94,8 @@ class Kinepolis:
         :param n: Aantal seconden het syteem moet toenemen. Geen parameter doorgeven → 1 seconden erbij
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        self.clock.tick(n)  # tijd verhoogt met n seconden
+        self.clock += timedelta(seconds=n)
+        return True
 
     def komBinnen(self, idvertoning, aantal):
         vertoning = self.screenings.tableRetrieve(idvertoning)[0]
