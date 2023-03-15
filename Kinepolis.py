@@ -37,9 +37,7 @@ class Kinepolis:
         self.addScreening = self.screeningSystem.addScreening
 
         self.reservationSystem = ReservationSystem(Queue(maxHeap=False), self.screeningSystem, self.userSystem)
-        self.enqueueReservation = self.reservationSystem.enqueueReservation
-        self.dequeueReservation = self.reservationSystem.dequeueReservation
-        self.removeAllReservations = self.reservationSystem.removeAllReservations
+        self.reservate = self.reservationSystem.reservate
 
         self.clock = Datetime(2023,10,5,10,59,40)
         self.parser = Parser(self)
@@ -117,7 +115,7 @@ class Kinepolis:
     def komBinnen(self, idvertoning, aantal):
         vertoning = self.screeningSystem.datastruct.tableRetrieve(idvertoning)[0]
         vertoning.seatedPlaces = vertoning.seatedPlaces + aantal
-        if vertoning.isReady:
+        if vertoning.isReady():
             vertoning.startScreening()
             return True
         else:
