@@ -74,6 +74,17 @@ class Parser:
         ev = Event(time, func)
         self.system.events.enqueue(self.system.events.createItem(time, ev))
 
+    def createLog(self, fileName, line):
+        parts = line.split()
+        datum = parts[0]
+        jaar, maand, dag = datum.split("-")
+        jaar, maand, dag = int(jaar), int(maand), int(dag)
+        tijd = parts[1]
+        uur, min = tijd.split(":")
+        uur, min = int(uur), int(min)
+        timestamp = datetime(jaar, maand, dag, uur, min, 0)
+        self.outputSystem(fileName, timestamp)
+
     def readFile(self, fileName):
         """
         Leest een bestand met de geven naam in
@@ -101,6 +112,9 @@ class Parser:
                     # Kijk of de regel start met komBinnen TODO: Timestamp gebruiken of niet?
                     elif line.split()[2] == "ticket":
                         self.parseKomBinnenLine(line)
+
+                    elif line.split()[2] == "log":
+                        self.createLog("Tests/Output/log_"+line.split()[0]+"_"+line.split()[1]+".html", line)
                 else:
                     # Kijk of de regel start met gebruiker zo ja dan maak je een gebruiker aan
                     if line.startswith("gebruiker"):
@@ -124,7 +138,7 @@ class Parser:
                     elif line.startswith("start"):
                         self.events = True
 
-    def outputSystem(self, fileName):
+    def outputSystem(self, fileName, timestamp):
         """
         Output het self.system met de opgegeven naam
 
@@ -133,22 +147,14 @@ class Parser:
 
         :param self.system: Het self.system dat zal moeten worden weggeschreven
         :param fileName: De naam van het in te lezen bestand
+        :param timestamp: De tijd waarop het systeem een log aanmaakt
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         # to open/create a new html file in the write mode
         f = open(fileName, 'w')
 
-        # Datum/ titels
-        datums = []
-        titels = []
-
-        for i in range(self.system.screeningSystem.count):
-            if self.system.screeningSystem.datastruct.tableRetrieve(i)[0] is not None:
-                datums.append(str(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].date))
-                filmid = int(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].filmid)
-                titels.append(self.system.movieSystem.datastruct.tableRetrieve(filmid)[0].title)
-
-        # the html code which will go in the file GFG.html
+        # the html code which will go in the file log_..._.html
+        # Head tag, styling,...
         html_template = """<html>
         <head>
             <style>
@@ -160,23 +166,62 @@ class Parser:
                     border: 1px solid black;
                 }
             </style>
-            <title>Log</title>
+            <title>Kinepolis - Log</title>
         </head>
-        <body>
-            <h1>Log op """+str(self.system.clock)+"""</h1>
+        """
+        # Table head: Datum, film en tijdsloten
+        html_template += """<body>
+            <h1>Log op """+str(timestamp)+"""</h1>
             <table>
                 <thead>
                     <td>Datum</td>
                     <td>Film</td>"""
         for i in range(self.system.timestamps.getLength()):
             html_template += f"<td>{self.system.timestamps.retrieve(i+1)[0]}</td>"
-        html_template += """</thead>
-                <tbody>"""
-        for i in range(len(datums)):
-            html_template += """<tr>"""
-            html_template += """<td>"""+datums[i]+"""</td>"""
-            html_template += """<td>"""+titels[i]+"""</td>"""
-            html_template += """</tr>"""
+        html_template += """</thead>"""
+
+        # Table body/content
+        html_template += """<tbody>"""
+        # table rows
+        for movie in range(self.system.movieSystem.count):
+            if self.system.movieSystem.datastruct.tableRetrieve(movie)[0] is not None:
+                filmid = int(self.system.movieSystem.datastruct.tableRetrieve(movie)[0].id)
+                movieAdded = False
+                movieRowNotComplete = False
+                # Kijk in screeningsystem voor de film kijkt of we een vertoning hebben voor de film op bepaalde datum die we willen
+                for screening in range(self.system.screeningSystem.count):
+                    if self.system.screeningSystem.datastruct.tableRetrieve(screening)[0] is not None and int(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].filmid) == filmid:
+                        # Film op die datumm is nog niet toegevoegd
+                        if not movieAdded:
+                            html_template += """<tr>"""
+                            # Datum
+                            html_template += """<td>"""+str(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].date)+"""</td>"""
+                            # Film
+                            html_template += """<td>""" +self.system.movieSystem.datastruct.tableRetrieve(movie)[0].title+"""</td>"""
+                            movieAdded = True
+                        # TODO: Bepaal voor elke film welke voor de sloten van toepassing is G, F of W
+                        elif movieAdded and not movieRowNotComplete:
+                            for i in range(self.system.screeningSystem.count):
+                                if self.system.screeningSystem.datastruct.tableRetrieve(i)[0] is not None and int(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].filmid) == filmid:
+                                    html_template += """<td>"""+str(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].freePlaces)+"""</td>"""
+                            html_template += """</tr>"""
+                            movieRowNotComplete = True
+
+
+        #for i in range(self.system.screeningSystem.count):
+        #    if self.system.screeningSystem.datastruct.tableRetrieve(i)[0] is not None:
+        #        html_template += """<tr>"""
+                #Datum
+        #        html_template += """<td>"""+str(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].date)+"""</td>"""
+                #Film
+        #        filmid = int(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].filmid)
+        #        html_template += """<td>""" +self.system.movieSystem.datastruct.tableRetrieve(filmid)[0].title+ """</td>"""
+        #        html_template += """</tr>"""
+                # Bepaal voor elke film welke voor de sloten van toepassing is G, F of W
+        #        oldClock = self.system.clock
+        #        self.system.clock = timestamp
+
+
 
         html_template += """</tbody>
             </table>
