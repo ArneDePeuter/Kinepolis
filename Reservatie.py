@@ -1,4 +1,5 @@
 from Container import Container
+from extra.mailsystem import MailSystem
 # Testen: Arne
 # Implementeren: Cedric
 class ReservationSystem(Container):
@@ -6,6 +7,7 @@ class ReservationSystem(Container):
         super().__init__(datastruct)
         self.screeningSystem = screeningSystem
         self.userSystem = userSystem
+        self.mailsys = MailSystem()
 
     def reservate(self, userid, vertoningid, aantalPlaatsenGereserveerd):
         """
@@ -32,7 +34,7 @@ class ReservationSystem(Container):
             print(f"{aantalPlaatsenGereserveerd} places reservated for {vertoningid}")
             screening.reservedPlaces += aantalPlaatsenGereserveerd
             id = self.count
-            #write mail to user
+            # self.mailsys.sendMailTo("arne@depeuter.org", "The matrix", screening.slot, aantalPlaatsenGereserveerd, id)
             self.count += 1
             return True
         else:
