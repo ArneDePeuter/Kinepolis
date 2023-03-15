@@ -199,7 +199,7 @@ class Parser:
                             # Film
                             html_template += """<td>""" +self.system.movieSystem.datastruct.tableRetrieve(movie)[0].title+"""</td>"""
                             movieAdded = True
-                        # TODO: Bepaal voor elke film welke voor de sloten van toepassing is G, F of W
+                        # TODO: Bepaal voor elke film welke voor de sloten van toepassing is G, F of W en maak onderscheid tussen films met een andere datum
                         elif movieAdded and not movieRowNotComplete:
                             for i in range(self.system.screeningSystem.count):
                                 if self.system.screeningSystem.datastruct.tableRetrieve(i)[0] is not None and int(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].filmid) == filmid:
