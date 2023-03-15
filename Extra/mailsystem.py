@@ -32,4 +32,6 @@ class MailSystem:
 
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=self.context) as smtp:
             smtp.login(self.email_sender, self.email_password)
-            smtp.sendmail(self.email_sender, emailadress, em.as_string())
+            returncode = smtp.sendmail(self.email_sender, emailadress, em.as_string())
+            if type(returncode) != dict:
+                print(returncode)
