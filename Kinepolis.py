@@ -45,7 +45,7 @@ class Kinepolis:
 
         #TIMESTAMPS
         self.timestamps = LinkedList()
-        for i,time in enumerate([Time(14,30), Time(17), Time(20), Time(22,30), Time(00,30)]):
+        for i,time in enumerate([Time(14,30), Time(17), Time(20), Time(22,30)]):
             self.timestamps.insert(i+1, time)
 
         #SIM
@@ -53,7 +53,7 @@ class Kinepolis:
         self.events = Queue(maxHeap=False)
 
     def save(self, filename):
-        self.parser.outputSystem(filename)
+        self.parser.outputSystem(filename, self.clock)
 
     def load(self, filename):
         self.parser.readFile(filename)
