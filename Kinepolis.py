@@ -64,13 +64,13 @@ class Kinepolis:
 
     def checkEvents(self):
         while not self.events.isEmpty():
-            ev, succes = self.events.dequeue()
+            event, succes = self.events.dequeue()
             if not succes: return
 
-            if ev.time <= self.clock:
-                ev.func()
+            if event.time <= self.clock:
+                event.func()
             else:
-                self.events.enqueue(self.events.createItem(ev.time, ev))
+                self.events.enqueue(self.events.createItem(event.time, event))
                 return
 
     def start(self):
