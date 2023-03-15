@@ -4,8 +4,8 @@ from Kinepolis import Kinepolis
 def main():
     kinepolis = Kinepolis()
     kinepolis.load("Tests/Input/system.txt")
+    kinepolis.start()
     kinepolis.save("Tests/Output/output.html")
-
 
     """
     webscraper

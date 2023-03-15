@@ -6,7 +6,7 @@ from Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Tabl
 from datetime import time as Time, datetime as Datetime, timedelta
 from Datastructuren.SIEBE.Datatypes.MyLinkedChain import LinkedChain as LinkedList
 from Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
-from Tests.Parser import Parser
+from Parser import Parser
 
 from Film import MovieSystem
 from Gebruiker import UserSystem
@@ -41,13 +41,17 @@ class Kinepolis:
         self.dequeueReservation = self.reservationSystem.dequeueReservation
         self.removeAllReservations = self.reservationSystem.removeAllReservations
 
-        self.clock = Datetime(1,12,5)
+        self.clock = Datetime(2023,10,5,10,59,40)
         self.parser = Parser(self)
+
+        self.running = True
 
         #TIMESTAMPS
         self.timestamps = LinkedList()
         for i,time in enumerate([Time(14,30), Time(17), Time(20), Time(22,30), Time(00,30)]):
             self.timestamps.insert(i+1, time)
+
+        self.events = Queue(maxHeap=False)
 
     def load(self, filename):
         self.parser.readFile(filename)
@@ -55,14 +59,21 @@ class Kinepolis:
     def save(self, filename):
         self.parser.outputSystem(filename)
 
+    def checkEvents(self):
+        while not self.events.isEmpty():
+            ev, succes = self.events.dequeue()
+            if not succes: return
+
+            if ev.time <= self.clock:
+                ev.func()
+            else:
+                self.events.enqueue(self.events.createItem(ev.time, ev))
+                return
+
     def start(self):
-        while not self.screeningSystem.datastruct.isEmpty():
+        while self.running:
+            self.checkEvents()
             self.increaseTime()
-            print(self.clock)
-            # handlereservations
-            # handlescreenings
-            # ...
-            pass
 
     def setTime(self, jaar = None, maand=None, dag=None, uur=None, min=None, sec=None):
         """
@@ -98,7 +109,7 @@ class Kinepolis:
         return True
 
     def komBinnen(self, idvertoning, aantal):
-        vertoning = self.screenings.tableRetrieve(idvertoning)[0]
+        vertoning = self.screeningSystem.datastruct.tableRetrieve(idvertoning)[0]
         vertoning.seatedPlaces = vertoning.seatedPlaces + aantal
         if vertoning.isReady:
             vertoning.startScreening()

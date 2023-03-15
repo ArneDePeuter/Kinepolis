@@ -137,13 +137,17 @@ class Heap:
     def heapDelete(self):
         if self.heapIsEmpty():
             return [None, False]
+        if self.root.isLeaf():
+            topItem = self.root.item
+            self.root = Node()
+            return [topItem, True]
         topItem = self.root.item
         lastNode = self.root.getLastNode()
         self.root.swap(lastNode)
         if lastNode.parent is not None:
             lastNode.parent.removeChild(lastNode)
         self.root.heapifyDown(self.relationOperator)
-        if lastNode.parent is not None:
+        if lastNode.parent is not None and self.root.left is not None and self.root.right is not None:
             temp = self.root.getLastNode().parent
             l = temp.left
             r = temp.right
@@ -171,5 +175,6 @@ class Heap:
         self.root.load(d)
 
     def save(self):
+        if self.heapIsEmpty():
+            return {}
         return self.root.save()
-

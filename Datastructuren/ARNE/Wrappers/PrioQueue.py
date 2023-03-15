@@ -11,7 +11,11 @@ class PriorityQueue(Heap):
         return self.heapIsEmpty()
 
     def dequeue(self):
-        return self.heapDelete()
+        item, succes = self.heapDelete()
+        if succes:
+            return [item.val, succes]
+        else:
+            return [None, succes]
     
     def enqueue(self, item):
         return self.heapInsert(item)
