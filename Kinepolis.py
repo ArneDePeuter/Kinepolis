@@ -36,7 +36,7 @@ class Kinepolis:
         self.screeningSystem = ScreeningSystem(Table())
         self.addScreening = self.screeningSystem.addScreening
 
-        self.reservationSystem = ReservationSystem(Queue(), self.screeningSystem, self.userSystem)
+        self.reservationSystem = ReservationSystem(Queue(maxHeap=False), self.screeningSystem, self.userSystem)
         self.enqueueReservation = self.reservationSystem.enqueueReservation
         self.dequeueReservation = self.reservationSystem.dequeueReservation
         self.removeAllReservations = self.reservationSystem.removeAllReservations
@@ -53,11 +53,13 @@ class Kinepolis:
 
         self.events = Queue(maxHeap=False)
 
-    def load(self, filename):
-        self.parser.readFile(filename)
-
     def save(self, filename):
         self.parser.outputSystem(filename)
+
+    def load(self, filename):
+        self.parser.readFile(filename)
+        if self.parser.events:
+            self.start()
 
     def checkEvents(self):
         while not self.events.isEmpty():
@@ -74,6 +76,9 @@ class Kinepolis:
         while self.running:
             self.checkEvents()
             self.increaseTime()
+
+            if self.events.isEmpty():
+                self.running = False
 
     def setTime(self, jaar = None, maand=None, dag=None, uur=None, min=None, sec=None):
         """

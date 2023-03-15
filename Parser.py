@@ -85,14 +85,14 @@ class Parser:
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         # open het bestand
-        eventRead = False
+        self.events = False
         with open(fileName, "r") as file:
             # lees elke regel in het bestand
             for line in file.readlines():
                 if line.startswith("#") or line.startswith("\n"):
                     continue
 
-                if eventRead:
+                if self.events:
                     # Kijk of de regel start met reservatie zo ja dan voeg je een reservatie toe aan het systeem
                     if line.split()[2] == "reserveer":
                         # split de regel in onderdelen en verwijder de witruimte
@@ -122,7 +122,7 @@ class Parser:
 
                     # Kijk of de regel start met start zo ja dan start je het systeem op
                     elif line.startswith("start"):
-                        eventRead = True
+                        self.events = True
 
     def outputSystem(self, fileName):
         """
