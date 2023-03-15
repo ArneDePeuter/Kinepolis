@@ -44,13 +44,14 @@ class Kinepolis:
         self.clock = Datetime(2023,10,5,10,59,40)
         self.parser = Parser(self)
 
-        self.running = True
 
         #TIMESTAMPS
         self.timestamps = LinkedList()
         for i,time in enumerate([Time(14,30), Time(17), Time(20), Time(22,30), Time(00,30)]):
             self.timestamps.insert(i+1, time)
 
+        #SIM
+        self.running = True
         self.events = Queue(maxHeap=False)
 
     def save(self, filename):
