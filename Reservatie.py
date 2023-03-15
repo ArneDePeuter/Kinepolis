@@ -29,6 +29,7 @@ class ReservationSystem(Container):
 
         # if vertoning not full
         if screening.freePlaces >= aantalPlaatsenGereserveerd+screening.reservedPlaces:
+            print(f"{aantalPlaatsenGereserveerd} places reservated for {vertoningid}")
             screening.reservedPlaces += aantalPlaatsenGereserveerd
             id = self.count
             #write mail to user

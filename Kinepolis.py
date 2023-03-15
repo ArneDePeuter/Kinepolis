@@ -113,6 +113,7 @@ class Kinepolis:
         return True
 
     def komBinnen(self, idvertoning, aantal):
+        print(f"{aantal} people entered a room for {idvertoning}")
         vertoning = self.screeningSystem.datastruct.tableRetrieve(idvertoning)[0]
         vertoning.seatedPlaces = vertoning.seatedPlaces + aantal
         if vertoning.isReady():
