@@ -53,7 +53,7 @@ class Parser:
         vertoningsId = int(parts[4])
         aantalTickets = int(parts[5])
 
-        func = lambda gebruikersId=gebruikersId,uur=uur,vertoningsId=vertoningsId,aantalTickets=aantalTickets: self.system.reservationSystem.reservate(gebruikersId, uur, vertoningsId, aantalTickets)
+        func = lambda gebruikersId=gebruikersId,vertoningsId=vertoningsId,aantalTickets=aantalTickets: self.system.reservationSystem.reservate(gebruikersId, vertoningsId, aantalTickets)
         time = datetime(jaar, maand, dag, uur, min, 0)
         ev = Event(time, func)
         self.system.events.enqueue(self.system.events.createItem(time, ev))

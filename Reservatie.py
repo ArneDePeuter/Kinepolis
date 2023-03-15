@@ -7,13 +7,12 @@ class ReservationSystem(Container):
         self.screeningSystem = screeningSystem
         self.userSystem = userSystem
 
-    def reservate(self, userid, timestamp, vertoningid, aantalPlaatsenGereserveerd):
+    def reservate(self, userid, vertoningid, aantalPlaatsenGereserveerd):
         """
         Maakt een reservatie.
         Preconditie: \
         Postconditie: De reservatie is toegevoegd aan het reservatiesysteem.
         :param userid: id van de gebruiker die de reservatie maakt
-        :param timestamp: tijd wanneer de reservatie wordt gemaakt
         :param vertoningid: id van de vertoning
         :param aantalPlaatsenGereserveerd: het aantal plaatsen dat gereserveerd word door de reservering
         :return: True als de operatie is gelukt, False als het niet gelukt is.
