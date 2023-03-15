@@ -1,3 +1,6 @@
+#TODO: reservatie message specifieker
+#TODO: reservatie mail specifieker
+
 from Container import Container
 from extra.mailsystem import MailSystem
 # Testen: Arne
