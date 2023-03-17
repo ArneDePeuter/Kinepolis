@@ -19,6 +19,7 @@
         - [ ] Testen maken voor klassen
     Wrappers:
         - [x] Wrapper voor priority queue maken van heap
+        - [ ] Inheratance van datastructuren
     Other:
         - [ ] Timestamp parameter (bij enqueueReservation), moet datum + tijd zijn, nu alleen tijd (volgens contract)
         - [ ] Deze line van de enqueueReservation gooit al een error: screening = self.screeningSystem.datastruct.tableRetrieve(vertoningid)[0]
