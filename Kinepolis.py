@@ -21,22 +21,10 @@ class Kinepolis:
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
         self.userSystem = UserSystem()
-        self.addUser = self.userSystem.addUser
-        self.removeAllUsers = self.userSystem.removeAllUsers
-
         self.movieSystem = MovieSystem()
-        self.addMovie = self.movieSystem.addMovie
-        self.removeAllMovies = self.movieSystem.removeAllMovies
-
         self.roomSystem = RoomSystem()
-        self.addRoom = self.roomSystem.addRoom
-
         self.screeningSystem = ScreeningSystem()
-        self.addScreening = self.screeningSystem.addScreening
-
         self.reservationSystem = ReservationSystem(self.screeningSystem, self.userSystem)
-        self.screeningSystem = self.reservationSystem.screeningSystem
-        self.reservate = self.reservationSystem.reservate
 
         self.clock = Datetime(2023,10,5,10,59,40)
         self.parser = Parser(self)
