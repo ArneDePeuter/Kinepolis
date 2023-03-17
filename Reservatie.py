@@ -2,7 +2,7 @@
 #TODO: reservatie mail specifieker
 
 from Container import Container
-from Extra.mailsystem import MailSystem
+from extra.mailsystem import MailSystem
 # Testen: Arne
 # Implementeren: Cedric
 class ReservationSystem(Container):

@@ -74,7 +74,7 @@ class Parser:
         ev = Event(time, func)
         self.system.events.enqueue(self.system.events.createItem(time, ev))
 
-    def createLog(self, fileName, line):
+    def createLog(self, line):
         """
         Schrijft het systeem uit van een tijdstip in het verleden
 
@@ -93,8 +93,13 @@ class Parser:
         uur, min = tijd.split(":")
         uur, min = int(uur), int(min)
         timestamp = datetime(jaar, maand, dag, uur, min, 0)
-        if timestamp < self.system.clock:
-            self.outputSystem(fileName, timestamp)
+        minstr = str(min) if len(str(min)) == 2 else "0"+str(min)
+        fileName = f"Tests/Output/log_{jaar}-{maand}-{dag}_{uur}-{minstr}.html" 
+
+        func = lambda fileName=fileName, timestamp=timestamp:self.outputSystem(fileName, timestamp)
+        time = datetime(jaar, maand, dag, uur, min, 0)
+        ev = Event(time, func)
+        self.system.events.enqueue(self.system.events.createItem(time, ev))
 
     def readFile(self, fileName):
         """
@@ -125,7 +130,7 @@ class Parser:
                         self.parseKomBinnenLine(line)
 
                     elif line.split()[2] == "log":
-                        self.createLog("Tests/Output/log_"+line.split()[0]+"_"+line.split()[1]+".html", line)
+                        self.createLog(line)
                 else:
                     # Kijk of de regel start met gebruiker zo ja dan maak je een gebruiker aan
                     if line.startswith("gebruiker"):
@@ -237,7 +242,7 @@ class Parser:
         html_template += """</tbody>
             </table>
         </body>
-    </html>
+        </html>
         """
         # writing the code into the file
         f.write(html_template)
