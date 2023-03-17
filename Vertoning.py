@@ -1,9 +1,11 @@
 from Container import Container
+from ADTfactory import ADTFactory
+
 # Testen: Cedric
 # Implementeren: Sam
 class ScreeningSystem(Container):
-    def __init__(self, datastruct) -> None:
-        super().__init__(datastruct)
+    def __init__(self) -> None:
+        super().__init__(datastruct=ADTFactory.getADT("Screening"))
     
     def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen, id=None):
         """

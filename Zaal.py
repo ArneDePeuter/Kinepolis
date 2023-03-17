@@ -1,9 +1,11 @@
 from Container import Container
+from ADTfactory import ADTFactory
+
 # Testen: Siebe
 # Implementeren: Arne
 class RoomSystem(Container):
-    def __init__(self, datastruct) -> None:
-        super().__init__(datastruct)
+    def __init__(self) -> None:
+        super().__init__(datastruct=ADTFactory.getADT("Room"))
     
     def addRoom(self, zaalNummer, aantalPlaatsen):
         """

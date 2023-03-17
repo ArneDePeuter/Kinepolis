@@ -6,8 +6,8 @@ from extra.mailsystem import MailSystem
 # Testen: Arne
 # Implementeren: Cedric
 class ReservationSystem(Container):
-    def __init__(self, screeningSystem, userSystem, datastruct=None) -> None:
-        super().__init__(datastruct)
+    def __init__(self, screeningSystem, userSystem) -> None:
+        super().__init__(datastruct=None)
         self.screeningSystem = screeningSystem
         self.userSystem = userSystem
         self.mailsys = MailSystem()

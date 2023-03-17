@@ -1,8 +1,6 @@
 # Testen: Allemaal
 # Implementeren: Allemaal
 
-from Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
-#from Datastructuren.ARNE.Wrappers.BSTTable import BSTTable as Table
 from datetime import time as Time, datetime as Datetime, timedelta
 from Datastructuren.SIEBE.Datatypes.MyLinkedChain import LinkedChain as LinkedList
 from Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
@@ -22,26 +20,26 @@ class Kinepolis:
             
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
-        self.userSystem = UserSystem(Table())
+        self.userSystem = UserSystem()
         self.addUser = self.userSystem.addUser
         self.removeAllUsers = self.userSystem.removeAllUsers
 
-        self.movieSystem = MovieSystem(Table())
+        self.movieSystem = MovieSystem()
         self.addMovie = self.movieSystem.addMovie
         self.removeAllMovies = self.movieSystem.removeAllMovies
 
-        self.roomSystem = RoomSystem(Table())
+        self.roomSystem = RoomSystem()
         self.addRoom = self.roomSystem.addRoom
 
-        self.screeningSystem = ScreeningSystem(Table())
+        self.screeningSystem = ScreeningSystem()
         self.addScreening = self.screeningSystem.addScreening
 
         self.reservationSystem = ReservationSystem(self.screeningSystem, self.userSystem)
+        self.screeningSystem = self.reservationSystem.screeningSystem
         self.reservate = self.reservationSystem.reservate
 
         self.clock = Datetime(2023,10,5,10,59,40)
         self.parser = Parser(self)
-
 
         #TIMESTAMPS
         self.timestamps = LinkedList()

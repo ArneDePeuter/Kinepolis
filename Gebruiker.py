@@ -1,9 +1,11 @@
 from Container import Container
+from ADTfactory import ADTFactory
+
 # Testen: Sam
 # Implementeren: Siebe
 class UserSystem(Container):
-    def __init__(self, datastruct) -> None:
-        super().__init__(datastruct)
+    def __init__(self) -> None:
+        super().__init__(datastruct=ADTFactory.getADT("User"))
     
     def addUser(self, voornaam, achternaam, emailadres, id=None):
         """
