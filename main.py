@@ -3,7 +3,7 @@ from Kinepolis import Kinepolis
 
 def main():
     kinepolis = Kinepolis()
-    kinepolis.load("Tests/Input/system.txt")
+    kinepolis.load("system.txt")
     #kinepolis.save("Tests/Output/output.html")
 
     """

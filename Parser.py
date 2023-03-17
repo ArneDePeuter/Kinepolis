@@ -1,6 +1,9 @@
 from Event import Event
 from datetime import datetime
 
+INPUTFOLDER = './Input/'
+OUTPUTFOLDER = './Output/'
+
 class Parser:
     def __init__(self, system) -> None:
         self.system = system
@@ -94,7 +97,7 @@ class Parser:
         uur, min = int(uur), int(min)
         timestamp = datetime(jaar, maand, dag, uur, min, 0)
         minstr = str(min) if len(str(min)) == 2 else "0"+str(min)
-        fileName = f"Tests/Output/log_{jaar}-{maand}-{dag}_{uur}-{minstr}.html" 
+        fileName = f"{OUTPUTFOLDER}log_{jaar}-{maand}-{dag}_{uur}-{minstr}.html" 
 
         func = lambda fileName=fileName, timestamp=timestamp:self.outputSystem(fileName, timestamp)
         time = datetime(jaar, maand, dag, uur, min, 0)
@@ -113,7 +116,7 @@ class Parser:
         """
         # open het bestand
         self.events = False
-        with open(fileName, "r") as file:
+        with open(INPUTFOLDER+fileName, "r") as file:
             # lees elke regel in het bestand
             for line in file.readlines():
                 if line.startswith("#") or line.startswith("\n"):

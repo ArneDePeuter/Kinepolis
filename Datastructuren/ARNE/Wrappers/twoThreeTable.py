@@ -1,9 +1,9 @@
 from Datastructuren.ARNE.Datatypes.TwoThreeTree import TwoThreeTree, createItem
 
-class TwoThreeTreeTable(TwoThreeTree):
+class TwoThreeTreeTable:
     #Initialisation 2-3 tree Table
     def __init__(self) -> None:
-        super().__init__()
+        self.ttt = TwoThreeTree()
     
     #Checks if the table is empty
     def tableIsEmpty(self):
@@ -13,7 +13,7 @@ class TwoThreeTreeTable(TwoThreeTree):
         preconditions: None
         postconditions: Returns True if the table is empty
         """
-        return self.isEmpty()
+        return self.ttt.isEmpty()
     
     #Inserts a TreeItem to the table
     def tableInsert(self, key, val):
@@ -26,7 +26,7 @@ class TwoThreeTreeTable(TwoThreeTree):
         preconditions: None
         postconditions: The treeItem gets inserted to the table
         """
-        return self.insertItem(createItem(key, val))
+        return self.ttt.insertItem(createItem(key, val))
 
     #Retrieves an item from the table
     def tableRetrieve(self, key):
@@ -37,7 +37,7 @@ class TwoThreeTreeTable(TwoThreeTree):
         postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
         dummyitem = createItem(key, 'dummyval')
-        result = self.retrieveItem(dummyitem)
+        result = self.ttt.retrieveItem(dummyitem)
         if result[1]:
             for item in result[0].items:
                 if item==dummyitem:
@@ -54,7 +54,7 @@ class TwoThreeTreeTable(TwoThreeTree):
         preconditions: None
         postconditions: prints the table inorder
         """
-        self.inorderTraverse(print)
+        self.ttt.inorderTraverse(print)
     
     #Deletes an item from the table
     def tableDelete(self, item):
@@ -66,5 +66,5 @@ class TwoThreeTreeTable(TwoThreeTree):
         preconditions: None
         postconditions: The given item gets deleted from the table
         """
-        return self.deleteItem(item)
+        return self.ttt.deleteItem(item)
     

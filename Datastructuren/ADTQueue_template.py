@@ -3,15 +3,9 @@ QUEUE REQUIREMENTS
 vvvvvvvvvvvvvvvvvvvvvv
 """
 
-class QueueWithWeirdFuncs:
-    pass
-
-class Queue(QueueWithWeirdFuncs):
-    def __init__(self, maxHeap=True):
-        super().__init__(maxHeap)
-
-    def createItem(self, key, val):
-        pass
+class PrioQueue:
+    def __init__(self, maxQueue=True):
+        self.heap = None()
     
     def isEmpty(self):
         pass
@@ -19,5 +13,5 @@ class Queue(QueueWithWeirdFuncs):
     def dequeue(self):
         pass
     
-    def enqueue(self, item):
+    def enqueue(self, key ,val):
         pass
