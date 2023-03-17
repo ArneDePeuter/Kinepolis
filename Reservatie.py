@@ -1,16 +1,15 @@
 #TODO: reservatie message specifieker
 #TODO: reservatie mail specifieker
 
-from Container import Container
-from extra.mailsystem import MailSystem
+from Extra.mailsystem import MailSystem
 # Testen: Arne
 # Implementeren: Cedric
-class ReservationSystem(Container):
+class ReservationSystem:
     def __init__(self, screeningSystem, userSystem) -> None:
-        super().__init__(datastruct=None)
         self.screeningSystem = screeningSystem
         self.userSystem = userSystem
         self.mailsys = MailSystem()
+        self.count = 0
 
     def reservate(self, userid, vertoningid, aantalPlaatsenGereserveerd):
         """

@@ -1,4 +1,4 @@
-from Datastructuren.ARNE.Datatypes.TwoThreeTree import TwoThreeTree, Item
+from Datastructuren.ARNE.Datatypes.TwoThreeTree import TwoThreeTree, createItem
 
 class TwoThreeTreeTable(TwoThreeTree):
     #Initialisation 2-3 tree Table
@@ -16,16 +16,17 @@ class TwoThreeTreeTable(TwoThreeTree):
         return self.isEmpty()
     
     #Inserts a TreeItem to the table
-    def tableInsert(self, item):
+    def tableInsert(self, key, val):
         """
-        Inserts a TreeItem to the table
+        Inserts to the table
 
-        TreeItem is of type twoThreeNode
+        param key : key is the searchkey
+        param val : value is the object
 
         preconditions: None
         postconditions: The treeItem gets inserted to the table
         """
-        return self.insertItem(item)
+        return self.insertItem(createItem(key, val))
 
     #Retrieves an item from the table
     def tableRetrieve(self, key):
@@ -35,7 +36,7 @@ class TwoThreeTreeTable(TwoThreeTree):
         preconditions: None
         postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
-        dummyitem = self.createItem(key, "dummyVal")
+        dummyitem = createItem(key, 'dummyval')
         result = self.retrieveItem(dummyitem)
         if result[1]:
             for item in result[0].items:
@@ -66,7 +67,4 @@ class TwoThreeTreeTable(TwoThreeTree):
         postconditions: The given item gets deleted from the table
         """
         return self.deleteItem(item)
-
-    def createItem(self, key, val):
-        return Item(key, val)
     

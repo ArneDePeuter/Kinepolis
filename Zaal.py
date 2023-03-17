@@ -1,11 +1,11 @@
-from Container import Container
 from ADTfactory import ADTFactory
 
 # Testen: Siebe
 # Implementeren: Arne
-class RoomSystem(Container):
+class RoomSystem:
     def __init__(self) -> None:
-        super().__init__(datastruct=ADTFactory.getADT("Room"))
+        self.datastruct=ADTFactory.getADT("Room")
+        self.count = 0
     
     def addRoom(self, zaalNummer, aantalPlaatsen):
         """
@@ -18,7 +18,7 @@ class RoomSystem(Container):
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         newRoom = Zaal(zaalNummer, aantalPlaatsen)
-        self.datastruct.tableInsert(self.datastruct.createItem(newRoom.roomNumber, newRoom))
+        self.datastruct.tableInsert(newRoom.roomNumber, newRoom)
 
 class Zaal:
     def __init__(self, zaalNummer, aantalPlaatsen):

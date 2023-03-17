@@ -1,12 +1,12 @@
-from Container import Container
 from ADTfactory import ADTFactory
 
 # Testen: Cedric
 # Implementeren: Sam
-class ScreeningSystem(Container):
+class ScreeningSystem:
     def __init__(self) -> None:
-        super().__init__(datastruct=ADTFactory.getADT("Screening"))
-    
+        self.datastruct=ADTFactory.getADT("Screening")
+        self.count = 0
+
     def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen, id=None):
         """
         Voegt een vertoning toe aan het reservatiesysteem.
@@ -33,7 +33,7 @@ class ScreeningSystem(Container):
             if temp.roomNumber == zaalnummer and temp.date == datum and temp.slot == slot:
                 return False
         newScreening = Vertoning(id, zaalnummer, slot, datum, filmid, vrijePlaatsen)
-        self.datastruct.tableInsert(self.datastruct.createItem(id, newScreening))
+        self.datastruct.tableInsert(id, newScreening)
         self.count += 1
 
 class Vertoning:

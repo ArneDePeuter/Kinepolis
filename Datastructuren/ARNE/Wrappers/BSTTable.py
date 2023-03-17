@@ -15,7 +15,7 @@ class BSTTable(BST):
         return self.isEmpty()
     
     #Inserts a TreeItem to the table
-    def tableInsert(self, key):
+    def tableInsert(self, key, val):
         """
         Inserts a TreeItem to the table
 
@@ -24,18 +24,17 @@ class BSTTable(BST):
         preconditions: None
         postconditions: The treeItem gets inserted to the table
         """
-
-        return self.searchTreeRetrieve(self.createItem(key, " ")).value
+        return self.searchTreeRetrieve(Item(key, value))
 
     #Retrieves an item from the table
-    def tableRetrieve(self, item):
+    def tableRetrieve(self, key):
         """
         Retrieves an item from the table
 
         preconditions: None
         postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
-        return self.searchTreeRetrieve(item)
+        return self.searchTreeRetrieve(Item(key, '')).value
 
     #Prints the table inorder
     def traverseTable(self,print):
@@ -58,7 +57,3 @@ class BSTTable(BST):
         postconditions: The given item gets deleted from the table
         """
         return self.searchTreeDelete(item)
-
-    def createItem(self, key, val):
-        return Item(key, val)
-    

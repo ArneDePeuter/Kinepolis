@@ -1,12 +1,12 @@
-from Container import Container
 from ADTfactory import ADTFactory
 
 # Testen: Sam
 # Implementeren: Siebe
-class UserSystem(Container):
+class UserSystem:
     def __init__(self) -> None:
-        super().__init__(datastruct=ADTFactory.getADT("User"))
-    
+        self.datastruct = ADTFactory.getADT("User")
+        self.count = 0
+     
     def addUser(self, voornaam, achternaam, emailadres, id=None):
         """
         Voegt een gebruiker to aan het reservatiesysteem.
@@ -24,7 +24,7 @@ class UserSystem(Container):
             self.count = max(self.count,id)
 
         newUser = Gebruiker(id, voornaam, achternaam, emailadres)
-        self.datastruct.tableInsert(self.datastruct.createItem(newUser.id, newUser))
+        self.datastruct.tableInsert(newUser.id, newUser)
         self.count += 1
         return True
 
