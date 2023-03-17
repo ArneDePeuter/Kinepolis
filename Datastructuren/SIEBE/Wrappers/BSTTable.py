@@ -1,4 +1,4 @@
-from Datastructuren.SIEBE.Datatypes import MyBST, createTreeItem
+from Datastructuren.SIEBE.Datatypes import MyBST
 
 class BSTTable(MyBST):
     def __init__(self) -> None:
