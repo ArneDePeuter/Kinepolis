@@ -44,11 +44,12 @@
     Testen:
         - [ ] Testen maken voor klassen
     Other:
-        - [ ] in- en output files
+        - [X] input files
+        - [ ] output files
         - [ ] Parser en executer
     Wrappers:
-        - [ ] Alle gemaakte datatypes toevoegen en wrapper maken voor BST
-        - [ ] Wrapper voor priority queue maken van heap als heap is geimplementeerd
+        - [X] Alle gemaakte datatypes toevoegen en wrapper maken voor BST
+        - [X] Wrapper voor priority queue maken van heap als heap is geimplementeerd
 
 ### Extra:
     - [ ] GUI
