@@ -93,7 +93,8 @@ class Parser:
         uur, min = tijd.split(":")
         uur, min = int(uur), int(min)
         timestamp = datetime(jaar, maand, dag, uur, min, 0)
-        self.outputSystem(fileName, timestamp)
+        if timestamp < self.system.clock:
+            self.outputSystem(fileName, timestamp)
 
     def readFile(self, fileName):
         """
