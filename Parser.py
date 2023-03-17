@@ -78,8 +78,8 @@ class Parser:
         """
         Schrijft het systeem uit van een tijdstip in het verleden
 
-        Preconditie: De datum en tijd vind plaatst in het verleden
-        Postconditie: Het bestand is ingelezen adhv de content worden er wijzigingen in het self.system gedaan
+        Preconditie: De datum en tijd vindt, plaatst in het verleden
+        Postconditie: Het bestand is ingelezen a.d.h.v. de content worden er wijzigingen in het self.system gedaan
 
         :param fileName: De naam van het uit te schrijven bestand
         :param line: De lijn die werd gebruikt om deze methode aan te roepen
