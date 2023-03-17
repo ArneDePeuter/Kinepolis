@@ -75,6 +75,16 @@ class Parser:
         self.system.events.enqueue(self.system.events.createItem(time, ev))
 
     def createLog(self, fileName, line):
+        """
+        Schrijft het systeem uit van een tijdstip in het verleden
+
+        Preconditie: De datum en tijd vind plaatst in het verleden
+        Postconditie: Het bestand is ingelezen adhv de content worden er wijzigingen in het self.system gedaan
+
+        :param fileName: De naam van het uit te schrijven bestand
+        :param line: De lijn die werd gebruikt om deze methode aan te roepen
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
         parts = line.split()
         datum = parts[0]
         jaar, maand, dag = datum.split("-")
