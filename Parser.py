@@ -1,6 +1,9 @@
 from Event import Event
 from datetime import datetime
 
+INPUTFOLDER = './Input/'
+OUTPUTFOLDER = './Output/'
+
 class Parser:
     def __init__(self, system) -> None:
         self.system = system
@@ -12,13 +15,13 @@ class Parser:
         voornaam = parts[2]
         achternaam = parts[3]
         email = parts[4]
-        self.system.addUser(voornaam, achternaam, email, id)
+        self.system.userSystem.addUser(voornaam, achternaam, email, id)
     
     def parseRoomLine(self, line):
         parts = line.split()
         zaalNummer = int(parts[1])
         aantalPlaatsen = int(parts[2])
-        self.system.addRoom(zaalNummer, aantalPlaatsen)
+        self.system.roomSystem.addRoom(zaalNummer, aantalPlaatsen)
     
     def parseMovieLine(self, line):
         parts = line.split()
@@ -28,7 +31,7 @@ class Parser:
             titel += parts[i]
             titel += " " if i!=len(parts)-1 else "" 
         rating = int(float(parts[-1]))
-        self.system.addMovie(titel, rating, id)
+        self.system.movieSystem.addMovie(titel, rating, id)
     
     def parseScreeningLine(self, line):
         parts = line.split()
@@ -39,7 +42,7 @@ class Parser:
         datum = parts[4]
         filmId = int(parts[5])
         vrijePlaatsen = int(parts[6])
-        self.system.addScreening(zaalNummer, slot, datum, filmId, vrijePlaatsen, id)
+        self.system.screeningSystem.addScreening(zaalNummer, slot, datum, filmId, vrijePlaatsen, id)
 
     def parseReservationLine(self, line):
         parts = line.split()
@@ -56,7 +59,7 @@ class Parser:
         func = lambda gebruikersId=gebruikersId,vertoningsId=vertoningsId,aantalTickets=aantalTickets: self.system.reservationSystem.reservate(gebruikersId, vertoningsId, aantalTickets)
         time = datetime(jaar, maand, dag, uur, min, 0)
         ev = Event(time, func)
-        self.system.events.enqueue(self.system.events.createItem(time, ev))
+        self.system.events.enqueue(time, ev)
 
     def parseKomBinnenLine(self, line):
         parts = line.split()
@@ -72,7 +75,7 @@ class Parser:
         func = lambda vertoningsId=vertoningsId, aantalMensen=aantalMensen:self.system.komBinnen(vertoningsId, aantalMensen)
         time = datetime(jaar, maand, dag, uur, min, 0)
         ev = Event(time, func)
-        self.system.events.enqueue(self.system.events.createItem(time, ev))
+        self.system.events.enqueue(time, ev)
 
     def createLog(self, line):
         """
@@ -94,12 +97,12 @@ class Parser:
         uur, min = int(uur), int(min)
         timestamp = datetime(jaar, maand, dag, uur, min, 0)
         minstr = str(min) if len(str(min)) == 2 else "0"+str(min)
-        fileName = f"Tests/Output/log_{jaar}-{maand}-{dag}_{uur}-{minstr}.html" 
+        fileName = f"{OUTPUTFOLDER}log_{jaar}-{maand}-{dag}_{uur}-{minstr}.html" 
 
         func = lambda fileName=fileName, timestamp=timestamp:self.outputSystem(fileName, timestamp)
         time = datetime(jaar, maand, dag, uur, min, 0)
         ev = Event(time, func)
-        self.system.events.enqueue(self.system.events.createItem(time, ev))
+        self.system.events.enqueue(time, ev)
 
     def readFile(self, fileName):
         """
@@ -113,7 +116,7 @@ class Parser:
         """
         # open het bestand
         self.events = False
-        with open(fileName, "r") as file:
+        with open(INPUTFOLDER+fileName, "r") as file:
             # lees elke regel in het bestand
             for line in file.readlines():
                 if line.startswith("#") or line.startswith("\n"):

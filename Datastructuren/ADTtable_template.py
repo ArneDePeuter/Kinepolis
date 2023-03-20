@@ -3,12 +3,9 @@ TABLE REQUIREMENTS
 vvvvvvvvvvvvvvvvvv
 """
 
-class ADT:
-    pass
-
-class Table(ADT):
+class Table:
     def __init__(self) -> None:
-        super().__init__()
+        self.datastruct = None()
 
     def traverseTable(self, func):
         pass
@@ -18,17 +15,13 @@ class Table(ADT):
         pass
 
     #Inserts an item into the ADT
-    def tableInsert(item):
+    def tableInsert(item, key, val):
         pass
 
     #Deletes an item from the ADT
-    def tableDelete(item):
+    def tableDelete(item, key):
         pass
 
     #Retrieves an item from the ADT
     def tableRetrieve(key):
-        pass
-
-    #Creates an item that can be inserted into the ADT
-    def createItem(key, val):
         pass

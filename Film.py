@@ -1,11 +1,11 @@
-from Container import Container
 from ADTfactory import ADTFactory
 
 # Testen: Siebe
 # Implementeren: Arne
-class MovieSystem(Container):
+class MovieSystem:
     def __init__(self) -> None:
-        super().__init__(datastruct=ADTFactory.getADT("Movie"))
+        self.datastruct = ADTFactory.getADT("Movie")
+        self.count = 0
 
     def addMovie(self, titel, rating, id=None):
         """
@@ -23,7 +23,7 @@ class MovieSystem(Container):
             self.count = max(self.count, id)
 
         newMovie = Film(id, titel, rating)
-        self.datastruct.tableInsert(self.datastruct.createItem(newMovie.id, newMovie))
+        self.datastruct.tableInsert(newMovie.id, newMovie)
         self.count += 1
 
     def removeAllMovies(self):

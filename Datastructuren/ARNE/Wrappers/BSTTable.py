@@ -1,9 +1,10 @@
 from Datastructuren.ARNE.Datatypes.BST import BST, Item
 
-class BSTTable(BST):
+class BSTTable:
     #Initialisation 2-3 tree Table
     def __init__(self) -> None:
-        super().__init__()
+        self.bst = BST()
+
     #Checks if the table is empty
     def tableIsEmpty(self):
         """
@@ -12,10 +13,10 @@ class BSTTable(BST):
         preconditions: None
         postconditions: Returns True if the table is empty
         """
-        return self.isEmpty()
+        return self.bst.isEmpty()
     
     #Inserts a TreeItem to the table
-    def tableInsert(self, key):
+    def tableInsert(self, key, val):
         """
         Inserts a TreeItem to the table
 
@@ -24,18 +25,17 @@ class BSTTable(BST):
         preconditions: None
         postconditions: The treeItem gets inserted to the table
         """
-
-        return self.searchTreeRetrieve(self.createItem(key, " ")).value
+        return self.bst.searchTreeRetrieve(Item(key, val))
 
     #Retrieves an item from the table
-    def tableRetrieve(self, item):
+    def tableRetrieve(self, key):
         """
         Retrieves an item from the table
 
         preconditions: None
         postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
-        return self.searchTreeRetrieve(item)
+        return self.bst.searchTreeRetrieve(Item(key, '')).value
 
     #Prints the table inorder
     def traverseTable(self,print):
@@ -45,7 +45,7 @@ class BSTTable(BST):
         preconditions: None
         postconditions: prints the table inorder
         """
-        self.inorderTraverse(print)
+        self.bst.inorderTraverse(print)
     
     #Deletes an item from the table
     def tableDelete(self, item):
@@ -57,8 +57,4 @@ class BSTTable(BST):
         preconditions: None
         postconditions: The given item gets deleted from the table
         """
-        return self.searchTreeDelete(item)
-
-    def createItem(self, key, val):
-        return Item(key, val)
-    
+        return self.bst.searchTreeDelete(item)

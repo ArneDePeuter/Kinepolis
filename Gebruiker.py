@@ -1,12 +1,12 @@
-from Container import Container
 from ADTfactory import ADTFactory
-from Datastructuren.ARNE.Wrappers.BSTTable import BSTTable as Table
+
 # Testen: Sam
 # Implementeren: Siebe
 class UserSystem:
     def __init__(self) -> None:
-        self.data = Table()
-
+        self.datastruct = ADTFactory.getADT("User")
+        self.count = 0
+     
     def addUser(self, voornaam, achternaam, emailadres, id=None):
         """
         Voegt een gebruiker to aan het reservatiesysteem.
@@ -24,7 +24,7 @@ class UserSystem:
             self.count = max(self.count,id)
 
         newUser = Gebruiker(id, voornaam, achternaam, emailadres)
-        self.datastruct.tableInsert(self.datastruct.createItem(newUser.id, newUser))
+        self.datastruct.tableInsert(newUser.id, newUser)
         self.count += 1
         return True
 

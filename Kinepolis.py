@@ -36,7 +36,7 @@ class Kinepolis:
 
         #SIM
         self.running = True
-        self.events = Queue(maxHeap=False)
+        self.events = Queue(maxQueue=False)
 
     def save(self, filename):
         self.parser.outputSystem(filename, self.clock)
@@ -54,7 +54,7 @@ class Kinepolis:
             if event.time <= self.clock:
                 event.func()
             else:
-                self.events.enqueue(self.events.createItem(event.time, event))
+                self.events.enqueue(event.time, event)
                 return
 
     def start(self):
