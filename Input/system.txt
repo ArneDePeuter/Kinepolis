@@ -2,7 +2,7 @@
 init
 zaal 1 200
 
-film 3 "The Matrix" 0.95
+film 3 The Matrix 0.95
 
 # vertoning met id 9 in zaal 1 op slot 1 
 (14:30)
