@@ -43,7 +43,7 @@
     Data:
         - [ ] Geen dubbele objecten toelaten in systeem
     Testen:
-        - [ ] Testen maken voor klassen
+        - [X] Testen maken voor klassen
     Other:
         - [X] input files
         - [ ] output files
