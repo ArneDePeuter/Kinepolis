@@ -37,8 +37,8 @@ class Parser:
         parts = line.split()
         id = parts[1]
         id = int(id)
-        zaalNummer = parts[2]
-        slot = parts[3]
+        zaalNummer = int(parts[2])
+        slot = int(parts[3])
         datum = parts[4]
         filmId = int(parts[5])
         vrijePlaatsen = int(parts[6])
@@ -205,43 +205,48 @@ class Parser:
         for movie in range(self.system.movieSystem.count):
             if self.system.movieSystem.datastruct.tableRetrieve(movie)[0] is not None:
                 filmid = int(self.system.movieSystem.datastruct.tableRetrieve(movie)[0].id)
-                movieAdded = False
-                movieRowNotComplete = False
+                date = ""
+                slotCounter = 0
                 # Kijk in screeningsystem voor de film kijkt of we een vertoning hebben voor de film op bepaalde datum die we willen
                 for screening in range(self.system.screeningSystem.count):
-                    if self.system.screeningSystem.datastruct.tableRetrieve(screening)[0] is not None and int(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].filmid) == filmid:
-                        # Film op die datumm is nog niet toegevoegd
-                        if not movieAdded:
+                    if self.system.screeningSystem.datastruct.tableRetrieve(screening)[0] is not None:
+                        if int(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].filmid) == filmid and len(date) == 0 or date != str(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].date):
+                            # Film op een datum die nog niet is toegevoegd
                             html_template += """<tr>"""
                             # Datum
                             html_template += """<td>"""+str(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].date)+"""</td>"""
+                            date = str(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].date)
                             # Film
                             html_template += """<td>""" +self.system.movieSystem.datastruct.tableRetrieve(movie)[0].title+"""</td>"""
-                            movieAdded = True
-                        # TODO: Bepaal voor elke film welke voor de sloten van toepassing is G, F of W en maak onderscheid tussen films met een andere datum
-                        elif movieAdded and not movieRowNotComplete:
-                            for i in range(self.system.screeningSystem.count):
-                                if self.system.screeningSystem.datastruct.tableRetrieve(i)[0] is not None and int(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].filmid) == filmid:
-                                    html_template += """<td>"""+str(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].freePlaces)+"""</td>"""
+                        if int(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].filmid) == filmid and date == str(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].date):
+                            # convert date to string
+                            year, month, day = date.split('-')
+                            year_int = int(year)
+                            month_int = int(month)
+                            day_int = int(day)
+
+                            slot = self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].slot
+                            hour = self.system.timestamps.retrieve(slot)[0].hour
+                            minute = self.system.timestamps.retrieve(slot)[0].minute
+                            second = self.system.timestamps.retrieve(slot)[0].second
+                            timestamp_vertoning = datetime(year_int,month_int,day_int,hour,minute,second)
+                            # TODO: Bepaal voor elke film welke voor de sloten van toepassing is G, F of W en maak onderscheid tussen films met een andere datum
+                            # Geplant aantal verkochte ticketten
+                            if timestamp < timestamp_vertoning:
+                                html_template += """<td>""" +"G: "+str(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].reservedPlaces) + """</td>"""
+                                slotCounter = slotCounter + 1
+                            # Gestart aantal mensen in de zaal
+                            elif timestamp == timestamp_vertoning:
+                                html_template += """<td>""" + "F: " + str(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].freePlaces) + """</td>"""
+                                slotCounter = slotCounter + 1
+                            # aantal mensen waarop nog gewacht wordt
+                            #elif timestamp.hour :
+                                #html_template += """<td>""" + "W: " + str(self.system.screeningSystem.datastruct.tableRetrieve(screening)[0].freePlaces) + """</td>"""
+                                #slotCounter = slotCounter + 1
+
+
+                        if slotCounter == self.system.timestamps.getLength:
                             html_template += """</tr>"""
-                            movieRowNotComplete = True
-
-
-        #for i in range(self.system.screeningSystem.count):
-        #    if self.system.screeningSystem.datastruct.tableRetrieve(i)[0] is not None:
-        #        html_template += """<tr>"""
-                #Datum
-        #        html_template += """<td>"""+str(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].date)+"""</td>"""
-                #Film
-        #        filmid = int(self.system.screeningSystem.datastruct.tableRetrieve(i)[0].filmid)
-        #        html_template += """<td>""" +self.system.movieSystem.datastruct.tableRetrieve(filmid)[0].title+ """</td>"""
-        #        html_template += """</tr>"""
-                # Bepaal voor elke film welke voor de sloten van toepassing is G, F of W
-        #        oldClock = self.system.clock
-        #        self.system.clock = timestamp
-
-
-
         html_template += """</tbody>
             </table>
         </body>
