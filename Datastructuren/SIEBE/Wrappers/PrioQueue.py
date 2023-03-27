@@ -1,21 +1,20 @@
 from Datastructuren.SIEBE.Datatypes.MyHeap import Heap, heapItem
 
-class PriorityQueue(Heap):
-    def __init__(self, maxHeap=True):
-        super().__init__(maxHeap)
-
-    def createItem(self, key, val):
-        return heapItem(key, val)
+class HeapQueue:
+    def __init__(self, maxQueue=True):
+        self.heap = Heap(maxQueue)
     
     def isEmpty(self):
-        return self.heapIsEmpty()
+        return self.heap.heapIsEmpty()
 
     def dequeue(self):
-        item, succes = self.heapDelete()
-        if succes:
-            return [item.val, succes]
-        else:
-            return [None, succes]
+        return self.heap.heapDelete()
     
     def enqueue(self, item):
-        return self.heapInsert(item)
+        return self.heap.heapInsert(item)
+
+    def save(self):
+        return self.heap.save()
+
+    def load(self, dataDict):
+        return self.heap.load(dataDict)

@@ -2,35 +2,35 @@ from Datastructuren.SIEBE.Datatypes import MyBST, createTreeItem
 
 class BSTTable(MyBST):
     def __init__(self) -> None:
-        super().__init__()
+        self.bst = MyBST()
 
     #returns True if the ADT is empty
     def tableIsEmpty(self):
-        return super().isEmpty()
+        return self.bst.isEmpty()
 
     #Inserts an item into the ADT
     def tableInsert(self, item):
-        return super().searchTreeInsert(item)
+        return self.bst.searchTreeInsert(item)
 
     #Deletes an item from the ADT
-    def tableDelete(item, key):
-        return super().searchTreeDelete(key)
+    def tableDelete(self, key):
+        return self.bst.searchTreeDelete(key)
 
     #Retrieves an item from the ADT
     def tableRetrieve(self, key):
-        return super().searchTreeRetrieve(key)
+        return self.bst.searchTreeRetrieve(key)
 
     #InorderTraverses the table
     def traverseTable(self, func):
-        super().inorderTraverse(func)
+        return self.bst.inorderTraverse(func)
 
     # Saves the table as a dict
     def save(self):
-        return super().save()
+        return self.bst.save()
 
     # Loads the dict as a table
     def load(self, input):
-        return super().load(input)
+        return self.bst.load(input)
 
     #Creates an item that can be inserted into the ADT
     def createItem(self, key, val):
