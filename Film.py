@@ -1,4 +1,5 @@
 from ADTfactory import ADTFactory
+from Datastructuren.SAM.Datatypes import Hashmap
 
 # Testen: Siebe
 # Implementeren: Arne
@@ -6,6 +7,7 @@ class MovieSystem:
     def __init__(self) -> None:
         self.datastruct = ADTFactory.getADT("Movie")
         self.count = 0
+        self.hashmap = Hashmap("sep",11)
 
     def addMovie(self, titel, rating, id=None):
         """
@@ -36,6 +38,19 @@ class MovieSystem:
         self.count = 0
         self.datastruct = self.datastruct.__init__()
 
+    def getSearchkey(self, Film):
+        index = Film.Hashfunction()
+        self.hashmap.insert(createTableItem(index,Film))
+        hashmapIndex = index % self.hashmap.size
+        LinkList = self.hashmap.map[hashmapIndex]
+        secondIndex = 0
+        while LinkList is not None:
+            LinkList = LinkList.next
+            secondIndex +=1
+        return hashmapIndex,secondIndex
+
+
+
 class Film:
     def __init__(self, id, titel, rating):
         """
@@ -55,3 +70,42 @@ class Film:
 
     def __str__(self) -> str:
         return "titel: " + self.title + " rating: " + str(self.rating)
+
+    def Hashfunction(self):
+        index = 0
+        for i in range(0, len(self.title)):
+            index += ord(self.title)
+        index = index % 11
+        return index
+
+
+
+
+
+
+
+
+
+"""
+class Hashmovies:
+    def __init__(self,key):
+        self.hashmap = Hashmap("sep",11)
+        self.hashkey = key
+
+    def GetHashKey(self, Movie):
+        if self.hashkey == "title":
+            titel = Movie.title
+            index = 0
+            for i in range(0, len(titel)):
+                index += ord(index[i])
+            index1 = index%11
+            index2 = 0
+            iter = self.hashmap[index1]
+            while iter is not None:
+                iter = iter.next
+                index2 +=1
+
+"""
+
+
+
