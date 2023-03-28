@@ -59,6 +59,9 @@ class Film:
 
     def __str__(self) -> str:
         return "titel: " + self.title + " rating: " + str(self.rating)
+    
+    def __eq__(self, other) -> bool:
+        return self.title == other.title
 
     def hash(self):
         return hashItemList([self.title])

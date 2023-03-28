@@ -12,16 +12,21 @@ class SearchKeyGenerator:
     def getSearchKey(self, object):
         hash = object.hash()
         if (hash in self.hashmap):
+            l = self.hashmap[hash]
+            for item in l:
+                if item==object:
+                    return (hash, self.hashmap[hash].index(item)), False
             self.hashmap[hash].append(object)
         else:
             self.hashmap[hash] = [object]
-        return (hash, self.hashmap[hash].index(object))
+        return (hash, self.hashmap[hash].index(object)), True
 
 if __name__ == "__main__":
     from Film import Film
-    newmovie = Film(0, "123", 0)
-    newmovie1 = Film(0, "321", 0)
     gen = SearchKeyGenerator()
-    print(gen.getSearchKey(newmovie))
-    print(gen.getSearchKey(newmovie1))
-    print(gen.hashmap)
+    key, newItem = gen.getSearchKey(Film(0, "321", 0))
+    print(f"key: {key}, newItem: {newItem}")
+    key, newItem = gen.getSearchKey(Film(0, "123", 0))
+    print(f"key: {key}, newItem: {newItem}")
+    key, newItem = gen.getSearchKey(Film(0, "123", 0))
+    print(f"key: {key}, newItem: {newItem}")
