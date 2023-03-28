@@ -5,6 +5,11 @@ def hashItemList(l):
             total += ord(c)
     return total
 
+"""
+EVERY CLASS NEEDS:
+    __EQ__ operator
+    .hash() function
+"""
 class SearchKeyGenerator:
     def __init__(self) -> None:
         self.hashmap = {}
