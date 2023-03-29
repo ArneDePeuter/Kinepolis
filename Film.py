@@ -1,5 +1,5 @@
 from ADTfactory import ADTFactory
-from searchKeyGenerator import SearchKeyGenerator, hashItemList
+from MaterializedIndex import SearchKeyGenerator, hashItemList
 from Datastructuren.SAM.Datatypes import Hashmap
 
 # Testen: Siebe
