@@ -7,6 +7,9 @@ class User:
         self.email = email
     
     def __eq__(self, other) -> bool:
+        """
+
+        """
         return self is other
     
     def getVoornaam(self):

@@ -17,7 +17,6 @@ class Kinepolis:
         """
         Ceëert een reservatiesysteem.
         Preconditie: \
-            
         Postconditie: Er is een reservatiesysteem aangemaakt.
         """
         self.userSystem = UserSystem()
@@ -39,6 +38,12 @@ class Kinepolis:
         self.events = Queue(maxQueue=False)
 
     def save(self, filename):
+        """
+        Slaagt het hele systeem op een een bestand met de gegeven bestandsnaam
+        preconditie: /
+        postconditie: /
+        :param filename: naam van het bestand waar het systeem wordt opgeslagen
+        """
         self.parser.outputSystem(filename, self.clock)
 
     def load(self, filename):
@@ -47,6 +52,11 @@ class Kinepolis:
             self.start()
 
     def checkEvents(self):
+        """
+        # TODO wat doet deze functie?
+        Preconditie:
+        Postconditie:
+        """
         while not self.events.isEmpty():
             event, succes = self.events.dequeue()
             if not succes: return
@@ -58,6 +68,11 @@ class Kinepolis:
                 return
 
     def start(self):
+        """
+        Start het systeem op
+        preconditie: het systeem moet events bevatten
+        postconditie: systeem is opgestart en de tijd van het systeem is verhoogd.
+        """
         while self.running:
             self.checkEvents()
             self.increaseTime()
@@ -99,6 +114,11 @@ class Kinepolis:
         return True
 
     def komBinnen(self, idvertoning, aantal):
+        """
+        Verhoogt het aantal mensen die in een vertoning zitten met het gegeven aantal.
+        preconditie: het aantal mag niet groter zijn dan het aantal vrije plaatsen voor de vertoning
+        postconditie: het aantal vrije plaatsen van een vertoning is verminderd met het gegeven aantal
+        """
         print(f"{aantal} people entered a room for {idvertoning}")
         vertoning = self.screeningSystem.datastruct.tableRetrieve(idvertoning)[0]
         vertoning.seatedPlaces = vertoning.seatedPlaces + aantal
