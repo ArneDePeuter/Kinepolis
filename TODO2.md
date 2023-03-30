@@ -13,3 +13,4 @@
     Bug testing (dit gaat makkelijk met de GUI nu)
     Documentatie bij elke klassen
     Nettere code 
+    Encapsulation (getters en setters...?)
