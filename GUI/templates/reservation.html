@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block title %}Reservation Management{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    <h3 align="center">Add Reservation</h3>
+        <div class="form-group">
+            <label for="userId">User Id</label>
+            <input 
+                type="number"
+                class="form-control"
+                id="userId" 
+                name="userId"
+                placeholder="user Id" 
+            />
+        </div>
+        <div class="form-group">
+            <label for="screeningId">Screening Id</label>
+            <input 
+                type="number"
+                class="form-control"
+                id="screeningId" 
+                name="screeningId"
+                placeholder="Screening Id" 
+            />
+        </div>
+        <div class="form-group">
+            <label for="seats">Amount of seats</label>
+            <input 
+                type="number"
+                class="form-control"
+                id="seats" 
+                name="seats"
+                placeholder="Amount of seats" 
+            />
+        </div>
+    <br />
+    <button type="submit" name="submit_button" value="addReservation" class="btn btn-primary">Add Reservation</button>
+    <br />
+</form>
+
+{% endblock %}

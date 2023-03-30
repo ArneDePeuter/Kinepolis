@@ -1,0 +1,76 @@
+{% extends "base.html" %} {% block title %}Event Management{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    <h3 align="center">Add Reservation event</h3>
+        <div class="form-group">
+            <label for="timestamp">Timestamp</label>
+            <input 
+                type="datetime-local"
+                class="form-control"
+                id="timestamp" 
+                name="timestamp"
+                placeholder="Timestamp" 
+            />
+        </div>
+        <div class="form-group">
+            <label for="userId">User Id</label>
+            <input 
+                type="number"
+                class="form-control"
+                id="userId" 
+                name="userId"
+                placeholder="user Id (not needed for Ticket event)" 
+            />
+        </div>
+        <div class="form-group">
+            <label for="screeningId">Screening Id</label>
+            <input 
+                type="number"
+                class="form-control"
+                id="screeningId" 
+                name="screeningId"
+                placeholder="Screening Id" 
+            />
+        </div>
+        <div class="form-group">
+            <label for="seats">Amount of seats</label>
+            <input 
+                type="number"
+                class="form-control"
+                id="seats" 
+                name="seats"
+                placeholder="Amount of seats" 
+            />
+        </div>
+    <br />
+    <button type="submit" name="submit_button" value="addReservationEvent" class="btn btn-primary">Add Reservation event</button>
+    <br />
+    <br />
+    <button type="submit" name="submit_button" value="addTicketEvent" class="btn btn-primary">Add Ticket event</button>
+    <br />
+    <br />
+    <h3 align="center">Events</h3>
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Timestamp</th>
+            <th scope="col">Event</th>
+            <th scope="col">String</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in l %} 
+            <tr>
+                <th scope="row">{{ event.timestamp }}</th>
+                <td>{{ event.type }}</td>
+                <td>{{ event.str }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+
+{% endblock %}

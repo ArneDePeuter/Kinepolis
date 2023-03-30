@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+<br />
+<input type="button" name="submit_button" onclick="getFeed('start')" value="start">
+<input type="button" name="submit_button" onclick="getFeed('stop')" value="stop">
+<input type="button" name="submit_button" onclick="getFeed('skip')" value="Skip to next event">
+<br />
+<br />
+<div id="summary"></div>
+<script>
+    var summary = document.getElementById("summary");
+    
+    function getFeed(arg) {
+        fetch("{{url_for('views.feed')}}?action="+arg)
+        .then(response => {
+                response.text().then(t => {summary.innerHTML = t})
+        });
+    }
+    setInterval(() => {getFeed('status')}, 1000);  
+</script>
+
+{% endblock %}

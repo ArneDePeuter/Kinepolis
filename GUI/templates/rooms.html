@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block title %}Room Management{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    <h3 align="center">Add Room</h3>
+        <div class="form-group">
+            <label for="seats">Amount of Seats</label>
+            <input 
+                type="number"
+                class="form-control"
+                id="seats" 
+                name="seats"
+                placeholder="Amount of Seats" 
+            />
+        </div>
+    <br />
+    <button type="submit" name="submit_button" value="addRoom" class="btn btn-primary">Add Room</button>
+    <br />
+    <br />
+    <h3 align="center">Rooms</h3>
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">room number</th>
+            <th scope="col">amount of seats</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in l %} 
+            <tr>
+                <th scope="row">{{ room.roomNumber }}</th>
+                <td>{{ room.amountOfSeats }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+
+{% endblock %}

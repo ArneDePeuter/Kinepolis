@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-                    <html>
-                        <div>
+<div>
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +13,7 @@
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             crossorigin="anonymous"
         />
-    <h1>2023-10-10 18:00:00</h1>
+    <h1>{{ time }}</h1>
     <h3 align="center">Screenings</h3>
         <br />
         <table class="table table-striped">
@@ -32,40 +30,18 @@
                 </tr>
             </thead>
             <tbody>
-                 
+                {% for screening,movieName in screenings %} 
                 <tr>
-                    <th scope="row">9</th>
-                    <td>1</td>
-                    <td>2023-10-10 14:30:00</td>
-                    <td>The Matrix </td>
-                    <td>200</td>
-                    <td>10</td>
-                    <td>10</td>
-                    <td>playing</td>
+                    <th scope="row">{{ screening.id }}</th>
+                    <td>{{ screening.roomNumber }}</td>
+                    <td>{{ screening.timestamp }}</td>
+                    <td>{{ movieName }}</td>
+                    <td>{{ screening.freePlaces }}</td>
+                    <td>{{ screening.reservedPlaces }}</td>
+                    <td>{{ screening.seatedPlaces }}</td>
+                    <td>{{ screening.status }}</td>
                 </tr>
-                 
-                <tr>
-                    <th scope="row">10</th>
-                    <td>1</td>
-                    <td>2023-10-10 17:00:00</td>
-                    <td>The Matrix </td>
-                    <td>200</td>
-                    <td>2</td>
-                    <td>0</td>
-                    <td>planned</td>
-                </tr>
-                 
-                <tr>
-                    <th scope="row">11</th>
-                    <td>1</td>
-                    <td>2023-10-10 20:00:00</td>
-                    <td>The Matrix </td>
-                    <td>200</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>planned</td>
-                </tr>
-                
+                {% endfor %}
             </tbody>
     </table>
     <br />
@@ -81,7 +57,13 @@
             </tr>
         </thead>
         <tbody>
-            
+            {% for event in events %} 
+            <tr>
+                <th scope="row">{{ event.timestamp }}</th>
+                <td>{{ event.type }}</td>
+                <td>{{ event.str }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
     <script
@@ -100,5 +82,3 @@
             crossorigin="anonymous"
         ></script>
 </div>
-                    </html>
-                
