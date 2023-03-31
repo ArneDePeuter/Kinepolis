@@ -22,8 +22,9 @@ class ScreeningSystem:
         timestamp, succes = self.system.getTimeStamp(slot)
         if not succes:
             return False
-        
-        timestamp = datetime(year=datum.year, month=datum.month, day=datum.day, hour=timestamp.hour, minute=timestamp.minute)
+
+        date_obj = datetime.strptime(datum, '%Y-%m-%d')
+        timestamp = datetime(year=date_obj.year, month=date_obj.month, day=date_obj.day, hour=timestamp.hour, minute=timestamp.minute)
 
         newScreening = Vertoning(id, zaalnummer, timestamp, filmid, vrijePlaatsen)
         self.datastruct.tableInsert(id, newScreening)

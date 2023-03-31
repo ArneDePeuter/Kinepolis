@@ -31,7 +31,7 @@ class Kinepolis:
         self.reservationSystem = ReservationSystem(self)
         self.eventSystem = EventSystem(self)
 
-        self.clock = Datetime(2023,10,5,10,59,40)
+        self.clock = Datetime(2023,3,31,10,59,40)
         self.parser = Parser(self)
         self.outputter = Outputter(self)
 
@@ -130,4 +130,4 @@ class Kinepolis:
         return self.eventSystem
     
     def getTimeStamp(self, id):
-        return self.timestamps.retrieve(id)
+        return self.timestamps.retrieve(int(id))
