@@ -125,6 +125,8 @@ def screenings():
         roomnumber = int(request.form.get('roomNumber'))
         slot = request.form.get('slot')
         date = request.form.get('date')
+        #Convert to datetime obj
+        date_obj = datetime.strptime(date, '%Y-%m-%d')
         filmId = int(request.form.get('filmId'))
         freePlaces = int(request.form.get('freePlaces'))
 
@@ -136,7 +138,7 @@ def screenings():
         elif len(movies)==0:
             flash("No movie exists with this id.", category="error")
         else:
-            kinepolis.getScreeningSystem().addScreening(roomnumber, slot, date, filmId, freePlaces)
+            kinepolis.getScreeningSystem().addScreening(roomnumber, slot, date_obj, filmId, freePlaces)
             flash("Added screening.", category="succes")
         return redirect(url_for('views.screenings'))
             
