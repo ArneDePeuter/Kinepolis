@@ -14,3 +14,4 @@
     Documentatie bij elke klassen
     Nettere code 
     Encapsulation (getters en setters...?)
+    - Als we webscrapen gebruiken voor movies word movieSystem.count niet geupdate?
