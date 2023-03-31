@@ -15,3 +15,6 @@
     Nettere code 
     Encapsulation (getters en setters...?)
     - Als we webscrapen gebruiken voor movies word movieSystem.count niet geupdate?
+    EventSystem toevoegen top.update in elke event klasse, ipv if type(...) then....
+    TALEN ALLES BEST ENGELS IPV SOEP
+    PARAMETERS ALLEMAAL ZELFDE NAAM OVERAL 
