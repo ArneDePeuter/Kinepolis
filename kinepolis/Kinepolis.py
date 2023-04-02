@@ -31,7 +31,7 @@ class Kinepolis:
         self.reservationSystem = ReservationSystem(self)
         self.eventSystem = EventSystem(self)
 
-        self.clock = Datetime(2023,3,31,10,59,40)
+        self.clock = Datetime.now()
         self.parser = Parser(self)
         self.outputter = Outputter(self)
 
