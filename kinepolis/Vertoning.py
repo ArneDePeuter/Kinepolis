@@ -78,18 +78,18 @@ class Vertoning:
         self.status = "ended"
 
     def updateStatus(self, systemClock):
-        ScreeningTimePlusMovieTime = self.timestamp + timedelta(hours=2)
-        print(ScreeningTimePlusMovieTime)
         if self.timestamp>systemClock:
             if self.reservedPlaces == self.seatedPlaces:
                 self.status = "planned and ready"
             else:
                 self.status = "planned and waiting"
         else:
-            if ScreeningTimePlusMovieTime>systemClock:
-                self.endScreening()
-            elif self.reservedPlaces == self.seatedPlaces or self.status=="planned and ready" :
-                self.startScreening()
+            if self.reservedPlaces == self.seatedPlaces or self.status=="planned and ready":
+                ScreeningTimePlusMovieTime = self.timestamp + timedelta(hours=2)
+                if systemClock>ScreeningTimePlusMovieTime:
+                    self.endScreening()
+                else:
+                    self.startScreening()
             else:
                 self.status = "waiting"
     
