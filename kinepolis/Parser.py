@@ -13,8 +13,11 @@ class Parser:
 
         id = int(parts[1])
         voornaam = parts[2]
-        achternaam = parts[3]
-        email = parts[4]
+        achternaam = ""
+        for i in range(2, len(parts)-1):
+            achternaam += parts[i]
+            achternaam += " " if i!=len(parts)-1 else ""
+        email = parts[-1]
         self.system.getUserSystem().addUser(voornaam, achternaam, email, id)
     
     def parseRoomLine(self, line):
