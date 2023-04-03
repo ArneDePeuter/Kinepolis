@@ -1,12 +1,26 @@
 from .ADTfactory import ADTFactory
 
+#ADT that handles Events from Kinepolis class
 class EventSystem:
-    def __init__(self, system) -> None:
+    def __init__(self, system) -> bool:
+        """
+        Initializes the EventSystem
+
+        param system: is the Kinepolis system the EventSystem depends on
+        preconditions: Kinepolis is initalized
+        postconditions: EventSystem is created
+        """
         self.events = ADTFactory.getADT("Events")
         self.system = system
         self.reservationCount = 0
 
     def update(self):
+        """
+        Updates the event Queue
+
+        preconditions: /
+        postconditions: Top of the eventQueue gets executed when conditions are met
+        """
         top, succes = self.events.dequeue()
         if not succes:
             return
@@ -18,9 +32,8 @@ class EventSystem:
             self.events.enqueue(top.timestamp, top)
     
     def addReservationEvent(self, userId, timestamp, screeningId, seats, id=None):
-        user, foundUser = self.system.getUserSystem().retrieve(userId)
-        screening, foundScreening = self.system.getScreeningSystem().retrieve(screeningId)
-
+        foundUser = self.system.getUserSystem().retrieve(userId)[1]
+        foundScreening = self.system.getScreeningSystem().retrieve(screeningId)[1]
         if not foundUser and not foundScreening:
             return False
 
