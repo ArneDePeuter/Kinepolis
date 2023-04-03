@@ -10,7 +10,7 @@
         - dit zorgt er dan voor dat we ipv .tableInsert(object.id, object) callen, callen we nu .tableInsert(object.searchKey, object) wat ervoor zorgt dat we makkelijk onze zoeksleutels ergens kunnen aanpassen
 
     EventSystem toevoegen top.update in elke event klasse, ipv if type(...) then.... -> Arne
-    Achternaam parsen User -> Siebe
+    - [X] Achternaam parsen User -> Siebe
 
     -> Allemaal
     TALEN ALLES BEST ENGELS IPV SOEP
