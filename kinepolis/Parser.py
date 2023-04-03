@@ -30,7 +30,7 @@ class Parser:
         for i in range(2, len(parts)-1):
             titel += parts[i]
             titel += " " if i!=len(parts)-1 else "" 
-        rating = int(float(parts[-1]))
+        rating = float(parts[-1])
         self.system.getMovieSystem().addMovie(titel, rating, id)
     
     def parseScreeningLine(self, line):

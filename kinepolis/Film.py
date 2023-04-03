@@ -31,6 +31,7 @@ class MovieSystem:
             id = self.count
         else:
             self.count = max(self.count, id)
+            id = self.count
 
         movies = self.query(titel, "title")
         if len(movies)!=0:
