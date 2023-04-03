@@ -1,5 +1,4 @@
 from .Datastructuren.ARNE.Wrappers.BSTTable import BSTTable as Table
-from .ADTfactory import ADTFactory
 class User:
     def __init__(self, voornaam, achternaam, email) -> None:
         self.voornaam = voornaam

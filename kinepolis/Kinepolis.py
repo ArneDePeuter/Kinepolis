@@ -38,14 +38,14 @@ class Kinepolis:
         self.parser = Parser(self)
         self.outputter = Outputter(self)
 
-        self.initTimeStamps()
+        self.initTimeStamps([Time(14,30), Time(17), Time(20), Time(22,30)])
 
         self.running = False
 
-    def initTimeStamps(self):
+    def initTimeStamps(self, timestamps):
         self.timestamps = ADTFactory.getADT("Timestamps")
-        for i,time in enumerate([Time(14,30), Time(17), Time(20), Time(22,30)]):
-            self.timestamps.insert(i+1, time)
+        for i,time in enumerate(timestamps):
+            self.timestamps.tableInsert(i, time)
 
     def save(self, filename):
         """
@@ -133,4 +133,4 @@ class Kinepolis:
         return self.eventSystem
     
     def getTimeStamp(self, id):
-        return self.timestamps.retrieve(int(id))
+        return self.timestamps.tableRetrieve(id)

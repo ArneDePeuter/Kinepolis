@@ -123,7 +123,7 @@ def events():
 def screenings():
     if request.method == "POST":
         roomnumber = int(request.form.get('roomNumber'))
-        slot = request.form.get('slot')
+        slot = int(request.form.get('slot'))
         date = request.form.get('date')
         #Convert to datetime obj
         date_obj = datetime.strptime(date, '%Y-%m-%d')
