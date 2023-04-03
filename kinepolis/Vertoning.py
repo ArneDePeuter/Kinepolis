@@ -1,6 +1,6 @@
 from .ADTfactory import ADTFactory
 from .MaterializedIndex import MaterializedIndex
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Testen: Cedric
 # Implementeren: Sam
@@ -81,9 +81,15 @@ class Vertoning:
         if self.timestamp>systemClock:
             if self.reservedPlaces == self.seatedPlaces:
                 self.status = "planned and ready"
+            else:
+                self.status = "planned and waiting"
         else:
-            if self.reservedPlaces == self.seatedPlaces or self.status=="planned and ready" :
-                self.startScreening()
+            if self.reservedPlaces == self.seatedPlaces or self.status=="planned and ready":
+                ScreeningTimePlusMovieTime = self.timestamp + timedelta(hours=2)
+                if systemClock>ScreeningTimePlusMovieTime:
+                    self.endScreening()
+                else:
+                    self.startScreening()
             else:
                 self.status = "waiting"
     
