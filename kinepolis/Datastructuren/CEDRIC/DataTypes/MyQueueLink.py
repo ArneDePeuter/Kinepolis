@@ -15,9 +15,9 @@ class MyQueue:
         """
         Creëert een lege stack.
 
-        Preconditions:
+        Pre-conditions:
 
-        Postconditions: Lege lijst is gecreëerd.
+        Post-conditions: Lege lijst is gecreëerd.
         """
         self.front = None
         self.back = None
@@ -26,9 +26,9 @@ class MyQueue:
         """
         Bepaalt of een queue leeg is.
 
-        Preconditions:
+        Pre-conditions:
 
-        Postconditions: Lijst blijft ongewijzigd.
+        Post-conditions: Lijst blijft ongewijzigd.
 
         :return:
         """
@@ -41,9 +41,9 @@ class MyQueue:
         """
         Plaatst de op van de queue in queueFront en laat de queue ongewijzigd.
 
-        Preconditions: De queue moet minstens één element bevatten.
+        Pre-conditions: De queue moet minstens één element bevatten.
 
-        Postconditions: Lijst blijft ongewijzigd.
+        Post-conditions: Lijst blijft ongewijzigd.
 
         :return: De functie geeft een tuple terug met respectievelijk de front value en een boolean die True terug geeft
          als de operatie gelukt is, False als de operatie niet gelukt is.
@@ -56,9 +56,9 @@ class MyQueue:
         """
         Voegt het element 'newItem' toe aan het eind van de queue.
 
-        Preconditions:
+        Pre-conditions:
 
-        Postconditions: 'newItem' is toegevoegd aan het einde van de queue.
+        Post-conditions: 'newItem' is toegevoegd aan het einde van de queue.
 
         :param newItem: Het elmement dat moet worden toegevoegd aan de queue.
         :return: De funtie geeft True terug als de operatie succesvol is gelukt.
@@ -77,9 +77,9 @@ class MyQueue:
         """
         Plaatst de kop van de queue in queueFront en verwijderd deze kop.
 
-        Preconditions: De queue moet minstens een element bevatten.
+        Pre-conditions: De queue moet minstens een element bevatten.
 
-        Postconditions: De kop van de queue is vewijderd.
+        Post-conditions: De kop van de queue is vewijderd.
 
         :return: De functie geeft een tuple terug met respectievelijk de queueFront en een boolean die True is als de
         operatie is gelukt, False als de operatie is mislukt.
@@ -103,9 +103,9 @@ class MyQueue:
         """
         De queue wordt omgezet naar een list.
 
-        Preconditions:
+        Pre-conditions:
 
-        Postconditions: De lijst blijft ongewijzigd.
+        Post-conditions: De lijst blijft ongewijzigd.
 
         :return: De functie geeft al de waarden van de queue terug in vorm van een lijst.
         """
@@ -123,9 +123,9 @@ class MyQueue:
         """
         De vorige waarden in de queue worden verwijderd in de lijst en de gegeven lijst wordt geladen in de queue.
 
-        Preconditions:
+        Pre-conditions:
 
-        Postconditions: De waarden van in de gegeven lijst zijn geladen in de queue.
+        Post-conditions: De waarden van in de gegeven lijst zijn geladen in de queue.
 
         :param list_to_queue: De lijst met gegeven elementen die moeten geladen worden in de queue.
         """

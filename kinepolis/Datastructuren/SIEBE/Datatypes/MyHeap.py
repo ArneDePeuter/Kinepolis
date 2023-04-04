@@ -11,9 +11,9 @@ class heapItem:
             Creëert een heapItemType, dit is het type van de elementen
             in de heap. Een element van dit type heeft een zoeksleutel
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             Een heapItem is aangemaakt
         -------------------------------------------------------
         """
@@ -38,7 +38,7 @@ class heapItem:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             Returns True als het heapItem een blad is, zo niet False.
         -------------------------------------------------------
         """
@@ -55,7 +55,7 @@ class heapItem:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             Het laatste heapItem wordt ge returned
         -------------------------------------------------------
         """
@@ -74,7 +74,7 @@ class heapItem:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             De 2 heap items werden van plaats verwisselt
         -------------------------------------------------------
         """
@@ -91,7 +91,7 @@ class heapItem:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             De heap bevat alle heap-eigenschappen
         -------------------------------------------------------
         """
@@ -113,7 +113,7 @@ class heapItem:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             De heap bevat alle eigenschappen van een heap
         -------------------------------------------------------
         """
@@ -137,7 +137,7 @@ class heapItem:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             De heap bevat alle eigenschappen van een heap
         -------------------------------------------------------
         """
@@ -158,7 +158,7 @@ class heapItem:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             De heap bevat alle eigenschappen van een heap
         -------------------------------------------------------
         """
@@ -182,7 +182,7 @@ class heapItem:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             Het kind werd verwijderd
         -------------------------------------------------------
         """
@@ -202,7 +202,7 @@ class Heap:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             Er is een heap aangemaakt
         -------------------------------------------------------
         """
@@ -217,7 +217,7 @@ class Heap:
         -------------------------------------------------------
         Preconditite:
             Er is een heap aangemaakt
-        Postconditions:
+        Post-conditions:
             We kunnen een min- of max heap maken
         -------------------------------------------------------
         """
@@ -234,7 +234,7 @@ class Heap:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             Returns True als de BST leeg is, zo niet False.
         -------------------------------------------------------
         """
@@ -252,7 +252,7 @@ class Heap:
         -------------------------------------------------------
         Preconditite:
             Er moet eerst een heap aangemaakt zijn
-        Postconditions:
+        Post-conditions:
             Het newItem wordt aan de heap toegevoegd, gesorteerd
             volgens het type van de heap.
         -------------------------------------------------------
@@ -278,7 +278,7 @@ class Heap:
         -------------------------------------------------------
         Preconditite:
             Er moet eerst een heap aangemaakt zijn
-        Postconditions:
+        Post-conditions:
             Het root wordt uit de heap verwijderd, afhankelijk van max of min heap
         -------------------------------------------------------
         Return : True geeft weer dat het verwijderen gelukt is anders False
@@ -324,7 +324,7 @@ class Heap:
         -------------------------------------------------------
         Preconditite:
             De heap mag niet leeg zijn
-        Postconditions:
+        Post-conditions:
             De waarden van de zoeksleutels worden weergegeven in een dict.
         -------------------------------------------------------
         """
@@ -356,7 +356,7 @@ class Heap:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             De dict. wordt ingeladen als een heap, met voor elke heapItem
             de key gelijk aan de val van de 'root' key
         -------------------------------------------------------

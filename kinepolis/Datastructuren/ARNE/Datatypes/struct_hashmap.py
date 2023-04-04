@@ -43,8 +43,8 @@ class Node:
 
         @param: value is the value the node stores
 
-        preconditions: None
-        postcondition: Creates a Node object
+        Pre-conditions: None
+        Post-condition: Creates a Node object
         """
         self.value = value
         self.next = None
@@ -54,8 +54,8 @@ class Node:
         """
         Retrieves a node with a given value
 
-        preconditions: None
-        postcondition: Returns the node and a bool if it was retrieved or not
+        Pre-conditions: None
+        Post-condition: Returns the node and a bool if it was retrieved or not
         """
         # value found
         if self.value == value:
@@ -78,8 +78,8 @@ class DoubleLinkedChain:
         """
         Initialises a linked chain object with a empty Headnode
 
-        preconditions: None
-        postconditions: double linked chain object gets created
+        Pre-conditions: None
+        Post-conditions: double linked chain object gets created
         """
         self.head = Node()  # Node with default value = None
 
@@ -87,8 +87,8 @@ class DoubleLinkedChain:
         """
         Checks if the chain is empty
 
-        preconditions: None
-        postconditions: returns a bool (True if empty/False otherwise)
+        Pre-conditions: None
+        Post-conditions: returns a bool (True if empty/False otherwise)
         """
         return self.head.value == None
 
@@ -96,8 +96,8 @@ class DoubleLinkedChain:
         """
         Returns a python list with the items of the linked chain
 
-        preconditions: None
-        postconditions: Returns None if the chain is empty
+        Pre-conditions: None
+        Post-conditions: Returns None if the chain is empty
                         Returns a list with the items if the chain is not empty
         """
         l = []
@@ -114,8 +114,8 @@ class DoubleLinkedChain:
         """
         Inserts a value to the front of the chain
 
-        preconditions: None
-        postconditions: Inserts the value to the front of the chain, always return True
+        Pre-conditions: None
+        Post-conditions: Inserts the value to the front of the chain, always return True
         """
         if self.isEmpty():
             self.head.value = value  # if the chain is empty we can insert directly
@@ -130,8 +130,8 @@ class DoubleLinkedChain:
         """
         Retrieves a node with a given value
 
-        preconditions: None
-        postcondition: Returns the node and a bool if it was retrieved or not
+        Pre-conditions: None
+        Post-condition: Returns the node and a bool if it was retrieved or not
         """
         return self.head.retrieve(value)
 
@@ -139,8 +139,8 @@ class DoubleLinkedChain:
         """
         Deletes a value from the chain
 
-        preconditions: None
-        postconditions: returns a bool (if value deleted -> True/ else False)
+        Pre-conditions: None
+        Post-conditions: returns a bool (if value deleted -> True/ else False)
         """
         # value is in head
         if value == self.head.value:
@@ -172,8 +172,8 @@ class Hashmap:
         type is een van "lin","quad","sep"
         n is de grootte van de hashmap
 
-        preconditions: None
-        postconditions: hashmap object gets created
+        Pre-conditions: None
+        Post-conditions: hashmap object gets created
         """
         self.type = type
         self.size = n
@@ -183,8 +183,8 @@ class Hashmap:
         """
         Checks if the hashmap is empty
 
-        preconditions: None
-        postconditions: returns a bool (if the hashmap is empty -> True/ else False)
+        Pre-conditions: None
+        Post-conditions: returns a bool (if the hashmap is empty -> True/ else False)
         """
         return self.hashTable == [None] * self.size
 
@@ -192,8 +192,8 @@ class Hashmap:
         """
         Creates the index for a hashmap using linear probing
 
-        preconditions: None
-        postconditions: returns an int if there is space, else return None
+        Pre-conditions: None
+        Post-conditions: returns an int if there is space, else return None
         """
         h = item % self.size
         startH = h
@@ -209,8 +209,8 @@ class Hashmap:
         """
         Creates the index for a hashmap using quadratic probing
 
-        preconditions: None
-        postconditions: returns an int if there is space, else return None
+        Pre-conditions: None
+        Post-conditions: returns an int if there is space, else return None
         """
         h = item % self.size
         startH = h
@@ -230,8 +230,8 @@ class Hashmap:
         """
         Returns the index for a hashmap using linear probing
 
-        preconditions: None
-        postconditions: returns an int if the item is found, else return None
+        Pre-conditions: None
+        Post-conditions: returns an int if the item is found, else return None
         """
         h = item % self.size
         startH = h
@@ -247,8 +247,8 @@ class Hashmap:
         """
         Returns the index for a hashmap using quadratic probing
 
-        preconditions: None
-        postconditions: returns an int if the item is found, else return None
+        Pre-conditions: None
+        Post-conditions: returns an int if the item is found, else return None
         """
         h = item % self.size
         startH = h
@@ -268,8 +268,8 @@ class Hashmap:
         """
         Inserts an item to the hashing table
 
-        preconditions: None
-        postconditions: returns a bool if the item is inserted
+        Pre-conditions: None
+        Post-conditions: returns a bool if the item is inserted
         """
         if self.type == "sep":
             h = item % self.size
@@ -294,8 +294,8 @@ class Hashmap:
         """
         Retrieves an item from the hashmap
 
-        preconditions: None
-        postconditions: returns the value and a bool (found -> True else False)
+        Pre-conditions: None
+        Post-conditions: returns the value and a bool (found -> True else False)
         """
         if self.isEmpty():
             return [None, False]
@@ -318,8 +318,8 @@ class Hashmap:
         """
         Deletes an item from the hashmap
 
-        preconditions: None
-        postconditions: returns a bool (deleted item -> True else False)
+        Pre-conditions: None
+        Post-conditions: returns a bool (deleted item -> True else False)
         """
         if self.isEmpty():
             return [None, False]
@@ -342,8 +342,8 @@ class Hashmap:
         """
         Saves the current hashtable in a dictionary
 
-        preconditions: None
-        postconditions: returns a dictionary with all the items from the hashmap
+        Pre-conditions: None
+        Post-conditions: returns a dictionary with all the items from the hashmap
         """
         if self.type == "sep":
             l = []
@@ -359,8 +359,8 @@ class Hashmap:
         """
         Loads a hashmap in from a given dictionary
 
-        preconditions: None
-        postconditions: A new hashmap is created from the given dictionary
+        Pre-conditions: None
+        Post-conditions: A new hashmap is created from the given dictionary
         """
         self.__init__(d["type"], len(d["items"]))
         self.hashTable = d["items"]

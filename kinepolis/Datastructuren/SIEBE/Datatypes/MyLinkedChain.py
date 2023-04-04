@@ -13,9 +13,9 @@ class Node:
             vorige knoop. :param next, deze staat voor de nxt pointer en wijst
             naar de volgende knoop. Al deze waarde staat by default op None!
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             Een lege node is aangemaakt
         -------------------------------------------------------
         """
@@ -31,9 +31,9 @@ class LinkedChain:
         Beschrijving:
             Creëert een lege lijst
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             Een lege lijst is gemaakt
         -------------------------------------------------------
         """
@@ -46,9 +46,9 @@ class LinkedChain:
         Beschrijving:
             Wist een lijst
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             De ketting wordt verwijderd
         -------------------------------------------------------
         """
@@ -62,9 +62,9 @@ class LinkedChain:
         Beschrijving:
             Bepaalt of een lijst leeg is
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             Er word ge-returned of de lijst al dan niet leeg is
         -------------------------------------------------------
         """
@@ -79,9 +79,9 @@ class LinkedChain:
         Beschrijving:
             Geeft het aantal elementen in de lijst
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             Het aantal elementen word ge-returned
         -------------------------------------------------------
         """
@@ -94,10 +94,10 @@ class LinkedChain:
            Voegt het element: param 'newItem' toe
            op :param 'positie' in een lijst
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             De opgegeven positie moet geldig zijn d.w.z.
             niet groter dan de size+1 of kleiner dan 1
-        Postconditie:
+        Post-condition:
             Het element newItem wordt toegevoegd aan
             de gelinkte ketting op de opgegeven positie
         -------------------------------------------------------
@@ -160,11 +160,11 @@ class LinkedChain:
         Beschrijving:
             Verwijdert het element op: param 'positie' uit een lijst
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             De opgegeven positie moet geldig zijn d.w.z.
             niet groter dan de size of een niet kleiner dan 1,
             eveneens moet de ketting ook items bevatten.
-        Postconditie:
+        Post-condition:
             Het element op de opgegeven positie wordt verwijderd
         -------------------------------------------------------
         Return : Geeft True terug indien het verwijderen is gelukt, anders False
@@ -209,11 +209,11 @@ class LinkedChain:
             Plaatst het element op :param 'positie' van een lijst
             in :param 'dataItem'
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             De opgegeven positie moet geldig zijn d.w.z.
             niet groter dan de size of een niet kleiner dan 1,
             eveneens moet de ketting ook items bevatten.
-        Postconditie:
+        Post-condition:
             Het 'dataItem' is gelijk aan het element
             op de opgevraagde positie
         -------------------------------------------------------
@@ -240,9 +240,9 @@ class LinkedChain:
         Beschrijving:
             Laat de volledige gelinkte ketting als een lijst zien
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             De gelinkte ketting wordt weergegeven als een lijst met de head
             vooraan in de lijst
         -------------------------------------------------------
@@ -261,9 +261,9 @@ class LinkedChain:
         Beschrijving:
             Maakte een leeg gelinkte ketting aan een vult deze met een lijst
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             De lijst dat moet worden ingeladen is ingeladen als een circulaire dubbel gelinkte ketting
         -------------------------------------------------------
         Return : De lijst dat als gelinkte ketting moet worden ingeladen

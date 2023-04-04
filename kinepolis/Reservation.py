@@ -17,8 +17,8 @@ class ReservationSystem:
     def reservate(self, userId, screeningId, seats):
         """
         Maakt een reservatie.
-        Preconditie: \
-        Postconditie: De reservatie is toegevoegd aan het reservatiesysteem.
+        Pre-condition: \
+        Post-condition: De reservatie is toegevoegd aan het reservatiesysteem.
         :param userid: id van de gebruiker die de reservatie maakt
         :param vertoningid: id van de vertoning
         :param seats: het aantal plaatsen dat gereserveerd word door de reservering

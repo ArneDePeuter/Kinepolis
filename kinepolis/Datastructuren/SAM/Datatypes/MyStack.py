@@ -8,8 +8,8 @@ class MyStack:
     def __init__(self, max):
         """
         Lege stack maken
-        preconditie : maximum grote groter dan 0
-        postconditie : lege stack aangemaakt
+        Pre-condition : maximum grote groter dan 0
+        Post-condition : lege stack aangemaakt
         :param max: maximum grootte van de stack
         """
         self.items = [None] * max
@@ -17,8 +17,8 @@ class MyStack:
 
     def push(self, NieuwElement):
         """
-        preconditie : Een leeg plaatstje in de stack
-        postconditie : Het nieuwe element op de eerste vrije plek in de stack plaatsen.
+        Pre-condition : Een leeg plaatstje in de stack
+        Post-condition : Het nieuwe element op de eerste vrije plek in de stack plaatsen.
         :param NieuwElement: Het toe te voegen element
         """
         if self.size == len(self.items):
@@ -40,8 +40,8 @@ class MyStack:
 
     def getTop(self):
         """
-        precondities : geen lege stack
-        postcondities : waarde op laatste plek gegeven
+        Pre-conditions : geen lege stack
+        Post-conditions : waarde op laatste plek gegeven
         :return:
         """
         if self.size == 0:
@@ -51,8 +51,8 @@ class MyStack:
 
     def pop(self):
         """
-        precondities: De stack mag niet leeg zijn.
-        postcondities: Laatste element moet verwijderd zijn.
+        Pre-conditions: De stack mag niet leeg zijn.
+        Post-conditions: Laatste element moet verwijderd zijn.
         """
         if self.size == 0:
             return False, False

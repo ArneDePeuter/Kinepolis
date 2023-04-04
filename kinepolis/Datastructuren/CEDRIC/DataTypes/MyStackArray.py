@@ -3,9 +3,9 @@ class MyStack:
         """
         Creëert een lege stack met grote max_size.
 
-        Preconditions: max_size > 0
+        Pre-conditions: max_size > 0
 
-        Postconditions: Er is een lege stack aangemaakt met groote 'max_size'
+        Post-conditions: Er is een lege stack aangemaakt met groote 'max_size'
 
         :param max_size: De grootte van de stack
         """
@@ -17,9 +17,9 @@ class MyStack:
         """
         Bepaalt of een stack leef is.
 
-        Preconditions: /
+        Pre-conditions: /
 
-        Postconditions: De stack is ongewijzigd.
+        Post-conditions: De stack is ongewijzigd.
 
         :return: De functie geeft 'True' terug als de stack leeg is, en 'False' als de stack niet leef is
         """
@@ -32,9 +32,9 @@ class MyStack:
         """
         Voegt het element 'newItem' toe op de top van een stack.
 
-        Preconditions: De stack zit niet vol.
+        Pre-conditions: De stack zit niet vol.
 
-        Postconditions: Het element 'newItem' is toegevoegd aan de stack.
+        Post-conditions: Het element 'newItem' is toegevoegd aan de stack.
 
         :param newItem: De item die op de top van de stack moet geplaatst worden.
         :return: Functie geeft True terug als 'newItem' aan de stack is toegevoegd
@@ -49,9 +49,9 @@ class MyStack:
         """
         Verwijdert de top van een stack, d.i. het laatste toegevoegde element.
 
-        Preconditions: De stack moet meer dan 1 element bevatten.
+        Pre-conditions: De stack moet meer dan 1 element bevatten.
 
-        Postconditions: De top van de stack is verwijderd.
+        Post-conditions: De top van de stack is verwijderd.
 
         :return: De functie geeft een tuple terug met respectievelijk de stackTop en een Boolean, True als de operatie
         gelukt is, false als er geen elementen kan verwijderd worden.
@@ -67,9 +67,9 @@ class MyStack:
         """
         Plaatst de top van een stack in 'stackTop' en laat de stack ongewijzigd.
 
-        Preconditions: De stack moet minstens een element bevatten.
+        Pre-conditions: De stack moet minstens een element bevatten.
 
-        Postconditions: De stack is ongewijzigd
+        Post-conditions: De stack is ongewijzigd
 
         :return: De functie geeft een tuple terug met respectievelijk de stackTop en een boolean, True als de operatie
         gelukt is, false als er geen elementen kan verwijderd worden.
@@ -83,9 +83,9 @@ class MyStack:
         """
         De functie geeft al de elementen in de stack terug in vorm van een lijst.
 
-        Preconditie:
+        Pre-condition:
 
-        Postconditie: De lijst is ongewijzigd.
+        Post-condition: De lijst is ongewijzigd.
 
         :return: De functie geeft al de elementen in de stack terug in vorm van een lijst.
         """
@@ -95,9 +95,9 @@ class MyStack:
         """
         De functie steekt een gegeven lijst in de stack.
 
-        Preconditie:
+        Pre-condition:
 
-        Postconditie: De gegeven lijst zit in de stack.
+        Post-condition: De gegeven lijst zit in de stack.
 
         :param list_to_stack: De gegeven lijst die in de stack wordt gestoken.
         :return: De functie geeft de stack terug met de gegeven lijst er in vorm van een lijst.

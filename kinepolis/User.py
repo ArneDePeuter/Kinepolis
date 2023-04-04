@@ -18,8 +18,8 @@ class UserSystem:
     def addUser(self, voornaam, achternaam, emailadres, id=None):
         """
         Voegt een gebruiker to aan het reservatiesysteem.
-        Preconditie: De gebruiker mag nog niet bestaan in het systeem, based op dezelfde email
-        Postconditie: Gebruiker is toegevoegd aan het reservatiesysteem.
+        Pre-condition: De gebruiker mag nog niet bestaan in het systeem, based op dezelfde email
+        Post-condition: User is toegevoegd aan het reservatiesysteem.
         :param id: Dit is een uniek getal dat overeenkomt met dit object.
         :param voornaam: De voornaam van de persoon.
         :param achternaam: De achternaam van de persoon.
@@ -31,7 +31,7 @@ class UserSystem:
         else:
             self.count = max(self.count, id)
 
-        newUser = Gebruiker(id, voornaam, achternaam, emailadres)
+        newUser = User(id, voornaam, achternaam, emailadres)
         self.datastruct.tableInsert(newUser.id, newUser)
         self.count += 1
         return True
@@ -39,8 +39,8 @@ class UserSystem:
     def removeAllUsers(self):
         """
         Verwijderd alle gebruikers uit het reservatiesysteem.
-        Preconditie: Er moet eerst een gebruiker bestaan voor er verwijderd kan worden
-        Postconditie: Alle gebruikers zijn verwijderd uit het reservatiesysteem.
+        Pre-condition: Er moet eerst een gebruiker bestaan voor er verwijderd kan worden
+        Post-condition: Alle gebruikers zijn verwijderd uit het reservatiesysteem.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.datastruct = self.datastruct.__init__()
@@ -48,10 +48,10 @@ class UserSystem:
 
     def query(self, searchkey, identifier):
         d = {
-            "id": MaterializedIndex(self.datastruct, Gebruiker.getId),
-            "firstname": MaterializedIndex(self.datastruct, Gebruiker.getFirstName),
-            "lastname": MaterializedIndex(self.datastruct, Gebruiker.getLastName),
-            "email": MaterializedIndex(self.datastruct, Gebruiker.getEmail),
+            "id": MaterializedIndex(self.datastruct, User.getId),
+            "firstname": MaterializedIndex(self.datastruct, User.getFirstName),
+            "lastname": MaterializedIndex(self.datastruct, User.getLastName),
+            "email": MaterializedIndex(self.datastruct, User.getEmail),
         }
         if identifier not in d:
             return None
@@ -59,14 +59,14 @@ class UserSystem:
             return d[identifier].query(searchkey)
 
 
-class Gebruiker:
+class User:
     def __init__(self, id, voornaam, achternaam, emailadres):
         """
-        Ceëert een Gebruiker.
+        Ceëert een User.
 
-        Preconditie: voornaam is een string, achternaam is een string en e-mailadres is een string.
+        Pre-condition: voornaam is een string, achternaam is een string en e-mailadres is een string.
 
-        Postconditie: Een nieuwe gebruiker is aangemaakt.
+        Post-condition: Een nieuwe gebruiker is aangemaakt.
 
         :param id: Dit is een uniek getal dat overeenkomt met dit object.
         :param voornaam: De voornaam van de persoon.

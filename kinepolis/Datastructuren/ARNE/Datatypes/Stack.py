@@ -87,8 +87,8 @@ class StackTable(MyStack):
         """
         Checks if the table is empty
 
-        preconditions: None
-        postconditions: Returns True if the table is empty
+        Pre-conditions: None
+        Post-conditions: Returns True if the table is empty
         """
         return self.isEmpty()
 
@@ -99,8 +99,8 @@ class StackTable(MyStack):
 
         TreeItem is of type twoThreeNode
 
-        preconditions: None
-        postconditions: The treeItem gets inserted to the table
+        Pre-conditions: None
+        Post-conditions: The treeItem gets inserted to the table
         """
         return self.push(item)
 
@@ -109,8 +109,8 @@ class StackTable(MyStack):
         """
         Retrieves an item from the table
 
-        preconditions: None
-        postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
+        Pre-conditions: None
+        Post-conditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
         return self.getTop()
 
@@ -121,8 +121,8 @@ class StackTable(MyStack):
 
         item is the target for deletion
 
-        preconditions: None
-        postconditions: The given item gets deleted from the table
+        Pre-conditions: None
+        Post-conditions: The given item gets deleted from the table
         """
         return self.pop()
 

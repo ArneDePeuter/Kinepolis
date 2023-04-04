@@ -16,9 +16,9 @@ class MyStack:
             Creëert een lege sack
             :param max_size staat voor de maximum groote van de stack
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             max_size > 0
-        Postconditie:
+        Post-condition:
             Een lege stack is gemaakt
         -------------------------------------------------------
         """
@@ -37,7 +37,7 @@ class MyStack:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             Returns True als de stack leeg is, zo niet False.
         -------------------------------------------------------
         """
@@ -54,9 +54,9 @@ class MyStack:
             :param newItem staat voor het element dat op de top
              van de stack moet worden toegevoegd
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             Er is nog plaats op de stack
-        Postconditie:
+        Post-condition:
             De stack is 1 item groter en de top
             bevat het toegevoegde item
         -------------------------------------------------------
@@ -78,9 +78,9 @@ class MyStack:
             Plaatst de top van een stack (volgens het LiFO principe) in
             'stackTop' en verwijderd dan deze top
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             De stack bevat items
-        Postconditie:
+        Post-condition:
             De stack is 1 item kleiner en de top is verwijderd
         -------------------------------------------------------
         Return : geeft True terug als het verwijderen gelukt is
@@ -102,9 +102,9 @@ class MyStack:
             Plaatst de top van een stack (volgens het LiFO principe) in
             'stackTop' en laat deze top ongewijzigt
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             De stack moet items bevatten
-        Postconditie:
+        Post-condition:
             De waarde van de top van de stack word weergeven en blijft ongewijzigd
         -------------------------------------------------------
         Return : de waarde van de top van de stack terug
@@ -123,9 +123,9 @@ class MyStack:
         Beschrijving:
             Laat de volledige stack als een lijst zien
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             De stack word weeergegeven als een stack met de top
             achteraan in de lijst, en de lente van de stack word geupdate
             een de None items worden verwijderd
@@ -146,9 +146,9 @@ class MyStack:
         Beschrijving:
             Maakte een leeg opbject aan een vult deze met een lijst
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             De lijst dat moet worden ingevalden is ingeladen
         -------------------------------------------------------
         Return : De lijst dat als stack moet worden ingeladen

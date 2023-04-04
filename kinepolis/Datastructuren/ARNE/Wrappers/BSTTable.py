@@ -11,8 +11,8 @@ class BSTTable:
         """
         Checks if the table is empty
 
-        preconditions: None
-        postconditions: Returns True if the table is empty
+        Pre-conditions: None
+        Post-conditions: Returns True if the table is empty
         """
         return self.bst.isEmpty()
 
@@ -23,8 +23,8 @@ class BSTTable:
 
         TreeItem is of type twoThreeNode
 
-        preconditions: None
-        postconditions: The treeItem gets inserted to the table
+        Pre-conditions: None
+        Post-conditions: The treeItem gets inserted to the table
         """
         return self.bst.searchTreeInsert(Item(key, val))
 
@@ -33,8 +33,8 @@ class BSTTable:
         """
         Retrieves an item from the table
 
-        preconditions: None
-        postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
+        Pre-conditions: None
+        Post-conditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
         return self.bst.searchTreeRetrieve(key)
 
@@ -43,8 +43,8 @@ class BSTTable:
         """
         Prints the table inorder
 
-        preconditions: None
-        postconditions: prints the table inorder
+        Pre-conditions: None
+        Post-conditions: prints the table inorder
         """
         self.bst.inorderTraverse(func)
 
@@ -55,7 +55,7 @@ class BSTTable:
 
         item is the target for deletion
 
-        preconditions: None
-        postconditions: The given item gets deleted from the table
+        Pre-conditions: None
+        Post-conditions: The given item gets deleted from the table
         """
         return self.bst.searchTreeDelete(item)

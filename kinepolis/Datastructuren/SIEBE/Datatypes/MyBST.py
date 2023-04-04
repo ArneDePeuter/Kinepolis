@@ -11,9 +11,9 @@ class createTreeItem:
         Creëert een TreeItemType, dit is het type van de elementen in de binaire zoekboom.
         Een element van dit type heeft een zoeksleutel, een value
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
         /
-        Postconditie:
+        Post-condition:
         Een lege treeItem is aangemaakt
         -------------------------------------------------------
         """
@@ -32,7 +32,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
         /
-        Postconditions:
+        Post-conditions:
         Er is een BST aangemaakt
         -------------------------------------------------------
         """
@@ -46,7 +46,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             Returns True als de BST leeg is, zo niet False.
         -------------------------------------------------------
         """
@@ -64,7 +64,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             Indien de searchKey al bestaat, wordt deze geturnd
             anders wordt er None terug gegeven dit betekent
             dat de opgegeven searchKey kan worden toegevoegd
@@ -90,7 +90,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
             Er moet eerst een BST aangemaakt zijn
-        Postconditions:
+        Post-conditions:
             Het newItem wordt aan de BST toegevoegd, gesorteerd volgens de key
         -------------------------------------------------------
         Return : True geeft weer dat het toevoegen gelukt is anders False
@@ -127,7 +127,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
             De opgegeven searchKey bestaat in de binaire zoekboom
-        Postconditions:
+        Post-conditions:
             Het item dat overeen komt met de opgegeven searchKey
             wordt van de BST verwijderd, en de BST word opnieuw gesorteerd
         -------------------------------------------------------
@@ -139,7 +139,7 @@ class BST:
             return False
         # Vind de te verwijderen knoop N, met het zoekalgoritme
         N = self.search(self.root, searchKey)
-        # Zorg dat er wordt voldaan aan de preconditie
+        # Zorg dat er wordt voldaan aan de Pre-condition
         if not N:
             # searchKey is niet gevonden
             return False
@@ -262,7 +262,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
             De opgegeven searchKey bestaat in de binaire zoekboom
-        Postconditions:
+        Post-conditions:
             Het item dat overeen komt met de opgegeven searchKey
             wordt teruggegeven
         -------------------------------------------------------
@@ -294,7 +294,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
             De BST mag niet leeg zijn
-        Postconditions:
+        Post-conditions:
             De waarden van de BST worden volgens preorder
             volgorde geprint
         -------------------------------------------------------
@@ -316,7 +316,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
             De BST mag niet leeg zijn
-        Postconditions:
+        Post-conditions:
             De waarden van de BST worden volgens inorder
             volgorde geprint
         -------------------------------------------------------
@@ -338,7 +338,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
             De BST mag niet leeg zijn
-        Postconditions:
+        Post-conditions:
             De waarden van de BST Tree worden volgens postorder
             volgorde geprint
         -------------------------------------------------------
@@ -360,7 +360,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
             De BST mag niet leeg zijn
-        Postconditions:
+        Post-conditions:
             De waarden van de zoeksleutels worden weergegeven in een dict.
         -------------------------------------------------------
         """
@@ -399,7 +399,7 @@ class BST:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             De dict. wordt ingeladen als een BST, met voor elke treeItem de key gelijk aan de val
         -------------------------------------------------------
         """

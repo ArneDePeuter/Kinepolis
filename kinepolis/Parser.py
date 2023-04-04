@@ -1,4 +1,3 @@
-from .Event import Event
 from datetime import datetime
 
 INPUTFOLDER = "./Input/"
@@ -86,8 +85,8 @@ class Parser:
         """
         Schrijft het systeem uit van een tijdstip in het verleden
 
-        Preconditie: De datum en tijd vindt, plaatst in het verleden
-        Postconditie: Het bestand is ingelezen a.d.h.v. de content worden er wijzigingen in het self.system gedaan
+        Pre-condition: De datum en tijd vindt, plaatst in het verleden
+        Post-condition: Het bestand is ingelezen a.d.h.v. de content worden er wijzigingen in het self.system gedaan
 
         :param fileName: De naam van het uit te schrijven bestand
         :param line: De lijn die werd gebruikt om deze methode aan te roepen
@@ -110,8 +109,8 @@ class Parser:
         """
         Leest een bestand met de geven naam in
 
-        Preconditie: Het bestand moet bestaan
-        Postconditie: Het bestand is ingelezen adhv de content worden er wijzigingen in het self.system gedaan
+        Pre-condition: Het bestand moet bestaan
+        Post-condition: Het bestand is ingelezen adhv de content worden er wijzigingen in het self.system gedaan
 
         :param fileName: De naam van het in te lezen bestand
         :return: True als de operatie is gelukt, False als het niet gelukt is.

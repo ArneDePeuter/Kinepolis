@@ -11,8 +11,8 @@ class TwoThreeTreeTable:
         """
         Checks if the table is empty
 
-        preconditions: None
-        postconditions: Returns True if the table is empty
+        Pre-conditions: None
+        Post-conditions: Returns True if the table is empty
         """
         return self.ttt.isEmpty()
 
@@ -24,8 +24,8 @@ class TwoThreeTreeTable:
         param key : key is the searchkey
         param val : value is the object
 
-        preconditions: None
-        postconditions: The treeItem gets inserted to the table
+        Pre-conditions: None
+        Post-conditions: The treeItem gets inserted to the table
         """
         return self.ttt.insertItem(createItem(key, val))
 
@@ -34,8 +34,8 @@ class TwoThreeTreeTable:
         """
         Retrieves an item from the table
 
-        preconditions: None
-        postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
+        Pre-conditions: None
+        Post-conditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
         result, succes = self.ttt.retrieveItem(key)
         if result is not None:
@@ -48,8 +48,8 @@ class TwoThreeTreeTable:
         """
         Prints the table inorder
 
-        preconditions: None
-        postconditions: prints the table inorder
+        Pre-conditions: None
+        Post-conditions: prints the table inorder
         """
         self.ttt.inorderTraverse(print)
 
@@ -60,7 +60,7 @@ class TwoThreeTreeTable:
 
         item is the target for deletion
 
-        preconditions: None
-        postconditions: The given item gets deleted from the table
+        Pre-conditions: None
+        Post-conditions: The given item gets deleted from the table
         """
         return self.ttt.deleteItem(item)

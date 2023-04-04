@@ -19,3 +19,7 @@
   Nettere code 
   Testen met je eigen datastructuren of je gewoon jou tables kan gebruiken binnen het systeem
   Bug testing (dit gaat makkelijk met de GUI nu)
+  
+## Notes
+- EventSystem: (__init__(self, system) -> bool) init functie geeft zogezegt bool terug maar zou volgens ide None moeten
+terug geven, geeft uiteindelijk ook geen bool terug.

@@ -164,8 +164,8 @@ class Node:
         """
         Merges the parent with its children
 
-        preconditions: The parent has 2 items or the parent has 1 value and no doublechild
-        postconditions: Merges the parent with its children
+        Pre-conditions: The parent has 2 items or the parent has 1 value and no doublechild
+        Post-conditions: Merges the parent with its children
         """
         if self.left().isEmpty():
             removedChild = self.left()
@@ -216,8 +216,8 @@ class Node:
         """
         Returns the inorderSuccessor
 
-        preconditions: None
-        postconditions: returns the inordersuccessor
+        Pre-conditions: None
+        Post-conditions: returns the inordersuccessor
         """
         if self.right() is not None:
             current = self.right()

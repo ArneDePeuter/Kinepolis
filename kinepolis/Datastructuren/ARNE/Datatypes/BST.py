@@ -36,8 +36,8 @@ class BSTNode:
         key is set to self.key, the default value is None
         value is set to self.value, the default value is None
 
-        preconditions: None
-        postconditions: A BSTNode is created
+        Pre-conditions: None
+        Post-conditions: A BSTNode is created
         """
         self.item = item
         self.left = None
@@ -49,8 +49,8 @@ class BSTNode:
         """
         Checks if the node is a leaf
 
-        preconditions: None
-        postconditions: True if the node is a leaf, False if the node is not a leaf
+        Pre-conditions: None
+        Post-conditions: True if the node is a leaf, False if the node is not a leaf
         """
         return self.right == None and self.left == None
 
@@ -59,8 +59,8 @@ class BSTNode:
         """
         Checks if the node is empty
 
-        preconditions: None
-        postconditions: True if the node is emtpy, False if the node is not empty
+        Pre-conditions: None
+        Post-conditions: True if the node is emtpy, False if the node is not empty
         """
         return self.item is None
 
@@ -72,8 +72,8 @@ class BSTNode:
         treeItem is a Binary Search Tree Node
         currentNode is the node that is being processed
 
-        preconditions: There is a root
-        postconditions: returns True if insertion worked
+        Pre-conditions: There is a root
+        Post-conditions: returns True if insertion worked
         """
         if self.item.key == item.key:
             return False
@@ -99,8 +99,8 @@ class BSTNode:
         print variable is unused but needed for Inginious
         currentNode is the node that is being processed
 
-        preconditions: There is a root
-        postconditions: Prints the Binary Search Tree inorder
+        Pre-conditions: There is a root
+        Post-conditions: Prints the Binary Search Tree inorder
         """
         if self.left is not None:
             self.left.inorderTraverse(func)
@@ -117,8 +117,8 @@ class BSTNode:
 
         currentNode is the node that is being processed
 
-        preconditions: The root is not empty
-        postconditions: returns a tuple containing the value and a bool that is True when the value is found
+        Pre-conditions: The root is not empty
+        Post-conditions: returns a tuple containing the value and a bool that is True when the value is found
         """
         if self.isEmpty():
             return None, False
@@ -140,8 +140,8 @@ class BSTNode:
 
         currentNode is the node that is being processed
 
-        preconditions: None
-        postconditions: returns a dictionary describing the root, children and its items of a Binary Search Tree
+        Pre-conditions: None
+        Post-conditions: returns a dictionary describing the root, children and its items of a Binary Search Tree
         """
         d = {}
         d["root"] = self.item
@@ -162,8 +162,8 @@ class BSTNode:
         dictIn is a dictionary in the right format
         currentNode is the node that is being processed
 
-        preconditions: None
-        postconditions: Creates a new Binary Search Tree with the right elements
+        Pre-conditions: None
+        Post-conditions: Creates a new Binary Search Tree with the right elements
         """
         self.item = Item(dictIn["root"], "")
         if "children" in dictIn.keys():
@@ -190,8 +190,8 @@ class BST:
         """
         Initialisation of Binary Search Tree
 
-        Preconditions: None
-        Postconditions: An empty BST is created
+        Pre-conditions: None
+        Post-conditions: An empty BST is created
         """
         self.root = BSTNode()
 
@@ -200,8 +200,8 @@ class BST:
         """
         Checks if the Binary Search Tree is empty
 
-        preconditions: None
-        postconditions: True if the tree is emtpy, False if the tree is not empty
+        Pre-conditions: None
+        Post-conditions: True if the tree is emtpy, False if the tree is not empty
         """
         return self.root.isEmpty()
 
@@ -212,8 +212,8 @@ class BST:
 
         treeItem is a Binary Search Tree Node
 
-        preconditions: None
-        postconditions: returns True if insertion worked
+        Pre-conditions: None
+        Post-conditions: returns True if insertion worked
         """
         if self.isEmpty():
             self.root.item = item
@@ -227,8 +227,8 @@ class BST:
 
         print variable is unused but needed for Inginious
 
-        preconditions: None
-        postconditions: Prints the Binary Search Tree inorder
+        Pre-conditions: None
+        Post-conditions: Prints the Binary Search Tree inorder
         """
         if self.root != None:
             self.root.inorderTraverse(func)
@@ -238,8 +238,8 @@ class BST:
         """
         Searches a value in a Binary Search Tree
 
-        preconditions: None
-        postconditions: returns a tuple containing the value and a bool that is True when the value is found
+        Pre-conditions: None
+        Post-conditions: returns a tuple containing the value and a bool that is True when the value is found
         """
         if self.root != None:
             return self.root.searchTreeRetrieve(item)
@@ -251,8 +251,8 @@ class BST:
         """
         Saves the contents of a Binary Search Tree
 
-        preconditions: None
-        postconditions: returns a dictionary describing the root, children and its items of a Binary Search Tree
+        Pre-conditions: None
+        Post-conditions: returns a dictionary describing the root, children and its items of a Binary Search Tree
         """
         if self.root != None:
             return self.root.save()
@@ -265,8 +265,8 @@ class BST:
 
         dictIn is a dictionary in the right format
 
-        preconditions: None
-        postconditions: Creates a new Binary Search Tree with the right elements
+        Pre-conditions: None
+        Post-conditions: Creates a new Binary Search Tree with the right elements
         """
         self.root = BSTNode()
         self.root.load(dictIn)
@@ -278,8 +278,8 @@ class BST:
 
         value is the value of the node that needs to be deleted
 
-        preconditions: None
-        postconditions: returns True if the value is deleted from the tree
+        Pre-conditions: None
+        Post-conditions: returns True if the value is deleted from the tree
         """
         node, succes = self.searchTreeRetrieve(item)
         if succes:
@@ -297,8 +297,8 @@ class BST:
 
         node is the node that needs to get deleted
 
-        preconditions: the value has to be in the binary search tree
-        postconditions: deletes a node from the binary search tree
+        Pre-conditions: the value has to be in the binary search tree
+        Post-conditions: deletes a node from the binary search tree
         """
 
         # returns the node with the smallest value
@@ -308,8 +308,8 @@ class BST:
 
             n is a node item
 
-            preconditions: None
-            postconditions: returns the node with the smallest value
+            Pre-conditions: None
+            Post-conditions: returns the node with the smallest value
             """
             min = n
             while min.left != None:
@@ -323,8 +323,8 @@ class BST:
 
             node is the node that is being processed
 
-            preconditions: None
-            postconditions: returns the amount of children the given node has
+            Pre-conditions: None
+            Post-conditions: returns the amount of children the given node has
             """
             amount = 0
             if node.left != None:
@@ -368,8 +368,8 @@ class BSTTable(BST):
         """
         Checks if the table is empty
 
-        preconditions: None
-        postconditions: Returns True if the table is empty
+        Pre-conditions: None
+        Post-conditions: Returns True if the table is empty
         """
         return self.isEmpty()
 
@@ -380,8 +380,8 @@ class BSTTable(BST):
 
         TreeItem is of type twoThreeNode
 
-        preconditions: None
-        postconditions: The treeItem gets inserted to the table
+        Pre-conditions: None
+        Post-conditions: The treeItem gets inserted to the table
         """
         return self.searchTreeInsert(item)
 
@@ -390,8 +390,8 @@ class BSTTable(BST):
         """
         Retrieves an item from the table
 
-        preconditions: None
-        postconditions: Returns a tuple (retrievedItem = item/None, done = True/False)
+        Pre-conditions: None
+        Post-conditions: Returns a tuple (retrievedItem = item/None, done = True/False)
         """
         return self.searchTreeRetrieve(item)
 
@@ -400,8 +400,8 @@ class BSTTable(BST):
         """
         Prints the table inorder
 
-        preconditions: None
-        postconditions: prints the table inorder
+        Pre-conditions: None
+        Post-conditions: prints the table inorder
         """
         self.inorderTraverse(print)
 
@@ -412,8 +412,8 @@ class BSTTable(BST):
 
         item is the target for deletion
 
-        preconditions: None
-        postconditions: The given item gets deleted from the table
+        Pre-conditions: None
+        Post-conditions: The given item gets deleted from the table
         """
         return self.searchTreeDelete(item)
 

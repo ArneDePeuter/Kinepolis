@@ -16,9 +16,9 @@ class MyQueue:
             Creëert een lege queue
             :param max_size staat voor de maximum groote van de queue
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             max_size > 0
-        Postconditie:
+        Post-condition:
             Een lege queue is gemaakt
         -------------------------------------------------------
         """
@@ -38,7 +38,7 @@ class MyQueue:
         -------------------------------------------------------
         Preconditite:
             /
-        Postconditions:
+        Post-conditions:
             Returns True als de queue leeg is, zo niet False.
         -------------------------------------------------------
         """
@@ -55,9 +55,9 @@ class MyQueue:
             :param newItem staat voor het element dat aan het eind (de staart)
             moet worden toegevoegd
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             Er is nog plaats op de queue
-        Postconditie:
+        Post-condition:
             De queue is 1 item groter en het einde
             bevat het toegevoegde item
         -------------------------------------------------------
@@ -80,9 +80,9 @@ class MyQueue:
             Plaatst de kop van de queue (volgens het FiFO principe) in
             'queueFront' en verwijderd dan deze kop
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             De queue bevat items
-        Postconditie:
+        Post-condition:
             De queue is 1 item kleiner en de kop
             is verwijderd
         -------------------------------------------------------
@@ -107,9 +107,9 @@ class MyQueue:
             Plaatst de kop van een queue (volgens het FiFO principe) in
             'queueFront' en laat deze kop ongewijzigt
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             de stack moet items bevatten
-        Postconditie:
+        Post-condition:
             De waarde van de kop van de queue word weergeven en blijft ongewijzigd
         -------------------------------------------------------
         Return : de waarde van de kop van de queue terug
@@ -128,9 +128,9 @@ class MyQueue:
         Beschrijving:
             Laat de volendige queue als een lijst zien
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             De queue word weeergegeven als een queue met back
             eerste en front als laatste element in de lijst
         -------------------------------------------------------
@@ -155,9 +155,9 @@ class MyQueue:
         Beschrijving:
             Maakte een leeg opbject aan een vult deze met een lijst
         -------------------------------------------------------
-        Preconditie:
+        Pre-condition:
             /
-        Postconditie:
+        Post-condition:
             De lijst dat moet worden ingevalden is ingeladen
         -------------------------------------------------------
         Return : De lijst dat als queue moet worden ingeladen

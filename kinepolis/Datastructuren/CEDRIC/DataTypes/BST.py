@@ -2,9 +2,9 @@ def createTreeItem(key, val):
     """
     Functie creëert een item voor een binaire boom terug
 
-    Preconditions: \
+    Pre-conditions: \
 
-    Postconditions: Item van het type TreeItem is aangemaakt.
+    Post-conditions: Item van het type TreeItem is aangemaakt.
 
     :param key: De waarde van de key
     :param val: De waarde van de value
@@ -18,9 +18,9 @@ class TreeItem:
         """
         De container die wordt gebruikt in de klasse BST
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: Een item van type TreeItem is aangemaakt
+        Post-conditions: Een item van type TreeItem is aangemaakt
 
         :param key: De key van een item in een BST
         :param value: De value die aan een key gekoppeld is van een item in een BST
@@ -32,9 +32,9 @@ class TreeItem:
         """
         Functie die manier op hoe dat een TreeItem moet worden moet naar een string definieert.
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: \
+        Post-conditions: \
 
         :return: De correct geformatteerde string wordt terug gegeven
         """
@@ -47,9 +47,9 @@ class BST:
         Creëert een Binary Search Tree (BST). item, leftBST en rightBST worden op None gezet, omdat geen waarden worden mee
         gegeven.
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: Er is een binary search tree aangemaakt.
+        Post-conditions: Er is een binary search tree aangemaakt.
 
         """
         self.item = None
@@ -60,9 +60,9 @@ class BST:
         """
         Functie die kijkt of de BST leeg is of niet.
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: \
+        Post-conditions: \
 
         :return: De functie geeft een boolean terug, die true is als de BST leeg is, False als de BST item(s) bevat.
         """
@@ -75,9 +75,9 @@ class BST:
         """
         Functie die een item toe voegt aan de BST op de correcte plaats.
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: Het meegeven item is toegevoegd aan de BST.
+        Post-conditions: Het meegeven item is toegevoegd aan de BST.
 
 
         :param item: Het item dat moet worden toegevoegd.
@@ -111,9 +111,9 @@ class BST:
         """
         Functie die de value zoekt die bij een gegeven key hoort, als de key in de boom zit.
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: \
+        Post-conditions: \
         :param searchKey: De waarde van de key die moet worden gezocht.
         :return: De functie geeft een tuple terug, in het geval dat de key gevonden is, geeft de functie (value, True)
         terug, in het geval dat de key niet gevonden is (None, False).
@@ -141,9 +141,9 @@ class BST:
         """
         Functie die een BST in inorder terug geeft.
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: \
+        Post-conditions: \
 
         :param FunctionType: Meegegeven functie, die inorderTraverse gebruikt.
         :return: \
@@ -161,9 +161,9 @@ class BST:
         """
         Functie die een BST om zet naar een string.
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: \
+        Post-conditions: \
 
         :return: De functie geeft een string terug.
         """
@@ -196,9 +196,9 @@ class BST:
         """
         Functie verwijderd een item uit de BST met als key gelijk aan de searchKey.
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: Als het item met als key gelijk aan searchKey in de BST zit wordt deze verwijderd uit de BST.
+        Post-conditions: Als het item met als key gelijk aan searchKey in de BST zit wordt deze verwijderd uit de BST.
         De BST zal voldoen aan de voorwaarden van een BST.
 
         :param searchKey: De waarde van de key voor het item dat moet worden verwijderd.
@@ -253,9 +253,9 @@ class BST:
         """
         Functie die de kleinste key waarde zoekt in een BST.
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: \
+        Post-conditions: \
 
         :return: De functie geeft het item met de kleinste key terug.
         """
@@ -268,9 +268,9 @@ class BST:
         """
         Functie laadt een BST met items die in items zitten.
 
-        Preconditions: \
+        Pre-conditions: \
 
-        Postconditions: De items die in items zitten worden ingeladen in de BST.
+        Post-conditions: De items die in items zitten worden ingeladen in de BST.
 
         :param data: Dictionary met de items er in die moeten worden ingeladen.
         :return: \

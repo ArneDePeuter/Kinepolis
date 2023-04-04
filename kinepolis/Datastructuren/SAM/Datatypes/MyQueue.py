@@ -3,8 +3,8 @@ class MyQueue:
     def __init__(self, max):
         """
         Lege queue maken
-        preconditie : maximum grote groter dan 0
-        postconditie : lege queue aangemaakt
+        Pre-condition : maximum grote groter dan 0
+        Post-condition : lege queue aangemaakt
         :param max: maximum grootte van de queue
         """
         self.items = [None] * max

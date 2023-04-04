@@ -1,5 +1,5 @@
-# Testen: Allemaal
-# Implementeren: Allemaal
+# Tests: All
+# Implementation: All
 
 from datetime import time as Time, datetime as Datetime, timedelta
 from .Parser import Parser
@@ -7,7 +7,7 @@ from .Outputter import Outputter
 from .ADTfactory import ADTFactory
 
 from .Movie import MovieSystem
-from .Gebruiker import UserSystem
+from .User import UserSystem
 from .Screening import ScreeningSystem
 from .Room import RoomSystem
 from .Reservation import ReservationSystem
@@ -19,10 +19,10 @@ import time
 class Kinepolis:
     def __init__(self):
         """
-        Ceëert een reservatiesysteem.
-        Preconditie: \
+        Creates a reservation system.
+        Pre-condition: \
             
-        Postconditie: Er is een reservatiesysteem aangemaakt.
+        Post-condition: A reservation system is created.
         """
         self.userSystem = UserSystem()
         self.movieSystem = MovieSystem()
@@ -39,6 +39,7 @@ class Kinepolis:
         self.parser = Parser(self)
         self.outputter = Outputter(self)
 
+        self.timestamps = None
         self.initTimeStamps([Time(14, 30), Time(17), Time(20), Time(22, 30)])
 
         self.running = False
@@ -50,10 +51,10 @@ class Kinepolis:
 
     def save(self, filename):
         """
-        Slaagt het hele systeem op een een bestand met de gegeven bestandsnaam
-        preconditie: /
-        postconditie: /
-        :param filename: naam van het bestand waar het systeem wordt opgeslagen
+        Saves the whole system in a file with the given name.
+        Pre-condition: /
+        Post-condition: /
+        :param filename: name of the file where the system will be saved to.
         """
         self.outputter.generate(filename)
 
@@ -62,54 +63,64 @@ class Kinepolis:
 
     def start(self):
         """
-        Start het systeem op
-        preconditie: het systeem moet events bevatten
-        postconditie: systeem is opgestart en de tijd van het systeem is verhoogd.
+        Starts the system
+        Pre-condition: The system has to have events.
+        Post-condition: System has started and will keep updating until it is shut down.
         """
         self.running = True
         while self.running:
             self.update()
 
     def update(self):
+        """
+        Updates the system
+        Pre-condition: system.running is set to true
+        Post-condition: system events are updated and the time of the system is increased.
+        """
         if self.running:
             self.eventSystem.update()
             self.increaseTime()
 
     def skipToNextEvent(self):
+        """
+        Skips system to conditions of for the next system event.
+        Pre-condition: System has to have events.
+        Post-condition: System conditions are set to the conditions for the next event.
+        """
         next, succes = self.eventSystem.events.dequeue()
         if not succes:
             return
         self.clock = next.timestamp
         self.eventSystem.events.enqueue(next.timestamp, next)
 
-    def setTime(self, jaar=None, maand=None, dag=None, uur=None, min=None, sec=None):
+    def setTime(self, year=None, month=None, day=None, hour=None, min=None, sec=None):
         """
-        Zet de tijd van het reservatiesysteem.
-        Preconditie: \
-        Postconditie: De tijd van het reservatiesysteem is gelijk aan de gegeven tijd.
-        :param jaar: Het jaar dat het systeem moet aannemen (optioneele parameter)
-        :param maand: Het maand dat het systeem moet aannemen (optioneele parameter)
-        :param dag: De dag dat het systeem moet aannemen (optioneele parameter)
-        :param uur: Het uur dat het systeem moet aannemen (optioneele parameter)
-        :param min: De minuten dat het systeem moet aannemen (optioneele parameter)
-        :param sec: De seconden dat het systeem moet aannemen (optioneele parameter)
+        Sets the time and date of the system.
+        Pre-condition: \
+        Post-condition: The time of the system is equal to the given time and date
+        :param year: Het jaar dat het systeem moet aannemen (optionele parameter)
+        :param month: Het maand dat het systeem moet aannemen (optionele parameter)
+        :param day: De dag dat het systeem moet aannemen (optionele parameter)
+        :param hour: Het uur dat het systeem moet aannemen (optionele parameter)
+        :param min: De minuten dat het systeem moet aannemen (optionele parameter)
+        :param sec: De seconden dat het systeem moet aannemen (optionele parameter)
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
-        jaar = jaar if jaar is not None else self.clock.year
-        maand = maand if maand is not None else self.clock.month
-        dag = dag if dag is not None else self.clock.day
-        uur = uur if uur is not None else self.clock.hour
+        year = year if year is not None else self.clock.year
+        month = month if month is not None else self.clock.month
+        day = day if day is not None else self.clock.day
+        hour = hour if hour is not None else self.clock.hour
         min = min if min is not None else self.clock.minute
         sec = sec if sec is not None else self.clock.second
-        self.clock = Datetime(jaar, maand, dag, uur, min, sec)
+        self.clock = Datetime(year, month, day, hour, min, sec)
         return True
 
     def increaseTime(self, n=1):
         """
         Verhoogt de tijd n-seconden.
-        Preconditie: \
-        Postconditie: De tijd van het systeem is verhoogd met n-seconden.
-        :param n: Aantal seconden het syteem moet toenemen. Geen parameter doorgeven → 1 seconden erbij
+        Pre-condition: \
+        Post-condition: De tijd van het systeem is verhoogd met n-seconden.
+        :param n: Aantal seconden het systeem moet toenemen. Geen parameter doorgeven → 1 seconden erbij
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.clock += timedelta(seconds=n)

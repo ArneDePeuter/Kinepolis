@@ -16,8 +16,8 @@ class ADTFactory:
             -"Events" \n
             -"Timestamps" \n
 
-        precondition: /
-        postcondition: returns the proper datastructure
+        Pre-condition: /
+        Post-condition: returns the proper datastructure
         """
         ADTDict = {
             "User": Table,

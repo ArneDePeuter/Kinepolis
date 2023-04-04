@@ -32,7 +32,7 @@ class ScreeningSystem:
             minute=timestamp.minute,
         )
 
-        newScreening = Vertoning(id, zaalnummer, timestamp, filmid, vrijePlaatsen)
+        newScreening = Screening(id, zaalnummer, timestamp, filmid, vrijePlaatsen)
         self.datastruct.tableInsert(id, newScreening)
         self.count += 1
         return True
@@ -42,19 +42,19 @@ class ScreeningSystem:
 
     def query(self, searchkey, identifier):
         d = {
-            "id": MaterializedIndex(self.datastruct, Vertoning.getId),
-            "roomNumber": MaterializedIndex(self.datastruct, Vertoning.getRoomNumber),
-            "slot": MaterializedIndex(self.datastruct, Vertoning.getSlot),
-            "date": MaterializedIndex(self.datastruct, Vertoning.getDate),
-            "filmid": MaterializedIndex(self.datastruct, Vertoning.getFilmId),
-            "freePlaces": MaterializedIndex(self.datastruct, Vertoning.getFreePlaces),
+            "id": MaterializedIndex(self.datastruct, Screening.getId),
+            "roomNumber": MaterializedIndex(self.datastruct, Screening.getRoomNumber),
+            "slot": MaterializedIndex(self.datastruct, Screening.getSlot),
+            "date": MaterializedIndex(self.datastruct, Screening.getDate),
+            "filmid": MaterializedIndex(self.datastruct, Screening.getFilmId),
+            "freePlaces": MaterializedIndex(self.datastruct, Screening.getFreePlaces),
             "reservedPlaces": MaterializedIndex(
-                self.datastruct, Vertoning.getReservedPlaces
+                self.datastruct, Screening.getReservedPlaces
             ),
             "seatedPlaces": MaterializedIndex(
-                self.datastruct, Vertoning.getSeatedPlaces
+                self.datastruct, Screening.getSeatedPlaces
             ),
-            "status": MaterializedIndex(self.datastruct, Vertoning.getStatus),
+            "status": MaterializedIndex(self.datastruct, Screening.getStatus),
         }
         if identifier not in d:
             return None
@@ -62,7 +62,7 @@ class ScreeningSystem:
             return d[identifier].query(searchkey)
 
 
-class Vertoning:
+class Screening:
     def __init__(self, id, zaalnummer, timestamp, filmid, vrijePlaatsen):
         self.id = id
         self.roomNumber = zaalnummer

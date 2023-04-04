@@ -21,8 +21,8 @@ class MovieSystem:
     def addMovie(self, titel, rating, id=None):
         """
         Voegt een film toe aan het reservatiesysteem.
-        Preconditie: De film moet nog niet bestaan in het systeem, based op dezelfde titel
-        Postconditie: De film is toegevoegd aan het reservatiesysteem.
+        Pre-condition: De film moet nog niet bestaan in het systeem, based op dezelfde titel
+        Post-condition: De film is toegevoegd aan het reservatiesysteem.
         :param id: Dit is een uniek getal dat overeenkomt met dit object.
         :param titel: De titel van de film.
         :param rating: De score van een film volgens recensies.
@@ -38,7 +38,7 @@ class MovieSystem:
         if len(movies) != 0:
             return False
 
-        newMovie = Film(id, titel, rating)
+        newMovie = Movie(id, titel, rating)
         self.datastruct.tableInsert(newMovie.id, newMovie)
         self.count += 1
         return True
@@ -46,8 +46,8 @@ class MovieSystem:
     def removeAllMovies(self):
         """
         Verwijderd alle films uit het reservatiesysteem.
-        Preconditie: Er moet eerst een film bestaan voor er verwijderd kan worden
-        Postconditie: Alle films zijn verwijderd uit het reservatiesysteem.
+        Pre-condition: Er moet eerst een film bestaan voor er verwijderd kan worden
+        Post-condition: Alle films zijn verwijderd uit het reservatiesysteem.
         :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.count = 0
@@ -60,9 +60,9 @@ class MovieSystem:
 
     def query(self, searchkey, identifier):
         d = {
-            "id": MaterializedIndex(self.datastruct, Film.getId),
-            "title": MaterializedIndex(self.datastruct, Film.getTitle),
-            "rating": MaterializedIndex(self.datastruct, Film.getRating),
+            "id": MaterializedIndex(self.datastruct, Movie.getId),
+            "title": MaterializedIndex(self.datastruct, Movie.getTitle),
+            "rating": MaterializedIndex(self.datastruct, Movie.getRating),
         }
         if identifier not in d:
             return None
@@ -70,14 +70,14 @@ class MovieSystem:
             return d[identifier].query(searchkey)
 
 
-class Film:
+class Movie:
     def __init__(self, id, titel, rating):
         """
         Creëert een nieuwe film
 
-        Preconditie: Rating moet tussen 0 en 10 zijn, moet een natuurlijk getal zijn en de titel een string
+        Pre-condition: Rating moet tussen 0 en 10 zijn, moet een natuurlijk getal zijn en de titel een string
 
-        Postconditie: Een nieuwe film is aangemaakt.
+        Post-condition: Een nieuwe film is aangemaakt.
 
         :param id: Dit is een uniek getal dat overeenkomt met dit object.
         :param titel: De titel van de film.

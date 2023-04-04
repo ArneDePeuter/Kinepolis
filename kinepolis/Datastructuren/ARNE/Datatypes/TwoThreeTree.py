@@ -41,8 +41,8 @@ class Node:
         """
         Initialise the Node
 
-        preconditions: None
-        postconditions: Node gets created
+        Pre-conditions: None
+        Post-conditions: Node gets created
         """
         self.items = []
         if item is not None:
@@ -155,8 +155,8 @@ class Node:
         """
         adds an item to the corresponding leafnode of that value
 
-        preconditions: None
-        postconditions: adds a value to the corresponding leafnode of that value if its not already in the leaf
+        Pre-conditions: None
+        Post-conditions: adds a value to the corresponding leafnode of that value if its not already in the leaf
         """
         if self.isLeaf():
             self.addItem(item)
@@ -178,8 +178,8 @@ class Node:
         """
         Splits a node after insertion
 
-        preconditions: The given node has 3 items
-        postconditions: The given node gets split
+        Pre-conditions: The given node has 3 items
+        Post-conditions: The given node gets split
         """
         if self.isRoot():
             p = Node()
@@ -217,8 +217,8 @@ class Node:
         """
         Inserts an item to the right 2-3 Node
 
-        preconditions: None
-        postconditions: Item gets inserted into the 2-3 Node if its not already in the tree
+        Pre-conditions: None
+        Post-conditions: Item gets inserted into the 2-3 Node if its not already in the tree
         """
         leafNode = self.insertToLeafNode(item)
 
@@ -230,8 +230,8 @@ class Node:
         """
         Returns the inorderSuccessor
 
-        preconditions: None
-        postconditions: returns the inordersuccessor
+        Pre-conditions: None
+        Post-conditions: returns the inordersuccessor
         """
         if self.right() is not None:
             current = self.right()
@@ -252,8 +252,8 @@ class Node:
         """
         Deletes an item from the corresponding 2-3 Node
 
-        preconditions: None
-        postconditions: The requested value gets removed
+        Pre-conditions: None
+        Post-conditions: The requested value gets removed
                         returns bool (val deleted -> True else False)
         """
         node, succes = self.retrieveItem(item)
@@ -283,8 +283,8 @@ class Node:
         """
         Merges the parent with its children
 
-        preconditions: The parent has 2 items or the parent has 1 value and no doublechild
-        postconditions: Merges the parent with its children
+        Pre-conditions: The parent has 2 items or the parent has 1 value and no doublechild
+        Post-conditions: Merges the parent with its children
         """
         if self.left().isEmpty():
             removedChild = self.left()
@@ -369,8 +369,8 @@ class TwoThreeTree:
         """
         Initialises a twothreetree with a root containing no items
 
-        preconditions: None
-        postconditions: Tree gets created
+        Pre-conditions: None
+        Post-conditions: Tree gets created
         """
         self.root = Node()
 
@@ -386,8 +386,8 @@ class TwoThreeTree:
         """
         Retrieves an item from the tree
 
-        preconditions: None
-        postconditions: returns the value and True if found else return None and False
+        Pre-conditions: None
+        Post-conditions: returns the value and True if found else return None and False
         """
         return self.root.retrieveItem(item)
 
@@ -395,8 +395,8 @@ class TwoThreeTree:
         """
         Inserts an item to the tree
 
-        preconditions: None
-        postconditions: Item gets inserted in the tree
+        Pre-conditions: None
+        Post-conditions: Item gets inserted in the tree
                         Returns True if insertions is done
         """
         succes = self.root.insertItem(item)
@@ -409,8 +409,8 @@ class TwoThreeTree:
         """
         Deletes an item from the tree
 
-        preconditions: None
-        postconditions: Item gets deleted from the tree
+        Pre-conditions: None
+        Post-conditions: Item gets deleted from the tree
                         Returns True if deletion is done
         """
         succes = self.root.deleteItem(item)
