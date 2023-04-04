@@ -1,19 +1,20 @@
 from .ADTfactory import ADTFactory
 from .MaterializedIndex import MaterializedIndex
 
+
 # Testen: Sam
 # Implementeren: Siebe
 class UserSystem:
     def __init__(self) -> None:
         self.datastruct = ADTFactory.getADT("User")
         self.count = 0
-    
+
     def retrieve(self, searchkey):
         return self.datastruct.tableRetrieve(searchkey)
-    
+
     def traverse(self, func):
         self.datastruct.traverseTable(func)
-     
+
     def addUser(self, voornaam, achternaam, emailadres, id=None):
         """
         Voegt een gebruiker to aan het reservatiesysteem.
@@ -28,7 +29,7 @@ class UserSystem:
         if id is None:
             id = self.count
         else:
-            self.count = max(self.count,id)
+            self.count = max(self.count, id)
 
         newUser = Gebruiker(id, voornaam, achternaam, emailadres)
         self.datastruct.tableInsert(newUser.id, newUser)
@@ -47,15 +48,16 @@ class UserSystem:
 
     def query(self, searchkey, identifier):
         d = {
-            "id" : MaterializedIndex(self.datastruct, Gebruiker.getId),
-            "firstname" : MaterializedIndex(self.datastruct, Gebruiker.getFirstName),
-            "lastname" : MaterializedIndex(self.datastruct, Gebruiker.getLastName),
-            "email" : MaterializedIndex(self.datastruct, Gebruiker.getEmail)
+            "id": MaterializedIndex(self.datastruct, Gebruiker.getId),
+            "firstname": MaterializedIndex(self.datastruct, Gebruiker.getFirstName),
+            "lastname": MaterializedIndex(self.datastruct, Gebruiker.getLastName),
+            "email": MaterializedIndex(self.datastruct, Gebruiker.getEmail),
         }
         if identifier not in d:
             return None
         else:
             return d[identifier].query(searchkey)
+
 
 class Gebruiker:
     def __init__(self, id, voornaam, achternaam, emailadres):
@@ -75,15 +77,15 @@ class Gebruiker:
         self.firstname = voornaam
         self.lastname = achternaam
         self.emailadres = emailadres
-    
+
     def getId(self):
         return self.id
-    
+
     def getFirstName(self):
         return self.firstname
-    
+
     def getLastName(self):
         return self.lastname
-    
+
     def getEmail(self):
         return self.emailadres

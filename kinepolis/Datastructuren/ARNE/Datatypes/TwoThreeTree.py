@@ -1,17 +1,18 @@
-def createItem(key,val):
+def createItem(key, val):
     return Item(key, val)
+
 
 class Item:
     def __init__(self, key, val) -> None:
         self.key = key
         self.val = val
-    
+
     def __lt__(self, other):
         if type(other) == type(self):
             return self.key < other.key
         else:
             return self.key < other
-        
+
     def __gt__(self, other):
         if type(other) == type(self):
             return self.key > other.key
@@ -23,17 +24,19 @@ class Item:
             return self.key == other.key
         else:
             return self.key == other
-    
+
     def __repr__(self):
         return repr(self.val)
-    
+
     def __getattr__(self, name):
         return getattr(self.val, name)
+
 
 class Node:
     """
     A twoThreeTree Node
     """
+
     def __init__(self, item=None) -> None:
         """
         Initialise the Node
@@ -43,70 +46,70 @@ class Node:
         """
         self.items = []
         if item is not None:
-            self.items = [item]  #create value list items
+            self.items = [item]  # create value list items
         self.children = []
         self.parent = None
-    
-    #LT operator to sort nodes
+
+    # LT operator to sort nodes
     def __lt__(self, other):
-        return self.items[-1]<other.items[0]
-    
-    #str operator to print items of node
+        return self.items[-1] < other.items[0]
+
+    # str operator to print items of node
     def __str__(self):
         s = ""
         for i, item in enumerate(self.items):
-            if (i==len(self.items)-1):
-                s+=str(item)
+            if i == len(self.items) - 1:
+                s += str(item)
             else:
-                s+= str(item) + "\n"
+                s += str(item) + "\n"
         return s
-    
-    #returns true if the node is a root
+
+    # returns true if the node is a root
     def isRoot(self):
         return self.parent == None
-    
-    #returns true if the node is a leaf
+
+    # returns true if the node is a leaf
     def isLeaf(self):
         return len(self.children) == 0
-    
-    #returns true if the node is empty
+
+    # returns true if the node is empty
     def isEmpty(self):
         return len(self.items) == 0
-    
-    #returns true if the node has 2 items
+
+    # returns true if the node has 2 items
     def has2Items(self):
         return len(self.items) == 2
 
-    #returns true if the node has 3 items
+    # returns true if the node has 3 items
     def has3Items(self):
         return len(self.items) == 3
 
     def left(self):
         return self.children[0]
-    
+
     def middle(self):
         return self.children[1]
-    
+
     def right(self):
         return self.children[-1]
-    
-    #returns true if the node contains the searchkey
+
+    # returns true if the node contains the searchkey
     def containsItem(self, item):
         for myItem in self.items:
-            if item == myItem: #val found
+            if item == myItem:  # val found
                 return True
         return False
-    
-    #removes a childnode from the node
+
+    # removes a childnode from the node
     def removeChildNode(self, childnode):
-        self.children.remove(childnode) #remove from children list
-    
-    #adds a childnode to the children and keeps the children sorted
+        self.children.remove(childnode)  # remove from children list
+
+    # adds a childnode to the children and keeps the children sorted
     def addChildNode(self, newChild):
-        self.children.append(newChild) #add to children list
-        self.children.sort()    #sort
-            
-    #traverses the tree inorder
+        self.children.append(newChild)  # add to children list
+        self.children.sort()  # sort
+
+    # traverses the tree inorder
     def inorderTraverse(self, func):
         if self.isLeaf():
             for item in self.items:
@@ -121,56 +124,56 @@ class Node:
             self.left().inorderTraverse(func)
             func(self.items[0])
             self.right().inorderTraverse(func)
-    
+
     def retrieveItem(self, item):
         if self.containsItem(item):
             for myitem in self.items:
-                if myitem == item: 
+                if myitem == item:
                     return [myitem, True]
         elif self.isLeaf():
             return [None, False]
-        
+
         if self.has2Items():
-            if (item<self.items[0]):
+            if item < self.items[0]:
                 return self.left().retrieveItem(item)
-            elif (item<self.items[1]):
+            elif item < self.items[1]:
                 return self.middle().retrieveItem(item)
             else:
                 return self.right().retrieveItem(item)
         else:
-            if (item<self.items[0]):
+            if item < self.items[0]:
                 return self.left().retrieveItem(item)
             else:
                 return self.right().retrieveItem(item)
-    
-    #adds an item to the node and keeps the items sorted
+
+    # adds an item to the node and keeps the items sorted
     def addItem(self, item):
         self.items.append(item)
         self.items.sort()
-    
+
     def insertToLeafNode(self, item):
-        """ 
+        """
         adds an item to the corresponding leafnode of that value
 
         preconditions: None
         postconditions: adds a value to the corresponding leafnode of that value if its not already in the leaf
         """
-        if (self.isLeaf()):
+        if self.isLeaf():
             self.addItem(item)
             return self
         elif self.has2Items():
-            if (item<self.items[0]):
+            if item < self.items[0]:
                 return self.left().insertToLeafNode(item)
-            elif (item<self.items[1]):
+            elif item < self.items[1]:
                 return self.middle().insertToLeafNode(item)
             else:
                 return self.right().insertToLeafNode(item)
         else:
-            if (item<self.items[0] or self.children[1]==None):
+            if item < self.items[0] or self.children[1] == None:
                 return self.left().insertToLeafNode(item)
             else:
                 return self.right().insertToLeafNode(item)
-    
+
     def split(self):
         """
         Splits a node after insertion
@@ -178,13 +181,13 @@ class Node:
         preconditions: The given node has 3 items
         postconditions: The given node gets split
         """
-        if (self.isRoot()):
+        if self.isRoot():
             p = Node()
             self.parent = p
         else:
             p = self.parent
             p.removeChildNode(self)
-        
+
         n1 = Node(self.items[0])
         n1.parent = p
         n2 = Node(self.items[2])
@@ -213,16 +216,16 @@ class Node:
     def insertItem(self, item):
         """
         Inserts an item to the right 2-3 Node
-    
+
         preconditions: None
         postconditions: Item gets inserted into the 2-3 Node if its not already in the tree
         """
         leafNode = self.insertToLeafNode(item)
 
-        if (leafNode.has3Items()):
+        if leafNode.has3Items():
             leafNode.split()
         return True
-    
+
     def inorderSuccessor(self):
         """
         Returns the inorderSuccessor
@@ -244,7 +247,7 @@ class Node:
             while current is not None and current < self:
                 current = current.parent
             return current
-    
+
     def deleteItem(self, item):
         """
         Deletes an item from the corresponding 2-3 Node
@@ -263,19 +266,19 @@ class Node:
                 leaf.items.remove(leaf.items[0])
             else:
                 leaf.items.remove(item)
-            
+
             if leaf.isEmpty():
                 leaf.fix()
             return True
         else:
             return False
-    
+
     def getDoubleItemChild(self):
         for child in self.children:
             if child.has2Items():
                 return child
         return None
-    
+
     def merge(self):
         """
         Merges the parent with its children
@@ -292,7 +295,7 @@ class Node:
         else:
             removedChild = self.middle()
             self.removeChildNode(self.middle())
-            
+
         self.left().addItem(self.items.pop(0))
         if not removedChild.isLeaf():
             self.left().addChildNode(removedChild.left())
@@ -300,7 +303,7 @@ class Node:
 
         if self.isEmpty():
             self.fix()
-    
+
     def redivide(self):
         doubleChild = self.getDoubleItemChild()
         if doubleChild == self.left():
@@ -315,12 +318,12 @@ class Node:
             if not doubleChild.isLeaf():
                 self.left().addChildNode(doubleChild.left())
                 doubleChild.removeChildNode(doubleChild.left())
-        
-    #fixes the node after a delete violation
+
+    # fixes the node after a delete violation
     def fix(self):
         if self.isRoot():
             return
-        
+
         p = self.parent
         if p.has2Items():
             p.merge()
@@ -330,17 +333,17 @@ class Node:
             else:
                 p.merge()
 
-    #loads in a 2-3 Tree from a given dictionary, the parent of the node is parent
+    # loads in a 2-3 Tree from a given dictionary, the parent of the node is parent
     def load(self, d, parent):
         self.parent = parent
         self.items = d["root"]
         if "children" in d:
             self.children = list(d["children"])
-            for i,child in enumerate(self.children):
+            for i, child in enumerate(self.children):
                 self.children[i] = Node()
                 self.children[i].load(child, self)
-    
-    #returns a dictionary of the given node
+
+    # returns a dictionary of the given node
     def save(self):
         d = {}
         d["root"] = self.items
@@ -352,14 +355,16 @@ class Node:
                     if child.isLeaf():
                         newD["root"] = child.items
                     else:
-                        newD = child.save()  
+                        newD = child.save()
                     d["children"].append(newD)
         return d
+
 
 class TwoThreeTree:
     """
     TwoThreeTree object
     """
+
     def __init__(self) -> None:
         """
         Initialises a twothreetree with a root containing no items
@@ -368,12 +373,12 @@ class TwoThreeTree:
         postconditions: Tree gets created
         """
         self.root = Node()
-    
-    #returns true if the tree is empty
+
+    # returns true if the tree is empty
     def isEmpty(self):
         return self.root.isEmpty()
-    
-    #traverses the tree inorder
+
+    # traverses the tree inorder
     def inorderTraverse(self, func):
         self.root.inorderTraverse(func)
 
@@ -385,7 +390,7 @@ class TwoThreeTree:
         postconditions: returns the value and True if found else return None and False
         """
         return self.root.retrieveItem(item)
-    
+
     def insertItem(self, item):
         """
         Inserts an item to the tree
@@ -399,7 +404,7 @@ class TwoThreeTree:
             if self.root.parent is not None:
                 self.root = self.root.parent
         return succes
-    
+
     def deleteItem(self, item):
         """
         Deletes an item from the tree
@@ -410,17 +415,17 @@ class TwoThreeTree:
         """
         succes = self.root.deleteItem(item)
         if succes:
-            if len(self.root.items)==0 and len(self.root.children) > 0:
-                    self.root = self.root.children[0]
-                    for child in self.root.children:
-                        child.parent = self.root
-                    self.root.parent = None
+            if len(self.root.items) == 0 and len(self.root.children) > 0:
+                self.root = self.root.children[0]
+                for child in self.root.children:
+                    child.parent = self.root
+                self.root.parent = None
         return succes
-    
-    #loads a 2-3 tree in from given dictionary
+
+    # loads a 2-3 tree in from given dictionary
     def load(self, d):
         self.root.load(d, None)
 
-    #returns a dictionary containing info about the 2-3 tree
+    # returns a dictionary containing info about the 2-3 tree
     def save(self):
         return self.root.save()

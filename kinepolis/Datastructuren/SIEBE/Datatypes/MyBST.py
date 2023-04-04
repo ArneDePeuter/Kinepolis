@@ -2,6 +2,7 @@
     Implementatie van een binaire zoekboom.
 """
 
+
 class createTreeItem:
     def __init__(self, key, val):
         """
@@ -298,11 +299,13 @@ class BST:
             volgorde geprint
         -------------------------------------------------------
         """
+
         def preorderTraverseHelper(treeItem):
             if treeItem is not None:
                 visit(treeItem.key)
                 preorderTraverseHelper(treeItem.left)
                 preorderTraverseHelper(treeItem.right)
+
         preorderTraverseHelper(self.root)
 
     def inorderTraverse(self, visit):
@@ -318,11 +321,13 @@ class BST:
             volgorde geprint
         -------------------------------------------------------
         """
+
         def inorderTraverseHelper(treeItem):
             if treeItem is not None:
                 inorderTraverseHelper(treeItem.left)
                 visit(treeItem.key)
                 inorderTraverseHelper(treeItem.right)
+
         inorderTraverseHelper(self.root)
 
     def postorderTraverse(self, visit):
@@ -338,11 +343,13 @@ class BST:
             volgorde geprint
         -------------------------------------------------------
         """
+
         def postorderTraverseHelper(treeItem):
             if treeItem is not None:
                 postorderTraverseHelper(treeItem.left)
                 postorderTraverseHelper(treeItem.right)
                 visit(treeItem.key)
+
         postorderTraverseHelper(self.root)
 
     def save(self):
@@ -357,28 +364,30 @@ class BST:
             De waarden van de zoeksleutels worden weergegeven in een dict.
         -------------------------------------------------------
         """
+
         def save_bst(treeItem):
             data = {}
             # Kijkt of treeItem niet leeg is
             if treeItem is None:
                 return None
             # Zet de root van elke boom gelijk aan de zoeksleutel van elke treeItem
-            data['root'] = treeItem.key
+            data["root"] = treeItem.key
             # Kijkt of we al in een blad zitten al dan niet
             if treeItem.left is not None or treeItem.right is not None:
                 # Als we nog niet in een blad zitten zijn er kinderen
-                data['children'] = []
+                data["children"] = []
                 # Kijk of er een linker kind is al dan niet
                 if treeItem.left is not None:
-                    data['children'].append(save_bst(treeItem.left))
+                    data["children"].append(save_bst(treeItem.left))
                 else:
-                    data['children'].append(None)
+                    data["children"].append(None)
                 # Kijk of er een rechter kind is al dan niet
                 if treeItem.right is not None:
-                    data['children'].append(save_bst(treeItem.right))
+                    data["children"].append(save_bst(treeItem.right))
                 else:
-                    data['children'].append(None)
+                    data["children"].append(None)
             return data
+
         # Slaag elk treeItem op in de dict. beginnen van de root
         return save_bst(self.root)
 
@@ -394,25 +403,27 @@ class BST:
             De dict. wordt ingeladen als een BST, met voor elke treeItem de key gelijk aan de val
         -------------------------------------------------------
         """
+
         def load_bst(dict):
             # Checkt of de dict niet leeg is
             if dict is None:
-               return None
+                return None
             # Maakt een treeItem aan voor de root, met als key en val dezelfde waarden
-            treeItem = createTreeItem(dict['root'], dict['root'])
+            treeItem = createTreeItem(dict["root"], dict["root"])
             # Kijk of er kinderen zijn
-            if 'children' in dict:
+            if "children" in dict:
                 # Kijkt op linker kinderen
-                if dict['children'][0] is not None:
-                    treeItem.left = load_bst(dict['children'][0])
+                if dict["children"][0] is not None:
+                    treeItem.left = load_bst(dict["children"][0])
                 else:
                     None
                 # Kijkt op rechter kinderen
-                if len(dict['children']) > 1 and dict['children'][1] is not None:
-                    treeItem.right = load_bst(dict['children'][1])
+                if len(dict["children"]) > 1 and dict["children"][1] is not None:
+                    treeItem.right = load_bst(dict["children"][1])
                 else:
                     None
             return treeItem
+
         # Zet de ingeladen BST gelijk aan onze self.root
         self.root = load_bst(data)
 

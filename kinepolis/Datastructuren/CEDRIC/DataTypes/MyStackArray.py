@@ -89,7 +89,7 @@ class MyStack:
 
         :return: De functie geeft al de elementen in de stack terug in vorm van een lijst.
         """
-        return self.items[0:self.size]
+        return self.items[0 : self.size]
 
     def load(self, list_to_stack):
         """
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     s.push(5)
     print(s.save())
 
-    s.load(['a', 'b', 'c'])
+    s.load(["a", "b", "c"])
     print(s.save())
     print(s.pop()[0])
     print(s.save())

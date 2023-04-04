@@ -1,9 +1,10 @@
-class Node():
+class Node:
     def __init__(self, value) -> None:
         self.value = value
         self.next = None
 
-class MyQueue():
+
+class MyQueue:
     def __init__(self) -> None:
         self.head = None
 
@@ -11,10 +12,10 @@ class MyQueue():
         return self.head == None
 
     def getFront(self):
-        if (self.isEmpty()):
-            return(None, False)
+        if self.isEmpty():
+            return (None, False)
         iter = self.head
-        while (iter.next != None):
+        while iter.next != None:
             iter = iter.next
         return (iter.value, True)
 
@@ -23,16 +24,16 @@ class MyQueue():
         newNode.next = self.head
         self.head = newNode
         return True
-        
+
     def dequeue(self):
-        if (self.isEmpty()):
-            return(None, False)
+        if self.isEmpty():
+            return (None, False)
         prev = iter = self.head
-        while (iter.next != None):
+        while iter.next != None:
             prev = iter
             iter = iter.next
         prev.next = None
-        return(iter.value, True)
+        return (iter.value, True)
 
     def load(self, l):
         self.head = None

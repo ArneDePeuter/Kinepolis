@@ -71,9 +71,9 @@ def loadNode(dict, parent):
     if dict is None:
         return None
     else:
-        value = dict.get('root')
+        value = dict.get("root")
         node = Node(value, parent)
-        children = dict.get('children')
+        children = dict.get("children")
         if children is not None:
             node.left = loadNode(children[0], node)
             node.right = loadNode(children[1], node)
@@ -158,8 +158,16 @@ class Node:
         if self.left is None and self.right is None:
             return "{'root':" + space + str(self.value) + "}"
         else:
-            return "{'root':" + space + str(self.value) + ",'children':[" + safeValue(self.left) + "," + safeValue(
-                self.right) + "]}"
+            return (
+                "{'root':"
+                + space
+                + str(self.value)
+                + ",'children':["
+                + safeValue(self.left)
+                + ","
+                + safeValue(self.right)
+                + "]}"
+            )
 
     def minRootNode(self):
         if self.left is None and self.right is None:

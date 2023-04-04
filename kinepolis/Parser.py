@@ -1,8 +1,9 @@
 from .Event import Event
 from datetime import datetime
 
-INPUTFOLDER = './Input/'
-OUTPUTFOLDER = './Output/'
+INPUTFOLDER = "./Input/"
+OUTPUTFOLDER = "./Output/"
+
 
 class Parser:
     def __init__(self, system) -> None:
@@ -14,28 +15,28 @@ class Parser:
         id = int(parts[1])
         voornaam = parts[2]
         achternaam = ""
-        for i in range(2, len(parts)-1):
+        for i in range(2, len(parts) - 1):
             achternaam += parts[i]
-            achternaam += " " if i!=len(parts)-1 else ""
+            achternaam += " " if i != len(parts) - 1 else ""
         email = parts[-1]
         self.system.getUserSystem().addUser(voornaam, achternaam, email, id)
-    
+
     def parseRoomLine(self, line):
         parts = line.split()
         zaalNummer = int(parts[1])
         aantalPlaatsen = int(parts[2])
         self.system.getRoomSystem().addRoom(zaalNummer, aantalPlaatsen)
-    
+
     def parseMovieLine(self, line):
         parts = line.split()
         id = int(parts[1])
         titel = ""
-        for i in range(2, len(parts)-1):
+        for i in range(2, len(parts) - 1):
             titel += parts[i]
-            titel += " " if i!=len(parts)-1 else "" 
+            titel += " " if i != len(parts) - 1 else ""
         rating = float(parts[-1])
         self.system.getMovieSystem().addMovie(titel, rating, id)
-    
+
     def parseScreeningLine(self, line):
         parts = line.split()
         id = parts[1]
@@ -48,7 +49,9 @@ class Parser:
         datum = datetime(year=jaar, month=maand, day=dag)
         filmId = int(parts[5])
         vrijePlaatsen = int(parts[6])
-        self.system.getScreeningSystem().addScreening(zaalNummer, slot, datum, filmId, vrijePlaatsen, id)
+        self.system.getScreeningSystem().addScreening(
+            zaalNummer, slot, datum, filmId, vrijePlaatsen, id
+        )
 
     def parseReservationLine(self, line):
         parts = line.split()
@@ -62,7 +65,9 @@ class Parser:
         screeningId = int(parts[4])
         seats = int(parts[5])
         timestamp = datetime(jaar, maand, dag, uur, min, 0)
-        self.system.getEventSystem().addReservationEvent(userId, timestamp, screeningId, seats)
+        self.system.getEventSystem().addReservationEvent(
+            userId, timestamp, screeningId, seats
+        )
 
     def parseKomBinnenLine(self, line):
         parts = line.split()
@@ -96,9 +101,9 @@ class Parser:
         uur, min = tijd.split(":")
         uur, min = int(uur), int(min)
         timestamp = datetime(jaar, maand, dag, uur, min, 0)
-        minstr = str(min) if len(str(min)) == 2 else "0"+str(min)
-        fileName = f"log_{jaar}-{maand}-{dag}_{uur}-{minstr}.html" 
-        
+        minstr = str(min) if len(str(min)) == 2 else "0" + str(min)
+        fileName = f"log_{jaar}-{maand}-{dag}_{uur}-{minstr}.html"
+
         self.system.getEventSystem().addLogEvent(timestamp, fileName)
 
     def readFile(self, fileName):
@@ -113,7 +118,7 @@ class Parser:
         """
         # open het bestand
         self.events = False
-        with open(INPUTFOLDER+fileName, "r") as file:
+        with open(INPUTFOLDER + fileName, "r") as file:
             # lees elke regel in het bestand
             for line in file.readlines():
                 if line.startswith("#") or line.startswith("\n"):
@@ -135,7 +140,7 @@ class Parser:
                     # Kijk of de regel start met gebruiker zo ja dan maak je een gebruiker aan
                     if line.startswith("gebruiker"):
                         self.parseUserLine(line)
-                        
+
                     # Kijk of de regel start met zaal zo ja dan maak je een zaal aan
                     elif line.startswith("zaal"):
                         self.parseRoomLine(line)

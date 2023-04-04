@@ -1,11 +1,12 @@
-def createItem(key,val):
+def createItem(key, val):
     return Item(key, val)
+
 
 class Item:
     def __init__(self, key, val) -> None:
         self.key = key
         self.val = val
-    
+
     def __lt__(self, other):
         if type(other) == type(self):
             return self.key < other.key
@@ -17,12 +18,13 @@ class Item:
             return self.key == other.key
         else:
             return self.key == other
-    
+
     def __repr__(self):
         return repr(self.val)
-    
+
     def __getattr__(self, name):
         return getattr(self.val, name)
+
 
 class Node:
     def __init__(self, item=None) -> None:
@@ -30,18 +32,18 @@ class Node:
         self.left = None
         self.right = None
         self.parent = None
-    
+
     def isEmpty(self):
         return self.item is None
-    
+
     def isLeaf(self):
         return self.left is None and self.right is None
 
     def __lt__(self, other):
-        return self.item.key<other.item.key
-    
+        return self.item.key < other.item.key
+
     def __gt__(self, other):
-        return self.item.key>other.item.key
+        return self.item.key > other.item.key
 
     def getLastNode(self):
         if self.isLeaf():
@@ -50,19 +52,19 @@ class Node:
             return self.right.getLastNode()
         else:
             return self.left.getLastNode()
-    
+
     def removeChild(self, child):
         if child == self.left:
             self.left = None
         else:
             self.right = None
-    
+
     def swap(self, other):
         myItem = self.item
         otherItem = other.item
         self.item = otherItem
         other.item = myItem
-    
+
     def insertComplete(self, item):
         newNode = Node(item)
         newNode.parent = self
@@ -75,7 +77,7 @@ class Node:
         elif self.right is not None:
             return self.right.insertComplete(item)
         return newNode
-    
+
     def fix(self, lastnode):
         if lastnode.parent is not None:
             lastnode.parent.removeChild(lastnode)
@@ -88,61 +90,62 @@ class Node:
 
     def heapifyUp(self, operator):
         if self.parent is not None:
-            if operator(self, self.parent)==self:
+            if operator(self, self.parent) == self:
                 self.swap(self.parent)
                 self.parent.heapifyUp(operator)
-    
+
     def heapifyDown(self, operator):
         if self.left is not None:
-            if operator(self.left, self)==self.left:
+            if operator(self.left, self) == self.left:
                 self.swap(self.left)
                 self.left.heapifyDown(operator)
         if self.right is not None:
-            if operator(self.right, self)==self.right:
+            if operator(self.right, self) == self.right:
                 self.swap(self.right)
                 self.right.heapifyDown(operator)
-    
+
     def load(self, d):
         self.item = createItem(d["root"], "")
         if "children" not in d.keys():
             return
         leftTree = d["children"][0]
         rightTree = d["children"][1]
-        if type(leftTree)==dict:
+        if type(leftTree) == dict:
             self.left = Node()
             self.left.parent = self
             self.left.load(leftTree)
         else:
             self.left = leftTree
-        if type(rightTree)==dict:
+        if type(rightTree) == dict:
             self.right = Node()
             self.right.parent = self
             self.right.load(rightTree)
         else:
             self.right = rightTree
-    
+
     def save(self):
         d = {}
         d["root"] = self.item
         if not self.isLeaf():
             d["children"] = [None, None]
-            if type(self.left)==Node:
+            if type(self.left) == Node:
                 if not self.left.isEmpty():
                     d["children"][0] = self.left.save()
-            if type(self.right)==Node:
+            if type(self.right) == Node:
                 if not self.right.isEmpty():
                     d["children"][1] = self.right.save()
         return d
 
+
 class Heap:
-    def __init__(self,maxHeap=True):
+    def __init__(self, maxHeap=True):
         self.maxheap = maxHeap
         self.root = Node()
         self.relationOperator = max if self.maxheap else min
-    
+
     def heapIsEmpty(self):
         return self.root.isEmpty()
-    
+
     def heapDelete(self):
         if self.heapIsEmpty():
             return [None, False]
@@ -156,7 +159,11 @@ class Heap:
         if lastNode.parent is not None:
             lastNode.parent.removeChild(lastNode)
         self.root.heapifyDown(self.relationOperator)
-        if lastNode.parent is not None and self.root.left is not None and self.root.right is not None:
+        if (
+            lastNode.parent is not None
+            and self.root.left is not None
+            and self.root.right is not None
+        ):
             temp = self.root.getLastNode().parent
             l = temp.left
             r = temp.right
@@ -179,7 +186,7 @@ class Heap:
         newNode = self.root.insertComplete(item)
         newNode.heapifyUp(self.relationOperator)
         return True
-    
+
     def load(self, d):
         self.root.load(d)
 

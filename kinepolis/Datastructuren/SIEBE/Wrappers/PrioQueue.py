@@ -1,15 +1,16 @@
 from Datastructuren.SIEBE.Datatypes.MyHeap import Heap, heapItem
 
+
 class HeapQueue:
     def __init__(self, maxQueue=True):
         self.heap = Heap(maxQueue)
-    
+
     def isEmpty(self):
         return self.heap.heapIsEmpty()
 
     def dequeue(self):
         return self.heap.heapDelete()
-    
+
     def enqueue(self, item):
         return self.heap.heapInsert(item)
 

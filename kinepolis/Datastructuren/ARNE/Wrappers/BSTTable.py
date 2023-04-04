@@ -1,11 +1,12 @@
 from ..Datatypes.BST import BST, Item
 
+
 class BSTTable:
-    #Initialisation 2-3 tree Table
+    # Initialisation 2-3 tree Table
     def __init__(self) -> None:
         self.bst = BST()
 
-    #Checks if the table is empty
+    # Checks if the table is empty
     def tableIsEmpty(self):
         """
         Checks if the table is empty
@@ -14,8 +15,8 @@ class BSTTable:
         postconditions: Returns True if the table is empty
         """
         return self.bst.isEmpty()
-    
-    #Inserts a TreeItem to the table
+
+    # Inserts a TreeItem to the table
     def tableInsert(self, key, val):
         """
         Inserts a TreeItem to the table
@@ -27,7 +28,7 @@ class BSTTable:
         """
         return self.bst.searchTreeInsert(Item(key, val))
 
-    #Retrieves an item from the table
+    # Retrieves an item from the table
     def tableRetrieve(self, key):
         """
         Retrieves an item from the table
@@ -37,8 +38,8 @@ class BSTTable:
         """
         return self.bst.searchTreeRetrieve(key)
 
-    #Prints the table inorder
-    def traverseTable(self,func):
+    # Prints the table inorder
+    def traverseTable(self, func):
         """
         Prints the table inorder
 
@@ -46,8 +47,8 @@ class BSTTable:
         postconditions: prints the table inorder
         """
         self.bst.inorderTraverse(func)
-    
-    #Deletes an item from the table
+
+    # Deletes an item from the table
     def tableDelete(self, item):
         """
         Deletes an item from the table

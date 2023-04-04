@@ -1,31 +1,34 @@
 from .Datastructuren.ARNE.Wrappers.BSTTable import BSTTable as Table
+
+
 class User:
     def __init__(self, voornaam, achternaam, email) -> None:
         self.voornaam = voornaam
         self.achternaam = achternaam
         self.email = email
-    
+
     def __eq__(self, other) -> bool:
         return self is other
-    
+
     def getVoornaam(self):
         return self.voornaam
-    
+
     def getAchternaam(self):
         return self.achternaam
-    
+
     def getEmail(self):
         return self.email
-    
+
     def __str__(self) -> str:
         return f"{self.voornaam} : {self.achternaam} : {self.email}"
+
 
 class MaterializedIndex:
     def __init__(self, table, identifier) -> None:
         self.dict = {}
         self.identifier = identifier
         table.traverseTable(self.setup)
-        
+
     def setup(self, val):
         key = self.identifier(val)
 
@@ -39,6 +42,7 @@ class MaterializedIndex:
             return self.dict[searchKey]
         else:
             return []
+
 
 if __name__ == "__main__":
     table = Table()
@@ -71,7 +75,7 @@ if __name__ == "__main__":
     for arne in arnes:
         print(str(arne))
     print()
-    
+
     print("Arne De Peuters: ")
     arneDePeuters = []
     for arne in arnes:

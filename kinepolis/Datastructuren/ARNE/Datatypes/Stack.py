@@ -1,4 +1,4 @@
-def createItem(key,val):
+def createItem(key, val):
     return Item(key, val)
 
 
@@ -6,7 +6,7 @@ class Item:
     def __init__(self, key, val) -> None:
         self.key = key
         self.val = val
-    
+
     def __lt__(self, other):
         if type(other) == type(self):
             return self.key < other.key
@@ -18,54 +18,56 @@ class Item:
             return self.key == other.key
         else:
             return self.key == other
-    
+
     def __repr__(self):
         return repr(self.val)
-    
+
     def __getattr__(self, name):
         return getattr(self.val, name)
 
-class Node():
+
+class Node:
     def __init__(self, item) -> None:
         self.item = item
         self.next = None
 
-class MyStack():
+
+class MyStack:
     def __init__(self):
-        self.top = None 
-    
+        self.top = None
+
     def isEmpty(self):
-        return (self.top==None)
+        return self.top == None
 
     def getTop(self):
-        if self.top!=None:
-            return (self.top.value, self.top!=None)
-        return (self.top, self.top!=None)
+        if self.top != None:
+            return (self.top.value, self.top != None)
+        return (self.top, self.top != None)
 
-    def push(self,item): 
-        node = Node(item) 
-        if(self.top == None):
+    def push(self, item):
+        node = Node(item)
+        if self.top == None:
             self.top = node
         else:
-            node.next = self.top 
+            node.next = self.top
             self.top = node
         return True
 
     def pop(self):
-        if(self.top == None):
+        if self.top == None:
             return (None, False)
         else:
-            node = self.top 
-            self.top = node.next 
-            node.next = None  
-            item = node.item   
+            node = self.top
+            self.top = node.next
+            node.next = None
+            item = node.item
             del node
-            return (item, self.top!=None)
+            return (item, self.top != None)
 
     def save(self):
         l = []
         tgt = self.top
-        while tgt!=None:
+        while tgt != None:
             l.insert(0, tgt.item)
             tgt = tgt.next
         return l
@@ -75,11 +77,12 @@ class MyStack():
         for elem in l:
             self.push(elem)
 
+
 class StackTable(MyStack):
     def __init__(self):
         super().__init__()
-    
-    #Checks if the table is empty
+
+    # Checks if the table is empty
     def tableIsEmpty(self):
         """
         Checks if the table is empty
@@ -89,7 +92,7 @@ class StackTable(MyStack):
         """
         return self.isEmpty()
 
-    #Inserts a TreeItem to the table
+    # Inserts a TreeItem to the table
     def tableInsert(self, item):
         """
         Inserts a TreeItem to the table
@@ -101,7 +104,7 @@ class StackTable(MyStack):
         """
         return self.push(item)
 
-    #Retrieves an item from the table
+    # Retrieves an item from the table
     def tableRetrieve(self):
         """
         Retrieves an item from the table
@@ -111,8 +114,7 @@ class StackTable(MyStack):
         """
         return self.getTop()
 
-        
-    #Deletes an item from the table
+    # Deletes an item from the table
     def tableDelete(self, item):
         """
         Deletes an item from the table

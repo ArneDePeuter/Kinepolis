@@ -3,6 +3,7 @@ from .MaterializedIndex import MaterializedIndex
 from .Datastructuren.SAM.Datatypes import Hashmap
 from .Extra.movieWebScraper import getMovies
 
+
 # Testen: Siebe
 # Implementeren: Arne
 class MovieSystem:
@@ -13,7 +14,7 @@ class MovieSystem:
 
     def traverse(self, func):
         self.datastruct.traverseTable(func)
-    
+
     def retrieve(self, key):
         return self.datastruct.tableRetrieve(key)
 
@@ -34,9 +35,9 @@ class MovieSystem:
             id = self.count
 
         movies = self.query(titel, "title")
-        if len(movies)!=0:
+        if len(movies) != 0:
             return False
-            
+
         newMovie = Film(id, titel, rating)
         self.datastruct.tableInsert(newMovie.id, newMovie)
         self.count += 1
@@ -51,22 +52,23 @@ class MovieSystem:
         """
         self.count = 0
         self.datastruct = self.datastruct.__init__()
-    
+
     def addIMBD(self):
         movies, ratings = getMovies()
         for title, rating in zip(movies, ratings):
             self.addMovie(title, rating)
-    
+
     def query(self, searchkey, identifier):
         d = {
-            "id" : MaterializedIndex(self.datastruct, Film.getId),
-            "title" : MaterializedIndex(self.datastruct, Film.getTitle),
-            "rating" : MaterializedIndex(self.datastruct, Film.getRating),
+            "id": MaterializedIndex(self.datastruct, Film.getId),
+            "title": MaterializedIndex(self.datastruct, Film.getTitle),
+            "rating": MaterializedIndex(self.datastruct, Film.getRating),
         }
         if identifier not in d:
             return None
         else:
             return d[identifier].query(searchkey)
+
 
 class Film:
     def __init__(self, id, titel, rating):
@@ -87,14 +89,12 @@ class Film:
 
     def __str__(self) -> str:
         return "titel: " + self.title + " rating: " + str(self.rating)
-    
+
     def getId(self):
         return self.id
-    
+
     def getTitle(self):
         return self.title
-    
+
     def getRating(self):
         return self.rating
-
-

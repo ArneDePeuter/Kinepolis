@@ -1,4 +1,4 @@
-#Implementatie van een arraybased queue
+# Implementatie van een arraybased queue
 class MyQueue:
     def __init__(self, max):
         """
@@ -10,36 +10,41 @@ class MyQueue:
         self.items = [None] * max
         self.size = 0
         self.front = 0
+
     def isEmpty(self):
         if self.size == 0:
             return True
         return False
+
     def getFront(self):
         if self.size == 0:
-            return False,False
-        return self.items[self.size-1], True
+            return False, False
+        return self.items[self.size - 1], True
+
     def enqueue(self, NieuwItem):
         if self.size == len(self.items):
-            return False,False
+            return False, False
         else:
             for i in range(self.size, -1, -1):
                 j = i + 1
                 self.items[j] = self.items[i]
             self.items[self.front] = NieuwItem
-            self.size +=1
+            self.size += 1
             return True
+
     def dequeue(self):
-        if self.size ==0:
-            return False,False
+        if self.size == 0:
+            return False, False
         else:
-            x = self.items[self.size-1]
-            self.items[self.size-1] = None
-            self.size -=1
-            return x,True
+            x = self.items[self.size - 1]
+            self.items[self.size - 1] = None
+            self.size -= 1
+            return x, True
+
     def save(self):
-        l = self.items[self.front:self.size]
+        l = self.items[self.front : self.size]
         return l
+
     def load(self, queue):
         self.items = queue
         self.size = len(queue)
-

@@ -1,6 +1,8 @@
 """
     Implementatie van een Linked Based Heap
 """
+
+
 class heapItem:
     def __init__(self, key=None):
         """
@@ -189,8 +191,9 @@ class heapItem:
         else:
             self.right = None
 
+
 class Heap:
-    def __init__(self,maxHeap=True):
+    def __init__(self, maxHeap=True):
         """
         -------------------------------------------------------
         Beschrijving:
@@ -312,6 +315,7 @@ class Heap:
                 temp.left = r
                 temp.right = None
         return (rootItem, True)
+
     def save(self):
         """
         -------------------------------------------------------
@@ -329,21 +333,20 @@ class Heap:
             data = {}
             if heapItem is None:
                 return None
-            data['root'] = heapItem.key
+            data["root"] = heapItem.key
             if heapItem.left is not None or heapItem.right is not None:
-                data['children'] = []
+                data["children"] = []
                 if heapItem.left is not None:
-                    data['children'].append(save_heap(heapItem.left))
+                    data["children"].append(save_heap(heapItem.left))
                 else:
-                    data['children'].append(None)
+                    data["children"].append(None)
                 if heapItem.right is not None:
-                    data['children'].append(save_heap(heapItem.right))
+                    data["children"].append(save_heap(heapItem.right))
                 else:
-                    data['children'].append(None)
+                    data["children"].append(None)
             return data
 
         return save_heap(self.root)
-
 
     def load(self, data):
         """
@@ -364,23 +367,25 @@ class Heap:
             if dict is None:
                 return None
             # Maakt een knoop aan voor de root, met als key de value die de root key heeft
-            node = heapItem(dict['root'])
+            node = heapItem(dict["root"])
             node.parent = parent
             # Kijk of er kinderen zijn
-            if 'children' in dict:
+            if "children" in dict:
                 # Kijkt op linker kinderen
-                if dict['children'][0] is not None:
-                    node.left = load_bst(dict['children'][0], node)
+                if dict["children"][0] is not None:
+                    node.left = load_bst(dict["children"][0], node)
                 else:
                     None
                 # Kijkt op rechter kinderen
-                if len(dict['children']) > 1 and dict['children'][1] is not None:
-                    node.right = load_bst(dict['children'][1], node)
+                if len(dict["children"]) > 1 and dict["children"][1] is not None:
+                    node.right = load_bst(dict["children"][1], node)
                 else:
                     None
             return node
+
         # Zet de ingeladen BST gelijk aan onze self.root
         self.root = load_bst(data, None)
+
 
 if __name__ == "__main__":
     t = Heap()
@@ -390,7 +395,7 @@ if __name__ == "__main__":
     print(t.heapInsert(8))
     print(t.heapIsEmpty())
     print(t.save())
-    t.load({'root': 10, 'children': [{'root': 5}, None]})
+    t.load({"root": 10, "children": [{"root": 5}, None]})
     t.heapInsert(15)
     print(t.save())
     result = t.heapDelete()

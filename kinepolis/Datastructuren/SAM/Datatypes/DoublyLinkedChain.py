@@ -98,9 +98,5 @@ class LinkedChain:
         self.head = None
         self.tail = None
         self.length = 0
-        for i in range(0,len(input)):
-            self.insert(i+1,input[i])
-
-
-
-
+        for i in range(0, len(input)):
+            self.insert(i + 1, input[i])

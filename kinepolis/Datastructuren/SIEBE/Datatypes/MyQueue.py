@@ -1,9 +1,12 @@
 """
     Array based implementatie van ADT Queue.
 """
+
+
 class QueueItemType:
     def __init__(self, value):
         self.value = value
+
 
 class MyQueue:
     def __init__(self, max_size):
@@ -39,7 +42,7 @@ class MyQueue:
             Returns True als de queue leeg is, zo niet False.
         -------------------------------------------------------
         """
-        if (self.front == self.rear):
+        if self.front == self.rear:
             return True
         else:
             return False
@@ -61,8 +64,8 @@ class MyQueue:
         Return : geeft True terug als het toevoegen gelukt is
         -------------------------------------------------------
         """
-        #Checkt of de stack nog niet vol zit
-        if (self.max_size == self.rear):
+        # Checkt of de stack nog niet vol zit
+        if self.max_size == self.rear:
             return False
         else:
             # Voeg op het einde het NewItem toe
@@ -87,7 +90,7 @@ class MyQueue:
         -------------------------------------------------------
         """
         # Checkt of de stack al dan niet items bevat
-        if (self.front == self.rear):
+        if self.front == self.rear:
             return (None, False)
         else:
             queueFront = self.items[self.front]
@@ -113,7 +116,7 @@ class MyQueue:
         -------------------------------------------------------
         """
         # Chect of de stack niet leeg is
-        if (self.front == self.rear):
+        if self.front == self.rear:
             return (None, False)
         else:
             queueFront = self.items[self.front]
@@ -164,6 +167,7 @@ class MyQueue:
         self.items = newLijst
         self.front = 0
         self.rear = len(lijst)
+
 
 """# Main
 if __name__ == "__main__":

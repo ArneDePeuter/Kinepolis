@@ -28,7 +28,7 @@ def getRatings(soup):
     ratings = soup.select("td.ratingColumn.imdbRating")
     l = []
     for rating in ratings:
-        l.append(round(float(rating.text.split()[0])/10,2))
+        l.append(round(float(rating.text.split()[0]) / 10, 2))
     return l
 
 

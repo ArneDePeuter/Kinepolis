@@ -1,5 +1,6 @@
-def createTreeItem(key,val):
-    return key,val
+def createTreeItem(key, val):
+    return key, val
+
 
 class Node:
     def __init__(self, key, val):
@@ -7,6 +8,7 @@ class Node:
         self.val = val
         self.left = None
         self.right = None
+
 
 class BST:
     def __init__(self):
@@ -18,7 +20,7 @@ class BST:
         return False
 
     def searchTreeInsert(self, nieuw):
-        param = Node(key,val)
+        param = Node(key, val)
         if self.root is None:
             self.root = param
             return True
@@ -43,13 +45,13 @@ class BST:
 
     def searchTreeRetrieve(self, key):
         if self.root is None:
-            return False,False
+            return False, False
         else:
             current = self.root
             while current:
                 if key < current.key:
                     if current.left is None:
-                        return False,False
+                        return False, False
                     else:
                         current = current.left
                 elif key > current.key:
@@ -124,14 +126,16 @@ class BST:
 
     def load(self, input_data):
         self.root = None
+
         def extract_numbers(data):
-            if 'root' in data:
-                root = data['root']
+            if "root" in data:
+                root = data["root"]
                 self.searchTreeInsert(root)
-                if 'children' in data:
-                    for child in data['children']:
+                if "children" in data:
+                    for child in data["children"]:
                         if child:
                             extract_numbers(child)
+
         extract_numbers(input_data)
 
     def save(self):
@@ -155,10 +159,10 @@ class BST:
                         children = []
                         children.append(left_child)
                         children.append(None)
-                return {'root': node.val, 'children': children}
-            return {'root': node.val}
+                return {"root": node.val, "children": children}
+            return {"root": node.val}
+
         return helper(self.root)
 
     def createItem(self, key, val):
-        return createTreeItem(key,val)
-
+        return createTreeItem(key, val)

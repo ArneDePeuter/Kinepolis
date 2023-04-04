@@ -170,8 +170,9 @@ class BST:
         result = ""
         result += "{'root': " + str(self.item.key)
 
-        if (self.leftBST is not None and self.leftBST.item is not None) or \
-                (self.rightBST is not None and self.rightBST.item is not None):
+        if (self.leftBST is not None and self.leftBST.item is not None) or (
+            self.rightBST is not None and self.rightBST.item is not None
+        ):
             result += ",'children':["
 
             if self.leftBST is not None and self.leftBST.item is not None:
@@ -279,25 +280,39 @@ class BST:
         else:
             # self.item, self.leftBST, self.rightBST = None, BST, BST
 
-            self.item = TreeItem(data.get('root'), data.get('root'))
+            self.item = TreeItem(data.get("root"), data.get("root"))
 
-            if data.get('children') is not None:
-                if data.get('children')[0] is not None:
+            if data.get("children") is not None:
+                if data.get("children")[0] is not None:
                     self.leftBST = BST()
-                    self.leftBST.load(data.get('children')[0])
+                    self.leftBST.load(data.get("children")[0])
                 else:
                     self.leftBST = None
 
-                if data.get('children')[1] is not None:
+                if data.get("children")[1] is not None:
                     self.rightBST = BST()
-                    self.rightBST.load(data.get('children')[1])
+                    self.rightBST.load(data.get("children")[1])
                 else:
                     self.rightBST = None
 
 
 if __name__ == "__main__":
     t = BST()
-    t.load({'root': 100, 'children': [{'root': 50, 'children': [{'root': 20}, {'root': 90, 'children': [{'root': 70}, None]}]}, {'root': 200, 'children': [{'root': 120}, {'root': 210}]}]})
+    t.load(
+        {
+            "root": 100,
+            "children": [
+                {
+                    "root": 50,
+                    "children": [
+                        {"root": 20},
+                        {"root": 90, "children": [{"root": 70}, None]},
+                    ],
+                },
+                {"root": 200, "children": [{"root": 120}, {"root": 210}]},
+            ],
+        }
+    )
     t.searchTreeDelete(90)
     t.searchTreeDelete(70)
     t.searchTreeDelete(100)

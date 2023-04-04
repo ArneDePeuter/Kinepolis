@@ -11,5 +11,3 @@ class VertoningTests:
         assert vertoning.date == 5
         assert vertoning.filmid == 567
         assert vertoning.reservedPlaces == 20
-
-

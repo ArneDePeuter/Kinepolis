@@ -39,7 +39,7 @@ class LinkedChain:
             return tuple((None, False))
 
         else:
-            if position <= self.getLength()/2:
+            if position <= self.getLength() / 2:
                 pointer = self.listHead
                 for _ in range(position):
                     pointer = pointer.next
@@ -55,7 +55,7 @@ class LinkedChain:
             return False
 
         else:
-            if position <= self.getLength()/2:
+            if position <= self.getLength() / 2:
                 pointer = self.listHead
                 for _ in range(position - 1):
                     pointer = pointer.next
@@ -94,7 +94,7 @@ class LinkedChain:
             return False
 
         else:
-            if position <= self.getLength()/2:
+            if position <= self.getLength() / 2:
                 pointer = self.listHead
                 for _ in range(position - 1):
                     pointer = pointer.next
@@ -113,16 +113,16 @@ if __name__ == "__main__":
     print(l.isEmpty())
     print(l.getLength())
     print(l.retrieve(4)[1])
-    print(l.insert(4,500))
+    print(l.insert(4, 500))
     print(l.isEmpty())
-    print(l.insert(1,500))
+    print(l.insert(1, 500))
     print(l.retrieve(1)[0])
     print(l.retrieve(1)[1])
     print(l.save())
-    print(l.insert(1,600))
+    print(l.insert(1, 600))
     print(l.save())
-    l.load([10,-9,15])
-    l.insert(3,20)
+    l.load([10, -9, 15])
+    l.insert(3, 20)
     print(l.delete(0))
     print(l.save())
     print(l.delete(1))

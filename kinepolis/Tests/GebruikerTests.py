@@ -1,6 +1,7 @@
 import unittest
 from Gebruiker import *
 
+
 class GebruikerTest(unittest.TestCase):
     def test_init(self):
         gebruiker = Gebruiker(555, "Siebe", "Mees", "siebe.mees@student.uantwerpen.be")
@@ -10,5 +11,5 @@ class GebruikerTest(unittest.TestCase):
         self.assertEqual("siebe.mees@student.uantwerpen.be", gebruiker.emailadres)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

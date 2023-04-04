@@ -1,9 +1,12 @@
 """
     Array based implementatie van ADT Stack.
 """
+
+
 class StackItemType:
     def __init__(self, value):
         self.value = value
+
 
 class MyStack:
     def __init__(self, max_size):
@@ -60,7 +63,7 @@ class MyStack:
         Return : geeft True terug als het toevoegen gelukt is
         -------------------------------------------------------
         """
-        #Checkt of de stack nog niet vol zit
+        # Checkt of de stack nog niet vol zit
         if self.size == len(self.items):
             return False
         else:
@@ -87,8 +90,8 @@ class MyStack:
         if self.size == 0:
             return (None, False)
         else:
-            stackTop = self.items[self.size-1]
-            self.items[self.size-1] = None
+            stackTop = self.items[self.size - 1]
+            self.items[self.size - 1] = None
             self.size -= 1
             return (stackTop, True)
 
@@ -111,7 +114,7 @@ class MyStack:
         if self.size == 0:
             return (None, False)
         else:
-            stackTop = self.items[self.size-1]
+            stackTop = self.items[self.size - 1]
             return (stackTop, True)
 
     def save(self):
@@ -153,9 +156,6 @@ class MyStack:
         """
         self.items = lijst
         self.size = len(lijst)
-
-
-
 
 
 """# Main

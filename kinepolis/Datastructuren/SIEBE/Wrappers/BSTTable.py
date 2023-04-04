@@ -1,26 +1,27 @@
 from Datastructuren.SIEBE.Datatypes import MyBST, createTreeItem
 
+
 class BSTTable:
     def __init__(self) -> None:
         self.bst = MyBST()
 
-    #returns True if the ADT is empty
+    # returns True if the ADT is empty
     def tableIsEmpty(self):
         return self.bst.isEmpty()
 
-    #Inserts an item into the ADT
+    # Inserts an item into the ADT
     def tableInsert(self, item):
         return self.bst.searchTreeInsert(item)
 
-    #Deletes an item from the ADT
+    # Deletes an item from the ADT
     def tableDelete(self, key):
         return self.bst.searchTreeDelete(key)
 
-    #Retrieves an item from the ADT
+    # Retrieves an item from the ADT
     def tableRetrieve(self, key):
         return self.bst.searchTreeRetrieve(key)
 
-    #InorderTraverses the table
+    # InorderTraverses the table
     def traverseTable(self, func):
         return self.bst.inorderTraverse(func)
 
@@ -32,6 +33,6 @@ class BSTTable:
     def load(self, input):
         return self.bst.load(input)
 
-    #Creates an item that can be inserted into the ADT
+    # Creates an item that can be inserted into the ADT
     def createItem(self, key, val):
         return createTreeItem(key, val)

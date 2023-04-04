@@ -1,6 +1,8 @@
 """
     Implementatie van circulaire dubbelgelinkte ketting
 """
+
+
 class Node:
     def __init__(self, data=None, prev=None, next=None):
         """
@@ -20,6 +22,7 @@ class Node:
         self.data = data
         self.prev = prev
         self.next = next
+
 
 class LinkedChain:
     def __init__(self):
@@ -102,7 +105,7 @@ class LinkedChain:
         -------------------------------------------------------
         """
         # Checkt of opgegeven positie geldig is, zo ja dan word er WEL toegevoegd
-        if 1 <= positie <= (self.getLength()+1):
+        if 1 <= positie <= (self.getLength() + 1):
             # Checkt of de chain leeg is
             if not self.head:
                 # Als de chain leeg is dan creëren we een nieuwe knoop,
@@ -138,7 +141,7 @@ class LinkedChain:
             else:
                 current = self.head
                 i = 1
-                while current.next != self.head and i < positie-1:
+                while current.next != self.head and i < positie - 1:
                     current = current.next
                     i += 1
                 new_node = Node(newItem, current, current.next)
@@ -187,7 +190,7 @@ class LinkedChain:
             else:
                 current = self.head.next
                 i = 1
-                while current != self.head and i < positie-1:
+                while current != self.head and i < positie - 1:
                     current = current.next
                     i += 1
                 if current != self.head:
@@ -231,8 +234,6 @@ class LinkedChain:
         else:
             return None, False
 
-
-
     def save(self):
         """
         -------------------------------------------------------
@@ -271,11 +272,12 @@ class LinkedChain:
         newLinkedChain = LinkedChain()
         # Loading in the list as a doubly linked chain
         for i in range(len(lijst)):
-            newLinkedChain.insert(i+1, lijst[i])
+            newLinkedChain.insert(i + 1, lijst[i])
         # Setting our self equal to our newLinkedChain
         for i in range(newLinkedChain.getLength()):
             self.head = newLinkedChain.head
             self.size = newLinkedChain.size
+
 
 """# Main
 if __name__ == "__main__":

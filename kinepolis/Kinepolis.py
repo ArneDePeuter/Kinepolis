@@ -6,14 +6,15 @@ from .Parser import Parser
 from .Outputter import Outputter
 from .ADTfactory import ADTFactory
 
-from .Film import MovieSystem
+from .Movie import MovieSystem
 from .Gebruiker import UserSystem
-from .Vertoning import ScreeningSystem
-from .Zaal import RoomSystem
-from .Reservatie import ReservationSystem
+from .Screening import ScreeningSystem
+from .Room import RoomSystem
+from .Reservation import ReservationSystem
 from .Event import EventSystem
 
 import time
+
 
 class Kinepolis:
     def __init__(self):
@@ -32,19 +33,19 @@ class Kinepolis:
         self.eventSystem = EventSystem(self)
 
         now = Datetime.now()
-        current_time = Datetime(now.year, now.month, now.day, now.hour,now.minute)
+        current_time = Datetime(now.year, now.month, now.day, now.hour, now.minute)
         self.clock = current_time
 
         self.parser = Parser(self)
         self.outputter = Outputter(self)
 
-        self.initTimeStamps([Time(14,30), Time(17), Time(20), Time(22,30)])
+        self.initTimeStamps([Time(14, 30), Time(17), Time(20), Time(22, 30)])
 
         self.running = False
 
     def initTimeStamps(self, timestamps):
         self.timestamps = ADTFactory.getADT("Timestamps")
-        for i,time in enumerate(timestamps):
+        for i, time in enumerate(timestamps):
             self.timestamps.tableInsert(i, time)
 
     def save(self, filename):
@@ -68,12 +69,12 @@ class Kinepolis:
         self.running = True
         while self.running:
             self.update()
-    
+
     def update(self):
         if self.running:
             self.eventSystem.update()
             self.increaseTime()
-    
+
     def skipToNextEvent(self):
         next, succes = self.eventSystem.events.dequeue()
         if not succes:
@@ -81,7 +82,7 @@ class Kinepolis:
         self.clock = next.timestamp
         self.eventSystem.events.enqueue(next.timestamp, next)
 
-    def setTime(self, jaar = None, maand=None, dag=None, uur=None, min=None, sec=None):
+    def setTime(self, jaar=None, maand=None, dag=None, uur=None, min=None, sec=None):
         """
         Zet de tijd van het reservatiesysteem.
         Preconditie: \
@@ -116,21 +117,21 @@ class Kinepolis:
 
     def getUserSystem(self):
         return self.userSystem
-    
+
     def getMovieSystem(self):
         return self.movieSystem
-    
+
     def getRoomSystem(self):
         return self.roomSystem
-    
+
     def getScreeningSystem(self):
         return self.screeningSystem
-    
+
     def getReservationSystem(self):
         return self.reservationSystem
-    
+
     def getEventSystem(self):
         return self.eventSystem
-    
+
     def getTimeStamp(self, id):
         return self.timestamps.tableRetrieve(id)

@@ -3,6 +3,7 @@ import ssl
 import smtplib
 from time import sleep
 
+
 class MailSystem:
     def __init__(self) -> None:
         self.email_sender = "kinepolisuantwerpen@gmail.com"

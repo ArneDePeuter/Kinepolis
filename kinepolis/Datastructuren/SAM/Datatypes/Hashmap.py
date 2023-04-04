@@ -83,12 +83,12 @@ class Hashmap:
                     curr = i
                     while curr is not None:
                         if i.key == key:
-                            return i.val,True
+                            return i.val, True
                         curr = curr.next
 
     def tableDelete(self, key):
         if self.type == "lin" or self.type == "quad":
-            for i in range(0,self.size):
+            for i in range(0, self.size):
                 if self.map[i] is None:
                     continue
                 else:
@@ -98,7 +98,7 @@ class Hashmap:
             return False
 
         elif self.type == "sep":
-            for i in range(0,self.size):
+            for i in range(0, self.size):
                 if self.map[i] is None:
                     continue
                 else:
@@ -128,8 +128,8 @@ class Hashmap:
                     List.append(None)
                 else:
                     List.append(i.val)
-            dict['type'] = self.type
-            dict['items'] = List
+            dict["type"] = self.type
+            dict["items"] = List
             return dict
 
         elif self.type == "sep":
@@ -145,52 +145,50 @@ class Hashmap:
                         temp.append(curr.val)
                         curr = curr.next
                     List.append(temp)
-            dict['type'] = self.type
-            dict['items'] = List
+            dict["type"] = self.type
+            dict["items"] = List
             return dict
 
     def load(self, input):
-        self.type = input['type']
-        items = input['items']
+        self.type = input["type"]
+        items = input["items"]
         self.size = len(items)
         self.map = self.size * [None]
         if self.type == "lin" or self.type == "quad":
-            for i in range(0,len(items)):
+            for i in range(0, len(items)):
                 if items[i] is None:
                     continue
                 else:
-                    self.map[i] = Node(items[i],items[i])
+                    self.map[i] = Node(items[i], items[i])
         elif self.type == "sep":
-            for i in range(0,len(items)):
+            for i in range(0, len(items)):
                 if items[i] is None:
                     continue
                 else:
                     temp = []
-                    for j in range(0,len(items[i])):
-                        temp.append(Node(items[i][j],items[i][j]))
-                    for iter in range(0, len(temp)-1):
-                        temp[iter].next = temp[iter+1]
-                        temp[iter+1].prev = temp[iter]
+                    for j in range(0, len(items[i])):
+                        temp.append(Node(items[i][j], items[i][j]))
+                    for iter in range(0, len(temp) - 1):
+                        temp[iter].next = temp[iter + 1]
+                        temp[iter + 1].prev = temp[iter]
                     self.map[i] = temp[0]
 
 
 class HashmapTable(Hashmap):
-
     def __init__(self, type, n):
-        super().__init__(type,n)
+        super().__init__(type, n)
 
     def tableInsert(self, param):
         return super().tableInsert(param)
 
     def tableDelete(self, key):
         return super().tableDelete(key)
+
     def tableIsEmpty(self):
         return super().isEmpty()
 
     def save(self):
         return super().save()
 
-    def load(self,input):
+    def load(self, input):
         super().load(input)
-
-

@@ -1,8 +1,9 @@
-#TODO: reservatie message specifieker
-#TODO: reservatie mail specifieker
+# TODO: reservatie message specifieker
+# TODO: reservatie mail specifieker
 
 from .Extra.mailsystem import MailSystem
 from .ADTfactory import ADTFactory
+
 
 # Testen: Arne
 # Implementeren: Cedric
@@ -33,21 +34,25 @@ class ReservationSystem:
             return False
 
         # if vertoning not full
-        if screening.freePlaces >= seats+screening.reservedPlaces:
+        if screening.freePlaces >= seats + screening.reservedPlaces:
             screening.reservedPlaces += seats
             self.tickets.append((screeningId, seats))
             # self.mailsys.sendMailTo("arne@depeuter.org", "The matrix", screening.slot, aantalPlaatsenGereserveerd, id)
             return True
         else:
             return False
-        
+
     def useTicket(self, idvertoning, aantal):
         if (idvertoning, aantal) not in self.tickets:
             return False
-        vertoning, screeningExists = self.system.getScreeningSystem().retrieve(idvertoning)
+        vertoning, screeningExists = self.system.getScreeningSystem().retrieve(
+            idvertoning
+        )
         if not screeningExists:
             return False
         vertoning.seatPlaces(aantal, self.system.clock)
         if vertoning.status == "planned and ready":
-            self.system.getEventSystem().addStartScreeningEvent(vertoning.timestamp, idvertoning)
+            self.system.getEventSystem().addStartScreeningEvent(
+                vertoning.timestamp, idvertoning
+            )
         return True

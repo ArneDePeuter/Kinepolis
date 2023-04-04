@@ -2,14 +2,15 @@ from .ADTfactory import ADTFactory
 from .MaterializedIndex import MaterializedIndex
 from datetime import datetime, timedelta
 
+
 # Testen: Cedric
 # Implementeren: Sam
 class ScreeningSystem:
     def __init__(self, system) -> None:
-        self.datastruct=ADTFactory.getADT("Screening")
+        self.datastruct = ADTFactory.getADT("Screening")
         self.system = system
         self.count = 0
-    
+
     def traverse(self, func):
         self.datastruct.traverseTable(func)
 
@@ -23,33 +24,44 @@ class ScreeningSystem:
         if not succes:
             return False
 
-        timestamp = datetime(year=datum.year, month=datum.month, day=datum.day, hour=timestamp.hour, minute=timestamp.minute)
+        timestamp = datetime(
+            year=datum.year,
+            month=datum.month,
+            day=datum.day,
+            hour=timestamp.hour,
+            minute=timestamp.minute,
+        )
 
         newScreening = Vertoning(id, zaalnummer, timestamp, filmid, vrijePlaatsen)
         self.datastruct.tableInsert(id, newScreening)
         self.count += 1
         return True
-    
+
     def retrieve(self, searchkey):
         return self.datastruct.tableRetrieve(searchkey)
-    
+
     def query(self, searchkey, identifier):
         d = {
-            "id" : MaterializedIndex(self.datastruct, Vertoning.getId),
-            "roomNumber" : MaterializedIndex(self.datastruct, Vertoning.getRoomNumber),
-            "slot" : MaterializedIndex(self.datastruct, Vertoning.getSlot),
-            "date" : MaterializedIndex(self.datastruct, Vertoning.getDate),
-            "filmid" : MaterializedIndex(self.datastruct, Vertoning.getFilmId),
-            "freePlaces" : MaterializedIndex(self.datastruct, Vertoning.getFreePlaces),
-            "reservedPlaces" : MaterializedIndex(self.datastruct, Vertoning.getReservedPlaces),
-            "seatedPlaces" : MaterializedIndex(self.datastruct, Vertoning.getSeatedPlaces),
-            "status" : MaterializedIndex(self.datastruct, Vertoning.getStatus)
+            "id": MaterializedIndex(self.datastruct, Vertoning.getId),
+            "roomNumber": MaterializedIndex(self.datastruct, Vertoning.getRoomNumber),
+            "slot": MaterializedIndex(self.datastruct, Vertoning.getSlot),
+            "date": MaterializedIndex(self.datastruct, Vertoning.getDate),
+            "filmid": MaterializedIndex(self.datastruct, Vertoning.getFilmId),
+            "freePlaces": MaterializedIndex(self.datastruct, Vertoning.getFreePlaces),
+            "reservedPlaces": MaterializedIndex(
+                self.datastruct, Vertoning.getReservedPlaces
+            ),
+            "seatedPlaces": MaterializedIndex(
+                self.datastruct, Vertoning.getSeatedPlaces
+            ),
+            "status": MaterializedIndex(self.datastruct, Vertoning.getStatus),
         }
         if identifier not in d:
             return None
         else:
             return d[identifier].query(searchkey)
-        
+
+
 class Vertoning:
     def __init__(self, id, zaalnummer, timestamp, filmid, vrijePlaatsen):
         self.id = id
@@ -66,11 +78,11 @@ class Vertoning:
             return False
         self.freePlaces = self.freePlaces - amount
         return True
-    
+
     def seatPlaces(self, amount, systemClock):
         self.seatedPlaces += amount
         self.updateStatus(systemClock)
-    
+
     def startScreening(self):
         self.status = "playing"
 
@@ -78,44 +90,47 @@ class Vertoning:
         self.status = "ended"
 
     def updateStatus(self, systemClock):
-        if self.timestamp>systemClock:
+        if self.timestamp > systemClock:
             if self.reservedPlaces == self.seatedPlaces:
                 self.status = "planned and ready"
             else:
                 self.status = "planned and waiting"
         else:
-            if self.reservedPlaces == self.seatedPlaces or self.status=="planned and ready":
+            if (
+                self.reservedPlaces == self.seatedPlaces
+                or self.status == "planned and ready"
+            ):
                 ScreeningTimePlusMovieTime = self.timestamp + timedelta(hours=2)
-                if systemClock>ScreeningTimePlusMovieTime:
+                if systemClock > ScreeningTimePlusMovieTime:
                     self.endScreening()
                 else:
                     self.startScreening()
             else:
                 self.status = "waiting"
-    
+
     def getStatus(self):
         return self.status
 
     def getId(self):
         return self.id
-    
+
     def getRoomNumber(self):
         return self.roomNumber
-    
+
     def getTimeStamp(self):
         return self.timestamp
-    
+
     def getFilmId(self):
         return self.filmid
-    
+
     def getFreePlaces(self):
         return self.freePlaces
-    
+
     def getReserverPlaces(self):
         return self.freePlaces
-    
+
     def getReservedPlaces(self):
         return self.reservedPlaces
-    
+
     def getSeatedPlaces(self):
         return self.seatedPlaces

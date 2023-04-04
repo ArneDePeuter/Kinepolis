@@ -1,11 +1,12 @@
 from ..Datatypes.TwoThreeTree import TwoThreeTree, createItem
 
+
 class TwoThreeTreeTable:
-    #Initialisation 2-3 tree Table
+    # Initialisation 2-3 tree Table
     def __init__(self) -> None:
         self.ttt = TwoThreeTree()
-    
-    #Checks if the table is empty
+
+    # Checks if the table is empty
     def tableIsEmpty(self):
         """
         Checks if the table is empty
@@ -14,8 +15,8 @@ class TwoThreeTreeTable:
         postconditions: Returns True if the table is empty
         """
         return self.ttt.isEmpty()
-    
-    #Inserts a TreeItem to the table
+
+    # Inserts a TreeItem to the table
     def tableInsert(self, key, val):
         """
         Inserts to the table
@@ -28,7 +29,7 @@ class TwoThreeTreeTable:
         """
         return self.ttt.insertItem(createItem(key, val))
 
-    #Retrieves an item from the table
+    # Retrieves an item from the table
     def tableRetrieve(self, key):
         """
         Retrieves an item from the table
@@ -42,8 +43,8 @@ class TwoThreeTreeTable:
         else:
             return result, succes
 
-    #Prints the table inorder
-    def traverseTable(self,print):
+    # Prints the table inorder
+    def traverseTable(self, print):
         """
         Prints the table inorder
 
@@ -51,8 +52,8 @@ class TwoThreeTreeTable:
         postconditions: prints the table inorder
         """
         self.ttt.inorderTraverse(print)
-    
-    #Deletes an item from the table
+
+    # Deletes an item from the table
     def tableDelete(self, item):
         """
         Deletes an item from the table
@@ -63,4 +64,3 @@ class TwoThreeTreeTable:
         postconditions: The given item gets deleted from the table
         """
         return self.ttt.deleteItem(item)
-    

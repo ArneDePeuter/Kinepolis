@@ -1,4 +1,4 @@
-def createItem(key,val):
+def createItem(key, val):
     return Item(key, val)
 
 
@@ -6,7 +6,7 @@ class Item:
     def __init__(self, key, val) -> None:
         self.key = key
         self.val = val
-    
+
     def __lt__(self, other):
         if type(other) == type(self):
             return self.key < other.key
@@ -18,12 +18,13 @@ class Item:
             return self.key == other.key
         else:
             return self.key == other
-    
+
     def __repr__(self):
         return repr(self.val)
-    
+
     def __getattr__(self, name):
         return getattr(self.val, name)
+
 
 class Node:
     def __init__(self, item=None) -> None:
@@ -32,45 +33,45 @@ class Node:
             self.items = [item]
         self.parent = None
         self.children = []
-    
+
     def __str__(self) -> str:
         s = ""
-        for i,val in enumerate(self.items):
-            if len(self.items)-1 == i:
+        for i, val in enumerate(self.items):
+            if len(self.items) - 1 == i:
                 s += str(val)
             else:
                 s += str(val) + "\n"
         return s
-    
+
     def __lt__(self, other):
         return self.getBiggestItem() < other.getBiggestItem()
-    
+
     def getBiggestItem(self):
         return self.items[-1]
-    
+
     def getSmallestItem(self):
         return self.items[0]
-    
+
     def addItem(self, newItem):
         self.items.append(newItem)
         self.items.sort()
-    
+
     def addChild(self, newChild):
         self.children.append(newChild)
         self.children.sort()
-    
+
     def removeChild(self, child):
         self.children.remove(child)
 
     def isEmpty(self):
-        return len(self.items) == 0 
-    
+        return len(self.items) == 0
+
     def isLeaf(self):
         return len(self.children) == 0
-    
+
     def isRoot(self):
         return self.parent is None
-    
+
     def has1Item(self):
         return len(self.items) == 1
 
@@ -79,19 +80,19 @@ class Node:
 
     def right(self):
         return self.children[-1]
-    
+
     def has2Items(self):
         return len(self.items) == 2
-    
+
     def middle(self):
         return self.children[1]
-    
+
     def has3Items(self):
         return len(self.items) == 3
-    
+
     def otherMiddle(self):
         return self.children[2]
-    
+
     def inorderTraverse(self, func):
         if self.isLeaf():
             func(self)
@@ -101,7 +102,7 @@ class Node:
                 func(self)
             if self.right() is not None:
                 self.right().inorderTraverse(func)
-        
+
     def split(self):
         if self.isRoot():
             p = Node()
@@ -116,10 +117,10 @@ class Node:
 
         left.parent = p
         right.parent = p
-        
+
         p.addChild(left)
         p.addChild(right)
-        
+
         if not self.isLeaf():
             left.addChild(self.left())
             self.left().parent = left
@@ -130,7 +131,7 @@ class Node:
             right.addChild(self.right())
             self.right().parent = right
         return p
-    
+
     def findInsertTarget(self, item):
         if self.has3Items():
             newParent = self.split()
@@ -138,13 +139,13 @@ class Node:
         if self.isLeaf():
             return self
         else:
-            if item<self.getSmallestItem():
+            if item < self.getSmallestItem():
                 return self.left().findInsertTarget(item)
-            elif item>self.getBiggestItem():
+            elif item > self.getBiggestItem():
                 return self.right().findInsertTarget(item)
             elif self.has2Items():
                 return self.middle().findInsertTarget(item)
-    
+
     def insertItem(self, item):
         if not self.isEmpty():
             target = self.findInsertTarget(item)
@@ -152,13 +153,13 @@ class Node:
         else:
             self.addItem(item)
         return True
-    
+
     def getDoubleItemChild(self):
         for child in self.children:
             if child.has2Items():
                 return child
         return None
-    
+
     def merge(self):
         """
         Merges the parent with its children
@@ -175,14 +176,14 @@ class Node:
         else:
             removedChild = self.middle()
             self.removeChild(self.middle())
-            
+
         self.left().addItem(self.items.pop(0))
         if not removedChild.isLeaf():
             self.left().addChild(removedChild.left())
             removedChild.left().parent = self.left()
         if self.isEmpty():
             self.fixBeforeDel()
-    
+
     def redivide(self):
         doubleChild = self.getDoubleItemChild()
         if doubleChild == self.left():
@@ -197,7 +198,7 @@ class Node:
             if not doubleChild.isLeaf():
                 self.left().addChild(doubleChild.left())
                 doubleChild.removeChild(doubleChild.left())
-        
+
     def fixBeforeDel(self):
         if self.has1Item():
             p = self.parent
@@ -210,7 +211,7 @@ class Node:
                     p.merge()
             return p
         return self
-    
+
     def findInorderAndMerge(self):
         """
         Returns the inorderSuccessor
@@ -246,9 +247,9 @@ class Node:
             else:
                 return None, False
         else:
-            if item<self.getSmallestItem():
+            if item < self.getSmallestItem():
                 return self.left().retrieveAndMerge(item)
-            elif item>self.getBiggestItem():
+            elif item > self.getBiggestItem():
                 return self.right().retrieveAndMerge(item)
             elif self.has2Items():
                 return self.middle().retrieveAndMerge(item)
@@ -272,24 +273,25 @@ class Node:
         for it in self.items:
             l.append(str(it.key))
         return l
-    
+
     def save(self):
         d = {}
-        d['root'] = self.stringList(self.items)
+        d["root"] = self.stringList(self.items)
         l = []
         if not self.isLeaf():
             for child in self.children:
                 l.append(child.save())
-            d['children'] = l
+            d["children"] = l
         return d
+
 
 class twoThreeFourTree:
     def __init__(self) -> None:
         self.root = Node()
-    
+
     def isEmpty(self):
         return self.root.isEmpty()
-    
+
     def insert(self, item):
         succes = self.root.insertItem(item)
         if not self.root.isRoot():
@@ -298,15 +300,16 @@ class twoThreeFourTree:
 
     def delete(self, item):
         return self.root.deleteItem(item)
-    
+
     def save(self):
         return self.root.save()
-    
+
     def inorderTraverse(self, func):
         self.root.inorderTraverse(func)
 
+
 t = twoThreeFourTree()
-for x in [60,30,10,20,50,40,70,80,15,90,100]:
+for x in [60, 30, 10, 20, 50, 40, 70, 80, 15, 90, 100]:
     t.insert(createItem(x, f"test{x}"))
 
 print(t.delete(createItem(60, "")))

@@ -148,7 +148,7 @@ if __name__ == "__main__":
     q.enqueue(5)
     print(q.save())
 
-    q.load(['a', 'b', 'c'])
+    q.load(["a", "b", "c"])
     print(q.save())
     print(q.dequeue()[0])
     print(q.save())
