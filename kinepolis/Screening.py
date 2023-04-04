@@ -14,7 +14,7 @@ class ScreeningSystem:
     def traverse(self, func):
         self.datastruct.traverseTable(func)
 
-    def addScreening(self, zaalnummer, slot, datum, filmid, vrijePlaatsen, id=None):
+    def addScreening(self, RoomNumber, slot, Date, filmid, FreePlaces, id=None):
         if id is None:
             id = self.count
         else:
@@ -25,14 +25,14 @@ class ScreeningSystem:
             return False
 
         timestamp = datetime(
-            year=datum.year,
-            month=datum.month,
-            day=datum.day,
+            year=Date.year,
+            month=Date.month,
+            day=Date.day,
             hour=timestamp.hour,
             minute=timestamp.minute,
         )
 
-        newScreening = Screening(id, zaalnummer, timestamp, filmid, vrijePlaatsen)
+        newScreening = Screening(id, RoomNumber, timestamp, filmid, FreePlaces)
         self.datastruct.tableInsert(id, newScreening)
         self.count += 1
         return True
@@ -63,12 +63,12 @@ class ScreeningSystem:
 
 
 class Screening:
-    def __init__(self, id, zaalnummer, timestamp, filmid, vrijePlaatsen):
+    def __init__(self, id, RoomNumber, timestamp, filmid, FreePlaces):
         self.id = id
-        self.roomNumber = zaalnummer
+        self.roomNumber = RoomNumber
         self.timestamp = timestamp
         self.filmid = filmid
-        self.freePlaces = vrijePlaatsen
+        self.freePlaces = FreePlaces
         self.reservedPlaces = 0
         self.seatedPlaces = 0
         self.status = "planned"
