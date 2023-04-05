@@ -9,8 +9,8 @@ class NonUniqueTable:
 
     def hashKey(self, key):
         total = 0
-        for c in str(key):
-            total += ord(c)
+        for i,c in enumerate(str(key)):
+            total += ord(c)*i
         return total % self.size
 
     def tableInsert(self, key, val):
