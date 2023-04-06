@@ -11,8 +11,8 @@ class BSTTable(BST):
         super().__init__()
 
     # Insert van een item
-    def tableInsert(self, item):
-        return super().searchTreeInsert(item)
+    def tableInsert(self, key,val):
+        return super().searchTreeInsert(key,val)
 
     # Delete van een item
     def tableDelete(self, key):
