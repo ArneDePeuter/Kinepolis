@@ -8,7 +8,7 @@ from .Extra.movieWebScraper import getMovies
 # Implementeren: Arne
 class MovieSystem:
     def __init__(self) -> None:
-        self.datastruct = NonUniqueTable()
+        self.datastruct = ADTFactory.getADT("Movie")
         self.count = 0
         self.queries = {}
 
