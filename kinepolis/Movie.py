@@ -1,6 +1,6 @@
 from .ADTfactory import ADTFactory
 from .MaterializedIndex import MaterializedIndex
-from .Datastructuren.SAM.Datatypes import Hashmap
+from .Datastructuren.ARNE.Wrappers.nonUniqueTable import NonUniqueTable
 from .Extra.movieWebScraper import getMovies
 
 
@@ -39,7 +39,10 @@ class MovieSystem:
             return False
 
         newMovie = Movie(id, titel, rating)
-        self.datastruct.tableInsert(newMovie.id, newMovie)
+        key = newMovie.id
+        if type(self.datastruct) == NonUniqueTable:
+            key = self.datastruct.hashKey(newMovie.getSearchkey())
+        self.datastruct.tableInsert(key, newMovie)
         self.count += 1
         return True
 
@@ -86,6 +89,7 @@ class Movie:
         self.id = id
         self.title = titel
         self.rating = rating
+        self.searchkey = id
 
     def __str__(self) -> str:
         return "titel: " + self.title + " rating: " + str(self.rating)
@@ -98,3 +102,6 @@ class Movie:
 
     def getRating(self):
         return self.rating
+
+    def getSearchkey(self):
+        return self.searchkey
