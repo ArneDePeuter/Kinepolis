@@ -2,8 +2,6 @@
 # TODO: reservatie mail specifieker
 
 from .Extra.mailsystem import MailSystem
-from .ADTfactory import ADTFactory
-
 
 # Testen: Arne
 # Implementeren: Cedric

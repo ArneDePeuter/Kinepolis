@@ -4,7 +4,7 @@
 from datetime import time as Time, datetime as Datetime, timedelta
 from .Parser import Parser
 from .Outputter import Outputter
-from .ADTfactory import ADTFactory
+from .Factories import ADTFactory
 
 from .Movie import MovieSystem
 from .User import UserSystem

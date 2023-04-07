@@ -1,4 +1,5 @@
-from .ADTfactory import ADTFactory
+from .Factories import ADTFactory
+
 
 class NonUniqueWrap:
     def __init__(self, table) -> None:

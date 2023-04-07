@@ -1,6 +1,5 @@
-from .ADTfactory import ADTFactory
+from .Factories import ADTFactory
 from .MaterializedIndex import MaterializedIndex
-from .Datastructuren.ARNE.Wrappers.nonUniqueTable import NonUniqueTable
 from .Extra.movieWebScraper import getMovies
 
 

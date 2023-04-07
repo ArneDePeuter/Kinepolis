@@ -1,4 +1,4 @@
-from .ADTfactory import ADTFactory
+from .Factories import ADTFactory
 from .MaterializedIndex import MaterializedIndex
 from datetime import datetime, timedelta
 

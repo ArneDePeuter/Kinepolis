@@ -1,10 +1,9 @@
-from .Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
-from .Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
-from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList
-
 # Factory class for ADT's
 class ADTFactory:
     def getADT(type):
+        from .Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
+        from .Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
+        from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList
         """
         Returns the proper datastructure corresponding to the input parameter
 
@@ -33,3 +32,17 @@ class ADTFactory:
             return ADTDict[type]()
         else:
             return ADTDict[type](maxQueue=False)
+
+
+class SearchKeyFactory:
+    def getSearchkey(type):
+        from .User import User
+        """
+        -> "User"
+        
+        """
+        d = {
+            "User" : User.getId,
+
+        }
+        return d[type]

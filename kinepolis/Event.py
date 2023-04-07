@@ -1,5 +1,4 @@
-from .ADTfactory import ADTFactory
-
+from .Factories import ADTFactory
 
 # ADT that handles Events from Kinepolis class
 class EventSystem:
