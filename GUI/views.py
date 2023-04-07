@@ -6,7 +6,11 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def home():
-    return render_template("home.html")
+    s = []
+    kinepolis.getScreeningSystem().traverse(s.append)
+    m = []
+    kinepolis.getMovieSystem().traverse(m.append)
+    return render_template("home.html", s=s, m=m)
 
 @views.route('/users', methods=['GET', 'POST'])
 def users():
