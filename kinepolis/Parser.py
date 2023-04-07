@@ -81,30 +81,6 @@ class Parser:
         timestamp = datetime(jaar, maand, dag, uur, min, 0)
         self.system.getEventSystem().addTicketEvent(timestamp, screeningId, seats)
 
-    def createLog(self, line):
-        """
-        Schrijft het systeem uit van een tijdstip in het verleden
-
-        Pre-condition: De datum en tijd vindt, plaatst in het verleden
-        Post-condition: Het bestand is ingelezen a.d.h.v. de content worden er wijzigingen in het self.system gedaan
-
-        :param fileName: De naam van het uit te schrijven bestand
-        :param line: De lijn die werd gebruikt om deze methode aan te roepen
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
-        """
-        parts = line.split()
-        datum = parts[0]
-        jaar, maand, dag = datum.split("-")
-        jaar, maand, dag = int(jaar), int(maand), int(dag)
-        tijd = parts[1]
-        uur, min = tijd.split(":")
-        uur, min = int(uur), int(min)
-        timestamp = datetime(jaar, maand, dag, uur, min, 0)
-        minstr = str(min) if len(str(min)) == 2 else "0" + str(min)
-        fileName = f"log_{jaar}-{maand}-{dag}_{uur}-{minstr}.html"
-
-        self.system.getEventSystem().addLogEvent(timestamp, fileName)
-
     def readFile(self, fileName):
         """
         Leest een bestand met de geven naam in

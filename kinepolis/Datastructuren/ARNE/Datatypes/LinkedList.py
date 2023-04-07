@@ -1,37 +1,8 @@
-def createItem(key, val):
-    return Item(key, val)
-
-
-class Item:
-    def __init__(self, key, val) -> None:
-        self.key = key
-        self.val = val
-
-    def __lt__(self, other):
-        if type(other) == type(self):
-            return self.key < other.key
-        else:
-            return self.key < other
-
-    def __eq__(self, other):
-        if type(other) == type(self):
-            return self.key == other.key
-        else:
-            return self.key == other
-
-    def __repr__(self):
-        return repr(self.val)
-
-    def __getattr__(self, name):
-        return getattr(self.val, name)
-
-
 class Node:
     def __init__(self, item) -> None:
         self.item = item
         self.next = None
         self.prev = None
-
 
 class LinkedList:
     def __init__(self):

@@ -1,6 +1,6 @@
 from .Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
 from .Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
-
+from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList
 
 # Factory class for ADT's
 class ADTFactory:
@@ -27,6 +27,7 @@ class ADTFactory:
             "Tickets": Table,
             "Events": Queue,
             "Timestamps": Table,
+            "NonUniqueList": LinkedList
         }
         if type != "Events":
             return ADTDict[type]()
