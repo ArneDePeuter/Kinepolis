@@ -31,7 +31,7 @@ class UserSystem:
             self.count = max(self.count, id)
 
         newUser = User(id, voornaam, achternaam, emailadres)
-        self.datastruct.tableInsert(newUser.id, newUser)
+        self.datastruct.tableInsert(newUser.searchkey, newUser)
         self.count += 1
         return True
 

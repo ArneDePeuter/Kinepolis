@@ -38,10 +38,7 @@ class MovieSystem:
             return False
 
         newMovie = Movie(id, titel, rating)
-        key = newMovie.id
-        if type(self.datastruct) == NonUniqueTable:
-            key = self.datastruct.hashKey(newMovie.getSearchkey())
-        self.datastruct.tableInsert(key, newMovie)
+        self.datastruct.tableInsert(newMovie.searchkey, newMovie)
         self.count += 1
         return True
 
