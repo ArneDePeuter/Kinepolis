@@ -85,7 +85,9 @@ class Movie:
         self.id = id
         self.title = titel
         self.rating = rating
-        self.searchkey = id
+
+        from .Factories import SearchKeyFactory
+        self.searchkey = SearchKeyFactory.getSearchkey("Movie")(self)
 
     def __str__(self) -> str:
         return "titel: " + self.title + " rating: " + str(self.rating)

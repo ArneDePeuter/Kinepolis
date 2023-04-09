@@ -37,12 +37,19 @@ class ADTFactory:
 class SearchKeyFactory:
     def getSearchkey(type):
         from .User import User
+        from .Movie import Movie
+        from .Room import Room
+        from .Screening import Screening
         """
         -> "User"
-        
+        -> "Movie"
+        -> "Room"
+        -> "Screening"
         """
         d = {
             "User" : User.getId,
-
+            "Movie" : Movie.getId,
+            "Room" : Room.getRoomNumber,
+            "Screening" : Screening.getId
         }
         return d[type]
