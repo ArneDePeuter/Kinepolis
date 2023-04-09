@@ -38,7 +38,6 @@ class SearchKeyFactory:
     def getSearchkey(type):
         from .User import User
         from .Movie import Movie
-        from .Room import Room
         from .Screening import Screening
         """
         -> "User"
