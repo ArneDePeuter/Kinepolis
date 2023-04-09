@@ -49,7 +49,6 @@ class SearchKeyFactory:
         d = {
             "User" : User.getId,
             "Movie" : Movie.getId,
-            "Room" : Room.getRoomNumber,
             "Screening" : Screening.getId
         }
         return d[type]

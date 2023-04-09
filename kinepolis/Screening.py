@@ -33,7 +33,7 @@ class ScreeningSystem:
         )
 
         newScreening = Screening(id, RoomNumber, timestamp, filmid, FreePlaces)
-        self.datastruct.tableInsert(id, newScreening)
+        self.datastruct.tableInsert(newScreening.searchkey, newScreening)
         self.count += 1
         return True
 
@@ -72,6 +72,9 @@ class Screening:
         self.reservedPlaces = 0
         self.seatedPlaces = 0
         self.status = "planned"
+
+        from .Factories import SearchKeyFactory
+        self.searchkey = SearchKeyFactory.getSearchkey("Screening")(self)
 
     def reservePlaces(self, amount):
         if amount > self.freePlaces:
