@@ -14,7 +14,7 @@ class ScreeningSystem:
     def traverse(self, func):
         self.datastruct.traverseTable(func)
 
-    def addScreening(self, RoomNumber, slot, Date, filmid, FreePlaces, id=None):
+    def addScreening(self, RoomNumber, slot, Date, filmsearchkey, FreePlaces, id=None):
         if id is None:
             id = self.count
         else:
@@ -32,7 +32,7 @@ class ScreeningSystem:
             minute=timestamp.minute,
         )
 
-        newScreening = Screening(id, RoomNumber, timestamp, filmid, FreePlaces)
+        newScreening = Screening(id, RoomNumber, timestamp, filmsearchkey, FreePlaces)
         self.datastruct.tableInsert(newScreening.searchkey, newScreening)
         self.count += 1
         return True
@@ -46,7 +46,7 @@ class ScreeningSystem:
             "roomNumber": MaterializedIndex(self.datastruct, Screening.getRoomNumber),
             "slot": MaterializedIndex(self.datastruct, Screening.getSlot),
             "date": MaterializedIndex(self.datastruct, Screening.getDate),
-            "filmid": MaterializedIndex(self.datastruct, Screening.getFilmId),
+            "filmsearchkey": MaterializedIndex(self.datastruct, Screening.getFilmSearchkey),
             "freePlaces": MaterializedIndex(self.datastruct, Screening.getFreePlaces),
             "reservedPlaces": MaterializedIndex(
                 self.datastruct, Screening.getReservedPlaces
@@ -63,11 +63,11 @@ class ScreeningSystem:
 
 
 class Screening:
-    def __init__(self, id, RoomNumber, timestamp, filmid, FreePlaces):
+    def __init__(self, id, RoomNumber, timestamp, filmSearchkey, FreePlaces):
         self.id = id
         self.roomNumber = RoomNumber
         self.timestamp = timestamp
-        self.filmid = filmid
+        self.filmsearchkey = filmSearchkey
         self.freePlaces = FreePlaces
         self.reservedPlaces = 0
         self.seatedPlaces = 0
@@ -123,8 +123,8 @@ class Screening:
     def getTimeStamp(self):
         return self.timestamp
 
-    def getFilmId(self):
-        return self.filmid
+    def getFilmSearchkey(self):
+        return self.filmsearchkey
 
     def getFreePlaces(self):
         return self.freePlaces
