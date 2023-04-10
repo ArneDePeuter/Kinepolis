@@ -1,13 +1,13 @@
 ### To do:
 
 ## Meeting 10/04
--[ ] Documentatie in orde
--[ ] Datastructuren checken
--[ ] Engels
--[ ] Niet unieke zoeksleutel testen
+- [ ] Documentatie in orde
+- [ ] Datastructuren checken
+- [ ] Engels
+- [ ] Niet unieke zoeksleutel testen
  
 Als je zin hebt:
--[ ] GUI stoerder maken
+- [ ] GUI stoerder maken
  
 
 
