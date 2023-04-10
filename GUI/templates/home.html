@@ -297,30 +297,32 @@
 <h1 style="margin: 5vh 0;">This is the home page</h1>
 <div class="container">
   <div class="row">
-      {% for movie in m %}
-      <div class="col-lg-4">
-          <div class="card card-margin">
-              <div class="card-header no-border">
-                  <h5 class="card-title">{{ movie.title }}</h5>
-              </div>
-              <div class="card-body pt-0">
-                  <div class="widget-49">
-                      <div class="widget-49-title-wrapper">
-                          <div class="widget-49-date-primary">
-                              <span class="widget-49-date-day">{{ movie.rating }}</span>
+      {% for screening in s %}
+          {% for movie in m %}
+              {% if screening.filmsearchkey == movie.id %}
+                  <div class="col-lg-4">
+                      <div class="card card-margin">
+                          <div class="card-header no-border">
+                              <h5 class="card-title">{{ movie.title }}</h5>
                           </div>
-                          <div class="widget-49-meeting-info">
-                              <span class="widget-49-date-day">31 mrt</span>
-                              <span class="widget-49-meeting-time">12:00 to 13.30 Hrs</span>
+                          <div class="card-body pt-0">
+                              <div class="widget-49">
+                                  <div class="widget-49-title-wrapper">
+                                      <div class="widget-49-date-primary">
+                                          <span class="widget-49-date-day">{{ movie.rating }}</span>
+                                      </div>
+                                          <div class="widget-49-meeting-info">
+                                              <span class="widget-49-date-day">Next screening:</span>
+                                              <span class="widget-49-meeting-time">{{ screening.timestamp }}</span>
+                                              <span class="widget-49-meeting-time">Free places: {{ screening.freePlaces }}</span>
+                                          </div>
+                                  </div>
+                              </div>
                           </div>
-                      </div>
-                      <div class="widget-49-meeting-action">
-                            <a href="#" class="btn btn-sm btn-flash-border-primary">Check availability</a>
                       </div>
                   </div>
-              </div>
-          </div>
-      </div>
+              {% endif %}
+          {% endfor %}
       {% endfor %}
   </div>
 </div>
