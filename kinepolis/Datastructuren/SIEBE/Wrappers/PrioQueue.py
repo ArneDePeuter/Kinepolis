@@ -1,4 +1,4 @@
-from Datastructuren.SIEBE.Datatypes.MyHeap import Heap, heapItem
+from kinepolis.Datastructuren.SIEBE.Datatypes.MyHeap import Heap, heapItem
 
 
 class HeapQueue:

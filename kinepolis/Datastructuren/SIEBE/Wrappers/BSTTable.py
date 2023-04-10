@@ -1,4 +1,4 @@
-from Datastructuren.SIEBE.Datatypes import MyBST, createTreeItem
+from kinepolis.Datastructuren.SIEBE.Datatypes import MyBST, createTreeItem
 
 
 class BSTTable:
