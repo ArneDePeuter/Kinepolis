@@ -297,33 +297,41 @@
 <h1 style="margin: 5vh 0;">This is the home page</h1>
 <div class="container">
   <div class="row">
-      {% for screening in s %}
-          {% for movie in m %}
-              {% if screening.filmsearchkey == movie.id %}
-                  <div class="col-lg-4">
-                      <div class="card card-margin">
-                          <div class="card-header no-border">
-                              <h5 class="card-title">{{ movie.title }}</h5>
-                          </div>
-                          <div class="card-body pt-0">
-                              <div class="widget-49">
-                                  <div class="widget-49-title-wrapper">
-                                      <div class="widget-49-date-primary">
-                                          <span class="widget-49-date-day">{{ movie.rating }}</span>
-                                      </div>
-                                          <div class="widget-49-meeting-info">
-                                              <span class="widget-49-date-day">Next screening:</span>
-                                              <span class="widget-49-meeting-time">{{ screening.timestamp }}</span>
-                                              <span class="widget-49-meeting-time">Free places: {{ screening.freePlaces }}</span>
-                                          </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              {% endif %}
-          {% endfor %}
-      {% endfor %}
+    {% set screenings_by_movie = {} %}
+    {% for screening in s %}
+        {% set movie_id = screening.filmsearchkey %}
+        {% if movie_id not in screenings_by_movie %}
+            {% set _ = screenings_by_movie.update({movie_id: []}) %}        {% endif %}
+        {% set _ = screenings_by_movie[movie_id].append(screening) %}
+    {% endfor %}
+
+    {% for movie in m %}
+        {% set screenings = screenings_by_movie.get(movie.id) %}
+        {% if screenings %}
+            {% set next_screening = screenings|sort(attribute='timestamp')|first %}
+            <div class="col-lg-4">
+                <div class="card card-margin">
+                    <div class="card-header no-border">
+                        <h5 class="card-title">{{ movie.title }}</h5>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <div class="widget-49-date-primary">
+                                    <span class="widget-49-date-day">{{ movie.rating }}</span>
+                                </div>
+                                <div class="widget-49-meeting-info">
+                                    <span class="widget-49-date-day">Next screening:</span>
+                                    <span class="widget-49-meeting-time">{{ next_screening.timestamp }}</span>
+                                    <span class="widget-49-meeting-time">Free places: {{ next_screening.freePlaces }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
