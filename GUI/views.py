@@ -84,7 +84,7 @@ def reservations():
             flash("Failed to add reservation.", category="error")
         return redirect(url_for('views.reservations'))
     
-    l = kinepolis.getReservationSystem().getEventList()
+    l = kinepolis.getEventSystem().getEventList()
     return render_template("reservation.html", l=l)
 
 @views.route('/events', methods=['GET', 'POST'])
