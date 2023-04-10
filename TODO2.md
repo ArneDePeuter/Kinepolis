@@ -1,4 +1,16 @@
 ### To do:
+
+## Meeting 10/04
+- [ ] Documentatie in orde
+- [ ] Datastructuren checken
+- [ ] Engels
+- [ ] Niet unieke zoeksleutel testen
+ 
+Als je zin hebt:
+- [ ] GUI stoerder maken
+ 
+
+
 ## Extra:
 -[ ] Error handling GUI
 -[ ] Uitgebreidere Log file?
