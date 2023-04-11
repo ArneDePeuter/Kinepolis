@@ -1,4 +1,4 @@
-from Datastructuren.CEDRIC.DataTypes.heap import Heap, Node
+from kinepolis.Datastructuren.CEDRIC.DataTypes.heap import Heap, Node
 
 
 class PriorityQueue(Heap):

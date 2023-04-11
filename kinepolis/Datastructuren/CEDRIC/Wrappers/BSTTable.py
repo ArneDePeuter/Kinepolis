@@ -1,4 +1,4 @@
-from Datastructuren.CEDRIC.DataTypes.BST import BST, TreeItem
+from kinepolis.Datastructuren.CEDRIC.DataTypes.BST import BST, TreeItem
 
 
 class BSTTable(BST):
