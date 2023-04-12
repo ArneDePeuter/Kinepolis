@@ -1,5 +1,7 @@
 REQUIREMENTS
 
 libs installed:
-    -Flask
-    -jinja2
+- Flask
+- jinja2
+- requests
+- BeautifulSoup
