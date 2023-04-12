@@ -2,7 +2,7 @@
 class ADTFactory:
     def getADT(type):
         from kinepolis.Datastructuren.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
-        from .Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
+        from .Datastructuren.Wrappers.PrioQueue import PrioQueue as Queue
         from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList
         """
         Returns the proper datastructure corresponding to the input parameter

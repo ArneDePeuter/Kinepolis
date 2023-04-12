@@ -1,4 +1,4 @@
-from .Datastructuren.ARNE.Wrappers.BSTTable import BSTTable as Table
+from .Datastructuren.Wrappers.ADTtable import Table
 
 
 class User:
