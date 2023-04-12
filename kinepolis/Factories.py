@@ -1,9 +1,12 @@
 # Factory class for ADT's
 class ADTFactory:
     def getADT(type):
-        from kinepolis.Datastructuren.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
+        from kinepolis.Datastructuren.Wrappers.twoThreeTable import (
+            TwoThreeTreeTable as Table,
+        )
         from .Datastructuren.Wrappers.PrioQueue import PrioQueue as Queue
         from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList
+
         """
         Returns the proper datastructure corresponding to the input parameter
 
@@ -26,7 +29,7 @@ class ADTFactory:
             "Tickets": Table,
             "Events": Queue,
             "Timestamps": Table,
-            "NonUniqueList": LinkedList
+            "NonUniqueList": LinkedList,
         }
         if type != "Events":
             return ADTDict[type]()
@@ -39,15 +42,12 @@ class SearchKeyFactory:
         from .User import User
         from .Movie import Movie
         from .Screening import Screening
+
         """
         -> "User"
         -> "Movie"
         -> "Room"
         -> "Screening"
         """
-        d = {
-            "User" : User.getId,
-            "Movie" : Movie.getId,
-            "Screening" : Screening.getId
-        }
+        d = {"User": User.getId, "Movie": Movie.getId, "Screening": Screening.getId}
         return d[type]

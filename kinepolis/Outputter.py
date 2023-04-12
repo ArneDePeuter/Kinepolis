@@ -18,7 +18,9 @@ class Outputter:
             screenings.append(
                 (
                     screening,
-                    self.system.getMovieSystem().retrieve(screening.filmsearchkey)[0].title,
+                    self.system.getMovieSystem()
+                    .retrieve(screening.filmsearchkey)[0]
+                    .title,
                 )
             )
         events = self.system.getEventSystem().getEventList()

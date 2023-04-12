@@ -1,5 +1,6 @@
 from .Factories import ADTFactory
 
+
 # ADT that handles Events from Kinepolis class
 class EventSystem:
     def __init__(self, system) -> bool:

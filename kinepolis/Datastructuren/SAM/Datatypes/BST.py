@@ -1,4 +1,3 @@
-
 class Node:
     def __init__(self, key, val):
         self.key = key
@@ -16,7 +15,7 @@ class BST:
             return True
         return False
 
-    def searchTreeInsert(self, key,val):
+    def searchTreeInsert(self, key, val):
         param = Node(key, val)
         if self.root is None:
             self.root = param

@@ -1,4 +1,7 @@
-from kinepolis.Datastructuren.ARNE.Datatypes.TwoThreeTree import TwoThreeTree, createItem
+from kinepolis.Datastructuren.ARNE.Datatypes.TwoThreeTree import (
+    TwoThreeTree,
+    createItem,
+)
 
 
 class TwoThreeTreeTable:

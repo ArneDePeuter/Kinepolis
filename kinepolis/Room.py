@@ -1,6 +1,7 @@
 from .Factories import ADTFactory
 from .MaterializedIndex import MaterializedIndex
 
+
 # Testen: Siebe
 # Implementeren: Arne
 class RoomSystem:

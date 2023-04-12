@@ -2,7 +2,8 @@ from .Factories import ADTFactory
 from .MaterializedIndex import MaterializedIndex
 from .Extra.movieWebScraper import getMovies
 
-#ADT system that handles everything to do with movies
+
+# ADT system that handles everything to do with movies
 class MovieSystem:
     def __init__(self) -> None:
         """
@@ -84,7 +85,7 @@ class MovieSystem:
             - "id"
             - "title"
             - "rating"
-        
+
         :param searchkey: is the searchkey
         :param identifier: is the identified param you want to search on
         :return: returns a python list filled with items corresponding to the query
@@ -99,7 +100,8 @@ class MovieSystem:
         else:
             return d[identifier].query(searchkey)
 
-#ADT for a Movie
+
+# ADT for a Movie
 class Movie:
     def __init__(self, id, title, rating):
         """
@@ -117,6 +119,7 @@ class Movie:
         self.rating = rating
 
         from .Factories import SearchKeyFactory
+
         self.searchkey = SearchKeyFactory.getSearchkey("Movie")(self)
 
     def getId(self):

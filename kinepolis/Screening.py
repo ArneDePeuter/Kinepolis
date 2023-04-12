@@ -46,7 +46,9 @@ class ScreeningSystem:
             "roomNumber": MaterializedIndex(self.datastruct, Screening.getRoomNumber),
             "slot": MaterializedIndex(self.datastruct, Screening.getSlot),
             "date": MaterializedIndex(self.datastruct, Screening.getDate),
-            "filmsearchkey": MaterializedIndex(self.datastruct, Screening.getFilmSearchkey),
+            "filmsearchkey": MaterializedIndex(
+                self.datastruct, Screening.getFilmSearchkey
+            ),
             "freePlaces": MaterializedIndex(self.datastruct, Screening.getFreePlaces),
             "reservedPlaces": MaterializedIndex(
                 self.datastruct, Screening.getReservedPlaces
@@ -74,6 +76,7 @@ class Screening:
         self.status = "planned"
 
         from .Factories import SearchKeyFactory
+
         self.searchkey = SearchKeyFactory.getSearchkey("Screening")(self)
 
     def reservePlaces(self, amount):

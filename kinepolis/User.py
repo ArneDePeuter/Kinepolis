@@ -1,6 +1,7 @@
 from .Factories import ADTFactory
 from .MaterializedIndex import MaterializedIndex
 
+
 # Testen: Sam
 # Implementeren: Siebe
 class UserSystem:
@@ -78,6 +79,7 @@ class User:
         self.emailadres = emailadres
 
         from .Factories import SearchKeyFactory
+
         self.searchkey = SearchKeyFactory.getSearchkey("User")(self)
 
     def getId(self):
