@@ -1,4 +1,4 @@
-from ..Datatypes.TwoThreeTree import TwoThreeTree, createItem
+from kinepolis.Datastructuren.ARNE.Datatypes.TwoThreeTree import TwoThreeTree, createItem
 
 
 class TwoThreeTreeTable:
@@ -16,7 +16,7 @@ class TwoThreeTreeTable:
         """
         return self.ttt.isEmpty()
 
-    # Inserts a TreeItem to the table
+    # Inserts a TableItem to the table
     def tableInsert(self, key, val):
         """
         Inserts to the table

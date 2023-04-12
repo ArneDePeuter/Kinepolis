@@ -1,7 +1,7 @@
 # Factory class for ADT's
 class ADTFactory:
     def getADT(type):
-        from .Datastructuren.ARNE.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
+        from kinepolis.Datastructuren.Wrappers.twoThreeTable import TwoThreeTreeTable as Table
         from .Datastructuren.ARNE.Wrappers.PrioQueue import PriorityQueue as Queue
         from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList
         """

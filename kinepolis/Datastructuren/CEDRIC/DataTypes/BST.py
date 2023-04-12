@@ -1,26 +1,11 @@
-def createTreeItem(key, val):
-    """
-    Functie creëert een item voor een binaire boom terug
-
-    Pre-conditions: \
-
-    Post-conditions: Item van het type TreeItem is aangemaakt.
-
-    :param key: De waarde van de key
-    :param val: De waarde van de value
-    :return: Geeft een item terug van het type TreeItem
-    """
-    return TreeItem(key, val)
-
-
-class TreeItem:
+class TableItem:
     def __init__(self, key, value):
         """
         De container die wordt gebruikt in de klasse BST
 
         Pre-conditions: \
 
-        Post-conditions: Een item van type TreeItem is aangemaakt
+        Post-conditions: Een item van type TableItem is aangemaakt
 
         :param key: De key van een item in een BST
         :param value: De value die aan een key gekoppeld is van een item in een BST
@@ -30,7 +15,7 @@ class TreeItem:
 
     def __str__(self):
         """
-        Functie die manier op hoe dat een TreeItem moet worden moet naar een string definieert.
+        Functie die manier op hoe dat een TableItem moet worden moet naar een string definieert.
 
         Pre-conditions: \
 
@@ -280,7 +265,7 @@ class BST:
         else:
             # self.item, self.leftBST, self.rightBST = None, BST, BST
 
-            self.item = TreeItem(data.get("root"), data.get("root"))
+            self.item = TableItem(data.get("root"), data.get("root"))
 
             if data.get("children") is not None:
                 if data.get("children")[0] is not None:

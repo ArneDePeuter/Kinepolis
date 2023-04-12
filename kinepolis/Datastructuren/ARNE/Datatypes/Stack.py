@@ -92,12 +92,12 @@ class StackTable(MyStack):
         """
         return self.isEmpty()
 
-    # Inserts a TreeItem to the table
+    # Inserts a TableItem to the table
     def tableInsert(self, item):
         """
-        Inserts a TreeItem to the table
+        Inserts a TableItem to the table
 
-        TreeItem is of type twoThreeNode
+        TableItem is of type twoThreeNode
 
         Pre-conditions: None
         Post-conditions: The treeItem gets inserted to the table
