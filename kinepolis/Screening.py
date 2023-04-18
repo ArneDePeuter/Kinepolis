@@ -31,10 +31,10 @@ class ScreeningSystem:
         """
         Adds a screening to the ScreeningSystem
 
-        :param RoomNumber:
+        :param RoomNumber: The number of the room in which the screening is going to be played
         :param slot: The time slot of the screening
         :param Date: The date of the screening
-        :param filmsearchkey: The searchkey of the movie of the screening
+        :param filmsearchkey: The searchkey of the movie
         :param FreePlaces: The amount of freeplaces in the room
         :param id: A unique number for that corresponds to the screening
         precondition : ScreeningSystem is initialized
@@ -111,13 +111,13 @@ class Screening:
         """
         Initializes a Screening object
 
-        :param id:
-        :param RoomNumber:
-        :param timestamp:
-        :param filmSearchkey:
-        :param FreePlaces:
-        precondition:
-        postcondition:
+        :param id: A unique number for that corresponds to the screening
+        :param RoomNumber: The number of the room in which the screening is going to be played
+        :param timestamp: Timestamp
+        :param filmSearchkey: The searchkey of the movie
+        :param FreePlaces: The amount of freeplaces in the room
+        precondition: /
+        postcondition: Screening object was created
         """
         self.id = id
         self.roomNumber = RoomNumber
@@ -133,22 +133,55 @@ class Screening:
         self.searchkey = SearchKeyFactory.getSearchkey("Screening")(self)
 
     def reservePlaces(self, amount):
+        """
+        Reserves places for the screening
+
+        :param amount: Amount of places that are being reserved
+        precondition: /
+        postcondition: freePlaces is updated with the new correct number
+        """
         if amount > self.freePlaces:
             return False
         self.freePlaces = self.freePlaces - amount
         return True
 
     def seatPlaces(self, amount, systemClock):
+        """
+        Seats people into their places
+
+        :param amount: Amount of people that are being seated
+        :param systemClock: Time of the system
+        precondition: /
+        postcondition: seatedPlaces is updated with the new correct number
+        """
         self.seatedPlaces += amount
         self.updateStatus(systemClock)
 
     def startScreening(self):
+        """
+        Starts the screening
+
+        precondition: /
+        postcondition: Status of the screening is set to playing
+        """
         self.status = "playing"
 
     def endScreening(self):
+        """
+        Ends the screening
+
+        precondition: /
+        postcondition: Status of the screening is set to ended
+        """
         self.status = "ended"
 
     def updateStatus(self, systemClock):
+        """
+        Updates the status of the screening
+
+        precondition : /
+        postcondition: Status of the screening is updated
+        """
         if self.timestamp > systemClock:
             if self.reservedPlaces == self.seatedPlaces:
                 self.status = "planned and ready"
@@ -168,28 +201,82 @@ class Screening:
                 self.status = "waiting"
 
     def getStatus(self):
+        """
+        Returns the status of a screening
+
+        precondition :
+        postcondition :
+        """
         return self.status
 
     def getId(self):
+        """
+        Returns the id of a screening
+
+        precondition :
+        postcondition :
+        """
         return self.id
 
     def getRoomNumber(self):
+        """
+        Returns the number of a room
+
+        precondition :
+        postcondition :
+        """
         return self.roomNumber
 
     def getTimeStamp(self):
+        """
+        Returns the timestamp
+
+        precondition :
+        postcondition :
+        """
         return self.timestamp
 
     def getFilmSearchkey(self):
+        """
+        Returns the filmsearchkey
+
+        precondition :
+        postcondition :
+        """
         return self.filmsearchkey
 
     def getFreePlaces(self):
+        """
+        Returns the freeplaces
+
+        precondition :
+        postcondition :
+        """
         return self.freePlaces
 
     def getReserverPlaces(self):
+        """
+        Returns the freeplaces
+
+        precondition :
+        postcondition :
+        """
         return self.freePlaces
 
     def getReservedPlaces(self):
+        """
+        Returns the reservedplaces
+
+        precondition :
+        postcondition :
+        """
         return self.reservedPlaces
 
     def getSeatedPlaces(self):
+        """
+        Returns the seatedplaces
+
+        precondition :
+        postcondition :
+        """
         return self.seatedPlaces
