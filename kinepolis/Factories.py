@@ -1,12 +1,6 @@
 # Factory class for ADT's
 class ADTFactory:
     def getADT(type):
-        from kinepolis.Datastructuren.Wrappers.twoThreeTreeTable import (
-            TwoThreeTreeTable as Table,
-        )
-        from .Datastructuren.Wrappers.PrioQueue import PrioQueue as Queue
-        from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList
-
         """
         Returns the proper datastructure corresponding to the input parameter
 
@@ -21,20 +15,26 @@ class ADTFactory:
         Pre-condition: /
         Post-condition: returns the proper datastructure
         """
+        #Wrapper for tables that expects non unique searchkeys
+        from .NonUniqueWrap import NonUniqueWrap as NonUniqueSearchkeyWrapper
+
+        #DataStructuren Arne
+        from .Datastructuren.ARNE.Wrappers.PRIOQUEUE import PriorityQueue as PriorityQueueArne
+        from .Datastructuren.ARNE.Wrappers.BSTTABLE import BSTTable as BSTtableArne
+        from .Datastructuren.ARNE.Wrappers.TWOTHREETABLE import TwoThreeTreeTable as TTTtableArne
+        from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList as LinkedListArne
+
         ADTDict = {
-            "User": Table,
-            "Movie": Table,
-            "Screening": Table,
-            "Room": Table,
-            "Tickets": Table,
-            "Events": Queue,
-            "Timestamps": Table,
-            "NonUniqueList": LinkedList,
+            "User": BSTtableArne,
+            "Movie": BSTtableArne,
+            "Screening": TTTtableArne,
+            "Room": BSTtableArne,
+            "Tickets": BSTtableArne,
+            "Events": PriorityQueueArne,
+            "Timestamps": TTTtableArne,
+            "NonUniqueList": LinkedListArne,
         }
-        if type != "Events":
-            return ADTDict[type]()
-        else:
-            return ADTDict[type](maxQueue=False)
+        return ADTDict[type]()
 
 
 class SearchKeyFactory:
@@ -42,7 +42,6 @@ class SearchKeyFactory:
         from .User import User
         from .Movie import Movie
         from .Screening import Screening
-
         """
         -> "User"
         -> "Movie"

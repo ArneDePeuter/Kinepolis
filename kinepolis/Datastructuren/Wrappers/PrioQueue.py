@@ -1,9 +1,8 @@
 from kinepolis.Datastructuren.CEDRIC.DataTypes.heap import Heap, Node
 
-
 class PrioQueue:
-    def __init__(self, maxQueue=True):
-        self.datastruct = Heap()
+    def __init__(self, maxQueue=True, heap=Heap):
+        self.datastruct = heap(maxQueue)
 
     def isEmpty(self) -> bool:
         return self.datastruct.heapIsEmpty()

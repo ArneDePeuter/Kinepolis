@@ -15,14 +15,15 @@ class Outputter:
         self.system.getScreeningSystem().traverse(temp.append)
         screenings = []
         for screening in temp:
-            screenings.append(
-                (
-                    screening,
-                    self.system.getMovieSystem()
-                    .retrieve(screening.filmsearchkey)[0]
-                    .title,
+            if screening is not None:
+                screenings.append(
+                    (
+                        screening,
+                        self.system.getMovieSystem()
+                        .retrieve(screening.filmsearchkey)[0]
+                        .title,
+                    )
                 )
-            )
         events = self.system.getEventSystem().getEventList()
         time = self.system.clock
         return template.render(screenings=screenings, events=events, time=time)

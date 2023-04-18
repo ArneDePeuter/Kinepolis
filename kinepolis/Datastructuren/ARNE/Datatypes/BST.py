@@ -1,7 +1,6 @@
 def createItem(key, val):
     return Item(key, val)
 
-
 class Item:
     def __init__(self, key, val) -> None:
         self.key = key
