@@ -98,13 +98,13 @@ class Kinepolis:
         Sets the time and date of the system.
         Pre-condition: \
         Post-condition: The time of the system is equal to the given time and date
-        :param year: Het jaar dat het systeem moet aannemen (optionele parameter)
-        :param month: Het maand dat het systeem moet aannemen (optionele parameter)
-        :param day: De dag dat het systeem moet aannemen (optionele parameter)
-        :param hour: Het uur dat het systeem moet aannemen (optionele parameter)
-        :param min: De minuten dat het systeem moet aannemen (optionele parameter)
-        :param sec: De seconden dat het systeem moet aannemen (optionele parameter)
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        :param year: The year that the system should assume (optional parameter)
+        :param month: The month that the system should assume (optional parameter)
+        :param day: The day that the system should assume (optional parameter)
+        :param hour: The hour that the system should assume (optional parameter)
+        :param min: The minutes that the system should assume (optional parameter)
+        :param sec: The seconds that the system should assume (optional parameter)
+        :return: True if the operation succeeded, False if it did not succeed.
         """
         year = year if year is not None else self.clock.year
         month = month if month is not None else self.clock.month
@@ -117,32 +117,75 @@ class Kinepolis:
 
     def increaseTime(self, n=1):
         """
-        Verhoogt de tijd n-seconden.
-        Pre-condition: \
-        Post-condition: De tijd van het systeem is verhoogd met n-seconden.
-        :param n: Aantal seconden het systeem moet toenemen. Geen parameter doorgeven → 1 seconden erbij
-        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        Increases the time by n seconds.
+
+        Pre-condition:
+        Post-condition: The time of the system has been increased by n seconds.
+        :param n: Number of seconds the system should increase. If no parameter is passed, increase by 1 second.
+        :return: True if the operation succeeded, False if it did not succeed.
         """
         self.clock += timedelta(seconds=n)
         time.sleep(n)
 
     def getUserSystem(self):
+        """
+        Returns the UserSystem
+
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
+        """
         return self.userSystem
 
     def getMovieSystem(self):
+        """
+        Returns the MovieSystem
+
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
+        """
         return self.movieSystem
 
     def getRoomSystem(self):
+        """
+        Returns the RoomSystem
+
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
+        """
         return self.roomSystem
 
     def getScreeningSystem(self):
+        """
+        Returns the ScreeningSystem
+
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
+        """
         return self.screeningSystem
 
     def getReservationSystem(self):
+        """
+        Returns the ReservationSystem
+
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
+        """
         return self.reservationSystem
 
     def getEventSystem(self):
+        """
+        Returns the EventSystem
+
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
+        """
         return self.eventSystem
 
     def getTimeStamp(self, id):
+        """
+        Returns the TimeStamp
+
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
+        """
         return self.timestamps.tableRetrieve(id)
