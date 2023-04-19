@@ -204,8 +204,8 @@ class Screening:
         """
         Returns the status of a screening
 
-        precondition :
-        postcondition :
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
         """
         return self.status
 
@@ -213,8 +213,8 @@ class Screening:
         """
         Returns the id of a screening
 
-        precondition :
-        postcondition :
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
         """
         return self.id
 
@@ -222,8 +222,8 @@ class Screening:
         """
         Returns the number of a room
 
-        precondition :
-        postcondition :
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
         """
         return self.roomNumber
 
@@ -231,8 +231,8 @@ class Screening:
         """
         Returns the timestamp
 
-        precondition :
-        postcondition :
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
         """
         return self.timestamp
 
@@ -240,8 +240,8 @@ class Screening:
         """
         Returns the filmsearchkey
 
-        precondition :
-        postcondition :
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
         """
         return self.filmsearchkey
 
@@ -249,8 +249,8 @@ class Screening:
         """
         Returns the freeplaces
 
-        precondition :
-        postcondition :
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
         """
         return self.freePlaces
 
@@ -258,8 +258,8 @@ class Screening:
         """
         Returns the freeplaces
 
-        precondition :
-        postcondition :
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
         """
         return self.freePlaces
 
@@ -267,8 +267,8 @@ class Screening:
         """
         Returns the reservedplaces
 
-        precondition :
-        postcondition :
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
         """
         return self.reservedPlaces
 
@@ -276,7 +276,7 @@ class Screening:
         """
         Returns the seatedplaces
 
-        precondition :
-        postcondition :
+        Precondition : The object exists
+        Postcondition : Value of the attribute was returned
         """
         return self.seatedPlaces
