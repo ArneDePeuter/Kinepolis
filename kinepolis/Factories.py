@@ -24,17 +24,19 @@ class ADTFactory:
         from .Datastructuren.ARNE.Wrappers.TWOTHREETABLE import TwoThreeTreeTable as TTTtableArne
         from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList as LinkedListArne
 
+
+
         ADTDict = {
-            "User": BSTtableArne,
-            "Movie": BSTtableArne,
-            "Screening": TTTtableArne,
-            "Room": BSTtableArne,
-            "Tickets": BSTtableArne,
-            "Events": PriorityQueueArne,
-            "Timestamps": TTTtableArne,
-            "NonUniqueList": LinkedListArne,
+            "User": NonUniqueSearchkeyWrapper(BSTtableArne),
+            "Movie": BSTtableArne(),
+            "Screening": TTTtableArne(),
+            "Room": BSTtableArne(),
+            "Tickets": BSTtableArne(),
+            "Events": PriorityQueueArne(),
+            "Timestamps": TTTtableArne(),
+            "NonUniqueList": LinkedListArne(),
         }
-        return ADTDict[type]()
+        return ADTDict[type]
 
 
 class SearchKeyFactory:
@@ -45,8 +47,7 @@ class SearchKeyFactory:
         """
         -> "User"
         -> "Movie"
-        -> "Room"
         -> "Screening"
         """
-        d = {"User": User.getId, "Movie": Movie.getId, "Screening": Screening.getId}
+        d = {"User": User.getFirstName, "Movie": Movie.getId, "Screening": Screening.getId}
         return d[type]
