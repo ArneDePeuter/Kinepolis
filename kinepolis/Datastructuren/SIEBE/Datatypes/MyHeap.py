@@ -2,9 +2,38 @@
     Implementatie van een Linked Based Heap
 """
 
+def createItem(key, val):
+    return Item(key, val)
+
+class Item:
+    """"
+        cfr. heap Arne toegevoeging in fuctie van item met key and valkey, val
+    """
+    def __init__(self, key, val) -> None:
+        self.key = key
+        self.val = val
+
+    def __lt__(self, other):
+        if type(other) == type(self):
+            return self.key < other.key
+        else:
+            return self.key < other
+
+    def __eq__(self, other):
+        if type(other) == type(self):
+            return self.key == other.key
+        else:
+            return self.key == other
+
+    def __repr__(self):
+        return repr(self.val)
+
+    def __getattr__(self, name):
+        return getattr(self.val, name)
+
 
 class heapItem:
-    def __init__(self, key=None):
+    def __init__(self, item=None):
         """
         -------------------------------------------------------
         Beschrijving:
@@ -19,7 +48,7 @@ class heapItem:
         """
         self.left = None
         self.right = None
-        self.key = key
+        self.item = item
         self.parent = None
 
     """
@@ -78,10 +107,10 @@ class heapItem:
             De 2 heap items werden van plaats verwisselt
         -------------------------------------------------------
         """
-        heapItemKey = self.key
-        otherKey = other.key
-        self.key = otherKey
-        other.key = heapItemKey
+        heapItemKey = self.item
+        otherKey = other.item
+        self.item = otherKey
+        other.item = heapItemKey
 
     def fix(self, lastHeapItem):
         """
@@ -97,7 +126,7 @@ class heapItem:
         """
         if lastHeapItem.parent is not None:
             lastHeapItem.parent.removeChild(lastHeapItem)
-        newTreeItem = heapItem(lastHeapItem.key)
+        newTreeItem = heapItem(lastHeapItem.item)
         newTreeItem.parent = self
         if self.left is None:
             self.left = newTreeItem
@@ -123,10 +152,10 @@ class heapItem:
                 self.parent.heapifyUp(operator)
 
     def __lt__(self, other):
-        return self.key < other.key
+        return self.item.key < other.item.key
 
     def __gt__(self, other):
-        return self.key > other.key
+        return self.item.key > other.item.key
 
     def heapifyDown(self, operator):
         """
@@ -150,7 +179,7 @@ class heapItem:
                 self.swap(self.right)
                 self.right.heapifyDown(operator)
 
-    def insertComplete(self, val):
+    def insertComplete(self, item):
         """
         -------------------------------------------------------
         Beschrijving:
@@ -162,16 +191,16 @@ class heapItem:
             De heap bevat alle eigenschappen van een heap
         -------------------------------------------------------
         """
-        newNode = heapItem(val)
+        newNode = heapItem(item)
         newNode.parent = self
         if self.left is None:
             self.left = newNode
         elif self.right is None:
             self.right = newNode
         elif self.left is not None:
-            return self.left.insertComplete(val)
+            return self.left.insertComplete(item)
         elif self.right is not None:
-            return self.right.insertComplete(val)
+            return self.right.insertComplete(item)
         return newNode
 
     def removeChild(self, child):
@@ -238,7 +267,7 @@ class Heap:
             Returns True als de BST leeg is, zo niet False.
         -------------------------------------------------------
         """
-        if self.root.key is None:
+        if self.root.item is None:
             return True
         else:
             return False
@@ -260,7 +289,7 @@ class Heap:
         -------------------------------------------------------
         """
         if self.heapIsEmpty():
-            self.root.key = newItem
+            self.root.item = newItem
             return True
         newNode = self.root.insertComplete(newItem)
         comparisonOperator = self.get_comparison_operator()
@@ -287,8 +316,12 @@ class Heap:
         # Kijkt of de heap leeg is
         if self.heapIsEmpty():
             return (None, False)
+        if self.root.isLeaf():
+            rootItem = self.root.item
+            self.root = heapItem()
+            return (rootItem, True)
         # Slaagt de key van de root op
-        rootItem = self.root.key
+        rootItem = self.root.item
         # Zoek het meest rechtse item onderaan
         lastItem = self.root.getLastHeapItem()
         # Plaats het meest rechtse item in de root
@@ -299,7 +332,7 @@ class Heap:
             lastItem.parent.removeChild(lastItem)
         comparisonOperator = self.get_comparison_operator()
         self.root.heapifyDown(comparisonOperator)
-        if lastItem.parent is not None:
+        if lastItem.parent is not None and self.root.left is not None and self.root.right is not None:
             temp = self.root.getLastHeapItem().parent
             l = temp.left
             r = temp.right
@@ -308,9 +341,9 @@ class Heap:
                 lastItem.parent.fix(r)
             elif r == None:
                 lastItem.parent.fix(l)
-            elif comparisonOperator(l.key, r.key) == l.key:
+            elif comparisonOperator(l, r) == l:
                 lastItem.parent.fix(r)
-            elif comparisonOperator(l.key, r.key) == r.key:
+            elif comparisonOperator(l, r) == r:
                 lastItem.parent.fix(l)
                 temp.left = r
                 temp.right = None
