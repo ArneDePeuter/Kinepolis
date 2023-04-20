@@ -68,7 +68,7 @@ class BST:
         def traverseer(node):
             if node is not None:
                 traverseer(node.left)
-                func(node.key)
+                func(node.val.val)
                 traverseer(node.right)
 
         traverseer(self.root)
