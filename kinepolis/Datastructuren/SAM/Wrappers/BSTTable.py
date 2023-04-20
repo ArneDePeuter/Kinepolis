@@ -1,4 +1,4 @@
-from Datastructuren.SAM.Datatypes import BST
+from ..Datatypes.BST import BST, TableItem
 
 def createTreeItem(key,val):
     return key,val
@@ -9,8 +9,8 @@ class BSTTable(BST):
         super().__init__()
 
     #Insert van een item
-    def tableInsert(self, item):
-        return super().searchTreeInsert(item)
+    def tableInsert(self, key,val):
+        return super().searchTreeInsert(TableItem(key,val))
 
     #Delete van een item
     def tableDelete(self, key):

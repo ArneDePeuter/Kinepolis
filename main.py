@@ -10,8 +10,6 @@ def testSearchkey():
 
 def main():
     kinepolis = Kinepolis()
-    kinepolis.userSystem.addUser("Sam", "De Smet", "samdesmet@tkt.be")
-    print(kinepolis.userSystem.retrieve("Sam")[0].getLastName())
     kinepolis.load("system.txt")
     kinepolis.save("log.html")
 
