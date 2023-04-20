@@ -5,7 +5,13 @@ class Node:
         self.left = None
         self.right = None
 
+class TableItem:
+    def __init__(self, key, val) -> None:
+        self.key = key
+        self.val = val
 
+def createTableItem(key,val):
+    return TableItem(key,val)
 class BST:
     def __init__(self):
         self.root = None
@@ -15,8 +21,8 @@ class BST:
             return True
         return False
 
-    def searchTreeInsert(self, key, val):
-        param = Node(key, val)
+    def searchTreeInsert(self, item):
+        param = Node(item.key, item)
         if self.root is None:
             self.root = param
             return True
@@ -56,7 +62,7 @@ class BST:
                     else:
                         current = current.right
                 elif key == current.key:
-                    return current.val, True
+                    return current.val.val, True
 
     def inorderTraverse(self, func):
         def traverseer(node):
@@ -159,3 +165,4 @@ class BST:
             return {"root": node.val}
 
         return helper(self.root)
+

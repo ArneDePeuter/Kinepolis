@@ -17,7 +17,7 @@ class NonUniqueWrap:
         """
         Inserts a value accordingly to the key
 
-        preconditions: /
+        preconditions: NonUniqueWrap is initialized
         postconditions: If worked, the value is added and True is returned. Else returns False.
         :param key: is the searchkey
         :param val: is the value that needs to get inserted
@@ -40,7 +40,7 @@ class NonUniqueWrap:
         """
         Traverses the table inorder and the func gets applied to every item
 
-        precondition: /
+        preconditions: NonUniqueWrap is initialized
         postconditions: func gets applied to every item inorder
         """
         l = []
@@ -55,7 +55,7 @@ class NonUniqueWrap:
         """
         Retrieves an item corresponding to the searchkey
 
-        preconditions: /
+        preconditions: NonUniqueWrap is initialized
         postconditions: returns the item and True if retrieved, else (None, False)
         :return: item and True if retrieved, else (None, False)
         """

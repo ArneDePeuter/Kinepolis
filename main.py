@@ -14,4 +14,4 @@ def main():
     kinepolis.save("log.html")
 
 if __name__ == "__main__":
-    testSearchkey()
+    main()
