@@ -3,7 +3,7 @@
 """
 
 
-class createTreeItem:
+class Node:
     def __init__(self, key, val):
         """
         -------------------------------------------------------
@@ -409,7 +409,7 @@ class BST:
             if dict is None:
                 return None
             # Maakt een treeItem aan voor de root, met als key en val dezelfde waarden
-            treeItem = createTreeItem(dict["root"], dict["root"])
+            treeItem = Node(dict["root"], dict["root"])
             # Kijk of er kinderen zijn
             if "children" in dict:
                 # Kijkt op linker kinderen
@@ -426,22 +426,3 @@ class BST:
 
         # Zet de ingeladen BST gelijk aan onze self.root
         self.root = load_bst(data)
-
-
-"""# Main:
-if __name__ == "__main__":
-    t = BST()
-    print(t.isEmpty())
-    print(t.searchTreeInsert(createTreeItem(8, 8)))
-    print(t.searchTreeInsert(createTreeItem(5, 5)))
-    print(t.isEmpty())
-    print(t.searchTreeRetrieve(5)[0])
-    print(t.searchTreeRetrieve(5)[1])
-    t.inorderTraverse(print)
-    print(t.save())
-    t.load({'root': 10, 'children': [{'root': 5}, None]})
-    t.searchTreeInsert(createTreeItem(15, 15))
-    print(t.searchTreeDelete(0))
-    print(t.save())
-    print(t.searchTreeDelete(10))
-    print(t.save())"""
