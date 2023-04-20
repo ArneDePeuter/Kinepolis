@@ -36,7 +36,8 @@ class ReservationSystem:
         if screening.freePlaces >= seats + screening.reservedPlaces:
             screening.reservedPlaces += seats
             self.tickets.append((screeningId, seats))
-            # self.mailsys.sendMailTo("arne@depeuter.org", "The matrix", screening.slot, aantalPlaatsenGereserveerd, id)
+            movieName = self.system.getMovieSystem().retrieve(screening.filmsearchkey)
+            self.mailsys.sendMailTo("arne@depeuter.org", movieName, screening.slot, seats, screeningId)
             return True
         else:
             return False
