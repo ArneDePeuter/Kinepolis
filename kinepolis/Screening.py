@@ -90,6 +90,14 @@ class ScreeningSystem:
 
         possible identifiers:
             - "id"
+            - "roomNumber"
+            - "slot"
+            - "date"
+            - "filmsearchkey"
+            - "freePlaces"
+            - "reservedPlaces"
+            - "seatedPlaces"
+            - "status"
 
         :param searchkey: is the searchkey
         :param identifier: is the identified param you want to search on
