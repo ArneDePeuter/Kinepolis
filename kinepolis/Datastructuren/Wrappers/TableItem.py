@@ -1,4 +1,4 @@
-class Item:
+class TableItem:
     def __init__(self, key, val) -> None:
         self.key = key
         self.val = val
