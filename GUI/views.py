@@ -73,11 +73,11 @@ def movies():
 def reservations():
     if request.method == "POST":
         userId = int(request.form.get('userId'))
-        timestamp = datetime.now()
+        #timestamp = datetime.now()
         screeningId = int(request.form.get('screeningId'))
         seats = int(request.form.get('seats'))
 
-        succes = kinepolis.getReservationSystem().reservate(userId, timestamp, screeningId, seats)
+        succes = kinepolis.getReservationSystem().reservate(userId, screeningId, seats)
         if succes:
             flash("Added reservation.", category="succes")
         else:
@@ -141,6 +141,8 @@ def screenings():
             flash("No room exists with this number", category="error")
         elif len(movies)==0:
             flash("No movie exists with this id.", category="error")
+        elif date_obj < datetime.now():
+            flash("No screening can be created in the past.", category="error")
         else:
             kinepolis.getScreeningSystem().addScreening(roomnumber, slot, date_obj, filmId, freePlaces)
             flash("Added screening.", category="succes")
