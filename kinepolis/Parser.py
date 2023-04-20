@@ -9,6 +9,15 @@ class Parser:
         self.system = system
 
     def parseUserLine(self, line):
+        """
+        Leest een "gebruiker" lijn in
+
+        Pre-condition: Het bestand moet bestaan
+        Post-condition: Het bestand is ingelezen adhv de content worden er wijzigingen in het self.system gedaan
+
+        :param line: De lijn met de waardes die gebruikt worden om deze methode aan te roepen
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
         parts = line.split()
 
         id = int(parts[1])
@@ -21,12 +30,30 @@ class Parser:
         self.system.getUserSystem().addUser(voornaam, achternaam, email, id)
 
     def parseRoomLine(self, line):
+        """
+        Leest een "zaal" lijn in
+
+        Pre-condition: Het bestand moet bestaan
+        Post-condition: Het bestand is ingelezen adhv de content worden er wijzigingen in het self.system gedaan
+
+        :param line: De lijn met de waardes die gebruikt worden om deze methode aan te roepen
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
         parts = line.split()
         zaalNummer = int(parts[1])
         aantalPlaatsen = int(parts[2])
         self.system.getRoomSystem().addRoom(aantalPlaatsen, zaalNummer)
 
     def parseMovieLine(self, line):
+        """
+        Leest een "film" lijn in
+
+        Pre-condition: Het bestand moet bestaan
+        Post-condition: Het bestand is ingelezen adhv de content worden er wijzigingen in het self.system gedaan
+
+        :param line: De lijn met de waardes die gebruikt worden om deze methode aan te roepen
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
         parts = line.split()
         id = int(parts[1])
         titel = ""
@@ -37,6 +64,15 @@ class Parser:
         self.system.getMovieSystem().addMovie(titel, rating, id)
 
     def parseScreeningLine(self, line):
+        """
+        Leest een "screening" lijn in
+
+        Pre-condition: Het bestand moet bestaan
+        Post-condition: Het bestand is ingelezen adhv de content worden er wijzigingen in het self.system gedaan
+
+        :param line: De lijn met de waardes die gebruikt worden om deze methode aan te roepen
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
         parts = line.split()
         id = parts[1]
         id = int(id)
@@ -53,6 +89,15 @@ class Parser:
         )
 
     def parseReservationLine(self, line):
+        """
+        Leest een "reservatie" lijn in
+
+        Pre-condition: Het bestand moet bestaan
+        Post-condition: Het bestand is ingelezen adhv de content worden er wijzigingen in het self.system gedaan
+
+        :param line: De lijn met de waardes die gebruikt worden om deze methode aan te roepen
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
         parts = line.split()
         datum = parts[0]
         jaar, maand, dag = datum.split("-")
@@ -69,6 +114,15 @@ class Parser:
         )
 
     def parseKomBinnenLine(self, line):
+        """
+        Leest een "kom binnen" lijn in
+
+        Pre-condition: Het bestand moet bestaan
+        Post-condition: Het bestand is ingelezen adhv de content worden er wijzigingen in het self.system gedaan
+
+        :param line: De lijn met de waardes die gebruikt worden om deze methode aan te roepen
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
+        """
         parts = line.split()
         datum = parts[0]
         jaar, maand, dag = datum.split("-")
@@ -127,7 +181,7 @@ class Parser:
                         # split de regel in onderdelen en verwijder de witruimte
                         self.parseReservationLine(line)
 
-                    # Kijk of de regel start met komBinnen TODO: Timestamp gebruiken of niet?
+                    # Kijk of de regel start met komBinnen
                     elif line.split()[2] == "ticket":
                         self.parseKomBinnenLine(line)
 
