@@ -116,7 +116,7 @@ class Screening:
         :param timestamp: Timestamp
         :param filmSearchkey: The searchkey of the movie
         :param FreePlaces: The amount of freeplaces in the room
-        precondition: /
+        precondition: Correct types of inputs
         postcondition: Screening object was created
         """
         self.id = id

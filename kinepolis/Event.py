@@ -19,7 +19,7 @@ class EventSystem:
         """
         Updates the event Queue
 
-        Pre-conditions: /
+        Pre-conditions: EventSystem is initialized
         Post-conditions: Top of the eventQueue gets executed when conditions are met
         """
         top, succes = self.events.dequeue()
@@ -32,16 +32,27 @@ class EventSystem:
         else:
             self.events.enqueue(top.timestamp, top)
 
-    def addReservationEvent(self, userId, timestamp, screeningId, seats, id=None):
+    def addReservationEvent(self, userId, timestamp, screeningSearchkey, seats, id=None):
+        """
+        Adds a reservation event to the Queue
+
+        :param userId: Id of the user that reserves tickets
+        :param timestamp: Time when the user reserves the tickets
+        :param screeningSearchkey: the searchkey of the screening
+        :param seats: amount of seats that the person reserves
+        :param id: unique number that corresponds to the reservation
+        Pre-conditions: Eventsystem is initialized
+        Post-conditions: Reservation is added to the event Queue
+        """
         foundUser = self.system.getUserSystem().retrieve(userId)[1]
-        foundScreening = self.system.getScreeningSystem().retrieve(screeningId)[1]
+        foundScreening = self.system.getScreeningSystem().retrieve(screeningSearchkey)[1]
         if not foundUser and not foundScreening:
             return False
 
         if id is not None:
             self.reservationCount = max(self.reservationCount, id)
         reservation = Reservation(
-            timestamp, self.reservationCount, userId, screeningId, seats
+            timestamp, self.reservationCount, userId, screeningSearchkey, seats
         )
         self.events.enqueue(reservation.timestamp, reservation)
         self.reservationCount += 1

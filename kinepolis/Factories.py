@@ -41,6 +41,13 @@ class ADTFactory:
 
 class SearchKeyFactory:
     def getSearchkey(type):
+        """
+        Returns the variable that's being used as the searchkey
+
+        Pre-condition : Type is in dictionary
+        Post-condition : Searchkey is returned
+
+        """
         from .User import User
         from .Movie import Movie
         from .Screening import Screening
