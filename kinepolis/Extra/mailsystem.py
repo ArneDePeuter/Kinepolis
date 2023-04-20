@@ -1,8 +1,6 @@
 from email.message import EmailMessage
 import ssl
 import smtplib
-from time import sleep
-
 
 class MailSystem:
     def __init__(self) -> None:

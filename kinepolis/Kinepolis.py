@@ -8,7 +8,7 @@ from .Factories import ADTFactory
 
 from .Movie import MovieSystem
 from .User import UserSystem
-from .Screening import ScreeningSystem, Screening
+from .Screening import ScreeningSystem
 from .Room import RoomSystem
 from .Reservation import ReservationSystem
 from .Event import EventSystem
@@ -28,7 +28,7 @@ class Kinepolis:
         self.roomSystem = RoomSystem()
         self.screeningSystem = ScreeningSystem(self)
 
-        self.reservationSystem = ReservationSystem(self)
+        self.reservationSystem = ReservationSystem(self, False)
         self.eventSystem = EventSystem(self)
 
         now = Datetime.now()
