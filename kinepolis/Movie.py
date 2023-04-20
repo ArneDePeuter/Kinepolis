@@ -21,7 +21,7 @@ class MovieSystem:
         Traverses that datastructure inside the MovieSystem
 
         :param func: is a function that needs to get executed on the objects
-        preconditions: /
+        preconditions: MovieSystem is initialized
         postconditions: the input param func gets executed on the objects
         """
         self.datastruct.traverseTable(func)
@@ -31,7 +31,7 @@ class MovieSystem:
         Retrieves a key in the datastructure of Moviesystem
 
         :param key: is the searchkey
-        preconditions: /
+        preconditions: MovieSystem is initialized
         postconditions: returns the objects or None and a bool (True if retrieve worked, else False)
         """
         return self.datastruct.tableRetrieve(key)
@@ -44,7 +44,7 @@ class MovieSystem:
         :param titel: The title of the movie
         :param rating: De score van een film volgens recensies.
         :return: True if succes, else False
-        Pre-condition: /
+        Pre-condition: MovieSystem is initialized
         Post-condition: The movie with the given parameters gets saved to the system
         """
         if id is not None:
@@ -60,7 +60,7 @@ class MovieSystem:
         """
         Removes all the Movies from the system
 
-        Pre-condition: /
+        Pre-condition: MovieSystem is initialized
         Post-condition: All the movies got deleted from the system
         """
         self.count = 0
@@ -70,7 +70,7 @@ class MovieSystem:
         """
         Adds the top 250 movies from IMBD to the movieSytem
 
-        preconditions: /
+        preconditions: MovieSystem is initialized
         postconditions: the top 250 movies from IMBD get loaded to the movieSytem
         """
         movies, ratings = getMovies()
@@ -126,8 +126,8 @@ class Movie:
         """
         Getter for id
 
-        preconditions: /
-        postconditions: id gets returned
+        Precondition : The object exists
+        Postconditions: id gets returned
 
         :return: returns the id
         """
@@ -137,7 +137,7 @@ class Movie:
         """
         Getter for title
 
-        preconditions: /
+        Precondition : The object exists
         postconditions: title gets returned
 
         :return: returns the title
@@ -148,7 +148,7 @@ class Movie:
         """
         Getter for rating
 
-        preconditions: /
+        Precondition : The object exists
         postconditions: rating gets returned
 
         :return: returns the rating
@@ -159,7 +159,7 @@ class Movie:
         """
         Getter for searchKey
 
-        preconditions: /
+        Precondition : The object exists
         postconditions: searchKey gets returned
 
         :return: returns the searchKey

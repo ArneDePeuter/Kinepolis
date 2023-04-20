@@ -1,25 +1,3 @@
-class User:
-    def __init__(self, voornaam, achternaam, email) -> None:
-        self.voornaam = voornaam
-        self.achternaam = achternaam
-        self.email = email
-
-    def __eq__(self, other) -> bool:
-        return self is other
-
-    def getVoornaam(self):
-        return self.voornaam
-
-    def getAchternaam(self):
-        return self.achternaam
-
-    def getEmail(self):
-        return self.email
-
-    def __str__(self) -> str:
-        return f"{self.voornaam} : {self.achternaam} : {self.email}"
-
-
 class MaterializedIndex:
     def __init__(self, table, identifier) -> None:
         self.dict = {}

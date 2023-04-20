@@ -27,7 +27,7 @@ class ADTFactory:
 
 
         ADTDict = {
-            "User": NonUniqueSearchkeyWrapper(BSTtableArne),
+            "User": BSTtableArne(),
             "Movie": BSTtableArne(),
             "Screening": TTTtableArne(),
             "Room": BSTtableArne(),
@@ -56,5 +56,5 @@ class SearchKeyFactory:
         -> "Movie"
         -> "Screening"
         """
-        d = {"User": User.getFirstName, "Movie": Movie.getId, "Screening": Screening.getId}
+        d = {"User": User.getId, "Movie": Movie.getId, "Screening": Screening.getId}
         return d[type]
