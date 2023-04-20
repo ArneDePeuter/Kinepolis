@@ -49,7 +49,7 @@ class Parser:
         filmId = int(parts[5])
         vrijePlaatsen = int(parts[6])
         self.system.getScreeningSystem().addScreening(
-            zaalNummer, slot, datum, filmId, vrijePlaatsen, id
+            zaalNummer, slot-1, datum, filmId, vrijePlaatsen, id
         )
 
     def parseReservationLine(self, line):

@@ -1,6 +1,5 @@
 from kinepolis.Kinepolis import Kinepolis
 
-
 def testSearchkey():
     kine = Kinepolis()
     kine.getUserSystem().addUser("Sam", "De Smet", "samdesmet@tkt.be", 5)
