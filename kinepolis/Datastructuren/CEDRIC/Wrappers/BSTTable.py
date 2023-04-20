@@ -1,4 +1,4 @@
-from kinepolis.Datastructuren.ARNE.Datatypes.BST import BST, Item
+from ...SIEBE.Datatypes.MyBST import BST, Node
 
 
 class BSTTable:
@@ -14,7 +14,7 @@ class BSTTable:
 
     # Inserts an item into the ADT
     def tableInsert(self, key, val) -> bool:
-        return self.datastruct.searchTreeInsert(Item(key, val))
+        return self.datastruct.searchTreeInsert(Node(key, val))
 
     # Deletes an item from the ADT
     def tableDelete(self, key) -> bool:
