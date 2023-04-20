@@ -7,6 +7,12 @@ def testSearchkey():
     kine.getUserSystem().addUser("Sam", "Beton", "sambeton@tkt.be", 6)
     print(kine.getUserSystem().retrieve("Sam")[0].getLastName())
 
+    print()
+    l = []
+    kine.getUserSystem().datastruct.traverseTable(l.append)
+    for item in l:
+        print(item.firstname, item.lastname)
+
 def main():
     kinepolis = Kinepolis()
     kinepolis.load("system.txt")
@@ -14,3 +20,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # testSearchkey()
