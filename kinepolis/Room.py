@@ -25,19 +25,19 @@ class RoomSystem:
          """
         self.datastruct.traverseTable(func)
 
-    def addRoom(self, numberPlaces, Roomnumber=None):
+    def addRoom(self, numberPlaces, roomNumber=None):
         """
         Add a room to the reservation system.
 
         Pre-condition: RoomSystem is initialized
         Post-condition: The room has been added to the reservation system.
         But not if a room with the same number already exists.
-        :param Roomnumber: The room being added.
+        :param roomNumber: The room being added.
         :param numberPlaces: The number of seats that the room has.
         :return: True if the operation is successful, False if it fails.
         """
-        if zaalNummer is not None:
-            self.count = max(self.count, Roomnumber)
+        if roomNumber is not None:
+            self.count = max(self.count, roomNumber)
 
         newRoom = Room(self.count, numberPlaces)
         self.datastruct.tableInsert(newRoom.roomNumber, newRoom)
