@@ -1,5 +1,4 @@
-from kinepolis.Datastructuren.CEDRIC.Wrappers.TableItem import TableItem
-from kinepolis.Datastructuren.CEDRIC.DataTypes.BST import BST
+from kinepolis.Datastructuren.CEDRIC.DataTypes.BST import BST, TreeItem
 
 
 class BSTTable:
@@ -15,7 +14,7 @@ class BSTTable:
 
     # Inserts an item into the ADT
     def tableInsert(self, key, val) -> bool:
-        return self.datastruct.searchTreeInsert(TableItem(key, val))
+        return self.datastruct.searchTreeInsert(TreeItem(key, val))
 
     # Deletes an item from the ADT
     def tableDelete(self, key) -> bool:
