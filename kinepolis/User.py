@@ -6,13 +6,29 @@ from .MaterializedIndex import MaterializedIndex
 # Implementeren: Siebe
 class UserSystem:
     def __init__(self) -> None:
+        """
+        Initializes a UserSystem.
+
+        precondition : /
+        postcondition : a UserSystem is created
+        """
         self.datastruct = ADTFactory.getADT("User")
         self.count = 0
 
     def retrieve(self, searchkey):
+        """
+        Retrieves a User that is associated with the given key.
+        precondition : /
+        postcondition : /
+        """
         return self.datastruct.tableRetrieve(searchkey)
 
     def traverse(self, func):
+        """
+        Retrieves a User that is associated with the given key.
+        precondition : /
+        postcondition : /
+        """
         self.datastruct.traverseTable(func)
 
     def addUser(self, voornaam, achternaam, emailadres, id=None):
@@ -83,13 +99,33 @@ class User:
         self.searchkey = SearchKeyFactory.getSearchkey("User")(self)
 
     def getId(self):
+        """
+        Returns the users ID.
+        precondition : /
+        postcondition : /
+        """
         return self.id
 
     def getFirstName(self):
+        """
+        Returns the users first name.
+        precondition : /
+        postcondition : /
+        """
         return self.firstname
 
     def getLastName(self):
+        """
+        Returns the users last name.
+        precondition : /
+        postcondition : /
+        """
         return self.lastname
 
     def getEmail(self):
+        """
+        Returns the users email.
+        precondition : /
+        postcondition : /
+        """
         return self.emailadres
