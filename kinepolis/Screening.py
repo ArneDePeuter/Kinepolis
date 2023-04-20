@@ -17,6 +17,12 @@ class ScreeningSystem:
         self.system = system
         self.count = 0
 
+    def update(self, clock):
+        screenings = []
+        self.datastruct.traverseTable(screenings.append)
+        for screening in screenings:
+            screening.updateStatus(clock)
+
     def traverse(self, func):
         """
         Traverses through the datastructure used in the ScreeningSystem
@@ -155,7 +161,6 @@ class Screening:
         postcondition: seatedPlaces is updated with the new correct number
         """
         self.seatedPlaces += amount
-        self.updateStatus(systemClock)
 
     def startScreening(self):
         """
@@ -188,17 +193,12 @@ class Screening:
             else:
                 self.status = "planned and waiting"
         else:
-            if (
-                self.reservedPlaces == self.seatedPlaces
-                or self.status == "planned and ready"
-            ):
+            if self.reservedPlaces == self.seatedPlaces:
+                self.startScreening()
+            else:
                 ScreeningTimePlusMovieTime = self.timestamp + timedelta(hours=2)
                 if systemClock > ScreeningTimePlusMovieTime:
                     self.endScreening()
-                else:
-                    self.startScreening()
-            else:
-                self.status = "waiting"
 
     def getStatus(self):
         """

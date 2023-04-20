@@ -8,13 +8,12 @@ from .Factories import ADTFactory
 
 from .Movie import MovieSystem
 from .User import UserSystem
-from .Screening import ScreeningSystem
+from .Screening import ScreeningSystem, Screening
 from .Room import RoomSystem
 from .Reservation import ReservationSystem
 from .Event import EventSystem
 
 import time
-
 
 class Kinepolis:
     def __init__(self):
@@ -90,6 +89,7 @@ class Kinepolis:
         Post-condition: system events are updated and the time of the system is increased.
         """
         if self.running:
+            self.getScreeningSystem().update(self.clock)
             self.eventSystem.update()
             self.increaseTime()
     
@@ -101,6 +101,7 @@ class Kinepolis:
         Post-condition: The eventqueue gets emptied inorder
         """
         while not self.eventSystem.isEmpty():
+            self.getScreeningSystem().update(self.clock)
             self.eventSystem.update()
             self.skipToNextEvent()
 
