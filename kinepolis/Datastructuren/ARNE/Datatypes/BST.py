@@ -104,8 +104,7 @@ class BSTNode:
         if self.left is not None:
             self.left.inorderTraverse(func)
 
-        if self.item is not None:
-            func(self.item)
+        func(self.item)
 
         if self.right is not None:
             self.right.inorderTraverse(func)
