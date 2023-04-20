@@ -1,4 +1,6 @@
-from kinepolis.Datastructuren.CEDRIC.DataTypes.BST import BST, TableItem
+from kinepolis.Datastructuren.Wrappers.TableItem import TableItem
+from kinepolis.Datastructuren.CEDRIC.DataTypes.BST import BST
+
 
 class BSTTable:
     def __init__(self, tree=BST()) -> None:
