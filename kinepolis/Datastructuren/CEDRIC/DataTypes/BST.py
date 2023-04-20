@@ -1,11 +1,26 @@
-class TableItem:
+def createTreeItem(key, val):
+    """
+    Functie creëert een item voor een binaire boom terug
+
+    Preconditions: \
+
+    Postconditions: Item van het type TreeItem is aangemaakt.
+
+    :param key: De waarde van de key
+    :param val: De waarde van de value
+    :return: Geeft een item terug van het type TreeItem
+    """
+    return TreeItem(key, val)
+
+
+class TreeItem:
     def __init__(self, key, value):
         """
         De container die wordt gebruikt in de klasse BST
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: Een item van type TableItem is aangemaakt
+        Postconditions: Een item van type TreeItem is aangemaakt
 
         :param key: De key van een item in een BST
         :param value: De value die aan een key gekoppeld is van een item in een BST
@@ -15,11 +30,11 @@ class TableItem:
 
     def __str__(self):
         """
-        Functie die manier op hoe dat een TableItem moet worden moet naar een string definieert.
+        Functie die manier op hoe dat een TreeItem moet worden moet naar een string definieert.
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: \
+        Postconditions: \
 
         :return: De correct geformatteerde string wordt terug gegeven
         """
@@ -32,9 +47,9 @@ class BST:
         Creëert een Binary Search Tree (BST). item, leftBST en rightBST worden op None gezet, omdat geen waarden worden mee
         gegeven.
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: Er is een binary search tree aangemaakt.
+        Postconditions: Er is een binary search tree aangemaakt.
 
         """
         self.item = None
@@ -45,9 +60,9 @@ class BST:
         """
         Functie die kijkt of de BST leeg is of niet.
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: \
+        Postconditions: \
 
         :return: De functie geeft een boolean terug, die true is als de BST leeg is, False als de BST item(s) bevat.
         """
@@ -60,9 +75,9 @@ class BST:
         """
         Functie die een item toe voegt aan de BST op de correcte plaats.
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: Het meegeven item is toegevoegd aan de BST.
+        Postconditions: Het meegeven item is toegevoegd aan de BST.
 
 
         :param item: Het item dat moet worden toegevoegd.
@@ -96,9 +111,9 @@ class BST:
         """
         Functie die de value zoekt die bij een gegeven key hoort, als de key in de boom zit.
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: \
+        Postconditions: \
         :param searchKey: De waarde van de key die moet worden gezocht.
         :return: De functie geeft een tuple terug, in het geval dat de key gevonden is, geeft de functie (value, True)
         terug, in het geval dat de key niet gevonden is (None, False).
@@ -126,9 +141,9 @@ class BST:
         """
         Functie die een BST in inorder terug geeft.
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: \
+        Postconditions: \
 
         :param FunctionType: Meegegeven functie, die inorderTraverse gebruikt.
         :return: \
@@ -146,18 +161,17 @@ class BST:
         """
         Functie die een BST om zet naar een string.
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: \
+        Postconditions: \
 
         :return: De functie geeft een string terug.
         """
         result = ""
         result += "{'root': " + str(self.item.key)
 
-        if (self.leftBST is not None and self.leftBST.item is not None) or (
-            self.rightBST is not None and self.rightBST.item is not None
-        ):
+        if (self.leftBST is not None and self.leftBST.item is not None) or \
+                (self.rightBST is not None and self.rightBST.item is not None):
             result += ",'children':["
 
             if self.leftBST is not None and self.leftBST.item is not None:
@@ -181,9 +195,9 @@ class BST:
         """
         Functie verwijderd een item uit de BST met als key gelijk aan de searchKey.
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: Als het item met als key gelijk aan searchKey in de BST zit wordt deze verwijderd uit de BST.
+        Postconditions: Als het item met als key gelijk aan searchKey in de BST zit wordt deze verwijderd uit de BST.
         De BST zal voldoen aan de voorwaarden van een BST.
 
         :param searchKey: De waarde van de key voor het item dat moet worden verwijderd.
@@ -238,9 +252,9 @@ class BST:
         """
         Functie die de kleinste key waarde zoekt in een BST.
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: \
+        Postconditions: \
 
         :return: De functie geeft het item met de kleinste key terug.
         """
@@ -253,9 +267,9 @@ class BST:
         """
         Functie laadt een BST met items die in items zitten.
 
-        Pre-conditions: \
+        Preconditions: \
 
-        Post-conditions: De items die in items zitten worden ingeladen in de BST.
+        Postconditions: De items die in items zitten worden ingeladen in de BST.
 
         :param data: Dictionary met de items er in die moeten worden ingeladen.
         :return: \
@@ -265,39 +279,25 @@ class BST:
         else:
             # self.item, self.leftBST, self.rightBST = None, BST, BST
 
-            self.item = TableItem(data.get("root"), data.get("root"))
+            self.item = TreeItem(data.get('root'), data.get('root'))
 
-            if data.get("children") is not None:
-                if data.get("children")[0] is not None:
+            if data.get('children') is not None:
+                if data.get('children')[0] is not None:
                     self.leftBST = BST()
-                    self.leftBST.load(data.get("children")[0])
+                    self.leftBST.load(data.get('children')[0])
                 else:
                     self.leftBST = None
 
-                if data.get("children")[1] is not None:
+                if data.get('children')[1] is not None:
                     self.rightBST = BST()
-                    self.rightBST.load(data.get("children")[1])
+                    self.rightBST.load(data.get('children')[1])
                 else:
                     self.rightBST = None
 
 
 if __name__ == "__main__":
     t = BST()
-    t.load(
-        {
-            "root": 100,
-            "children": [
-                {
-                    "root": 50,
-                    "children": [
-                        {"root": 20},
-                        {"root": 90, "children": [{"root": 70}, None]},
-                    ],
-                },
-                {"root": 200, "children": [{"root": 120}, {"root": 210}]},
-            ],
-        }
-    )
+    t.load({'root': 100, 'children': [{'root': 50, 'children': [{'root': 20}, {'root': 90, 'children': [{'root': 70}, None]}]}, {'root': 200, 'children': [{'root': 120}, {'root': 210}]}]})
     t.searchTreeDelete(90)
     t.searchTreeDelete(70)
     t.searchTreeDelete(100)

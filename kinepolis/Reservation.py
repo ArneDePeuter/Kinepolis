@@ -1,6 +1,3 @@
-# TODO: reservatie message specifieker
-# TODO: reservatie mail specifieker
-
 from .Extra.mailsystem import MailSystem
 
 
@@ -36,11 +33,10 @@ class ReservationSystem:
         if screening.freePlaces >= seats + screening.reservedPlaces:
             screening.reservedPlaces += seats
             self.tickets.append((screeningId, seats))
-            # movieName = self.system.getMovieSystem().retrieve(screening.filmsearchkey)
-            # self.mailsys.sendMailTo("arne@depeuter.org", movieName, screening.slot, seats, screeningId)
+            movieName = self.system.getMovieSystem().retrieve(screening.filmsearchkey)
+            self.mailsys.sendMailTo(user.emailadres, movieName, screening.slot, seats, screeningId)
             return True
-        else:
-            return False
+        return False
 
     def useTicket(self, idvertoning, aantal):
         if (idvertoning, aantal) not in self.tickets:
