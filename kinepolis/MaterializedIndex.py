@@ -5,6 +5,9 @@ class MaterializedIndex:
         table.traverseTable(self.setup)
 
     def setup(self, val):
+        if val is None:
+            return
+        
         key = self.identifier(val)
 
         if key in self.dict:
