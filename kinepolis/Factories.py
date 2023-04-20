@@ -20,7 +20,7 @@ class ADTFactory:
 
         #DataStructuren Arne
         from .Datastructuren.ARNE.Wrappers.PRIOQUEUE import PriorityQueue as PriorityQueue
-        #from .Datastructuren.ARNE.Wrappers.BSTTABLE import BSTTable as BSTtable
+        from .Datastructuren.ARNE.Wrappers.BSTTABLE import BSTTable as BSTtable
         from .Datastructuren.ARNE.Wrappers.TWOTHREETABLE import TwoThreeTreeTable as TTTtableArne
         from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList as LinkedListArne
 
@@ -29,7 +29,11 @@ class ADTFactory:
         #from .Datastructuren.SIEBE.Wrappers.PrioQueue import PrioQueue as PriorityQueue
 
         #DataStructuren Sam
-        from.Datastructuren.SAM.Wrappers.BSTTable import BSTTable as BSTtable
+        #from .Datastructuren.SAM.Wrappers.BSTTable import BSTTable as BSTtable
+
+        #DataStructuren Cedric
+        #from .Datastructuren.CEDRIC.Wrappers.BSTTable import BSTTable as BSTtable
+        #from .Datastructuren.CEDRIC.Wrappers.PrioQueue import PrioQueue as PriorityQueue
 
         ADTDict = {
             "User": BSTtable(),
