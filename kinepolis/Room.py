@@ -29,7 +29,7 @@ class RoomSystem:
         """
         Add a room to the reservation system.
 
-        Pre-condition:
+        Pre-condition: RoomSystem is initialized
         Post-condition: The room has been added to the reservation system.
         But not if a room with the same number already exists.
         :param Roomnumber: The room being added.
