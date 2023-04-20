@@ -11,7 +11,7 @@ class NonUniqueWrap:
         postconditions: a table gets created that can handle nonUnique searchKeys
         :param table: is the table that needs to get modified
         """
-        self.table = table()
+        self.table = table
 
     def tableInsert(self, key, val):
         """
