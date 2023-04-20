@@ -24,7 +24,7 @@ class Parser:
         parts = line.split()
         zaalNummer = int(parts[1])
         aantalPlaatsen = int(parts[2])
-        self.system.getRoomSystem().addRoom(zaalNummer, aantalPlaatsen)
+        self.system.getRoomSystem().addRoom(aantalPlaatsen, zaalNummer)
 
     def parseMovieLine(self, line):
         parts = line.split()
