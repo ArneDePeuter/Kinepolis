@@ -273,7 +273,7 @@ class BST:
         # Kijkt of de boom leeg is
         if self.root is None:
             # Gezochte record is niet gevonden
-            return False
+            return (None, False)
         # Zet het record eerst gelijk aan de root
         record = self.root
         # Loop voor het zoeken naar het item dat overeenkomt met de searchKey
@@ -284,7 +284,7 @@ class BST:
                 record = record.left
             else:
                 record = record.right
-        return False
+        return (None, False)
 
     def preorderTraverse(self, visit):
         """
@@ -325,7 +325,7 @@ class BST:
         def inorderTraverseHelper(treeItem):
             if treeItem is not None:
                 inorderTraverseHelper(treeItem.left)
-                visit(treeItem.key)
+                visit(treeItem.val)
                 inorderTraverseHelper(treeItem.right)
 
         inorderTraverseHelper(self.root)

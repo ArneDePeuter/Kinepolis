@@ -1,4 +1,4 @@
-from kinepolis.Datastructuren.SIEBE.Datatypes.MyHeap import Heap, heapItem
+from ..Datatypes.MyHeap import Heap
 
 class PrioQueue:
     def __init__(self, maxQueue=True):
