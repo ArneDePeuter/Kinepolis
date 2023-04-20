@@ -137,12 +137,19 @@ def screenings():
         rooms = kinepolis.getRoomSystem().query(roomnumber, "roomNumber")
         movies = kinepolis.getMovieSystem().query(filmId, "id")
 
+        freePlacesCheck = True
+        for room in rooms:
+            if room.getRoomNumber()==roomnumber:
+                if room.getAmountOfSeats()<freePlaces:
+                    freePlacesCheck = False
         if len(rooms)==0:
             flash("No room exists with this number", category="error")
         elif len(movies)==0:
             flash("No movie exists with this id.", category="error")
         elif date_obj < datetime.now():
             flash("No screening can be created in the past.", category="error")
+        elif freePlacesCheck is False:
+            flash("This room doesn't have this much places.", category="error")
         else:
             kinepolis.getScreeningSystem().addScreening(roomnumber, slot, date_obj, filmId, freePlaces)
             flash("Added screening.", category="succes")

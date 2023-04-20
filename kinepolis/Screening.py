@@ -37,7 +37,7 @@ class ScreeningSystem:
         :param filmsearchkey: The searchkey of the movie
         :param FreePlaces: The amount of freeplaces in the room
         :param id: A unique number for that corresponds to the screening
-        precondition : ScreeningSystem is initialized
+        precondition : ScreeningSystem is initialized, the timestamp of the screening is in the future
         postcondition : A new screening is inserted into the ScreeningSystem
         """
         if id is None:
