@@ -8,7 +8,7 @@ from .Factories import ADTFactory
 
 from .Movie import MovieSystem
 from .User import UserSystem
-from .Screening import ScreeningSystem, Screening
+from .Screening import ScreeningSystem
 from .Room import RoomSystem
 from .Reservation import ReservationSystem
 from .Event import EventSystem
