@@ -1,7 +1,7 @@
-from ..Datatypes.MyHeap import Heap
+from ..Datatypes.MyHeap import Heap, createItem
 
 class PrioQueue:
-    def __init__(self, maxQueue=True):
+    def __init__(self, maxQueue=False):
         self.heap = Heap(maxQueue)
 
     def isEmpty(self):
@@ -10,8 +10,8 @@ class PrioQueue:
     def dequeue(self):
         return self.heap.heapDelete()
 
-    def enqueue(self, item):
-        return self.heap.heapInsert(item)
+    def enqueue(self, key, value):
+        return self.heap.heapInsert(createItem(key, value))
 
     def save(self):
         return self.heap.save()
