@@ -99,13 +99,33 @@ class User:
         self.searchkey = SearchKeyFactory.getSearchkey("User")(self)
 
     def getId(self):
+        """
+        Returns the users ID.
+        precondition : /
+        postcondition : /
+        """
         return self.id
 
     def getFirstName(self):
+        """
+        Returns the users first name.
+        precondition : /
+        postcondition : /
+        """
         return self.firstname
 
     def getLastName(self):
+        """
+        Returns the users last name.
+        precondition : /
+        postcondition : /
+        """
         return self.lastname
 
     def getEmail(self):
+        """
+        Returns the users email.
+        precondition : /
+        postcondition : /
+        """
         return self.emailadres
