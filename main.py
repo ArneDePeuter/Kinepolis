@@ -11,7 +11,7 @@ def testSearchkey():
 def main():
     kinepolis = Kinepolis()
     kinepolis.load("system.txt")
-    kinepolis.save("log.html")
+    kinepolis.runSim()
 
 if __name__ == "__main__":
     main()

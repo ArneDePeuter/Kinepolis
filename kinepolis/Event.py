@@ -14,6 +14,14 @@ class EventSystem:
         self.events = ADTFactory.getADT("Events")
         self.system = system
         self.reservationCount = 0
+    
+    def isEmpty(self):
+        """
+        Checks if there are events no left
+        Pre-conditions: None
+        Post-conditions: Returns True if there are no events left
+        """
+        return self.events.isEmpty()
 
     def update(self):
         """

@@ -92,6 +92,17 @@ class Kinepolis:
         if self.running:
             self.eventSystem.update()
             self.increaseTime()
+    
+    def runSim(self):
+        """
+        Starts the kinepolis simulation and bursts trough all the events
+
+        Pre-condition: /
+        Post-condition: The eventqueue gets emptied inorder
+        """
+        while not self.eventSystem.isEmpty():
+            self.eventSystem.update()
+            self.skipToNextEvent()
 
     def skipToNextEvent(self):
         """
