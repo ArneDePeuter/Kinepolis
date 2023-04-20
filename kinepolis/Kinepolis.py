@@ -28,7 +28,7 @@ class Kinepolis:
         self.roomSystem = RoomSystem()
         self.screeningSystem = ScreeningSystem(self)
 
-        self.reservationSystem = ReservationSystem(self)
+        self.reservationSystem = ReservationSystem(self, False)
         self.eventSystem = EventSystem(self)
 
         now = Datetime.now()

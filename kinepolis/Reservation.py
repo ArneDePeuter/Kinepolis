@@ -1,14 +1,14 @@
 from .Extra.mailsystem import MailSystem
 
-
 # Testen: Arne
 # Implementeren: Cedric
 class ReservationSystem:
-    def __init__(self, system) -> None:
+    def __init__(self, system, sendMails) -> None:
         self.system = system
         self.mailsys = MailSystem()
         self.tickets = []
         self.reservationCount = 0
+        self.sendMails = sendMails
 
     def reservate(self, userId, screeningId, seats):
         """
@@ -33,8 +33,9 @@ class ReservationSystem:
         if screening.freePlaces >= seats + screening.reservedPlaces:
             screening.reservedPlaces += seats
             self.tickets.append((screeningId, seats))
-            movieName = self.system.getMovieSystem().retrieve(screening.filmsearchkey)
-            self.mailsys.sendMailTo(user.emailadres, movieName, screening.slot, seats, screeningId)
+            if self.sendMails:
+                movieName = self.system.getMovieSystem().retrieve(screening.filmsearchkey)[0].title
+                self.mailsys.sendMailTo(user.emailadres, movieName, screening.timestamp, seats, screeningId)
             return True
         return False
 
