@@ -1,4 +1,4 @@
-from kinepolis.Datastructuren.Wrappers.TableItem import TableItem
+from kinepolis.Datastructuren.CEDRIC.Wrappers.TableItem import TableItem
 from kinepolis.Datastructuren.CEDRIC.DataTypes.BST import BST
 
 
