@@ -17,14 +17,14 @@ class UserSystem:
 
     def addUser(self, voornaam, achternaam, emailadres, id=None):
         """
-        Adds a user to the reservation system.
-        Pre-condition: User must not yet exist in the system, based on the same email
-        Post-condition: User is added to the booking system.
-        :param id: This is a unique number corresponding to this object.
-        :param voornaam: The first name of the person.
-        :param achternaam: The surname of the person.
-        :param emailadres: The person's email address.
-        :return: True if the operation succeeded, False if it failed.
+        Voegt een gebruiker to aan het reservatiesysteem.
+        Pre-condition: De gebruiker mag nog niet bestaan in het systeem, based op dezelfde email
+        Post-condition: User is toegevoegd aan het reservatiesysteem.
+        :param id: Dit is een uniek getal dat overeenkomt met dit object.
+        :param voornaam: De voornaam van de persoon.
+        :param achternaam: De achternaam van de persoon.
+        :param emailadres: Het e-mailadres van de persoon.
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         if id is None:
             id = self.count
@@ -38,21 +38,15 @@ class UserSystem:
 
     def removeAllUsers(self):
         """
-        Removes all users from the reservation system.
-        Pre-condition: A user must exist before it can be deleted
-        Post-condition: All users are removed from the reservation system.
-        :return: True if the operation succeeded, False if it did not succeed.
+        Verwijderd alle gebruikers uit het reservatiesysteem.
+        Pre-condition: Er moet eerst een gebruiker bestaan voor er verwijderd kan worden
+        Post-condition: Alle gebruikers zijn verwijderd uit het reservatiesysteem.
+        :return: True als de operatie is gelukt, False als het niet gelukt is.
         """
         self.datastruct = self.datastruct.__init__()
         self.count = 0
 
     def query(self, searchkey, identifier):
-        """
-        Returns all objects matching the search key and the identifier
-        Pre-condition: /
-        Post-condition: all objects matching the search key and the identifier gets returned
-        :return: all objects matching the search key and the identifier
-        """
         d = {
             "id": MaterializedIndex(self.datastruct, User.getId),
             "firstname": MaterializedIndex(self.datastruct, User.getFirstName),
@@ -89,37 +83,13 @@ class User:
         self.searchkey = SearchKeyFactory.getSearchkey("User")(self)
 
     def getId(self):
-        """
-        Gets the id of the user
-
-        Precondition : The object exists
-        Postcondition : Value of the attribute was returned
-        """
         return self.id
 
     def getFirstName(self):
-        """
-        Gets the firstname of the user
-
-        Precondition : The object exists
-        Postcondition : Value of the attribute was returned
-        """
         return self.firstname
 
     def getLastName(self):
-        """
-        Gets the lastname of the user
-
-        Precondition : The object exists
-        Postcondition : Value of the attribute was returned
-        """
         return self.lastname
 
     def getEmail(self):
-        """
-        Gets the e-mail of the user
-
-        Precondition : The object exists
-        Postcondition : Value of the attribute was returned
-        """
         return self.emailadres
