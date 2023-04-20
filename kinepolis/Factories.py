@@ -39,9 +39,6 @@ class ADTFactory:
         # from .Datastructuren.CEDRIC.Wrappers.BSTTable import BSTTable
         # from .Datastructuren.CEDRIC.Wrappers.PrioQueue import PrioQueue
 
-
-
-
         ADTDict = {
             "User": BSTtable(),
             "Movie": BSTtable(),
