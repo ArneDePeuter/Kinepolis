@@ -19,14 +19,14 @@ class ADTFactory:
         from .NonUniqueWrap import NonUniqueWrap as NonUniqueSearchkeyWrapper
 
         #DataStructuren Arne
-        #from .Datastructuren.ARNE.Wrappers.PRIOQUEUE import PriorityQueue as PriorityQueueArne
-        #from .Datastructuren.ARNE.Wrappers.BSTTABLE import BSTTable as BSTtableArne
+        from .Datastructuren.ARNE.Wrappers.PRIOQUEUE import PriorityQueue as PriorityQueue
+        from .Datastructuren.ARNE.Wrappers.BSTTABLE import BSTTable as BSTtable
         from .Datastructuren.ARNE.Wrappers.TWOTHREETABLE import TwoThreeTreeTable as TTTtableArne
         from .Datastructuren.ARNE.Datatypes.LinkedList import LinkedList as LinkedListArne
 
         #DataStructuren Siebe
-        from .Datastructuren.SIEBE.Wrappers.BSTTable import BSTTable as BSTtable
-        from .Datastructuren.SIEBE.Wrappers.PrioQueue import PrioQueue as PriorityQueue
+        #from .Datastructuren.SIEBE.Wrappers.BSTTable import BSTTable as BSTtable
+        #from .Datastructuren.SIEBE.Wrappers.PrioQueue import PrioQueue as PriorityQueue
 
 
         ADTDict = {
