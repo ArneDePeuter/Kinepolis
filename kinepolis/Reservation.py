@@ -39,17 +39,26 @@ class ReservationSystem:
             return True
         return False
 
-    def useTicket(self, idvertoning, aantal):
-        if (idvertoning, aantal) not in self.tickets:
+    def useTicket(self, screeningId, seats):
+        """
+        Uses a ticket
+
+        :param screeningId: id of the screening
+        :param seats: the amount of seats
+        Pre-conditions: /
+        Post-conditions: Seats get taken in a screening
+        :return: True if succes
+        """
+        if (screeningId, seats) not in self.tickets:
             return False
         vertoning, screeningExists = self.system.getScreeningSystem().retrieve(
-            idvertoning
+            screeningId
         )
         if not screeningExists:
             return False
-        vertoning.seatPlaces(aantal, self.system.clock)
+        vertoning.seatPlaces(seats, self.system.clock)
         if vertoning.status == "planned and ready":
             self.system.getEventSystem().addStartScreeningEvent(
-                vertoning.timestamp, idvertoning
+                vertoning.timestamp, screeningId
             )
         return True
