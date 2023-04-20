@@ -57,9 +57,6 @@ class ScreeningSystem:
             minute=timestamp.minute,
         )
 
-        if timestamp < self.system.clock:
-            return False
-
         newScreening = Screening(id, RoomNumber, timestamp, filmsearchkey, FreePlaces)
         self.datastruct.tableInsert(newScreening.searchkey, newScreening)
         self.count += 1
