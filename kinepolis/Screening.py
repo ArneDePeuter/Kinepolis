@@ -18,6 +18,12 @@ class ScreeningSystem:
         self.count = 0
 
     def update(self, clock):
+        """
+        Updates the status of all the screenings
+        :param clock: the current time of the kinepolis system
+        precondition : ScreeningSystem is initialized
+        postcondition : Screenings are updated to the correct status
+        """
         screenings = []
         self.datastruct.traverseTable(screenings.append)
         for screening in screenings:
