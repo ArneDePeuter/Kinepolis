@@ -22,7 +22,7 @@ class Kinepolis:
         Creates a reservation system.
         Pre-condition: \
             
-        Post-condition: A reservation system is created.
+        Post-condition: A kinepolis reservation system is created.
         """
         self.userSystem = UserSystem()
         self.movieSystem = MovieSystem()
@@ -45,6 +45,12 @@ class Kinepolis:
         self.running = False
 
     def initTimeStamps(self, timestamps):
+        """
+        Initializes timestamps into the Kinepolis system
+
+        Pre-condition : Kinepolis is initialized
+        Post-condition : Timestamps are imported into the kinepolis system
+        """
         self.timestamps = ADTFactory.getADT("Timestamps")
         for i, time in enumerate(timestamps):
             self.timestamps.tableInsert(i, time)
@@ -52,13 +58,19 @@ class Kinepolis:
     def save(self, filename):
         """
         Saves the whole system in a file with the given name.
-        Pre-condition: /
-        Post-condition: /
+        Pre-condition: Kinepolis is initialized
+        Post-condition: Kinepolis system is exported into the given filename
         :param filename: name of the file where the system will be saved to.
         """
         self.outputter.generate(filename)
 
     def load(self, filename):
+        """
+        Loads data into the system.
+        Pre-condition : System is initialized
+        Post-condition : New data is loaded into the system
+        :param filename: name of the file where the system will get the information from
+        """
         self.parser.readFile(filename)
 
     def start(self):
