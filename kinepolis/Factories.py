@@ -36,14 +36,14 @@ class ADTFactory:
         # from .Datastructuren.CEDRIC.Wrappers.PrioQueue import PrioQueue as PriorityQueue
 
         ADTDict = {
-            "User": BSTtable(),
-            "Movie": BSTtable(),
-            "Screening": TTTtableArne(),
-            "Room": BSTtable(),
-            "Tickets": BSTtable(),
-            "Events": PriorityQueue(),
-            "Timestamps": TTTtableArne(),
-            "NonUniqueList": LinkedListArne(),
+            "User": BSTtable(), #ADT Table
+            "Movie": BSTtable(), #ADT Table
+            "Screening": TTTtableArne(), #ADT Table
+            "Room": BSTtable(), #ADT Table
+            "Tickets": BSTtable(), #ADT Table
+            "Events": PriorityQueue(), #ADT PriorityMinQueue
+            "Timestamps": TTTtableArne(), #ADT Table
+            "NonUniqueList": LinkedListArne(), #ADT Linked List
         }
         return ADTDict[type]
 
