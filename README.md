@@ -15,6 +15,7 @@
 ## How to use:
 ### GUI
 - Run mainGUI.py
+- Go to the ip adress shown in the terminal or go to yourpcname.local
 ### Main
 - Run main.py
 ### Change ADT
